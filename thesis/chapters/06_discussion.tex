@@ -12,7 +12,7 @@
 The three evaluation methods were designed to capture distinct aspects of
 therapeutic stability (\autoref{sec:meth-metrics}). The results confirm
 that they do: the cross-method correlations are moderate at best
-($\rho = 0.560$ for Jaccard--BERTScore, $\rho = 0.285$ for
+($\rho = 0.508$ for Jaccard--BERTScore, $\rho = 0.217$ for
 Jaccard--Coherence). Had any two methods been strongly correlated, one
 would be redundant. Instead, each method reveals information that the
 others miss.
@@ -31,21 +31,20 @@ strategies but failed to carry them out, the problem would be in the
 response generation. Instead, the pattern observed here is the opposite:
 the model carries out its plans faithfully but picks different plans across
 runs. The instability sits in strategy selection, not in response quality.
-This also validates Method~1: because plans are faithfully executed,
-Jaccard over plan sets measures genuine decision stability rather than
-label noise. Knowing this points toward temperature tuning rather than
-prompt redesign as the more promising adjustment.
+It also validates Method~1: because plans are faithfully executed,
+Jaccard over plan sets measures actual decision stability rather than
+label noise. Temperature tuning is therefore the more promising
+adjustment, not prompt redesign.
 
-BERTScore occupies a more limited role than initially anticipated. It
-correlates moderately with Jaccard but cannot distinguish between
-clinically different plans when the surface text remains similar. The
-slice depth analysis confirms this: Jaccard varies across conversation
-depths while BERTScore stays flat (\autoref{fig:slice-depth}). A model
-that switches from \techil{confrontation} to \techil{cognitive\_reframe}
-changes its therapeutic approach, but the response text remains similar
-enough that BERTScore does not detect the difference. BERTScore therefore
-serves primarily as a sanity check for response coherence rather than as
-an independent stability measure.
+BERTScore occupies a more limited role than initially anticipated.
+As shown in \autoref{sec:res-similarity}, it cannot distinguish between
+clinically different plans when the surface text remains similar. This
+limitation is not a failure of BERTScore itself but a consequence of how
+therapeutic responses are structured: different rescripting strategies
+often share the same conversational framing, sentence length, and
+register. For future work on therapeutic stability, a metric that
+operates on plan content rather than surface text would be more
+informative.
 
 
 \section{Cross-Model Comparison}
@@ -88,7 +87,7 @@ straightforwardly predict stability. \modelname{Qwen~3.5~122B}
 ($J = 0.979$ at $T = 0.0$) outperforms \modelname{Qwen~3.5~397B}
 ($J = 0.786$) at every temperature point.
 \modelname{OLMo~3.1~32B} achieves $J = 1.0$ at $T = 0.0$ and $T = 0.075$
-but degrades significantly at higher temperatures ($\rho = -0.632$,
+but degrades significantly at higher temperatures ($\rho = -0.576$,
 strongest sensitivity in the set).
 
 The proprietary models show the most stable temperature profiles but are
@@ -109,17 +108,14 @@ Both proprietary models also concentrate on a narrow set of strategies
 % [GRAPH] Temperature degradation curves per model -- the stochastic cost
 
 The five-point temperature sweep reveals that the relationship between
-temperature and stability is not monotonic for all models. Several models
-achieve higher mean Jaccard at a low non-zero temperature than at
-$T = 0.0$: \modelname{Mistral~Small~4} ($0.777 \to 0.881$ at $T = 0.15$),
-\modelname{Mistral~Large~3} ($0.796 \to 0.848$ at $T = 0.15$), and
-\modelname{Llama~3.3~70B} ($0.719 \to 0.775$ at $T = 0.075$). These
-differences are modest and based on n=6 vignettes per cell, so they
-should be interpreted cautiously. They are consistent with Mistral's
-vendor default of $T = 0.15$: stability-sensitive tasks may be best
-served in the range between zero and the default.
+temperature and stability is not monotonic for all models. As reported in
+\autoref{sec:res-plan-consistency}, several models achieve higher mean
+Jaccard at a low non-zero temperature than at $T = 0.0$. These
+differences are modest, but they are consistent with Mistral's vendor
+default of $T = 0.15$: stability-sensitive tasks may be best served in
+the range between zero and the default.
 
-The pooled Spearman correlation ($\rho = -0.228$, $p < 0.001$,
+The pooled Spearman correlation ($\rho = -0.206$, $p < 0.001$,
 \autoref{tab:temp-spearman}) confirms that higher temperature generally
 reduces plan consistency, but the effect is weak. Per-model analysis
 reveals that only three models show statistically significant degradation: \modelname{OLMo~3.1~32B}, \modelname{Qwen~3.5~27B},
@@ -132,8 +128,8 @@ a specific temperature range tend to be most stable within it. Pushing a
 model to $T = 0.0$ in the hope of maximising determinism can be
 counterproductive.
 
-Coherence is temperature-independent across all models ($\rho = -0.053$,
-$p = 0.361$). This means that the clinical cost of higher temperature is
+Coherence is temperature-independent across all models ($\rho = -0.083$,
+$p = 0.154$). This means that the clinical cost of higher temperature is
 limited to strategy \emph{selection} variability. The model does not become
 worse at \emph{executing} its chosen strategy. A patient receiving care
 from a high-temperature model would encounter different therapeutic
@@ -150,22 +146,15 @@ coherent.
 % Implications for patient-specific adaptation
 % [GRAPH] Per-vignette stability ranking across all three methods
 
-The significant vignette effect on Jaccard ($p = 0.007$) and BERTScore
-($p = 0.015$) indicates that some patient profiles are harder to treat
-consistently than others. This is clinically relevant: if a model is stable
-for cooperative patients but variable for resistant or trauma-presenting
-patients, deployment safety depends on the patient population being served.
+The vignette effect on strategy consistency is not statistically
+significant ($p = 0.094$), though BERTScore shows a marginally
+significant effect ($p = 0.033$): some patient profiles produce more
+variable response wording than others. The per-vignette heatmaps in
+\autoref{app:results} show that individual model-vignette combinations
+can differ noticeably from the aggregate, even if the overall effect is
+weak. Per-vignette reporting remains useful for identifying conditions
+under which a specific model's consistency breaks down.
 
-This finding suggests that stability evaluation should not rely solely on
-aggregate metrics. Per-vignette reporting, as provided in this study's
-appendix, is necessary to identify the conditions under which a model's
-consistency breaks down. A model that appears stable on average may be
-unreliable for the specific patient profiles that need the most careful
-treatment.
-
-Full per-vignette analysis is provided in \autoref{app:results}.
-
-% TODO: reference Fig D.3 (vignette heatmaps) when appendix written
 
 
 \section{Evaluation Framework Reflections}
@@ -184,75 +173,57 @@ Full per-vignette analysis is provided in \autoref{app:results}.
 %   protocol-driven AI agents. Computational evaluation complements but
 %   does not substitute clinical validation.
 
-\paragraph{Strengths.}
-Measuring at three layers revealed that strategy selection varies while
-execution stays faithful. BERTScore alone would have missed this, since it
-captures therapeutic tone but not the underlying strategy choices
+The main strength of the framework is that measuring at three layers
+revealed a pattern no single metric could show: strategy selection varies
+while execution stays faithful. BERTScore alone would have missed this,
+since it captures therapeutic tone but not the underlying strategy choices
 (\autoref{sec:res-similarity}). Frozen histories and 20-trial repetition
 \parencite{WA4QD3UE} ensure that observed variance comes from the model,
 not from differences in input or sample size.
 
-\paragraph{Taxonomy sensitivity.}
-Consistency scores depend on how strategies are categorised. Broader
-categories inflate Jaccard (more selections land in the same bin), finer
-categories deflate it. The six-category taxonomy (\autoref{tab:taxonomy})
-balances clinical detail with the ability to tell strategies apart, but
-different category boundaries would shift the absolute numbers. The
-relative ordering of models is more stable, since all are evaluated
-against the same set.
+That said, the consistency scores depend on how strategies are
+categorised. Broader categories inflate Jaccard (more selections land in
+the same bin), finer categories deflate it. The six-category taxonomy
+(\autoref{tab:taxonomy}) balances clinical detail with the ability to
+tell strategies apart, but different category boundaries would shift the
+absolute numbers. The relative ordering of models is more stable, since
+all are evaluated against the same set.
 
-\paragraph{Declared intent, not cognition.}
-The plan block captures what the model declares, not what it internally
-computes (\autoref{sec:meth-plan}). It cannot tell apart a model that
-picks a strategy and then writes the response from one that writes a
-response and then picks a matching label. The high coherence scores fit
-either reading. What matters here is that declarations vary across runs,
-and that variation predicts variable therapeutic behaviour regardless of
-the underlying process.
+The plan block also has limits. It captures what the model declares, not
+what it internally computes (\autoref{sec:meth-plan}). It cannot tell
+apart a model that picks a strategy and then writes the response from one
+that writes a response and then picks a matching label. The high
+coherence scores fit either reading. What matters is that declarations
+vary across runs, and that variation predicts variable therapeutic
+behaviour regardless of the underlying process.
 
-\paragraph{Generalisability.}
-The framework is not specific to \gls{irt}. Other structured therapy
+Beyond \gls{irt}, other structured therapy
 protocols where the therapist chooses from a defined set of techniques
 could be evaluated the same way. \gls{cbt} and motivational interviewing
 are likely candidates. Each would need its own strategy taxonomy, but the
 evaluation setup and metrics carry over.
 
-\paragraph{Ethical scope.}
-This framework measures whether a model produces \emph{consistent}
-therapeutic responses, not whether those responses are \emph{clinically
-appropriate}. A model that consistently selects the wrong strategy scores
-high on plan consistency. Stability is a necessary precondition for
-clinical deployment, as stated in \autoref{sec:intro-ai-therapy}, but it
-is not sufficient. All evaluations use synthetic patients and no human
-participants are involved. Clinical validation through human expert
-evaluation remains necessary before any deployment to real patients.
+Two important caveats apply. First, this framework measures whether a
+model produces \emph{consistent} responses, not whether those responses
+are \emph{clinically appropriate}. A model that consistently selects the
+wrong strategy scores high on plan consistency. Stability is necessary
+for clinical deployment but not sufficient. All evaluations use synthetic
+patients and no human participants are involved.
 
-\paragraph{Methodological constraints.}
-No reproducibility seed was set, as not all vendors support one. Even
-where seeds are available, they provide best-effort determinism at most
-\parencite{HITR7PL4}. A supplementary seed experiment on
+Second, no reproducibility seed was set, as not all vendors support one.
+Even where seeds are available, they provide best-effort determinism at
+most \parencite{HITR7PL4}. A supplementary seed experiment on
 \modelname{Mistral Large~3} confirms this: setting a fixed seed
-(\techil{seed=42}) does not improve consistency compared to unseeded
-runs (\autoref{fig:seed-comparison}). The trial repetition design
-captures stochastic variance directly.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\textwidth]{figures/fig_seed_comparison.pdf}
-  \caption{Seed comparison for \modelname{Mistral Large~3}. Setting a
-    fixed seed (\techil{seed=42}) does not improve Jaccard, BERTScore,
-    or coherence compared to unseeded runs. Error bars show $\pm 1$ SD
-    across vignettes. Differences are within noise.}
-  \label{fig:seed-comparison}
-\end{figure}
+(\techil{seed=42}) does not improve consistency compared to unseeded runs
+(\autoref{fig:seed-comparison}). The trial repetition design captures
+stochastic variance directly.
 
 The experiment evaluates at a single conversation depth
 (\techil{slice\_2}), chosen as a conservative estimate based on the
 preliminary depth analysis (\autoref{sec:meth-frozen}). Results at other
-depths may differ. All models were accessed through OpenRouter, so
-provider-side batching and load balancing may contribute to the
-non-determinism observed at $T = 0.0$, though this mirrors realistic
-deployment conditions.
+depths may differ. All models were accessed through OpenRouter with fixed
+inference providers, but provider-side batching and load balancing may
+still contribute to the non-determinism observed at $T = 0.0$.
 
 Further limitations regarding scope, vignette coverage, judge validation,
 and taxonomy constraints are discussed in \autoref{sec:concl-limitations}.

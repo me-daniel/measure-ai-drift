@@ -37,7 +37,7 @@ metrics across conditions for comparative analysis.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\textwidth]{figures/fig_3_1_pipeline.pdf}
+  \hspace*{0.4cm}\makebox[\textwidth]{\includegraphics[width=1.2\textwidth]{figures/fig_3_1_pipeline.pdf}}
   \caption{Two-stack pipeline. The generation stack produces frozen
     conversation histories (run once). The evaluation stack presents each
     history to the model under test across twenty independent trials per
@@ -63,25 +63,16 @@ metrics across conditions for comparative analysis.
 % [Example] Resistant vignette excerpt -- BDI profile and opening patient turn
 
 The generation stack orchestrates a three-agent loop that produces
-naturalistic \gls{irt} sessions. Each turn proceeds through three agents in
-sequence:
+naturalistic \gls{irt} sessions. Each turn passes through three agents:
 
-\begin{enumerate}
-  \item The \textbf{patient agent} simulates a clinical presentation based on
-    a \gls{bdi}-profiled vignette. Each vignette defines the patient's
-    nightmare content, emotional presentation style, and engagement pattern.
-  \item The \textbf{router agent} classifies the current \gls{irt} stage
-    from the conversation history, determining whether the session is in the
-    recording, rescripting, or rehearsal phase.
-  \item The \textbf{therapist agent} generates a stage-appropriate
-    therapeutic response, guided by the router's classification and a
-    stage-specific system prompt.
-\end{enumerate}
-
-This three-agent architecture separates the therapist's strategy
-decisions from stage classification and patient simulation. The router's
-stage classification controls which system prompt the therapist receives,
-ensuring that responses are appropriate to the current protocol phase.
+\begin{itemize}
+  \item \textbf{Patient:} responds based on a behavioural profile
+    (nightmare content, emotional style, engagement pattern).
+  \item \textbf{Router:} classifies the current protocol stage
+    (recording, rescripting, or rehearsal).
+  \item \textbf{Therapist:} generates a stage-appropriate response,
+    guided by the router's classification.
+\end{itemize}
 
 The vignette design is informed by anonymised session data from a prior
 reDreamAI efficacy study. Because data protection requirements prevent
@@ -188,7 +179,7 @@ measurement design.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\textwidth]{figures/fig_3_3_eval_stack.pdf}
+  \makebox[\textwidth]{\includegraphics[width=1.1\textwidth]{figures/fig_3_3_eval_stack.pdf}}
   \caption{Measurement design. The same frozen history is presented to
     the model under test twenty times. Each trial independently produces
     a plan and a therapeutic response. Variation across trials is the
@@ -252,8 +243,8 @@ clinical responses will also vary. Variable declared intent predicts
 variable therapeutic behaviour, which is the clinically relevant property.
 
 This framing sidesteps the faithfulness debate entirely while preserving
-three concrete uses. First, the declared strategies enable strategy-level
-consistency scoring (Method~1, \autoref{sec:meth-m1}). Second, comparison
+three uses. First, the declared strategies enable consistency scoring
+on strategy level (Method~1, \autoref{sec:meth-m1}). Second, comparison
 between declared strategies and the executed response enables coherence
 verification (Method~3, \autoref{sec:meth-m3}). Third, the plan provides
 a human-readable summary of the model's intended approach, supporting
@@ -286,7 +277,7 @@ distribution skew in early versions (full revision history in
 \autoref{app:taxonomy}). The core design principle is that each category
 must describe a rescripting \emph{mechanism} rather than a therapeutic
 \emph{goal}. Early versions that used goal-level labels (e.g.\
-\techil{empowerment}, \techil{mastery}) produced extreme skew because
+\emph{empowerment}, \emph{mastery}) produced extreme skew because
 every rescripting intervention serves the goal of increased mastery.
 Splitting categories along the mechanism dimension resolved this.
 
@@ -301,12 +292,12 @@ concrete therapeutic mechanisms:
     \toprule
     Category & Mechanism \\
     \midrule
-    \techil{confrontation}      & The dreamer directly faces, fights, or stands up to the threat \\
-    \techil{self\_empowerment}   & The dreamer gains a new ability or inner strength \\
-    \techil{safety}              & A physical barrier, shelter, or protective figure shields the dreamer \\
-    \techil{cognitive\_reframe}  & Existing dream elements change meaning \\
-    \techil{social\_support}     & A new person, companion, or ally is introduced \\
-    \techil{sensory\_modulation} & Sensory qualities shift, including internal somatic calming \\
+    \emph{confrontation}      & The dreamer directly faces, fights, or stands up to the threat \\
+    \emph{self-empowerment}   & The dreamer gains a new ability or inner strength \\
+    \emph{safety}              & A physical barrier, shelter, or protective figure shields the dreamer \\
+    \emph{cognitive reframe}  & Existing dream elements change meaning \\
+    \emph{social support}     & A new person, companion, or ally is introduced \\
+    \emph{sensory modulation} & Sensory qualities shift, including internal somatic calming \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -349,7 +340,7 @@ do.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\textwidth]{figures/fig_3_2_measurement.pdf}
+  \makebox[\textwidth]{\includegraphics[width=1.2\textwidth]{figures/fig_3_2_measurement.pdf}}
   \caption{Three-level evaluation framework. Each method targets a
     distinct layer of the generation process: strategy selection (Jaccard),
     response wording (BERTScore), and plan-response coherence (LLM judge).}
@@ -382,9 +373,9 @@ between strategy sets:
 
 The mean Jaccard score is computed over all $\binom{20}{2} = 190$ trial
 pairs per condition. Jaccard is appropriate because strategy combinations
-are unordered sets: a model that declares \techil{confrontation /
-cognitive\_reframe} has made the same clinical decision as one that declares
-\techil{cognitive\_reframe / confrontation}.
+are unordered sets: a model that declares \emph{confrontation / cognitive
+reframe} has made the same clinical decision as one that declares
+\emph{cognitive reframe / confrontation}.
 
 Because Jaccard operates on discrete sets of one to two items drawn from
 six categories, it takes only a small number of distinct values:
@@ -461,10 +452,8 @@ on a ternary scale:
 
 \begin{itemize}
   \item \textbf{0 (absent):} The strategy is not reflected in the response.
-  \item \textbf{1 (partial):} The strategy is mentioned or briefly addressed
-    but not fully developed.
-  \item \textbf{2 (implemented):} The strategy is clearly and substantively
-    present in the response.
+  \item \textbf{1 (partial):} The strategy is mentioned but not fully developed.
+  \item \textbf{2 (implemented):} The strategy is clearly and substantively present.
 \end{itemize}
 
 This ternary scale follows the ENACT and NIH BCC fidelity frameworks
@@ -504,9 +493,9 @@ asymmetry is the safe direction for a validation check.
 % NOTE: low-scoring trials were also manually inspected during development.
 % Zero scores were consistently caused by judge output formatting failures,
 % not genuine misalignment. No structured log was kept.
-Additionally, the rare trials with zero coherence scores were flagged.
+Rare trials with zero coherence scores were flagged separately.
 In all observed cases, a zero score indicated a malformed judge output rather than genuine therapeutic misalignment. The
-pipeline reruns zero-scored judge calls once before inclusion and reliablely fixes formatting issues.
+pipeline reruns zero-scored judge calls once before inclusion and reliably fixes formatting issues.
 
 % Coherence ceiling finding moved to Discussion (sec:disc-framework-interpretation).
 
@@ -538,34 +527,22 @@ that can be self-hosted within \gls{eu} data residency boundaries
 \parencite{2QMKF3RM}. All evaluation targets run in non-thinking mode for
 fair comparison.
 
-The \textbf{primary subject} is \modelname{Mistral Large~3}
-(675B \gls{moe}, 41B active parameters, Apache~2.0). It is the \gls{eu}
-sovereign flagship and the model that reDreamAI would deploy in production.
-The research question centres on whether this model achieves stability
-comparable to proprietary alternatives.
+The primary subject is \modelname{Mistral Large~3} (675B \gls{moe}, 41B
+active parameters, Apache~2.0), the \gls{eu}-sovereign flagship and the
+model that reDreamAI would deploy in production. Two additional Mistral
+models complete the family comparison: \modelname{Mistral Small~4}
+(119B \gls{moe}, 6.5B active) is the newest and most parameter-efficient
+\gls{moe} in the set, and \modelname{Mistral Small 3.2} (24B dense)
+serves as a dense predecessor baseline.
 
-Two additional \gls{eu}-sovereign models complete the Mistral comparison.
-\modelname{Mistral Small~4} (119B \gls{moe}, 6.5B active parameters,
-Apache~2.0) is Mistral's newest release and the most efficient \gls{moe}
-in the set, activating fewer parameters per token than any other model.
-\modelname{Mistral Small 3.2} (24B dense, Apache~2.0) serves as a
-predecessor baseline, showing whether the architectural shift from dense to
-\gls{moe} affects stability.
-
-The \textbf{proprietary ceiling} comprises two models.
+Two proprietary models provide a ceiling reference.
 \modelname{GPT-5.4} (non-thinking variant) is the strongest proprietary
-model without thinking overhead. OpenAI reintroduced user-configurable
-temperature with the non-reasoning variants of \modelname{GPT-5.2},
-making controlled temperature comparison possible.
-% TODO: source for OpenAI reintroducing temperature with GPT-5.2 non-reasoning
-\modelname{Claude Sonnet~4.6} adds a second proprietary reference point;
-Anthropic's character training emphasises thoughtful, safety-aware
-interaction, which may influence therapeutic stability independently of raw
-capability.
-% TODO: add Anthropic character training citation (anthropic.com/research/claude-character)
+model without thinking overhead. \modelname{Claude Sonnet~4.6} adds a second proprietary reference point
+from a different vendor.
 
-\textbf{Open-weight comparators} span three size classes and two
-architectures:
+Five open-weight comparators span three size classes and two
+architectures. \autoref{tab:models} lists all ten models with their
+selection rationale.
 
 \begin{table}[t]
   \centering
@@ -581,14 +558,14 @@ architectures:
     EU        & \modelname{Mistral Small 3.2} & 24B dense                      & Dense predecessor to Small~4 \\
     \addlinespace
     \multicolumn{4}{l}{\emph{Open-weight comparators}} \\
-    \gls{moe} & \modelname{Qwen 3.5 122B}    & 122B \gls{moe} (10B active)   & Peer \gls{moe} comparator to Mistral Small~4 \\
     \gls{moe} & \modelname{Qwen 3.5 397B}    & 397B \gls{moe} (17B active)   & Large \gls{moe} comparator to Mistral Large~3 \\
+    \gls{moe} & \modelname{Qwen 3.5 122B}    & 122B \gls{moe} (10B active)   & Peer \gls{moe} comparator to Mistral Small~4 \\
     Dense     & \modelname{Qwen 3.5 27B}     & 27B dense                      & Same size class as Mistral Small 3.2 \\
     Dense     & \modelname{OLMo 3.1 32B}     & 32B dense                      & Fully open (weights, data, code). Best provenance \\
     Dense     & \modelname{Llama 3.3 70B}    & 70B dense                      & Continuity with prior efficacy study \\
     \addlinespace
     \multicolumn{4}{l}{\emph{Proprietary ceiling}} \\
-    Ceiling   & \modelname{Claude Sonnet 4.6} & Proprietary                   & Character-trained for safety-aware interaction \\
+    Ceiling   & \modelname{Claude Sonnet 4.6} & Proprietary                   & Latest Claude model, known for natural conversational style \\
     Ceiling   & \modelname{GPT-5.4}           & Proprietary                   & Strongest non-thinking proprietary model \\
     \bottomrule
   \end{tabularx}
@@ -602,18 +579,10 @@ comparison, reasoning is disabled for all evaluation targets. All
 OpenRouter calls specify the model vendor as the inference provider,
 ensuring that each model runs on the same backend across all trials.
 
-\modelname{DeepSeek V3.2} was initially included as a large \gls{moe}
-comparator but was replaced by \modelname{Qwen 3.5 397B}. DeepSeek applies
-internal temperature scaling (API $T = 1.0$ maps to internal $T \approx
-0.3$), which would have complicated cross-model temperature comparisons.
-\modelname{Qwen 3.5 397B} occupies the same architectural niche without
-this complexity, and including three Qwen scales (27B, 122B, 397B) enables
-within-family scaling analysis. Other models considered and dropped include
-\modelname{Mistral Medium 3.1} (closed weights),
-\modelname{GLM-5} (a third large \gls{moe} adds little signal),
-\modelname{Nemotron~3 Super} (requires $T = 1.0$ universally, complicating
-temperature comparison), and \modelname{GPT-oss} (mandatory reasoning mode
-cannot be disabled).
+Including three Qwen scales (27B, 122B, 397B) enables within-family
+scaling analysis.\footnote{\modelname{DeepSeek V3.2} was originally
+considered for this slot but dropped because its internal temperature
+scaling would have complicated cross-model comparison.}
 
 
 \section{Experimental Conditions}
@@ -649,25 +618,26 @@ five-point temperature sweep that spans from deterministic decoding to the
 vendor-recommended defaults. The scale is anchored at three points
 motivated by vendor documentation:
 
-\begin{itemize}
-  \item $T = 0.0$ (greedy decoding): deterministic upper bound on stability.
-    No reproducibility seed is set, as not all vendors support one.
-    Even where a seed is available, GPU parallelisation and dynamic
-    batching introduce floating-point non-determinism that makes
-    output-level reproducibility best effort at most
-    \parencite{HITR7PL4}. The twenty-trial repetition design captures
-    this variance directly, following \textcite{WA4QD3UE}, who use the
-    same 20-trial protocol at $T = 0.0$ to quantify \gls{llm} stability.
-  \item $T = 0.15$: recommended temperature for Mistral models.
-    \modelname{Mistral Small 3.2} sets $T = 0.15$ explicitly in its
-    HuggingFace generation configuration. \modelname{Mistral Large 3} and
-    \modelname{Mistral Small 4} lack a generation configuration default;
-    their model cards recommend temperatures below 0.1 for production use,
-    while code examples on the same cards use $T = 0.15$. Because no
-    authoritative single default exists for these two models, 0.15 was
-    chosen to match the verified \modelname{Small 3.2} value and the
-    vendor-provided code examples.
-  \item $T = 0.6$: default temperature for \modelname{Qwen 3.5} and
+\begin{description}
+  \item[$T = 0.0$] (greedy decoding) serves as a deterministic upper
+    bound on stability. No reproducibility seed is set, as not all
+    vendors support one. Even where a seed is available, GPU
+    parallelisation and dynamic batching introduce floating-point
+    non-determinism that makes output-level reproducibility best effort
+    at most \parencite{HITR7PL4}. The twenty-trial repetition design
+    captures this variance directly, following \textcite{WA4QD3UE}, who
+    use the same 20-trial protocol at $T = 0.0$ to quantify \gls{llm}
+    stability.
+  \item[$T = 0.15$] is the recommended temperature for Mistral models.
+    \modelname{Mistral Small 3.2} sets this value explicitly in its
+    HuggingFace generation configuration. \modelname{Mistral Large 3}
+    and \modelname{Mistral Small 4} lack a generation configuration
+    default. Their model cards recommend temperatures below 0.1 for
+    production use, while code examples on the same cards use
+    $T = 0.15$. Because no authoritative single default exists for these
+    two models, 0.15 was chosen to match the verified
+    \modelname{Small 3.2} value and the vendor code examples.
+  \item[$T = 0.6$] is the default for \modelname{Qwen 3.5} and
     \modelname{OLMo~3.1}, also close to the standard Llama chat range
     (0.6--0.7) and the proprietary defaults (\modelname{GPT-5.4} and
     \modelname{Sonnet~4.6} default to $T = 0.7$).
@@ -676,7 +646,7 @@ motivated by vendor documentation:
     %   Llama 3.3 generation_config.json via unsloth mirror + meta-llama/llama3 reference impl [VERIFIED]
     %   GPT-5.4 -- reasoning model, does not support temperature parameter
     %   Sonnet 4.6 -- Anthropic API docs, default 1.0, 0.7 as midpoint [VERIFIED]
-\end{itemize}
+\end{description}
 
 The intermediate points $T = 0.075$ and $T = 0.3$ fill the gap between
 Mistral's low default and the Qwen/Llama range. $T = 0.075$ was added

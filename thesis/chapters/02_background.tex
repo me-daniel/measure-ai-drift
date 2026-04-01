@@ -240,7 +240,7 @@ token position may generate an entirely different rescripting approach in the
 subsequent response. The clinical impact of stochastic sampling is therefore not proportional
 to per-token entropy but can amplify through the response.
 
-The clinical consequence is concrete: the same patient presenting the same
+The clinical consequence follows directly: the same patient presenting the same
 nightmare on two different days may receive strategically inconsistent care.
 In a general-purpose assistant, this variability is benign or even
 desirable. In a structured therapy protocol like \gls{irt}, where the
@@ -313,37 +313,20 @@ also appear in the other. ROUGE does the same in the opposite direction,
 measuring recall rather than precision. Both produce a score between 0 and
 1 based on how many tokens match.
 
-In therapeutic contexts, token overlap produces misleading results in both
-directions. Two responses that use identical words to describe different
-strategies score high despite being clinically divergent. Conversely, two
-responses that implement the same strategy through different phrasing
-score low despite being therapeutically equivalent. Therapeutic
-paraphrasing is the norm: a competent therapist naturally varies their
-language while maintaining the same strategic intent. Surface metrics
-penalise this valid variation.
+In therapeutic contexts, token overlap is misleading. A therapist
+naturally varies their wording while keeping the same clinical intent, so
+two responses that implement the same strategy through different phrasing
+score low on BLEU/ROUGE despite being therapeutically equivalent.
 
-BERTScore \parencite{PUYCKUYY} addresses this limitation by computing similarity in contextual
-embedding space rather than token space. Each token in the candidate text is
-matched to the most similar token in the reference text using cosine
-similarity over contextualised embeddings, producing precision, recall, and
-F1 scores. The metric captures semantic similarity independent of surface
-form: two sentences that mean the same thing but use different words receive
-high scores.
-
-The choice of embedding model affects BERTScore's behaviour. Among more
-than 130 available models, those fine-tuned on \gls{nli} tasks achieve the
-highest correlation with human judgements of semantic similarity. The
-standard validation method is to compare BERTScore rankings against human
-similarity ratings from the WMT shared translation tasks, where
-professional annotators judge whether two texts convey the same meaning.
-\modelname{DeBERTa-XLarge-MNLI} \parencite{8MQC2H2V} achieves the
-highest WMT16 human correlation ($r = 0.778$) among available models.
-This means it captures most of what human annotators consider
-semantically similar, though the correlation is not perfect. For
-therapeutic language specifically, no equivalent human validation exists.
-The model is selected for Method~2 (\autoref{sec:meth-m2}) based on its
-general-domain performance, with the caveat that its sensitivity to
-clinically meaningful differences has not been independently verified.
+BERTScore \parencite{PUYCKUYY} avoids this problem by comparing texts in
+contextual embedding space rather than at the token level. It measures
+whether two texts convey the same meaning regardless of surface wording.
+The embedding model used in this study,
+\modelname{DeBERTa-XLarge-MNLI} \parencite{8MQC2H2V}, achieves the
+highest correlation with human similarity judgements ($r = 0.778$) among
+available models. No validation specific to therapeutic language exists,
+so this study uses its general-domain performance as the best available
+approximation (\autoref{sec:meth-m2}).
 
 BERTScore captures semantic similarity but cannot assess strategic intent.
 A metric that reports high similarity between two responses does not reveal

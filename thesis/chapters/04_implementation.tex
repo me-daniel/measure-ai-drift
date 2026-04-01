@@ -31,7 +31,7 @@ non-blocking, and trials within a condition run concurrently via
 design: 600 trials per model would be prohibitive if executed sequentially.
 Parallel execution reduces wall-clock time from hours to minutes per model.
 
-\paragraph{Configuration.}
+\paragraph{Configuration:}
 Two YAML files define the full experiment declaratively.
 \techil{models.yaml} specifies provider endpoints, model identifiers, role
 assignments, and evaluation targets. \techil{experiment.yaml} controls
@@ -42,7 +42,7 @@ code. This separation ensures that experiment conditions are reproducible:
 the configuration snapshot saved with each run fully specifies how to
 recreate it.
 
-\paragraph{Data validation.}
+\paragraph{Data validation:}
 Pydantic models enforce type safety at every data boundary. The
 \techil{Message} and \techil{Conversation} classes validate all fields on
 construction and serialisation. When a frozen history is loaded from disk,
@@ -59,7 +59,7 @@ the taxonomy. A malformed plan that cannot be parsed into valid strategy
 identifiers fails at extraction time rather than propagating downstream
 where it would silently corrupt Jaccard scores.
 
-\paragraph{Provider abstraction.}
+\paragraph{Provider abstraction:}
 % Multi-provider LLM abstraction via OpenRouter and Google AI Studio
 %   OpenRouter for all evaluation targets, Google AI Studio for Gemini judge
 %   Enables model swap without changing evaluation logic -- critical for

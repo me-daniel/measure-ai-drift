@@ -16,15 +16,15 @@ The main findings are:
 
 \begin{enumerate}
   \item \textbf{Consistency varies widely across models and temperatures.}
-    Some models achieve perfect plan consistency ($J = 1.000$) at all
-    temperatures, while others drop below $J = 0.5$ at higher settings.
+    Mean Jaccard ranges from $J = 0.56$ (\modelname{Qwen~3.5~27B} at
+    $T = 0.6$) to $J = 1.0$ (\modelname{OLMo~3.1~32B} at $T = 0.0$).
     Temperature is the primary driver of variation for open-weight models.
 
-  \item \textbf{The \gls{eu}-sovereign flagship matches proprietary models
-    at recommended temperatures.} \modelname{Mistral Large~3} achieves
-    $J = 1.000$ at $T = 0.075$ and $T = 0.15$, equal to \modelname{GPT-5.4}
-    and \modelname{Sonnet~4.6}. The gap only appears above the recommended
-    operating range.
+  \item \textbf{The \gls{eu}-sovereign flagship is close to proprietary
+    models at recommended temperatures.} \modelname{Mistral Large~3}
+    achieves $J = 0.848$ at $T = 0.15$, compared to $J = 0.871$ for
+    \modelname{GPT-5.4} and $J = 0.907$ for \modelname{Sonnet~4.6}. The
+    gap widens at higher temperatures.
 
   \item \textbf{Instability sits in strategy selection, not execution.}
     Temperature reduces plan consistency but not plan-response coherence.
@@ -38,22 +38,21 @@ The main findings are:
 
   \item \textbf{No single metric captures the full picture.}
     The three evaluation levels are only moderately correlated
-    ($\rho = 0.285$ to $0.560$). BERTScore misses plan-level changes.
+    ($\rho = 0.217$ to $0.508$). BERTScore misses strategy changes.
 
-  \item \textbf{Patient profile matters.} A significant vignette effect
-    ($p = 0.007$) means that stability evaluations based on aggregate
-    metrics alone may miss per-profile weaknesses.
+  \item \textbf{Patient profile may matter.} The vignette effect on
+    Jaccard is not significant ($p = 0.094$), but BERTScore shows a
+    marginal effect ($p = 0.033$). Per-vignette reporting can reveal
+    weaknesses that aggregate scores mask.
 \end{enumerate}
 
 Regarding the two contributions stated in \autoref{sec:intro-objectives}:
 the three-level framework (Contribution~1) fulfilled its design goal by
 identifying that instability is concentrated at the strategy selection
 layer, a finding that neither BERTScore nor coherence alone could have
-revealed. The cross-model comparison (Contribution~2) demonstrates that
-the \gls{eu}-sovereign \modelname{Mistral Large~3} achieves stability
-comparable to proprietary models at its recommended operating temperature,
-supporting its viability for clinical deployment under sovereignty
-constraints.
+revealed. The cross-model comparison (Contribution~2) shows that
+\modelname{Mistral Large~3} approaches proprietary-level stability at its
+recommended operating temperature, though a small gap remains.
 
 
 \section{Limitations}
@@ -84,10 +83,10 @@ computational consistency rather than clinical safety or efficacy.
 limits clinical risk, but any deployment to real patients would require
 validation beyond what this framework provides.
 
-The \gls{llm} judge (\modelname{Gemini 3.1 Pro}) has only been validated
-on a small subset of trials due to the volume of data (6{,}000 trials).
-Method~3 results should be interpreted as a computational estimate rather
-than a clinically validated measure.
+The \gls{llm} judge (\modelname{Gemini 3.1 Pro}) was validated on 60
+stratified trials with substantial human agreement ($\kappa = 0.777$),
+but this covers only 1\% of the 6{,}000 total trials. A larger
+annotation study would strengthen confidence in the coherence scores.
 
 The six-category strategy taxonomy constrains what can be measured.
 Strategies that fall outside these categories are invisible to Method~1,
@@ -126,18 +125,7 @@ stability improves or fluctuates over time. reDreamAI targets
 German-speaking users, so evaluating stability in German would test
 whether the English-language patterns transfer.
 
-On the measurement side, a larger human annotation study against the same
-ternary rubric would strengthen the judge validation that this study could
-only perform on a small subset. Comparing human and \gls{llm} judge
-scores would clarify how much trust to place in automated coherence
-assessment.
-
 Finally, newer model architectures may affect output consistency
-independently of temperature. \modelname{Qwen~3.5} already uses Gated
-DeltaNet \parencite{YJTEGJH4}, a hybrid attention mechanism where gated
-memory updates control how much prior context is retained or forgotten.
-In principle, this could reduce the effect where an early token divergence
-propagates through the rest of the response. The results here do not show
-a clear stability advantage for \modelname{Qwen~3.5} over standard
-transformers, but whether architectural choices can improve therapeutic
-consistency beyond what temperature tuning achieves remains open.
+independently of temperature. Whether architectural choices such as
+hybrid attention mechanisms can improve therapeutic consistency beyond
+what temperature tuning achieves remains an open question.

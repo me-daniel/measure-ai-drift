@@ -13,7 +13,9 @@ treatment: \gls{irt}, a structured protocol in which the patient rescripts
 a nightmare under therapist guidance \autocite{FGA5H3ZD}. A persistent
 shortage of trained therapists limits its availability
 \autocite{7M7NHYXT}, making scalable, AI-assisted delivery a practical
-goal. However, the rescripting step requires active strategy decisions
+goal.
+
+The rescripting step, however, requires active strategy decisions
 from the therapist. An AI agent that selects different strategies on
 repeated runs of the same case is clinically unreliable, regardless of
 how capable any single response may be. Patients also differ in how they
@@ -69,21 +71,18 @@ Data sovereignty requirements push toward EU-resident models \autocite{2QMKF3RM}
 % [FIG] Gap diagram -- what capability benchmarks measure vs. what clinical
 %   reliability requires; the unmeasured space this thesis addresses
 
-Standard NLP benchmarks measure what a model \emph{can} do, not whether it does the same thing reliably.
+Standard \gls{nlp} benchmarks measure what a model \emph{can} do, not whether it does the same thing reliably.
 A model can score well on a single evaluation while producing different therapeutic strategies on repeated runs of the same input.
 Capability and stability are distinct properties, but current benchmarks conflate them.
 
-The closest existing work is BOLT \autocite{B97RI7GA}, which evaluates LLM therapist behaviour using 13 behavioural codes from motivational interviewing.
-BOLT measures whether a model applies appropriate therapeutic techniques (quality).
-This study measures a different property: whether a model applies the \emph{same} techniques across repeated runs (stability).
-BOLT evaluates single responses; this study evaluates the distribution of responses across twenty independent trials per condition.
-
-Other therapeutic AI evaluations are qualitative, post-hoc, or single-session \autocite{JX7N8VWS}.
-They cannot detect cross-run inconsistency because they do not present the same input multiple times.
+Prior therapeutic AI evaluations, including the closest existing work
+(BOLT, \cite{B97RI7GA}), measure whether a model applies appropriate
+techniques. They evaluate single responses rather than the distribution
+across repeated runs \autocite{JX7N8VWS}, so they cannot detect
+cross-run inconsistency (\autoref{sec:bg-llm-healthcare}).
 Systematic, reproducible in silico trials offer a way to measure stability at scale without requiring human participants.
 
-% TODO: [FIG] Gap diagram -- what capability benchmarks measure vs. what clinical
-%   reliability requires; the unmeasured space this thesis addresses
+% Gap argument made in prose above; no diagram needed
 
 \section{Research Objectives}
 \label{sec:intro-objectives}

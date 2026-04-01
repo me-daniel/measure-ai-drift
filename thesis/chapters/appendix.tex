@@ -17,28 +17,28 @@ taxonomy evolved through four iterations to resolve distribution skew
     \toprule
     Category & Definition (as given to the model) \\
     \midrule
-    \techil{confrontation} &
+    \emph{confrontation} &
       The dreamer directly faces, fights, or stands up to the threat itself
       (NOT avoiding, escaping, or gaining general confidence). \\
-    \techil{self\_empowerment} &
+    \emph{self-empowerment} &
       The dreamer gains a new ability, skill, or inner strength they did
       not have before (\eg discovers they can fly, becomes stronger, unlocks
       a hidden power). The DREAMER changes, not the threat. (NOT
-      reinterpreting existing elements, which is \techil{cognitive\_reframe}.) \\
-    \techil{safety} &
+      reinterpreting existing elements, which is \emph{cognitive reframe}.) \\
+    \emph{safety} &
       A physical barrier, shelter, or protective figure is added to shield
       the dreamer (\eg walls, locked doors, a guardian). NOT just feeling
       calm or changing the scene. \\
-    \techil{cognitive\_reframe} &
+    \emph{cognitive reframe} &
       The meaning or identity of existing dream elements changes (\eg a
       monster becomes harmless, an enemy becomes a friend). The THREAT
       changes, not the dreamer. (NOT the dreamer gaining new powers, which
-      is \techil{self\_empowerment}.) \\
-    \techil{social\_support} &
+      is \emph{self-empowerment}.) \\
+    \emph{social support} &
       People in the dream become supportive, or a new ally is introduced.
       Existing characters can shift from threatening to encouraging. Any
       form of interpersonal support counts. \\
-    \techil{sensory\_modulation} &
+    \emph{sensory modulation} &
       The dream's sensory qualities change: what is seen, heard, or felt
       shifts (\eg darkness becomes light, harsh sounds become soft music,
       the dreamer feels calm through breathing or self-talk). Covers both
@@ -47,23 +47,23 @@ taxonomy evolved through four iterations to resolve distribution skew
   \end{tabularx}
 \end{table}
 
-\paragraph{Revision history.}
+\paragraph{Revision history:}
 \begin{description}
-  \item[v1 (8 categories):] Included \techil{empowerment} and
-    \techil{mastery} as separate categories. These two consumed 87.7\% of
+  \item[v1 (8 categories):] Included \emph{empowerment} and
+    \emph{mastery} as separate categories. These two consumed 87.7\% of
     all strategy picks across 1{,}272 trials, while three categories were
     never selected. Root cause: both describe a therapeutic \emph{goal}
     (the patient gains control) rather than a \emph{mechanism}.
-  \item[v2 (7 categories):] Merged \techil{empowerment} and
-    \techil{mastery} into \techil{agency}. The merged category achieved
+  \item[v2 (7 categories):] Merged \emph{empowerment} and
+    \emph{mastery} into \emph{agency}. The merged category achieved
     100\% dominance.
-  \item[v3 (7 categories):] Split \techil{agency} along the mechanism
-    dimension into \techil{confrontation} (external action) and
-    \techil{self\_empowerment} (internal transformation). Sharpened all
+  \item[v3 (7 categories):] Split \emph{agency} along the mechanism
+    dimension into \emph{confrontation} (external action) and
+    \emph{self-empowerment} (internal transformation). Sharpened all
     descriptions to focus on mechanism, not outcome.
-  \item[v4 (6 categories):] Merged \techil{emotional\_regulation} into
-    \techil{sensory\_modulation}. In smoke testing (120 trials),
-    \techil{emotional\_regulation} appeared once (0.4\%). In single-turn
+  \item[v4 (6 categories):] Merged \emph{emotional regulation} into
+    \emph{sensory modulation}. In smoke testing (120 trials),
+    \emph{emotional regulation} appeared once (0.4\%). In single-turn
     rescripting, internal calming manifests as sensory change.
 \end{description}
 
@@ -205,6 +205,17 @@ to keep the results chapter focused on the primary findings.
   \label{fig:app-validity}
 \end{figure}
 
+\section{Modal-Set Agreement}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/fig_5_2b_modal_agreement.pdf}
+  \caption{Modal-set agreement by model and temperature. The agreement
+    rate is the proportion of trials selecting the most common strategy
+    combination per condition.}
+  \label{fig:app-modal}
+\end{figure}
+
 \section{BERTScore by Model and Temperature}
 
 \begin{figure}[h]
@@ -212,7 +223,7 @@ to keep the results chapter focused on the primary findings.
   \includegraphics[width=\textwidth]{figures/fig_5_3_bertscore.pdf}
   \caption{Mean BERTScore F1 by model and temperature, grouped by family.
     The pooled temperature effect is stronger than for Jaccard
-    ($\rho = -0.486$), but BERTScore is insensitive to plan-level
+    ($\rho = -0.467$), but BERTScore is insensitive to strategy
     differences (\autoref{sec:res-similarity}).}
   \label{fig:app-bertscore}
 \end{figure}
@@ -223,9 +234,9 @@ to keep the results chapter focused on the primary findings.
   \centering
   \includegraphics[width=\textwidth]{figures/fig_5_4_vignette_slice.pdf}
   \caption{Jaccard by model and vignette, one panel per temperature.
-    Some vignettes (\eg resistant, trauma) show lower consistency across
-    multiple models. The significant vignette effect ($p = 0.007$) is
-    visible as column-wise variation.}
+    Some vignettes show lower consistency for individual models, though
+    the overall vignette effect on Jaccard is not statistically
+    significant ($p = 0.094$).}
   \label{fig:app-vignette}
 \end{figure}
 
@@ -239,4 +250,16 @@ to keep the results chapter focused on the primary findings.
     the lowest consistency across most vignettes, supporting its selection
     as a conservative evaluation point.}
   \label{fig:app-slice-heatmap}
+\end{figure}
+
+\section{Seed Comparison}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig_seed_comparison.pdf}
+  \caption{Seed comparison for \modelname{Mistral Large~3}. Setting a
+    fixed seed (\techil{seed=42}) does not improve Jaccard, BERTScore,
+    or coherence compared to unseeded runs. Error bars show $\pm 1$ SD
+    across vignettes. Differences are within noise.}
+  \label{fig:seed-comparison}
 \end{figure}
