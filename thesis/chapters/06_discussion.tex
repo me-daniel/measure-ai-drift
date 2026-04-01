@@ -63,54 +63,40 @@ flagship, \modelname{Mistral Large~3}, achieves therapeutic stability
 comparable to proprietary alternatives (\autoref{fig:jaccard}).
 
 At the vendor-recommended temperature ($T = 0.15$),
-\modelname{Mistral~Large~3} achieves $J = 1.000$, matching
-\modelname{GPT-5.4} and \modelname{Sonnet~4.6}. At its peak ($T = 0.075$),
-it also reaches $J = 1.000$. The sovereignty tradeoff, at low
-temperatures, is negligible: the \gls{eu} flagship matches the proprietary
-ceiling on plan consistency.
+\modelname{Mistral~Large~3} achieves $J = 0.848$, compared to $J = 0.871$
+for \modelname{GPT-5.4} and $J = 0.907$ for \modelname{Sonnet~4.6}. The
+gap is small. At higher temperatures ($T = 0.6$),
+\modelname{Mistral~Large~3} drops to $J = 0.700$ while the proprietary
+models stay above $J = 0.87$. The sovereignty tradeoff is modest at
+recommended temperatures and grows at higher settings.
 
-The tradeoff becomes visible at higher temperatures. At $T = 0.6$,
-\modelname{Mistral~Large~3} drops to $J = 0.652$, while the proprietary
-models maintain $J = 1.000$. However, $T = 0.6$ is well above Mistral's
-recommended operating range. A deployment that follows vendor guidance
-($T \leq 0.15$) would not encounter this degradation.
+\modelname{Mistral~Small~3.2} (24B dense) is the most stable Mistral
+model ($J = 0.922$--$0.938$ at low temperatures), though it also degrades
+at $T = 0.6$ ($J = 0.807$). None of the Mistral models show a
+statistically significant temperature trend.
 
-\modelname{Mistral~Small~3.2} (24B dense) is the most stable open-weight
-model in the set, maintaining $J = 1.000$ through $T = 0.3$ and showing no
-statistically significant temperature sensitivity.
+Several models score higher at a low non-zero temperature than at
+$T = 0.0$. \modelname{Mistral~Small~4} rises from $J = 0.777$ at
+$T = 0.0$ to $J = 0.881$ at $T = 0.15$. \modelname{Mistral~Large~3}
+follows the same pattern ($0.796 \to 0.848$). This is consistent with
+Mistral's optimisation for low non-zero temperatures: the vendor default
+sits at $T = 0.15$, and the results suggest that stability-sensitive
+tasks are best served in the range between zero and that default.
 
-\modelname{Mistral~Small~4} presents the most pronounced version of the
-greedy-suboptimality pattern. At $T = 0.0$ it scores only $J = 0.722$,
-then jumps to $J = 1.000$ at $T = 0.075$. A small amount of sampling
-variance helps the model settle on a consistent strategy rather than
-oscillating between candidates under greedy decoding.
-\modelname{Mistral~Large~3} ($0.933 \to 1.000$) and
-\modelname{Llama~3.3~70B} ($0.756 \to 0.881$) show the same direction.
+Among the open-weight comparators, parameter count does not
+straightforwardly predict stability. \modelname{Qwen~3.5~122B}
+($J = 0.979$ at $T = 0.0$) outperforms \modelname{Qwen~3.5~397B}
+($J = 0.786$) at every temperature point.
+\modelname{OLMo~3.1~32B} achieves $J = 1.0$ at $T = 0.0$ and $T = 0.075$
+but degrades significantly at higher temperatures ($\rho = -0.632$,
+strongest sensitivity in the set).
 
-Among the open-weight comparators, parameter count does not straightforwardly
-predict stability. \modelname{Qwen~3.5~122B} (10B active) outperforms
-\modelname{Qwen~3.5~397B} (17B active) at every temperature point. The
-two models differ in how much of their total capacity is used per token (sparsity ratio):
-the 122B model activates 8.2\% of its parameters, while the 397B model
-activates only 4.3\% (routing through 512 experts). A lower activation
-ratio means more of the output depends on which experts the router
-selects, which may make the model more sensitive to sampling randomness.
-This remains a hypothesis; confirming it would require analysis at the
-expert routing level.
-\modelname{OLMo~3.1~32B} matches larger models at low temperatures but
-degrades significantly at higher ones ($\rho = -0.632$, strongest
-temperature sensitivity in the set). The Qwen~3.5 family shows a
-consistent pattern across its three size classes: the mid-size 122B model
-is the most stable, while the smallest (27B) and largest (397B) are less
-consistent.
-
-The proprietary models (\modelname{GPT-5.4}, \modelname{Sonnet~4.6})
-form a distinct tier. Their perfect Jaccard across all temperatures
-suggests that character training, safety-layer alignment, or other
-proprietary techniques create a stability floor that sampling temperature
-cannot disrupt. The narrow plan selection might have contributed to this
-stability, but the effect cannot be determined from these results alone
-and requires further investigation.
+The proprietary models show the most stable temperature profiles but are
+not in a separate class. \modelname{GPT-5.4} ($J = 0.87$--$0.92$) and
+\modelname{Sonnet~4.6} ($J = 0.82$--$0.91$) overlap with the best
+open-weight models (\modelname{Qwen~3.5~122B}, \modelname{Mistral~Small~3.2}).
+Both proprietary models also concentrate on a narrow set of strategies
+(\autoref{fig:strategy-dist}), which reduces their room to vary.
 
 
 \section{Temperature and Clinical Deployment}

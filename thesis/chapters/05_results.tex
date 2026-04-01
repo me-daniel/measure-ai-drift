@@ -86,28 +86,28 @@ agreement measures how often the plurality strategy dominates.
   \label{fig:modal}
 \end{figure}
 
-\paragraph{Proprietary models are temperature-immune.}
-\modelname{GPT-5.4} and \modelname{Sonnet~4.6} achieve $J = 1.000$ at
-every temperature point. Sampling temperature does not affect their
-strategy selections at all.
+\paragraph{Proprietary models show the most stable temperature profiles.}
+\modelname{GPT-5.4} and \modelname{Sonnet~4.6} maintain mean Jaccard
+between $0.82$ and $0.92$ across all temperatures with no significant
+temperature trend. Both models also show narrower strategy distributions
+(\autoref{fig:strategy-dist}), which likely contributes.
 
 \paragraph{Most open-weight models peak at low temperatures.}
-The Mistral family shows a characteristic pattern:
-\modelname{Mistral~Small~3.2} maintains $J = 1.000$ from $T = 0.0$
-through $T = 0.3$ and drops only at $T = 0.6$ ($J = 0.933$).
-\modelname{Mistral~Large~3} scores $J = 0.933$ at $T = 0.0$, rises to
-$J = 1.000$ at $T = 0.075$ and $T = 0.15$, then declines to $J = 0.652$
-at $T = 0.6$. \modelname{Mistral~Small~4} shows the most pronounced
-version of this pattern: $J = 0.722$ at $T = 0.0$, jumping to $J = 1.000$
-at $T = 0.075$ before declining.
+\modelname{Qwen~3.5~122B} and \modelname{OLMo~3.1~32B} achieve $J = 1.0$
+at $T = 0.0$ but decline at higher temperatures. The Mistral family peaks
+between $T = 0.075$ and $T = 0.15$: \modelname{Mistral~Small~3.2} reaches
+$J = 0.938$ at $T = 0.075$, \modelname{Mistral~Large~3} reaches $J = 0.848$
+at $T = 0.15$, and \modelname{Mistral~Small~4} reaches $J = 0.881$ at
+$T = 0.15$. All three Mistral models score lower at $T = 0.0$ than at
+their peak.
 
 \paragraph{Greedy decoding is not always optimal.}
-Three models score higher at $T = 0.075$ than at $T = 0.0$:
-\modelname{Mistral~Small~4} ($0.722 \to 1.000$),
-\modelname{Mistral~Large~3} ($0.933 \to 1.000$), and
-\modelname{Llama~3.3~70B} ($0.756 \to 0.881$). A small amount of sampling
-variance produces more consistent strategy selection than pure greedy
-decoding for these models.
+Several models score higher at a low non-zero temperature than at
+$T = 0.0$: \modelname{Mistral~Small~4} ($0.777 \to 0.881$ at $T = 0.15$),
+\modelname{Mistral~Large~3} ($0.796 \to 0.848$ at $T = 0.15$), and
+\modelname{Llama~3.3~70B} ($0.719 \to 0.775$ at $T = 0.075$). Whether
+these differences reflect a genuine effect or sample variation (n=6
+vignettes per cell) cannot be determined from these results alone.
 
 \paragraph{Temperature sensitivity varies by model.}
 Per-model Spearman correlations between Jaccard and temperature

@@ -388,9 +388,8 @@ cognitive\_reframe} has made the same clinical decision as one that declares
 
 Because Jaccard operates on discrete sets of one to two items drawn from
 six categories, it takes only a small number of distinct values:
-$\{0, 0.33, 0.5, 0.67, 1.0\}$. This discreteness means Jaccard scores are
-ordinal rather than continuous, and descriptive statistics report medians
-and interquartile ranges rather than means and standard deviations.
+$\{0, 0.33, 0.5, 0.67, 1.0\}$. All three metrics are reported with means
+and standard deviations, aggregated across vignettes.
 
 Plan validity rate serves as an upstream quality gate. A malformed
 \techil{<plan>} block that cannot be parsed into valid strategy identifiers
@@ -710,9 +709,7 @@ and around its vendor-recommended operating temperature.
 The analysis is primarily descriptive. For each model and temperature
 condition, central tendency and dispersion are reported for all three
 evaluation metrics, aggregated across vignettes.
-Jaccard scores are ordinal (discrete values from a small set), so they are
-summarised with medians and interquartile ranges. BERTScore F1 and coherence
-scores are reported with means and standard deviations.
+All three metrics are reported with means and standard deviations.
 
 Spearman rank correlations serve two purposes. First, per-model
 correlations between Jaccard and temperature quantify the temperature
@@ -723,8 +720,8 @@ redundant or independent information. If they diverge, the clinical
 implications differ: high plan consistency with low response similarity
 indicates stable strategy selections but variable execution, while the
 reverse indicates different strategies producing similar surface outputs.
-Spearman rather than Pearson is used because Jaccard scores are ordinal
-and BERTScore distributions may be non-normal.
+Spearman rather than Pearson is used because Jaccard takes only a small
+set of discrete values and BERTScore distributions may be non-normal.
 
 Kruskal-Wallis tests assess whether models and vignettes differ
 significantly on each metric. These are exploratory rather than
