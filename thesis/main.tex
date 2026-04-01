@@ -132,7 +132,7 @@
 \addbibresource{references.bib}
 
 % --- Glossary and acronyms ---
-\usepackage[automake, nopostdot, nonumberlist]{glossaries}
+\usepackage[automake, nopostdot, nonumberlist, nogroupskip]{glossaries}
 \makeglossaries
 
 % --- Misc ---
@@ -196,7 +196,6 @@
 \newacronym{ptsd}{PTSD}{Post-Traumatic Stress Disorder}
 \newacronym{cot}{CoT}{Chain-of-Thought}
 \newacronym{nli}{NLI}{Natural Language Inference}
-% BDI removed -- internal shorthand, not a published instrument
 \newacronym{nlp}{NLP}{Natural Language Processing}
 
 %%% Document metadata %%%
@@ -216,7 +215,7 @@
 
   \vspace{2cm}
   \centering{
-    Bachelor's Thesis\vspace{1cm}\\
+    Bachelorthesis\vspace{1cm}\\
     \textbf{\Large{Measuring Drift in Therapeutic AI:\\A Stability-Based Evaluation of Sovereign LLMs\\in Nightmare Therapy}}
     \vspace{1cm}\\
     \begin{tabular}{c}
@@ -292,6 +291,7 @@ This thesis has not been submitted, either in part or whole, at this or any othe
 
 
 % --- Main matter ---
+\clearpage
 \pagenumbering{arabic}
 
 \include{chapters/01_introduction}
@@ -305,13 +305,26 @@ This thesis has not been submitted, either in part or whole, at this or any othe
 
 
 % --- AI tools disclosure ---
-\chapter*{Use of AI Tools}
+\chapter*{Overview of Tools Used}
+\addcontentsline{toc}{chapter}{Overview of Tools Used}
 
-In accordance with the AI Tools Guidelines of the University of Osnabr\"uck, the following describes how AI tools were used in this thesis.
+In accordance with the AI Tools Guidelines of the University of
+Osnabr\"uck, the following describes the supporting role of LLM-based
+tools in the research and writing of this thesis.
 
-I briefly used Cursor for pipeline development. My primary tool was Claude 4.6 (Anthropic)\footnote{\href{https://claude.ai}{https://claude.ai}}, used for data visualisation and debugging. I also used Gemini occasionally for brainstorming. As English is not my first language, I used these tools to refine phrasing where my original formulations lacked precision.
+For intellectual engagement and brainstorming, I used Claude~4.6
+(Anthropic)\footnote{\url{https://claude.ai}} and Gemini as discussion
+partners. These tools were used to challenge my reasoning and suggest
+alternative framings for developed arguments. As English is not my first
+language, I occasionally used these tools to refine phrasing where my
+original formulations lacked fluency or precision.
 
-All code was reviewed before inclusion. All arguments, interpretations, and conclusions are my own.
+For software development and data processing, I briefly used Cursor to
+develop the evaluation pipeline. My primary tool was Claude Code for data
+visualisation, debugging and \LaTeX{} formatting. I challenged and
+verified all AI-generated output before inclusion.
+
+\noindent All arguments, interpretations, and conclusions are my own.
 
 
 % --- Glossary and bibliography ---

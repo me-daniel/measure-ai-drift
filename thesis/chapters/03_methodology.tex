@@ -222,25 +222,16 @@ within budget.
 % [FIG] Plan mechanism -- <plan> block feeding into three downstream uses
 %   with declared-intent framing labelled
 
-The \techil{<plan>} block raises a methodological question. \gls{cot}
-prompting \parencite{KE8ZHW9V} improves output structure by asking models
-to show their reasoning before answering. However, the faithfulness
-literature demonstrates that \gls{cot} explanations often do not reflect
-the model's actual computation. \textcite{TMCBKEVQ} show that biasing cues
-in the prompt alter model behaviour without appearing in the \gls{cot}
-trace. \textcite{W4K3ARI5} find that adding mistakes to or paraphrasing the
-\gls{cot} often does not change the final answer, suggesting that models
-do not always rely on their stated reasoning.
-
-If a model declares its therapeutic strategy before responding, that
-declaration may be a post-hoc rationalisation rather than a window into its
-decision-making process. This study resolves the tension by framing the
-\techil{<plan>} block as \emph{declared intent} rather than a reasoning
-trace. The plan captures what the model commits to, not what it internally
-computes. Whether or not the declaration reflects genuine reasoning, a
-practical consequence holds: if strategy declarations vary across runs,
-clinical responses will also vary. Variable declared intent predicts
-variable therapeutic behaviour, which is the clinically relevant property.
+The \techil{<plan>} block raises a methodological question. The
+faithfulness literature shows that \gls{cot} explanations do not always
+reflect a model's actual computation \parencite{TMCBKEVQ, W4K3ARI5}. A
+declared therapeutic strategy may therefore be a post-hoc rationalisation
+rather than a window into the model's decision-making. This study
+sidesteps the problem by framing the plan as \emph{declared intent}: the
+plan captures what the model commits to, not what it internally computes.
+Whether or not the declaration reflects genuine reasoning, a practical
+consequence holds: if strategy declarations vary across runs, clinical
+responses will also vary.
 
 This framing sidesteps the faithfulness debate entirely while preserving
 three uses. First, the declared strategies enable consistency scoring
@@ -460,21 +451,16 @@ This ternary scale follows the ENACT and NIH BCC fidelity frameworks
 introduced in \autoref{sec:bg-irt}.
 
 The judge model is \modelname{Gemini 3.1 Pro}, accessed through Google AI
-Studio at $T = 1.0$. \modelname{Gemini} is from a different model family
+Studio at $T = 1.0$, the Gemini~3 default. Lowering the temperature below
+1.0 can cause looping or degraded output for Gemini~3 models
+\parencite{W2RFM6E4}. \modelname{Gemini} is from a different model family
 than all evaluation targets, preventing self-preference bias. Its thinking
 mode supports structured reasoning about whether a response implements a
 given strategy. The judge receives the strategy definitions, the declared
-strategies, and the response text, and produces a score with explicit
-justification for each strategy. 
-\modelname{Gemini~3~Pro} has been validated as a reliable judge for
-content validity assessment in psychology \parencite{XQDRY83T}.
-The judge runs at $T = 1.0$, which is the Gemini~3 default. Google's
-developer documentation warns that lowering the temperature below 1.0
-can cause looping or degraded output for these models
-\parencite{W2RFM6E4}. Evaluation
-consistency is ensured through the structured ternary rubric and explicit
-scoring format.
-
+strategies, and the response text, and produces a score with justification
+for each strategy. \modelname{Gemini~3~Pro} has been validated as a
+reliable judge for content validity assessment in psychology
+\parencite{XQDRY83T}.
 
 Bias mitigations follow established recommendations
 \parencite{LVLA9LZU}: cross-model judging, \gls{cot} justification, and
@@ -485,17 +471,10 @@ testing showed an F1 ceiling of approximately 0.55 on this task.
 Judge reliability is validated through human annotation of a stratified
 random subset of 60 trials (covering all ten models), scoring the same
 ternary rubric. Cohen's $\kappa$ between human and judge is $0.777$
-(linear-weighted), indicating substantial agreement
-\parencite{LVLA9LZU}. Exact agreement is 89.2\%. All 13 disagreements
-go in one direction: the human annotator scored higher than the judge,
-indicating that the judge is conservative rather than lenient. This
-asymmetry is the safe direction for a validation check.
-% NOTE: low-scoring trials were also manually inspected during development.
-% Zero scores were consistently caused by judge output formatting failures,
-% not genuine misalignment. No structured log was kept.
-Rare trials with zero coherence scores were flagged separately.
-In all observed cases, a zero score indicated a malformed judge output rather than genuine therapeutic misalignment. The
-pipeline reruns zero-scored judge calls once before inclusion and reliably fixes formatting issues.
+(linear-weighted), indicating substantial agreement. Exact agreement is
+89.2\%. All 13 disagreements go in one direction: the human annotator
+scored higher than the judge, indicating a conservative rather than
+lenient bias.
 
 % Coherence ceiling finding moved to Discussion (sec:disc-framework-interpretation).
 
@@ -620,14 +599,10 @@ motivated by vendor documentation:
 
 \begin{description}
   \item[$T = 0.0$] (greedy decoding) serves as a deterministic upper
-    bound on stability. No reproducibility seed is set, as not all
-    vendors support one. Even where a seed is available, GPU
-    parallelisation and dynamic batching introduce floating-point
-    non-determinism that makes output-level reproducibility best effort
-    at most \parencite{HITR7PL4}. The twenty-trial repetition design
-    captures this variance directly, following \textcite{WA4QD3UE}, who
-    use the same 20-trial protocol at $T = 0.0$ to quantify \gls{llm}
-    stability.
+    bound on stability. Even at $T = 0.0$, GPU parallelisation introduces
+    floating-point non-determinism \parencite{HITR7PL4}, so the
+    twenty-trial design captures residual variance directly
+    \parencite{WA4QD3UE}.
   \item[$T = 0.15$] is the recommended temperature for Mistral models.
     \modelname{Mistral Small 3.2} sets this value explicitly in its
     HuggingFace generation configuration. \modelname{Mistral Large 3}
@@ -654,13 +629,6 @@ after an initial four-point run revealed that several models peak in
 consistency between $T = 0.0$ and $T = 0.15$, suggesting that a small
 amount of sampling variance can be beneficial (discussed in
 \autoref{sec:res-plan-consistency}).
-
-This five-point sweep replaces a conventional binary comparison
-($T = 0.0$ \vs a single stochastic point). It reveals the full degradation
-curve rather than a single gap, and allows each model to be evaluated at
-and around its vendor-recommended operating temperature.
-
-% [FIG] Condition matrix -- factorial design as a grid
 
 
 \section{Statistical Analysis}

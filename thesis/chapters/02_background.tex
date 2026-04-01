@@ -161,7 +161,9 @@ Second, even when the model selects the same strategy, the therapeutic
 language may vary between runs. Some variation is expected and acceptable:
 a competent human therapist naturally paraphrases while maintaining the
 same strategic intent. But large variation in wording, even under the same
-strategy, could indicate unstable delivery. Mowbray's fidelity framework
+strategy, could indicate unstable delivery.
+
+Mowbray's fidelity framework
 motivates this concern: if consistent delivery matters for human
 therapists, it matters at least as much for \gls{llm} agents whose
 outputs vary with every run. This study does not measure fidelity to a
@@ -180,16 +182,10 @@ but failing to do what it said it would do.
 Each type of inconsistency requires a different measurement approach.
 \autoref{chap:methods} develops one method for each.
 
-Regulatory frameworks reinforce the need for stability measurement. The
-\gls{eu} AI Act classifies autonomous therapeutic AI as high-risk, imposing
-requirements for auditability, documentation, and risk management
-\parencite{X5TYM56Q, A823HQRV}. The Medical Device Regulation adds further
-constraints on software used in clinical contexts. For \gls{eu}-based
-deployment scenarios, data sovereignty requirements push toward self-hosted,
-\gls{eu}-resident models \parencite{2QMKF3RM}, constraining the model
-selection space (see \autoref{sec:meth-models}).
-
-Despite these requirements, stability remains largely unmeasured. Prior
+The \gls{eu} AI Act and Medical Device Regulation both require
+auditability for software used in clinical contexts
+(\autoref{sec:intro-ai-therapy}), yet the type of stability described
+above remains largely unmeasured. Prior
 therapeutic AI evaluation is qualitative, post-hoc, or single-session.
 \textcite{B97RI7GA} represent the closest prior work with their BOLT
 framework, which assesses \gls{llm} therapist behaviour across 13
@@ -257,9 +253,11 @@ measure the opposite problem: \glspl{llm} generating repetitive plot
 structures in creative writing, producing too little variation rather
 than too much. \textcite{54A9ZU2N} focus on benchmark reproducibility,
 showing that evaluation scores fluctuate across repeated runs even with
-fixed seeds and $T = 0.0$. These lines of research share the concern for cross-run variation
-but none of them ask whether a model makes the same \emph{clinical
-decisions} when presented with identical patient contexts.
+fixed seeds and $T = 0.0$.
+
+These lines of research share the concern for cross-run variation but
+none of them ask whether a model makes the same \emph{clinical decisions}
+when presented with identical patient contexts.
 
 The mechanical source of instability is well understood. What remains
 unquantified is its impact on structured therapeutic decision-making. How
