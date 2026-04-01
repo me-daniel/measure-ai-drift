@@ -1,51 +1,53 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Methods}{10}{chapter.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Methods}{12}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
-\newlabel{chap:methods}{{3}{10}{Methods}{chapter.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}System Overview and Design Rationale}{10}{section.3.1}\protected@file@percent }
-\newlabel{sec:meth-overview}{{3.1}{10}{System Overview and Design Rationale}{section.3.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Two-stack pipeline. The generation stack produces frozen conversation histories (run once). The evaluation stack presents each history to the model under test across twenty independent trials per condition. The stacks are decoupled so that evaluation-side variance cannot be contaminated by generation-side randomness.}}{11}{figure.caption.5}\protected@file@percent }
+\newlabel{chap:methods}{{3}{12}{Methods}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}System Overview and Design Rationale}{12}{section.3.1}\protected@file@percent }
+\newlabel{sec:meth-overview}{{3.1}{12}{System Overview and Design Rationale}{section.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Two-stack pipeline. The generation stack produces frozen conversation histories (run once). The evaluation stack presents each history to the model under test across twenty independent trials per condition. The stacks are decoupled so that evaluation-side variance cannot be contaminated by generation-side randomness.}}{13}{figure.caption.5}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:pipeline}{{3.1}{11}{Two-stack pipeline. The generation stack produces frozen conversation histories (run once). The evaluation stack presents each history to the model under test across twenty independent trials per condition. The stacks are decoupled so that evaluation-side variance cannot be contaminated by generation-side randomness}{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Dialogue Generation}{11}{section.3.2}\protected@file@percent }
-\newlabel{sec:meth-dialogue}{{3.2}{11}{Dialogue Generation}{section.3.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Frozen History Design}{12}{section.3.3}\protected@file@percent }
-\newlabel{sec:meth-frozen}{{3.3}{12}{Frozen History Design}{section.3.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Measurement design. The same frozen history is presented to the model under test twenty times. Each trial independently produces a plan and a therapeutic response. Variation across trials is the instability this study measures.}}{13}{figure.caption.6}\protected@file@percent }
-\newlabel{fig:eval-stack}{{3.2}{13}{Measurement design. The same frozen history is presented to the model under test twenty times. Each trial independently produces a plan and a therapeutic response. Variation across trials is the instability this study measures}{figure.caption.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Evaluation Stack}{13}{section.3.4}\protected@file@percent }
-\newlabel{sec:meth-eval}{{3.4}{13}{Evaluation Stack}{section.3.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}The Plan Mechanism}{14}{section.3.5}\protected@file@percent }
-\newlabel{sec:meth-plan}{{3.5}{14}{The Plan Mechanism}{section.3.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Strategy Taxonomy Development}{14}{section.3.6}\protected@file@percent }
-\newlabel{sec:meth-taxonomy}{{3.6}{14}{Strategy Taxonomy Development}{section.3.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Strategy taxonomy (v4). Each category describes a rescripting mechanism rather than a therapeutic goal.}}{15}{table.caption.7}\protected@file@percent }
-\newlabel{tab:taxonomy}{{3.1}{15}{Strategy taxonomy (v4). Each category describes a rescripting mechanism rather than a therapeutic goal}{table.caption.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}Evaluation Metrics}{16}{section.3.7}\protected@file@percent }
-\newlabel{sec:meth-metrics}{{3.7}{16}{Evaluation Metrics}{section.3.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Method 1: Plan Consistency}{16}{subsection.3.7.1}\protected@file@percent }
-\newlabel{sec:meth-m1}{{3.7.1}{16}{Method 1: Plan Consistency}{subsection.3.7.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Three-level evaluation framework. Each method targets a distinct layer of the generation process: strategy selection (Jaccard), response wording (BERTScore), and plan-response coherence (LLM judge).}}{17}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:three-level}{{3.3}{17}{Three-level evaluation framework. Each method targets a distinct layer of the generation process: strategy selection (Jaccard), response wording (BERTScore), and plan-response coherence (LLM judge)}{figure.caption.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Method 2: Response Similarity}{17}{subsection.3.7.2}\protected@file@percent }
-\newlabel{sec:meth-m2}{{3.7.2}{17}{Method 2: Response Similarity}{subsection.3.7.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Method 3: Plan-Response Alignment}{18}{subsection.3.7.3}\protected@file@percent }
-\newlabel{sec:meth-m3}{{3.7.3}{18}{Method 3: Plan-Response Alignment}{subsection.3.7.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.8}Model Selection}{19}{section.3.8}\protected@file@percent }
-\newlabel{sec:meth-models}{{3.8}{19}{Model Selection}{section.3.8}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Evaluation targets. All models run in non-thinking mode via OpenRouter.}}{21}{table.caption.9}\protected@file@percent }
-\newlabel{tab:models}{{3.2}{21}{Evaluation targets. All models run in non-thinking mode via OpenRouter}{table.caption.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.9}Experimental Conditions}{22}{section.3.9}\protected@file@percent }
-\newlabel{sec:meth-conditions}{{3.9}{22}{Experimental Conditions}{section.3.9}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Experimental conditions. Total: $6 \times 5 \times 20 = 600$ trials per model, 6{,}000 across all ten models.}}{23}{table.caption.10}\protected@file@percent }
-\newlabel{tab:conditions}{{3.3}{23}{Experimental conditions. Total: $6 \times 5 \times 20 = 600$ trials per model, 6{,}000 across all ten models}{table.caption.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.10}Statistical Analysis}{23}{section.3.10}\protected@file@percent }
-\newlabel{sec:meth-stats}{{3.10}{23}{Statistical Analysis}{section.3.10}{}}
+\newlabel{fig:pipeline}{{3.1}{13}{Two-stack pipeline. The generation stack produces frozen conversation histories (run once). The evaluation stack presents each history to the model under test across twenty independent trials per condition. The stacks are decoupled so that evaluation-side variance cannot be contaminated by generation-side randomness}{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Dialogue Generation}{13}{section.3.2}\protected@file@percent }
+\newlabel{sec:meth-dialogue}{{3.2}{13}{Dialogue Generation}{section.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Dialogue generation loop. The three-agent system traverses recording, rescripting, and rehearsal. Frozen history slices for the experiment are cut at rescripting-turn boundaries.}}{15}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:dialogue-gen}{{3.2}{15}{Dialogue generation loop. The three-agent system traverses recording, rescripting, and rehearsal. Frozen history slices for the experiment are cut at rescripting-turn boundaries}{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Frozen History Design}{15}{section.3.3}\protected@file@percent }
+\newlabel{sec:meth-frozen}{{3.3}{15}{Frozen History Design}{section.3.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Evaluation Stack}{16}{section.3.4}\protected@file@percent }
+\newlabel{sec:meth-eval}{{3.4}{16}{Evaluation Stack}{section.3.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Measurement design. The same frozen history is presented to the model under test twenty times. Each trial independently produces a plan and a therapeutic response. Variation across trials is the instability this study measures.}}{17}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:eval-stack}{{3.3}{17}{Measurement design. The same frozen history is presented to the model under test twenty times. Each trial independently produces a plan and a therapeutic response. Variation across trials is the instability this study measures}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}The Plan Mechanism}{17}{section.3.5}\protected@file@percent }
+\newlabel{sec:meth-plan}{{3.5}{17}{The Plan Mechanism}{section.3.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Strategy Taxonomy Development}{18}{section.3.6}\protected@file@percent }
+\newlabel{sec:meth-taxonomy}{{3.6}{18}{Strategy Taxonomy Development}{section.3.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Strategy taxonomy (v4). Each category describes a rescripting mechanism rather than a therapeutic goal.}}{19}{table.caption.8}\protected@file@percent }
+\newlabel{tab:taxonomy}{{3.1}{19}{Strategy taxonomy (v4). Each category describes a rescripting mechanism rather than a therapeutic goal}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Evaluation Metrics}{19}{section.3.7}\protected@file@percent }
+\newlabel{sec:meth-metrics}{{3.7}{19}{Evaluation Metrics}{section.3.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Method 1: Plan Consistency}{19}{subsection.3.7.1}\protected@file@percent }
+\newlabel{sec:meth-m1}{{3.7.1}{19}{Method 1: Plan Consistency}{subsection.3.7.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Three-level evaluation framework. Each method targets a distinct layer of the generation process: strategy selection (Jaccard), response wording (BERTScore), and plan-response coherence (LLM judge).}}{20}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:three-level}{{3.4}{20}{Three-level evaluation framework. Each method targets a distinct layer of the generation process: strategy selection (Jaccard), response wording (BERTScore), and plan-response coherence (LLM judge)}{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Method 2: Response Similarity}{20}{subsection.3.7.2}\protected@file@percent }
+\newlabel{sec:meth-m2}{{3.7.2}{20}{Method 2: Response Similarity}{subsection.3.7.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Method 3: Plan-Response Coherence}{21}{subsection.3.7.3}\protected@file@percent }
+\newlabel{sec:meth-m3}{{3.7.3}{21}{Method 3: Plan-Response Coherence}{subsection.3.7.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.8}Model Selection}{22}{section.3.8}\protected@file@percent }
+\newlabel{sec:meth-models}{{3.8}{22}{Model Selection}{section.3.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Evaluation targets. All models run in non-thinking mode via OpenRouter.}}{24}{table.caption.10}\protected@file@percent }
+\newlabel{tab:models}{{3.2}{24}{Evaluation targets. All models run in non-thinking mode via OpenRouter}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.9}Experimental Conditions}{25}{section.3.9}\protected@file@percent }
+\newlabel{sec:meth-conditions}{{3.9}{25}{Experimental Conditions}{section.3.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Experimental conditions. Total: $6 \times 5 \times 20 = 600$ trials per model, 6{,}000 across all ten models.}}{26}{table.caption.11}\protected@file@percent }
+\newlabel{tab:conditions}{{3.3}{26}{Experimental conditions. Total: $6 \times 5 \times 20 = 600$ trials per model, 6{,}000 across all ten models}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.10}Statistical Analysis}{26}{section.3.10}\protected@file@percent }
+\newlabel{sec:meth-stats}{{3.10}{26}{Statistical Analysis}{section.3.10}{}}
 \@setckpt{chapters/03_methodology}{
-\setcounter{page}{24}
+\setcounter{page}{27}
 \setcounter{equation}{1}
 \setcounter{enumi}{3}
 \setcounter{enumii}{0}
@@ -60,7 +62,7 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{3}
+\setcounter{figure}{4}
 \setcounter{table}{3}
 \setcounter{parentequation}{0}
 \setcounter{caption@flags}{2}
@@ -89,7 +91,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{75}
+\setcounter{instcount}{69}
 \setcounter{maxnames}{2}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{999}

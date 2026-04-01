@@ -9,7 +9,7 @@
 \label{sec:bg-irt}
 % QUESTION THIS SECTION ANSWERS: What is IRT and why is rescripting the hard part?
 %
-% Five-stage protocol: recording, rewriting, summary, rehearsal, final
+% Three-stage protocol: recording, rescripting, rehearsal
 %   Each stage has defined purpose and bounded appropriate therapist behaviours
 % Rescripting: patient rewrites the nightmare to reduce distress and restore agency
 %   This is the cognitive core -- the phase where the therapist must make active
@@ -34,29 +34,34 @@ heightened anxiety create a cycle that standard sleep hygiene cannot break.
 \gls{irt} is the recommended treatment for this condition
 \parencite{34M7Y3F8, FGA5H3ZD}.
 
-\gls{irt} follows a structured five-stage protocol. In the \emph{recording}
-stage, the patient describes the nightmare in detail. In the \emph{rewriting}
+\gls{irt} follows a structured three-stage protocol. In the \emph{recording}
+stage, the patient describes the nightmare in detail. In the \emph{rescripting}
 stage, the patient and therapist collaboratively transform the nightmare
-narrative to reduce distress and increase a sense of mastery. The remaining
-stages (\emph{summary}, \emph{rehearsal}, and \emph{final}) consolidate the
-new narrative and prepare the patient to rehearse it before sleep.
-\textcite{FGA5H3ZD} describe the rewriting instruction as deliberately
+narrative to reduce distress and increase mastery. In the
+\emph{rehearsal} stage, the new narrative is consolidated and the patient
+prepares to rehearse it before sleep.
+\textcite{FGA5H3ZD} describe the rescripting instruction as deliberately
 open-ended: patients are told to ``change the nightmare any way you wish.''
 
-The rewriting stage is the cognitive core of the protocol. Unlike recording
-(which requires listening) or rehearsal (which requires repetition), rewriting
-demands active therapeutic strategy decisions. The therapist must guide the
-patient toward a specific rescripting mechanism: confronting the threat,
-introducing protective elements, reframing the narrative, or transforming the
-dreamer's role within it. These choices are not arbitrary. Clinical research
-has identified distinct rescripting strategies with different prevalence rates
-in successful treatment. \textcite{25UR8BHJ} coded five categories from
-combat veteran rescripts: alternative endings (58\%), positive image insertion
-(23\%), threat transformation (13\%), reality markers (10\%), and distancing
-(8\%). \textcite{62ZMHBC3} proposed a complementary framework through the
-Multidimensional Mastery Scale, which classifies rescripting outcomes along
+The rescripting stage is the cognitive core of the protocol. Unlike recording
+(which requires listening) or rehearsal (which requires repetition), rescripting
+demands that the therapist choose a specific rescripting strategy and guide
+the patient through it. These choices determine the character of the
+intervention. A therapist who helps the patient confront a nightmare threat
+delivers a different treatment from one who introduces a protective figure
+or reframes the threat as harmless.
+
+Clinical research has identified distinct categories of rescripting
+strategies. \textcite{25UR8BHJ} coded five types from combat veteran
+rescripts: alternative endings (58\%), positive image insertion (23\%),
+threat transformation (13\%), reality markers (10\%), and distancing (8\%).
+\textcite{62ZMHBC3} proposed a complementary classification through the
+Multidimensional Mastery Scale, which groups rescripting outcomes along
 physical, social, environmental, emotional, mystical, and avoidance
-dimensions.
+dimensions. Both frameworks show that rescripting is not a single
+technique but a family of distinct interventions. Which strategy the
+therapist selects is therefore a meaningful clinical decision, and the
+consistency of that decision across sessions is what this thesis measures.
 
 Treatment fidelity instruments provide the clinical standard for measuring
 whether a therapist delivers an intervention correctly. The \gls{irt}
@@ -126,10 +131,11 @@ deviate from its script.
 \gls{llm}-based agents operate differently. Each response is a fresh sample
 from the model's output distribution. A single model can produce
 high-quality, protocol-adherent responses on one run and strategically
-inconsistent ones on the next. This distinction is central to the treatment
-fidelity literature. \textcite{TYX7W5ZM} formalise fidelity into two
-components: \emph{adherence} (doing the prescribed things) and
-\emph{competence} (doing them well). For rule-based chatbots, adherence is
+inconsistent ones on the next. This distinction is central to the treatment fidelity literature.
+\textcite{TYX7W5ZM} define fidelity as the extent to which an
+intervention follows its intended protocol, covering dimensions such as
+adherence (doing the prescribed things) and quality of delivery (doing
+them consistently). For rule-based chatbots, adherence is
 built in by construction. For \gls{llm}-based protocol agents, adherence
 becomes probabilistic and must be measured across runs rather than assumed
 from a single review.
@@ -139,16 +145,40 @@ stage confusion, and persona inconsistency. These are well-documented
 concerns for clinical AI but fall outside the scope of this study. The
 present work focuses on a narrower problem: the probabilistic nature of
 \gls{llm} outputs means that identical therapeutic contexts can produce
-different outputs on each run. When the same patient presents the same
-nightmare, stochastic sampling can lead to different strategy selections,
-different therapeutic responses, and mismatches between declared and
-executed strategies.
+different outputs on each run. Three types of inconsistency can occur,
+each with different clinical implications.
 
-Each of these failure modes requires a different type of measurement. Variable
-strategy selection maps to plan-level measurement (\autoref{sec:meth-m1}),
-variable response content to semantic comparison (\autoref{sec:meth-m2}),
-and plan-response mismatch to alignment verification
-(\autoref{sec:meth-m3}).
+First, the model may select different rescripting strategies across runs.
+As established in \autoref{sec:bg-irt}, strategy selection is a
+meaningful clinical decision. A patient who receives confrontation-based
+rescripting in one session and cognitive reframing in the next encounters
+two different interventions. In a protocol where the therapist is expected
+to follow consistent principles, this is a fidelity problem in the sense
+of \textcite{TYX7W5ZM}: the model fails to adhere to a stable treatment
+approach.
+
+Second, even when the model selects the same strategy, the therapeutic
+language may vary between runs. Some variation is expected and acceptable:
+a competent human therapist naturally paraphrases while maintaining the
+same strategic intent. But large variation in wording, even under the same
+strategy, could indicate unstable delivery. Mowbray's fidelity framework
+motivates this concern: if consistent delivery matters for human
+therapists, it matters at least as much for \gls{llm} agents whose
+outputs vary with every run. This study does not measure fidelity to a
+clinical standard directly. Instead, it measures \emph{consistency across
+runs}: does the model plan the same techniques each time (Method~1), does
+it word the response similarly (Method~2), and does it carry out what it
+declared (Method~3).
+
+Third, the model may declare one strategy but carry out another. If a
+model states that it will use confrontation but actually delivers a
+calming sensory exercise, there is a mismatch between intent and
+execution. This internal incoherence is distinct from the first two types:
+the model is neither selecting a wrong strategy nor varying its language,
+but failing to do what it said it would do.
+
+Each type of inconsistency requires a different measurement approach.
+\autoref{chap:methods} develops one method for each.
 
 Regulatory frameworks reinforce the need for stability measurement. The
 \gls{eu} AI Act classifies autonomous therapeutic AI as high-risk, imposing
@@ -204,19 +234,20 @@ introducing variance into the output.
 
 This per-token variance compounds through autoregressive generation. Each
 token is conditioned on all preceding tokens, so a single divergent token
-early in a response can cascade into a completely different therapeutic
+early in a response can cascade into a different therapeutic
 strategy. A model that selects ``confront'' rather than ``imagine'' at one
 token position may generate an entirely different rescripting approach in the
-subsequent response. Because of this cascading effect, the
-clinical impact of stochastic sampling is not proportional to the per-token
-entropy but can amplify through the response.
+subsequent response. The clinical impact of stochastic sampling is therefore not proportional
+to per-token entropy but can amplify through the response.
 
 The clinical consequence is concrete: the same patient presenting the same
 nightmare on two different days may receive strategically inconsistent care.
-In a general-purpose assistant, this variability is benign or even desirable.
-In a manualized therapeutic protocol, where the therapist is expected to
-deliver consistent, evidence-based interventions, it represents a potential
-clinical failure.
+In a general-purpose assistant, this variability is benign or even
+desirable. In a structured therapy protocol like \gls{irt}, where the
+therapist is expected to apply consistent techniques across sessions, it
+maps directly to the three types of inconsistency described in
+\autoref{sec:bg-llm-healthcare}: variable strategy selection, variable
+response wording, and plan-response mismatch.
 
 Prior work on \gls{llm} stability addresses different questions than
 therapeutic consistency. \textcite{BMA3X2SS} survey the consistency
@@ -263,7 +294,7 @@ models).
 %   Mitigation strategies in the literature: cross-model judging,
 %   deterministic decoding, structured rubrics
 %
-% TENSION LEFT OPEN: Embedding similarity captures semantic equivalence but
+% TENSION LEFT OPEN: Embedding similarity captures semantic similarity but
 %   cannot assess strategic intent. LLM judges can assess intent but introduce
 %   their own reliability concerns. No single metric covers what clinical
 %   stability requires -- a multi-level approach is needed, but none exists
@@ -277,33 +308,44 @@ The choice of metric determines what kind of consistency is captured, and
 standard options fail in different ways for therapeutic language.
 
 Surface-level metrics such as BLEU and ROUGE measure token overlap between
-texts. In therapeutic contexts, these metrics produce misleading results in
-both directions. Two responses that use identical words to describe different
-strategies score high on surface overlap despite being clinically divergent.
-Conversely, two responses that implement the same strategy through different
-phrasing score low despite being therapeutically equivalent. Therapeutic
-paraphrasing is the norm rather than the exception: a competent therapist
-will naturally vary their language while maintaining the same strategic
-intent. Surface metrics penalise this valid variation.
+texts. BLEU counts how many short word sequences (n-grams) in one text
+also appear in the other. ROUGE does the same in the opposite direction,
+measuring recall rather than precision. Both produce a score between 0 and
+1 based on how many tokens match.
+
+In therapeutic contexts, token overlap produces misleading results in both
+directions. Two responses that use identical words to describe different
+strategies score high despite being clinically divergent. Conversely, two
+responses that implement the same strategy through different phrasing
+score low despite being therapeutically equivalent. Therapeutic
+paraphrasing is the norm: a competent therapist naturally varies their
+language while maintaining the same strategic intent. Surface metrics
+penalise this valid variation.
 
 BERTScore \parencite{PUYCKUYY} addresses this limitation by computing similarity in contextual
 embedding space rather than token space. Each token in the candidate text is
 matched to the most similar token in the reference text using cosine
 similarity over contextualised embeddings, producing precision, recall, and
-F1 scores. The metric captures semantic equivalence independent of surface
+F1 scores. The metric captures semantic similarity independent of surface
 form: two sentences that mean the same thing but use different words receive
 high scores.
 
-The choice of embedding model affects BERTScore's behaviour. Among more than
-130 available models, those fine-tuned on \gls{nli} tasks achieve the
-highest correlation with human judgements of semantic equivalence.
-\modelname{DeBERTa-XLarge-MNLI} \parencite{8MQC2H2V} achieves the highest WMT16 human
-correlation ($r = 0.778$) and is selected for Method~2 in this study
-(\autoref{sec:meth-m2}). Its disentangled attention mechanism handles the
-surface-form variation typical of therapeutic language, where valid
-paraphrasing is expected.
+The choice of embedding model affects BERTScore's behaviour. Among more
+than 130 available models, those fine-tuned on \gls{nli} tasks achieve the
+highest correlation with human judgements of semantic similarity. The
+standard validation method is to compare BERTScore rankings against human
+similarity ratings from the WMT shared translation tasks, where
+professional annotators judge whether two texts convey the same meaning.
+\modelname{DeBERTa-XLarge-MNLI} \parencite{8MQC2H2V} achieves the
+highest WMT16 human correlation ($r = 0.778$) among available models.
+This means it captures most of what human annotators consider
+semantically similar, though the correlation is not perfect. For
+therapeutic language specifically, no equivalent human validation exists.
+The model is selected for Method~2 (\autoref{sec:meth-m2}) based on its
+general-domain performance, with the caveat that its sensitivity to
+clinically meaningful differences has not been independently verified.
 
-BERTScore captures semantic equivalence but cannot assess strategic intent.
+BERTScore captures semantic similarity but cannot assess strategic intent.
 A metric that reports high similarity between two responses does not reveal
 whether both responses implement the same therapeutic strategy. The
 \gls{llm}-as-judge paradigm addresses this gap. By instructing a separate
@@ -312,17 +354,20 @@ it becomes possible to assess criteria that no scalar metric can capture:
 ``does this response implement a confrontation strategy?'' requires
 understanding both the strategy definition and the response content.
 
-\gls{llm}-as-judge approaches carry known biases. Self-preference bias
-causes models to rate outputs from their own family more favourably.
-Position bias leads to higher scores for responses presented first.
-Verbosity bias rewards longer responses regardless of quality
-\parencite{LVLA9LZU}. These biases can be mitigated through cross-model
-judging (the judge evaluates a different model family), structured rubrics,
-and explicit justification requirements. The mitigation strategy adopted in
+\gls{llm}-as-judge approaches carry known limitations. The judge's
+scores are not ground truth but a computational estimate. The judge model
+brings its own biases: self-preference (rating outputs from its own family
+more favourably), position bias (higher scores for responses presented
+first), and verbosity bias (rewarding longer responses regardless of
+quality) \parencite{LVLA9LZU}. These can be mitigated through cross-model
+judging, structured rubrics, and explicit justification requirements, but
+they cannot be eliminated entirely. Any study using an \gls{llm} judge
+must treat its scores as approximate and, where possible, validate them
+against human ratings. The mitigation and validation strategy adopted in
 this study is detailed in \autoref{sec:meth-m3}.
 
-No single metric covers what clinical stability requires. Embedding
-similarity captures semantic equivalence but misses strategic intent.
+No single metric covers what therapeutic stability requires. Embedding
+similarity captures semantic similarity but misses strategic intent.
 \gls{llm} judges can assess intent but introduce their own reliability
 concerns. Surface metrics capture neither. Existing therapeutic AI
 evaluations rely on a single metric type, leaving the gap between semantic

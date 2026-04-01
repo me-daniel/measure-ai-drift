@@ -96,7 +96,7 @@ The codebase is organised into five packages:
     \techil{src/core/}       & Data models (\techil{Message}, \techil{Conversation}), stage and language enums, YAML and prompt loaders \\
     \techil{src/llm/}        & Provider abstraction. Single-class interface to all \gls{llm} backends \\
     \techil{src/stacks/}     & Orchestration. \techil{GenerationStack} runs the three-agent dialogue loop. \techil{EvaluationStack} runs fused plan-and-response generation from frozen histories \\
-    \techil{src/evaluation/} & Experiment runner, multi-trial sampler, and all three evaluation metrics (Jaccard, BERTScore, \gls{llm} judge alignment) \\
+    \techil{src/evaluation/} & Experiment runner, multi-trial sampler, and all three evaluation metrics (Jaccard, BERTScore, \gls{llm} judge coherence) \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -129,7 +129,7 @@ Execution proceeds in three phases:
     rate-limit errors (HTTP~429) using exponential backoff.
   \item \textbf{Metric computation.} After all trials complete, the run
     computes all three evaluation metrics. Method~1 (Jaccard) and Method~2
-    (BERTScore) are computed locally. Method~3 (alignment) issues parallel
+    (BERTScore) are computed locally. Method~3 (coherence) issues parallel
     async calls to the \modelname{Gemini} judge, with a 120-second timeout
     per trial to handle unresponsive judge calls gracefully.
   \item \textbf{Persistence.} Results are saved to the run directory.
@@ -146,7 +146,7 @@ experiments/runs/{timestamp}_{model}_{vignette}/
         trial_01.json        # plan + response + token usage
         ...
         trial_20.json
-    metrics.json             # Jaccard, BERTScore, validity, alignment
+    metrics.json             # Jaccard, BERTScore, validity, coherence
     judgments.json            # raw judge outputs with reasoning
 \end{verbatim}
 

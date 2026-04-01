@@ -27,9 +27,9 @@ evaluation begins, the system ensures that every trial receives identical
 input. Any observed inconsistency is attributable solely to the model under
 test.
 
-The end-to-end data flow proceeds in five stages: patient vignettes feed the
+The end-to-end data flow proceeds in three stages: patient vignettes feed the
 generation stack, which produces complete therapy sessions. These sessions
-are sliced at rewriting-turn boundaries to create frozen histories. The
+are sliced at rescripting-turn boundaries to create frozen histories. The
 evaluation stack presents each frozen history to the therapist model across
 multiple independent trials, collecting both a strategy declaration and a
 therapeutic response per trial. Finally, an aggregation pipeline aligns all
@@ -57,7 +57,7 @@ metrics across conditions for comparative analysis.
 %   Cover the range of clinical presentation difficulty expected in IRT deployment
 %   Vignette design informed by prior synthetic patient work (Roleplay-doh??, check ref).
 %   Six profiles sample the difficulty range but do not claim exhaustive coverage (7.2).
-% Full five-stage IRT traversal produces naturalistic conversation histories
+% Full three-stage IRT traversal produces naturalistic conversation histories
 %   used as frozen evaluation entry points
 % [FIG] Three-agent loop -- single turn cycle with message passing
 % [Example] Resistant vignette excerpt -- BDI profile and opening patient turn
@@ -72,17 +72,16 @@ sequence:
     nightmare content, emotional presentation style, and engagement pattern.
   \item The \textbf{router agent} classifies the current \gls{irt} stage
     from the conversation history, determining whether the session is in the
-    recording, rewriting, summary, rehearsal, or final phase.
+    recording, rescripting, or rehearsal phase.
   \item The \textbf{therapist agent} generates a stage-appropriate
     therapeutic response, guided by the router's classification and a
     stage-specific system prompt.
 \end{enumerate}
 
-This three-agent architecture separates clinical reasoning from stage
-classification and patient simulation, matching the deployment architecture
-of reDreamAI. The router's stage classification controls which system prompt
-the therapist receives, ensuring that responses are appropriate to the
-current protocol phase.
+This three-agent architecture separates the therapist's strategy
+decisions from stage classification and patient simulation. The router's
+stage classification controls which system prompt the therapist receives,
+ensuring that responses are appropriate to the current protocol phase.
 
 The vignette design is informed by anonymised session data from a prior
 reDreamAI efficacy study. Because data protection requirements prevent
@@ -100,22 +99,33 @@ draws on prior synthetic patient work. \textcite{Z22JYAMU} demonstrate that
 expert-defined behavioural principles produce clinically plausible simulated
 patients. \textcite{CQ94GEYA} provide cognitive conceptualisation diagrams
 and conversational styles (direct, resistant, expressive, minimal, deviating,
-agreeable) that parallel the six archetypes used here. Six profiles sample
+agreeable) that parallel the six profiles used here. Six profiles sample
 the difficulty range but do not claim exhaustive coverage of patient
 variability (see \autoref{sec:concl-limitations}).
 
-The generation stack traverses the full five-stage \gls{irt} protocol,
+The generation stack traverses the full three-stage \gls{irt} protocol,
 producing complete therapy sessions that are then sliced to create
-evaluation entry points.
+evaluation entry points. \autoref{fig:dialogue-gen} illustrates this
+process: the dialogue loops through recording and rescripting until each
+stage is complete, then proceeds to rehearsal. Frozen history slices are
+cut from the rescripting stage.
 
-% [FIG] Three-agent loop -- single turn cycle with message passing
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/dialogue_generation.png}
+  \caption{Dialogue generation loop. The three-agent system traverses
+    recording, rescripting, and rehearsal. Frozen history slices for the
+    experiment are cut at rescripting-turn boundaries.}
+  \label{fig:dialogue-gen}
+\end{figure}
+
 % [Example] Resistant vignette excerpt -- BDI profile and opening turn
 
 
 \section{Frozen History Design}
 \label{sec:meth-frozen}
 % Deterministic evaluation entry points: identical context for every trial
-% Conversations sliced at rewriting-turn boundaries
+% Conversations sliced at rescripting-turn boundaries
 %   Why frozen? Any measured inconsistency is attributable solely to the
 %   model under evaluation -- not to upstream context differences
 % Slice depth pilot: 5 depths tested on Mistral Large 3 to select evaluation point
@@ -128,7 +138,7 @@ evaluation entry points.
 
 Frozen conversation histories serve as deterministic evaluation entry
 points. Each vignette's complete therapy session is sliced at
-rewriting-turn boundaries, where each slice ends after a complete
+rescripting-turn boundaries, where each slice ends after a complete
 therapist-patient exchange. Every trial, across all models and
 temperatures, receives the identical frozen history as input. This design
 eliminates context variation as a confound: if two trials produce different
@@ -139,7 +149,7 @@ A preliminary analysis tested \modelname{Mistral Large~3} at five slice
 depths across all six vignettes at $T = 0.075$ and $T = 0.15$. Jaccard
 consistency was lowest at the second slice (mean $J = 0.77$ at $T = 0.075$)
 and rose to near-ceiling values from the third slice onward ($J > 0.93$).
-The main experiment evaluates at the second rewriting-turn boundary
+The main experiment evaluates at the second rescripting-turn boundary
 (\techil{slice\_2}), making the measured stability a conservative estimate.
 Slice depth effects are reported in \autoref{sec:res-secondary}.
 
@@ -161,7 +171,7 @@ Slice depth effects are reported in \autoref{sec:res-secondary}.
 
 The evaluation stack bypasses the router and injects the rescripting prompt
 directly into the therapist model. Because the \gls{irt} stage is known a
-priori (all frozen histories are sliced within the rewriting phase), routing
+priori (all frozen histories are sliced within the rescripting phase), routing
 is unnecessary and would introduce an additional source of variation.
 Bypassing it isolates the therapist model from stage-classification error.
 
@@ -170,7 +180,7 @@ Each evaluation trial uses \emph{fused generation}: the model produces a
 by the therapeutic response, in a single call. The plan tokens condition the
 response tokens in a \gls{cot}-style generation, so the response is
 directly conditioned on the declared strategy. This fused approach enables
-the alignment analysis in Method~3 (\autoref{sec:meth-m3}): because plan
+the coherence analysis in Method~3 (\autoref{sec:meth-m3}): because plan
 and response are generated in a single pass, any mismatch between declared
 intent and executed strategy reflects the model's own inconsistency rather
 than a decoupling artefact. \autoref{fig:eval-stack} illustrates this
@@ -214,7 +224,7 @@ within budget.
 % Structured measurement independent of CoT faithfulness debate
 % Enables three independent uses:
 %   1. Strategy-level consistency scoring (Method 1)
-%   2. Plan-response alignment verification (Method 3)
+%   2. Plan-response coherence verification (Method 3)
 %   3. Human-readable clinical oversight
 % Fixed IRT strategy taxonomy constrains declarations to the therapeutic domain --
 %   prevents arbitrary strategies that cannot be clinically evaluated
@@ -227,10 +237,9 @@ to show their reasoning before answering. However, the faithfulness
 literature demonstrates that \gls{cot} explanations often do not reflect
 the model's actual computation. \textcite{TMCBKEVQ} show that biasing cues
 in the prompt alter model behaviour without appearing in the \gls{cot}
-trace. \textcite{W4K3ARI5} find that early \gls{cot} tokens can be
-truncated or replaced without affecting the final answer, suggesting that
-the reasoning trace is reconstructed post-hoc rather than used for
-computation.
+trace. \textcite{W4K3ARI5} find that adding mistakes to or paraphrasing the
+\gls{cot} often does not change the final answer, suggesting that models
+do not always rely on their stated reasoning.
 
 If a model declares its therapeutic strategy before responding, that
 declaration may be a post-hoc rationalisation rather than a window into its
@@ -245,7 +254,7 @@ variable therapeutic behaviour, which is the clinically relevant property.
 This framing sidesteps the faithfulness debate entirely while preserving
 three concrete uses. First, the declared strategies enable strategy-level
 consistency scoring (Method~1, \autoref{sec:meth-m1}). Second, comparison
-between declared strategies and the executed response enables alignment
+between declared strategies and the executed response enables coherence
 verification (Method~3, \autoref{sec:meth-m3}). Third, the plan provides
 a human-readable summary of the model's intended approach, supporting
 clinical oversight in deployment.
@@ -271,43 +280,18 @@ clinical oversight in deployment.
 
 A fixed taxonomy constrains the \techil{<plan>} block to a predefined set
 of therapeutic strategies. This constraint is necessary for quantitative
-evaluation: free-text plans cannot be aggregated into set-similarity scores.
-The taxonomy evolved through four iterations to resolve a severe
-distribution skew that rendered early versions unusable.
+evaluation: free-text plans cannot be aggregated into set-similarity
+scores. The taxonomy evolved through four iterations to resolve
+distribution skew in early versions (full revision history in
+\autoref{app:taxonomy}). The core design principle is that each category
+must describe a rescripting \emph{mechanism} rather than a therapeutic
+\emph{goal}. Early versions that used goal-level labels (e.g.\
+\techil{empowerment}, \techil{mastery}) produced extreme skew because
+every rescripting intervention serves the goal of increased mastery.
+Splitting categories along the mechanism dimension resolved this.
 
-The initial taxonomy (v1) defined eight categories including
-\techil{empowerment} and \techil{mastery}. Across 1{,}272 strategy picks,
-these two categories consumed 87.7\% of all selections, while three
-categories (\techil{social\_support}, \techil{sensory\_modulation},
-\techil{gradual\_exposure}) were never chosen. The root cause was a
-goal-mechanism conflation: both \techil{empowerment} and \techil{mastery}
-describe a therapeutic \emph{goal} (the patient gains control) rather than
-a specific \emph{mechanism} of change. Since every nightmare rescripting
-intervention serves the goal of increased mastery, the model defaulted to
-these labels regardless of the actual strategy employed.
-
-Merging the two categories into a single \techil{agency} category (v2)
-amplified the problem: the merged category achieved 100\% dominance. A
-single super-category that applies to every rescripting scenario provides
-no discriminative signal.
-
-The resolution in v3 was to split \techil{agency} along the mechanism
-dimension. \techil{Confrontation} describes external action toward the
-threat (the dreamer fights, challenges, or resists). \techil{Self\_empowerment}
-describes internal transformation within the dreamer (gaining abilities,
-growing stronger). These two categories are orthogonal: a dreamer who
-confronts a monster uses a different mechanism from one who discovers inner
-strength, even though both gain mastery in the outcome.
-
-A final revision (v4) merged \techil{emotional\_regulation} into
-\techil{sensory\_modulation} after smoke testing showed that
-\techil{emotional\_regulation} appeared in only 1 of 120 trials (0.4\%).
-In single-turn rescripting, internal calming manifests as sensory change
-(the dreamer feels calm, the environment becomes peaceful), making the
-boundary between the two categories clinically indistinct at this
-granularity.
-
-The final six-category taxonomy captures concrete therapeutic mechanisms:
+The final six-category taxonomy (\autoref{tab:taxonomy}) captures
+concrete therapeutic mechanisms:
 
 \begin{table}[t]
   \centering
@@ -327,24 +311,20 @@ The final six-category taxonomy captures concrete therapeutic mechanisms:
   \end{tabularx}
 \end{table}
 
-These categories are grounded in two clinical frameworks.
-\textcite{62ZMHBC3} identify six mastery dimensions in successful nightmare
-rescripting (physical, social, environmental, emotional, mystical,
-avoidance), all of which map to the taxonomy except avoidance.
-\textcite{25UR8BHJ} provide empirical rescripting frequencies from combat
-veterans, with all therapeutically productive categories covered.
-Avoidance and distancing are deliberately excluded: \textcite{25UR8BHJ}
-found that violence in rescripted dreams predicted worse treatment outcomes,
-and \textcite{FGA5H3ZD} frame \gls{irt} as ``changing the nightmare'' rather
-than escaping it. Reality markers (lucid dreaming cues) fall outside the
-scope of single-turn rescripting.
+The six categories operationalise the clinical rescripting strategies
+introduced in \autoref{sec:bg-irt}. Avoidance and distancing are
+excluded because they do not resolve the nightmare threat.
+\textcite{34DFEBDG} review that \gls{irt} works by increasing mastery
+over the nightmare, and that avoidance reinforces the fear memory rather
+than overwriting it. \textcite{25UR8BHJ} found that distancing was the
+least-used strategy (8\%) and that violence in rescripted dreams
+predicted worse outcomes. Reality markers fall outside single-turn
+rescripting.
 
-The iterative development process is documented here because taxonomy design
-directly shapes measured consistency. A coarse taxonomy inflates agreement
-scores (every trial picks the same super-category). A fine-grained taxonomy
-deflates them (minor strategy differences register as disagreements). The
-sensitivity of consistency metrics to category design is revisited in the
-discussion (\autoref{sec:disc-framework-design}).
+Taxonomy design directly shapes measured consistency. A coarse taxonomy
+inflates agreement (every trial lands in the same category), a fine one
+deflates it. The sensitivity of scores to category boundaries is
+revisited in the discussion (\autoref{sec:disc-framework-design}).
 
 % [GRAPH] Strategy frequency per taxonomy version (v1-v4)
 % [FIG] 6-category taxonomy card with definitions and example phrases
@@ -353,15 +333,15 @@ discussion (\autoref{sec:disc-framework-design}).
 \section{Evaluation Metrics}
 \label{sec:meth-metrics}
 % Why three methods? Each targets a distinct layer of the generation process --
-%   no single metric captures the full picture of clinical stability
+%   no single metric captures the full picture of therapeutic stability
 %   Method 1 (Plan Consistency): does the model select the same strategies?
 %   Method 2 (Response Similarity): does the model produce equivalent responses?
-%   Method 3 (Plan-Response Alignment): does the model do what it declared?
+%   Method 3 (Plan-Response Coherence): does the model do what it declared?
 % [FIG] Three-level framework -- plan -> output -> alignment; inputs and outputs
 %   of each method, with the clinical question each answers
 
 Three evaluation methods target distinct layers of the generation process.
-No single metric captures the full picture of clinical stability
+No single metric captures the full picture of therapeutic stability
 (\autoref{sec:bg-metrics}). Method~1 asks whether the model makes consistent
 therapeutic decisions. Method~2 asks whether it produces consistent
 therapeutic responses. Method~3 asks whether it does what it says it will
@@ -428,7 +408,7 @@ follow the structured output format at all.
 % Pairwise BERTScore F1 over response texts; mean over C(20,2) = 190 pairs
 % Embedding model choice: DeBERTa-XLarge-MNLI (He et al., 2021)
 %   Why this model?
-%   - NLI fine-tuning aligns with semantic equivalence over surface matching
+%   - NLI fine-tuning aligns with semantic similarity over surface matching
 %   - Highest WMT16 human correlation (r = 0.778) among available options
 %   - Disentangled attention handles surface-form variation in therapeutic language
 %     where valid paraphrasing is the norm
@@ -438,34 +418,22 @@ follow the structured output format at all.
 % [Example] Two responses from the same condition -> token alignment
 %   heatmap -> F1; one high- and one low-similarity pair
 
-Method~2 measures whether the model produces therapeutically equivalent
+Method~2 measures whether the model produces semantically similar
 responses across trials, independent of strategy declarations. Pairwise
 BERTScore F1 is computed over response texts (with plan blocks excluded)
-across the same 190 trial pairs.
-
-The embedding model is \modelname{DeBERTa-XLarge-MNLI} \parencite{8MQC2H2V}. This model
-achieves the highest human correlation ($r = 0.778$) among more than 130
-candidates on WMT16 segment-level evaluation. Its \gls{nli} fine-tuning
-aligns with the semantic equivalence question: determining whether two
-therapeutic responses convey the same clinical content, regardless of
-surface phrasing. Its disentangled attention mechanism handles the
-surface-form variation typical of therapeutic language, where a competent
-response naturally varies in wording while maintaining the same clinical
-intent.
-
-Surface metrics (BLEU, ROUGE) are not used. As established in
-\autoref{sec:bg-metrics}, token-overlap metrics penalise valid therapeutic
-paraphrasing and cannot distinguish semantically equivalent from
-semantically divergent responses when surface forms differ.
+across the same 190 trial pairs. The embedding model is
+\modelname{DeBERTa-XLarge-MNLI} \parencite{8MQC2H2V}, selected for its
+high correlation with human similarity judgements as discussed in
+\autoref{sec:bg-metrics}.
 
 % [Example] Two responses from the same condition, alignment heatmap, F1
 
-% previously: Plan-Output Alignment
-\subsection{Method 3: Plan-Response Alignment}
+% previously: Plan-Response Coherence
+\subsection{Method 3: Plan-Response Coherence}
 % originally exploratory -- may restore label depending on results
 \label{sec:meth-m3}
 % GROUNDING: addresses the multi-level gap from Section 2.4
-%   (no single metric captures strategic intent + semantic equivalence)
+%   (no single metric captures strategic intent + semantic similarity)
 %
 % LLM judge: Gemini 3.1 Pro (Google AI Studio, T=1.0), cross-family with
 %   all evaluation targets. Thinking mode aids judgment accuracy.
@@ -474,7 +442,7 @@ semantically divergent responses when surface forms differ.
 % Why ternary? Borrowed from clinical fidelity literature (ENACT, NIH BCC,
 %   introduced in 2.1); binary scoring loses partial implementation --
 %   clinically meaningful
-% Why LLM judge? Only approach capable of multi-strategy alignment with
+% Why LLM judge? Only approach capable of multi-strategy coherence with
 %   a reasoning trace; NLI cross-encoders ceiling at F1 ~0.55 on this task
 % Rejected alternatives: NLI cross-encoders (F1 ceiling ~0.55, task mismatch,
 %   no reasoning trace)
@@ -500,12 +468,8 @@ on a ternary scale:
     present in the response.
 \end{itemize}
 
-This ternary scale is borrowed from the clinical fidelity literature
-(\autoref{sec:bg-irt}). The ENACT \parencite{GYNNP2CC} and
-NIH BCC \parencite{ITT882KN} frameworks use the same three-level
-gradation (absent, partial, implemented) to assess whether a human therapist
-delivers an intervention correctly. Applying the same scale to \gls{llm}
-outputs maintains continuity with established clinical evaluation practice.
+This ternary scale follows the ENACT and NIH BCC fidelity frameworks
+introduced in \autoref{sec:bg-irt}.
 
 The judge model is \modelname{Gemini 3.1 Pro}, accessed through Google AI
 Studio at $T = 1.0$. \modelname{Gemini} is from a different model family
@@ -518,43 +482,34 @@ justification for each strategy.
 content validity assessment in psychology \parencite{XQDRY83T}.
 The judge runs at $T = 1.0$, which is the Gemini~3 default. Google's
 developer documentation warns that lowering the temperature below 1.0
-can cause looping or degraded output for these models. Evaluation
+can cause looping or degraded output for these models
+\parencite{W2RFM6E4}. Evaluation
 consistency is ensured through the structured ternary rubric and explicit
 scoring format.
 
 
-Additional bias mitigations follow established recommendations
-\parencite{LVLA9LZU}: cross-model judging ensures the judge never evaluates
-its own family, \gls{cot} justification requires the judge to explain its
-rating before assigning a score, and a transparent rubric anchors scores
-to specific behavioural criteria.
+Bias mitigations follow established recommendations
+\parencite{LVLA9LZU}: cross-model judging, \gls{cot} justification, and
+a transparent rubric anchoring scores to specific behavioural criteria.
+\gls{nli} cross-encoders were considered but rejected after preliminary
+testing showed an F1 ceiling of approximately 0.55 on this task.
 
-\gls{nli} cross-encoders were considered and rejected as an alternative.
-Preliminary testing on this task showed an F1 ceiling of approximately
-0.55, insufficient for reliable scoring. Cross-encoders also produce no
-reasoning trace, making it impossible to audit individual judgements.
+Judge reliability is validated through human annotation of a stratified
+random subset of 60 trials (covering all ten models), scoring the same
+ternary rubric. Cohen's $\kappa$ between human and judge is $0.777$
+(linear-weighted), indicating substantial agreement
+\parencite{LVLA9LZU}. Exact agreement is 89.2\%. All 13 disagreements
+go in one direction: the human annotator scored higher than the judge,
+indicating that the judge is conservative rather than lenient. This
+asymmetry is the safe direction for a validation check.
+% NOTE: low-scoring trials were also manually inspected during development.
+% Zero scores were consistently caused by judge output formatting failures,
+% not genuine misalignment. No structured log was kept.
+Additionally, the rare trials with zero coherence scores were flagged.
+In all observed cases, a zero score indicated a malformed judge output rather than genuine therapeutic misalignment. The
+pipeline reruns zero-scored judge calls once before inclusion and reliablely fixes formatting issues.
 
-Method~3 is labelled exploratory. Judge reliability is itself an open
-question: the judge's ternary scores are not a ground truth but a
-computational proxy for clinical fidelity assessment. Validation proceeds
-through human annotation of a random subset of approximately 50 trials,
-scoring the same rubric. Cohen's $\kappa$ between human and judge provides
-a reliability estimate. If $\kappa$ is low, Method~3 results carry the
-caveat explicitly. In addition, 12 trials with the lowest alignment
-scores are manually reviewed to check whether the judge penalised
-valid therapeutic responses. A score of zero indicates a failed judge
-output rather than a genuine misalignment. In all observed cases, a
-single rerun of the judge call was sufficient to produce a valid score,
-so zero scores are treated as transient failures and rerun once before
-inclusion.
-
-As reported in \autoref{sec:res-alignment}, alignment scores are near
-ceiling across most models and temperature-independent. This means
-alignment serves primarily as a validation check (models consistently
-implement what they declare) rather than a comparative metric. This
-outcome validates Method~1: because plans are faithfully executed,
-Jaccard over plan sets measures genuine decision stability rather than
-label noise.
+% Coherence ceiling finding moved to Discussion (sec:disc-framework-interpretation).
 
 % [Example] Judge input/output -- plan, response, ternary verdict with CoT
 
@@ -644,7 +599,9 @@ The selection provides size-class diversity (24B--675B), architectural
 diversity (dense \vs \gls{moe}), and provider diversity across five
 vendors. \modelname{Qwen 3.5} and \modelname{Mistral Small~4} are
 hybrid-thinking models that support optional reasoning. To maintain fair
-comparison, reasoning is disabled for all evaluation targets.
+comparison, reasoning is disabled for all evaluation targets. All
+OpenRouter calls specify the model vendor as the inference provider,
+ensuring that each model runs on the same backend across all trials.
 
 \modelname{DeepSeek V3.2} was initially included as a large \gls{moe}
 comparator but was replaced by \modelname{Qwen 3.5 397B}. DeepSeek applies
@@ -702,22 +659,24 @@ motivated by vendor documentation:
     \parencite{HITR7PL4}. The twenty-trial repetition design captures
     this variance directly, following \textcite{WA4QD3UE}, who use the
     same 20-trial protocol at $T = 0.0$ to quantify \gls{llm} stability.
-  \item $T = 0.15$: default temperature for Mistral models, taken from the
-    HuggingFace generation configuration for \modelname{Mistral Small 3.2}.
-    % TODO: verify Mistral Large 3 default via /models endpoint (currently
-    %   verified for Small 3.2 only, see temperature_sources.md)
+  \item $T = 0.15$: recommended temperature for Mistral models.
+    \modelname{Mistral Small 3.2} sets $T = 0.15$ explicitly in its
+    HuggingFace generation configuration. \modelname{Mistral Large 3} and
+    \modelname{Mistral Small 4} lack a generation configuration default;
+    their model cards recommend temperatures below 0.1 for production use,
+    while code examples on the same cards use $T = 0.15$. Because no
+    authoritative single default exists for these two models, 0.15 was
+    chosen to match the verified \modelname{Small 3.2} value and the
+    vendor-provided code examples.
   \item $T = 0.6$: default temperature for \modelname{Qwen 3.5} and
     \modelname{OLMo~3.1}, also close to the standard Llama chat range
     (0.6--0.7) and the proprietary defaults (\modelname{GPT-5.4} and
     \modelname{Sonnet~4.6} default to $T = 0.7$).
     % Sources: Qwen 3.5 generation_config.json [VERIFIED],
     %   OLMo 3.1 generation_config.json [VERIFIED],
-    %   Llama 3.3 -- gated HF repo, lower bound of commonly cited range
-    %   [NEEDS VERIFICATION, see temperature_sources.md]
-    %   GPT-5.4 -- OpenAI API docs returned 403
-    %   [NEEDS VERIFICATION, see temperature_sources.md]
-    %   Sonnet 4.6 -- Anthropic API docs, default 1.0, 0.7 as midpoint
-    %   [VERIFIED, see temperature_sources.md]
+    %   Llama 3.3 generation_config.json via unsloth mirror + meta-llama/llama3 reference impl [VERIFIED]
+    %   GPT-5.4 -- reasoning model, does not support temperature parameter
+    %   Sonnet 4.6 -- Anthropic API docs, default 1.0, 0.7 as midpoint [VERIFIED]
 \end{itemize}
 
 The intermediate points $T = 0.075$ and $T = 0.3$ fill the gap between
@@ -752,7 +711,7 @@ The analysis is primarily descriptive. For each model and temperature
 condition, central tendency and dispersion are reported for all three
 evaluation metrics, aggregated across vignettes.
 Jaccard scores are ordinal (discrete values from a small set), so they are
-summarised with medians and interquartile ranges. BERTScore F1 and alignment
+summarised with medians and interquartile ranges. BERTScore F1 and coherence
 scores are reported with means and standard deviations.
 
 Spearman rank correlations serve two purposes. First, per-model

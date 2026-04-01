@@ -1,27 +1,33 @@
 \chapter{Introduction}
 \label{chap:introduction}
 
-\section{Nightmare Disorder and Imagery Rehearsal Therapy}
+\section{Nightmare Disorder and Treatment}
 \label{sec:intro-irt}
 % ~5% prevalence; strong comorbidity with PTSD and depression
 % IRT as evidence-based gold standard -- rigid, phase-driven protocol
 %   Why IRT? Its fixed structure makes it uniquely testable for protocol adherence
 % Rescripting as the cognitive core -- narrative transformation as the key intervention
 % Clinician shortage as the practical motivation for scalable AI-assisted delivery
-% [FIG] IRT five-stage overview -- stages, clinical goals, where rescripting sits
+Recurring nightmares are a common clinical problem with an effective
+treatment: \gls{irt}, a structured protocol in which the patient rescripts
+a nightmare under therapist guidance \autocite{FGA5H3ZD}. A persistent
+shortage of trained therapists limits its availability
+\autocite{7M7NHYXT}, making scalable, AI-assisted delivery a practical
+goal. However, the rescripting step requires active strategy decisions
+from the therapist. An AI agent that selects different strategies on
+repeated runs of the same case is clinically unreliable, regardless of
+how capable any single response may be. Patients also differ in how they
+present: an anxious patient and a resistant patient pose different
+challenges, and a model that is stable for one profile may not be stable
+for another.
 
-Nightmare disorder affects an estimated 2--5\% of the general adult population \parencite{YPHMANIU,HM68TTLK,Q24CN9LD} and frequently co-occurs with PTSD and depression \autocite{34M7Y3F8}.
-The recommended treatment, \gls{irt}, is a structured five-stage protocol in which the patient rewrites a recurring nightmare under therapist guidance \autocite{FGA5H3ZD}.
-A persistent shortage of trained therapists limits the availability of IRT \autocite{7M7NHYXT}, making scalable, AI-assisted delivery a practical goal.
-However, the rewriting stage requires active strategy decisions from the therapist, and an AI agent that selects different strategies on repeated runs of the same case is clinically unreliable regardless of how capable any single response may be.
-
-% TODO: [FIG] IRT five-stage overview -- stages, clinical goals, where rescripting sits
+% Figure for IRT stages is now in Ch3 (dialogue_generation.png)
 
 \section{AI-Assisted Psychotherapy}
 \label{sec:intro-ai-therapy}
 % Growing LLM deployment in mental health -- from empathy tools to full CBT state
 %   machines (Stade et al., 2024; NPJ MHR, 2024)
-% reDreamAI: consumer-facing IRT chatbot guiding users through all five protocol stages
+% reDreamAI: consumer-facing IRT chatbot guiding users through all three protocol stages
 %   Not a research prototype -- a real deployment target where reliability is non-negotiable
 % The problem this creates: reDreamAI is not a general assistant -- it is a
 %   protocol-driven agent bound to a manualized intervention
@@ -37,11 +43,11 @@ However, the rewriting stage requires active strategy decisions from the therapi
 %   models -- introduces the sovereign model constraint
 
 Large language models are increasingly deployed in mental health, from empathy-based conversational tools to protocol-driven agents that deliver structured interventions such as cognitive behavioural therapy \autocite{DTKNEPHQ,R3Y7UHDE}.
-reDreamAI is the deployment context for this study: a consumer-facing IRT chatbot that guides users through all five protocol stages.
+reDreamAI is the deployment context for this study: a consumer-facing IRT chatbot that guides users through all stages of the protocol.
 It is not a research prototype but a real deployment target where reliability is non-negotiable.
 
 This deployment context creates a specific problem.
-A general-purpose assistant has no therapeutic obligation; response variability is acceptable and even desirable.
+A general-purpose assistant has no therapeutic obligation. Response variability is acceptable and even desirable.
 A protocol-driven agent, by contrast, must make consistent strategic decisions.
 If the model selects different rescripting strategies for the same patient on different runs, the patient receives inconsistent care.
 Unlike rule-based chatbots whose responses can be reviewed once before deployment \autocite{YE8KQTNH}, an LLM agent generates a new response on every run.
@@ -84,7 +90,7 @@ Systematic, reproducible in silico trials offer a way to measure stability at sc
 % RQ: How consistent is LLM clinical reasoning across stochastic runs within
 %   a structured therapeutic protocol?
 % Contribution 1: A three-level hierarchical evaluation framework for therapeutic
-%   AI stability -- plan consistency, response similarity, plan-response alignment
+%   AI stability -- plan consistency, response similarity, plan-response coherence
 % Contribution 2: Quantitative cross-model comparison across sovereign,
 %   proprietary, and open-weight model classes
 % Scope: IRT rescripting phase -- isolated as the highest-stakes, most
@@ -101,8 +107,8 @@ How consistent are LLM therapeutic responses across independent runs when given 
 \noindent Two contributions follow from this question.
 
 \textbf{Contribution~1.}
-A three-level evaluation framework that measures stability at three layers: \emph{plan consistency} (do strategy selections repeat?), \emph{response similarity} (do the generated texts convey the same meaning?), and \emph{plan-response alignment} (does the model do what it declared?).
-Each layer captures a different aspect of therapeutic stability, and their combination reveals divergence patterns that no single metric can detect.
+A three-level evaluation framework that measures stability at each layer: \emph{plan consistency} (do strategy selections repeat?), \emph{response similarity} (do the generated texts convey the same meaning?), and \emph{plan-response coherence} (does the model do what it declared?).
+Together, these layers reveal divergence patterns that no single metric can detect.
 
 \textbf{Contribution~2.}
 A cross-model comparison that applies this framework to sovereign, proprietary, and open-weight models under controlled temperature conditions.

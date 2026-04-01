@@ -13,13 +13,13 @@ The three evaluation methods were designed to capture distinct aspects of
 therapeutic stability (\autoref{sec:meth-metrics}). The results confirm
 that they do: the cross-method correlations are moderate at best
 ($\rho = 0.560$ for Jaccard--BERTScore, $\rho = 0.285$ for
-Jaccard--Alignment). Had any two methods been strongly correlated, one
+Jaccard--Coherence). Had any two methods been strongly correlated, one
 would be redundant. Instead, each method reveals information that the
 others miss.
 
 The most informative finding is the separation between plan consistency
-and alignment. Temperature increases reduce Jaccard (models select
-different strategies) but do not reduce alignment (models implement
+and coherence. Temperature increases reduce Jaccard (models select
+different strategies) but do not reduce coherence (models implement
 whichever strategy they select equally well). This pattern localises the
 source of instability to the \emph{decision-making} layer rather than the
 \emph{execution} layer. A model at high temperature does not produce
@@ -31,8 +31,10 @@ strategies but failed to carry them out, the problem would be in the
 response generation. Instead, the pattern observed here is the opposite:
 the model carries out its plans faithfully but picks different plans across
 runs. The instability sits in strategy selection, not in response quality.
-Knowing this points toward temperature tuning rather than prompt
-redesign as the more promising adjustment.
+This also validates Method~1: because plans are faithfully executed,
+Jaccard over plan sets measures genuine decision stability rather than
+label noise. Knowing this points toward temperature tuning rather than
+prompt redesign as the more promising adjustment.
 
 BERTScore occupies a more limited role than initially anticipated. It
 correlates moderately with Jaccard but cannot distinguish between
@@ -106,9 +108,9 @@ The proprietary models (\modelname{GPT-5.4}, \modelname{Sonnet~4.6})
 form a distinct tier. Their perfect Jaccard across all temperatures
 suggests that character training, safety-layer alignment, or other
 proprietary techniques create a stability floor that sampling temperature
-cannot disrupt. Whether this reflects genuine robustness or a narrower
-output distribution (fewer strategies available to vary) cannot be
-determined from these results alone.
+cannot disrupt. The narrow plan selection might have contributed to this
+stability, but the effect cannot be determined from these results alone
+and requires further investigation.
 
 
 \section{Temperature and Clinical Deployment}
@@ -144,7 +146,7 @@ a specific temperature range tend to be most stable within it. Pushing a
 model to $T = 0.0$ in the hope of maximising determinism can be
 counterproductive.
 
-Alignment is temperature-independent across all models ($\rho = -0.053$,
+Coherence is temperature-independent across all models ($\rho = -0.053$,
 $p = 0.361$). This means that the clinical cost of higher temperature is
 limited to strategy \emph{selection} variability. The model does not become
 worse at \emph{executing} its chosen strategy. A patient receiving care
@@ -217,7 +219,7 @@ against the same set.
 The plan block captures what the model declares, not what it internally
 computes (\autoref{sec:meth-plan}). It cannot tell apart a model that
 picks a strategy and then writes the response from one that writes a
-response and then picks a matching label. The high alignment scores fit
+response and then picks a matching label. The high coherence scores fit
 either reading. What matters here is that declarations vary across runs,
 and that variation predicts variable therapeutic behaviour regardless of
 the underlying process.
@@ -253,7 +255,7 @@ captures stochastic variance directly.
   \includegraphics[width=\textwidth]{figures/fig_seed_comparison.pdf}
   \caption{Seed comparison for \modelname{Mistral Large~3}. Setting a
     fixed seed (\techil{seed=42}) does not improve Jaccard, BERTScore,
-    or alignment compared to unseeded runs. Error bars show $\pm 1$ SD
+    or coherence compared to unseeded runs. Error bars show $\pm 1$ SD
     across vignettes. Differences are within noise.}
   \label{fig:seed-comparison}
 \end{figure}

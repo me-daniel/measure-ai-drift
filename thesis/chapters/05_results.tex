@@ -4,7 +4,7 @@
 % All main results reported at slice_2 (mid-rescripting), aggregated across
 % vignettes. Full per-condition tables in \autoref{app:results}.
 
-All results are reported at the second rewriting-turn boundary
+All results are reported at the second rescripting turn
 (\techil{slice\_2}), aggregated across six vignettes. Each data point
 represents the mean of twenty independent trials. Full per-condition
 tables appear in \autoref{app:results}.
@@ -37,9 +37,9 @@ dominate across most models. \modelname{GPT-5.4} and
 two to three categories. \modelname{Qwen~3.5~27B} and
 \modelname{Llama~3.3~70B} spread selections more evenly across categories.
 These distributional differences are a prerequisite for interpreting the
-consistency results that follow: a model that always selects the same two
-strategies will score high on Jaccard regardless of temperature, while a
-model that draws from a wider repertoire has more room to vary.
+consistency results that follow. A model that always selects the same two
+strategies will score high on Jaccard regardless of temperature. A model
+that draws from a wider repertoire has more room to vary.
 
 \begin{figure}[t]
   \centering
@@ -167,49 +167,49 @@ BERTScore therefore captures response \emph{style} consistency rather than
 decision \emph{content} consistency. It serves as a sanity check: if
 BERTScore were low, the model would be generating erratic text regardless
 of strategy. The substantive signal for therapeutic stability comes from
-Jaccard and alignment.
+Jaccard and coherence.
 
 Full BERTScore results by model and temperature appear in \autoref{app:results}.
 
 % TODO: reference Fig D.2 (bertscore 3-panel) when appendix written
 
 
-% previously: Plan-Output Alignment (Method 3)
-\section{Plan-Response Alignment (Method 3)}
-\label{sec:res-alignment}
-% Mean alignment score by model x temperature
+% previously: Plan-Response Coherence (Method 3)
+\section{Plan-Response Coherence (Method 3)}
+\label{sec:res-coherence}
+% Mean coherence score by model x temperature
 % Per-strategy scoring distributions (absent / partial / implemented)
-% [GRAPH] Mean alignment per model x temperature
+% [GRAPH] Mean coherence per model x temperature
 % [GRAPH] Stacked bar: absent / partial / implemented per strategy category
 
-\autoref{fig:alignment} shows plan-response alignment by temperature and
-per model. Alignment measures whether the model's response implements the
+\autoref{fig:coherence} shows plan-response coherence by temperature and
+per model. Coherence measures whether the model's response implements the
 strategies it declared in its plan.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\textwidth]{figures/fig_5_6_alignment.pdf}
-  \caption{Plan-response alignment by temperature (left) and overall by
+  \includegraphics[width=\textwidth]{figures/fig_5_6_coherence.pdf}
+  \caption{Plan-response coherence by temperature (left) and overall by
     model (right). Error bars show $\pm 1$ SD. Most models implement their
     declared strategies consistently regardless of temperature.}
-  \label{fig:alignment}
+  \label{fig:coherence}
 \end{figure}
 
-The central finding is that alignment is temperature-independent. The
-pooled Spearman correlation between alignment and temperature is
+The central finding is that coherence is temperature-independent. The
+pooled Spearman correlation between coherence and temperature is
 $\rho = -0.053$ ($p = 0.361$), not significant. Models do not get worse
 at implementing their declared strategies as temperature rises. They
 select \emph{different} strategies more often (lower Jaccard) but
-implement whichever strategies they select equally well (stable alignment).
+implement whichever strategies they select equally well (stable coherence).
 
 This separation has a clinical implication: temperature-induced
 instability occurs at the decision-making level, not at the execution
 level. A model at high temperature does not produce incoherent responses.
 It produces coherent responses to a different therapeutic plan.
 
-Kruskal-Wallis tests confirm that models differ significantly on alignment
+Kruskal-Wallis tests confirm that models differ significantly on coherence
 ($p < 0.001$). \modelname{Mistral~Small~4} shows the lowest mean
-alignment, consistent with its erratic strategy selection at extreme
+coherence, consistent with its erratic strategy selection at extreme
 temperatures. The proprietary models and \modelname{Mistral~Small~3.2}
 cluster near the top.
 
@@ -227,13 +227,13 @@ cluster near the top.
 The three evaluation methods are related but not redundant.
 \autoref{tab:cross-corr} reports Spearman correlations between all method
 pairs, and \autoref{fig:correlations} visualises the relationship between
-strategy and semantic consistency.
+plan consistency and response similarity.
 
 \begin{table}[t]
   \centering
   \caption{Spearman correlations between the three evaluation methods.
     All correlations are significant ($p < 0.001$). The moderate
-    Jaccard--BERTScore correlation and weak Jaccard--Alignment correlation
+    Jaccard--BERTScore correlation and weak Jaccard--Coherence correlation
     confirm that the methods capture distinct dimensions.}
   \label{tab:cross-corr}
   \begin{tabular}{lrl}
@@ -241,8 +241,8 @@ strategy and semantic consistency.
     Method pair & $\rho$ & Interpretation \\
     \midrule
     Jaccard \vs BERTScore   & 0.560 & Moderate \\
-    Jaccard \vs Alignment   & 0.285 & Weak \\
-    BERTScore \vs Alignment & 0.376 & Weak--moderate \\
+    Jaccard \vs Coherence   & 0.285 & Weak \\
+    BERTScore \vs Coherence & 0.376 & Weak--moderate \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -250,8 +250,8 @@ strategy and semantic consistency.
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.7\textwidth]{figures/fig_5_5_correlations.pdf}
-  \caption{Strategy consistency (median Jaccard) versus semantic
-    consistency (mean BERTScore F1) per model, pooled across temperatures.
+  \caption{Plan consistency (median Jaccard) versus response similarity
+    (mean BERTScore F1) per model, pooled across temperatures.
     The proprietary models cluster in the upper-right corner.
     \modelname{Qwen~3.5~27B} and \modelname{Mistral~Small~4} occupy
     opposite ends of the BERTScore axis despite similar Jaccard ranges.}
@@ -261,14 +261,14 @@ strategy and semantic consistency.
 The moderate Jaccard--BERTScore correlation ($\rho = 0.560$) indicates
 that models with more consistent strategy selection also tend to produce
 more similar response text, but the relationship is not strong enough
-for one metric to substitute for the other. The weak Jaccard--Alignment
+for one metric to substitute for the other. The weak Jaccard--Coherence
 correlation ($\rho = 0.285$) confirms that plan consistency and
 plan-response coherence measure different properties.
 
 The scatter plot (\autoref{fig:correlations}) reveals the model landscape.
 \modelname{GPT-5.4} and \modelname{Sonnet~4.6} anchor the upper-right
 corner: high on both dimensions. \modelname{Qwen~3.5~27B} sits in the
-lower-left: low strategy consistency and low semantic similarity.
+lower-left: low plan consistency and low response similarity.
 \modelname{Mistral~Small~4} presents an interesting case: moderate Jaccard
 but the lowest BERTScore in the set, suggesting that even when it selects
 the same strategies, its response wording varies considerably.
@@ -304,13 +304,13 @@ and $T = 0.15$. \autoref{fig:slice-depth} shows the results.
   \includegraphics[width=\textwidth]{figures/fig_slice_depth_metrics.pdf}
   \caption{Stability by conversation depth for \modelname{Mistral~Large~3}.
     Jaccard is lowest at slice~2 and rises to near-ceiling values from
-    slice~3 onward. BERTScore and alignment remain flat across depths.}
+    slice~3 onward. BERTScore and coherence remain flat across depths.}
   \label{fig:slice-depth}
 \end{figure}
 
 Jaccard consistency is lowest at the second slice (mean $J = 0.77$ at
 $T = 0.075$) and rises to near-ceiling values from the third slice onward
-($J > 0.93$). BERTScore and alignment remain flat across all depths,
+($J > 0.93$). BERTScore and coherence remain flat across all depths,
 confirming that conversation depth affects strategy \emph{selection} but
 not response \emph{wording} or plan \emph{execution}.
 

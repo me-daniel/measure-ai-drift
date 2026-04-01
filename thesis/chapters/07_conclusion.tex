@@ -15,28 +15,30 @@ spanning five temperature conditions.
 The main findings are:
 
 \begin{enumerate}
+  \item \textbf{Consistency varies widely across models and temperatures.}
+    Some models achieve perfect plan consistency ($J = 1.000$) at all
+    temperatures, while others drop below $J = 0.5$ at higher settings.
+    Temperature is the primary driver of variation for open-weight models.
+
   \item \textbf{The \gls{eu}-sovereign flagship matches proprietary models
     at recommended temperatures.} \modelname{Mistral Large~3} achieves
     $J = 1.000$ at $T = 0.075$ and $T = 0.15$, equal to \modelname{GPT-5.4}
-    and \modelname{Sonnet~4.6}. The sovereignty tradeoff in therapeutic
-    stability is negligible when the model operates within its vendor-recommended
-    range.
+    and \modelname{Sonnet~4.6}. The gap only appears above the recommended
+    operating range.
 
-  \item \textbf{Instability is a decision-making problem, not an execution
-    problem.} Temperature reduces plan consistency (Jaccard) but does not
-    reduce plan-response alignment. Models select different strategies at
-    higher temperatures but implement whichever strategy they select equally
-    well.
+  \item \textbf{Instability sits in strategy selection, not execution.}
+    Temperature reduces plan consistency but not plan-response coherence.
+    Models pick different strategies at higher temperatures but carry out
+    whichever strategy they pick equally well.
 
   \item \textbf{Greedy decoding is not always optimal.} Three models achieve
     higher consistency at $T = 0.075$ than at $T = 0.0$. Whether this
     reflects a genuine benefit of low sampling variance or an artefact of
     the 20-trial sample size cannot be determined from these results alone.
 
-  \item \textbf{The three evaluation levels capture distinct information.}
-    Cross-method correlations are moderate at best ($\rho = 0.285$ to
-    $0.560$). BERTScore is insensitive to plan-level changes. No single
-    metric captures the full picture of therapeutic stability.
+  \item \textbf{No single metric captures the full picture.}
+    The three evaluation levels are only moderately correlated
+    ($\rho = 0.285$ to $0.560$). BERTScore misses plan-level changes.
 
   \item \textbf{Patient profile matters.} A significant vignette effect
     ($p = 0.007$) means that stability evaluations based on aggregate
@@ -46,7 +48,7 @@ The main findings are:
 Regarding the two contributions stated in \autoref{sec:intro-objectives}:
 the three-level framework (Contribution~1) fulfilled its design goal by
 identifying that instability is concentrated at the strategy selection
-layer, a finding that neither BERTScore nor alignment alone could have
+layer, a finding that neither BERTScore nor coherence alone could have
 revealed. The cross-model comparison (Contribution~2) demonstrates that
 the \gls{eu}-sovereign \modelname{Mistral Large~3} achieves stability
 comparable to proprietary models at its recommended operating temperature,
@@ -110,8 +112,8 @@ own.
 
 Several directions follow from this work.
 
-Extending the evaluation beyond the rescripting phase to all five
-\gls{irt} stages would test whether the observed patterns hold when the
+Extending the evaluation beyond the rescripting phase to all \gls{irt}
+stages would test whether the observed patterns hold when the
 model faces different types of clinical decisions. More broadly, the
 three-level framework applies to other therapy protocols where the
 therapist chooses from a defined set of techniques, such as \gls{cbt} or
@@ -127,7 +129,7 @@ whether the English-language patterns transfer.
 On the measurement side, a larger human annotation study against the same
 ternary rubric would strengthen the judge validation that this study could
 only perform on a small subset. Comparing human and \gls{llm} judge
-scores would clarify how much trust to place in automated alignment
+scores would clarify how much trust to place in automated coherence
 assessment.
 
 Finally, newer model architectures may affect output consistency

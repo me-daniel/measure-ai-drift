@@ -46,6 +46,7 @@
 
 % --- Typography ---
 \usepackage[all]{nowidow}
+\emergencystretch=2em
 
 % --- Hyperlinks ---
 \usepackage[
@@ -165,15 +166,18 @@
 \newcommand{\namesigdate}[1][5cm]{%
   \vspace{5cm}
   {\setlength{\parindent}{0cm}
-  \begin{minipage}{0.3\textwidth}
+  \noindent
+  \begin{minipage}[b]{0.3\textwidth}
+    Osnabr\"uck, 31.03.2026\\[-0.2cm]
     \hrule
-    \vspace{0.5cm}
+    \vspace{0.3cm}
     {\small city, date}
   \end{minipage}
   \hfill
-  \begin{minipage}{0.3\textwidth}
+  \begin{minipage}[b]{0.3\textwidth}
+    \includegraphics[width=\linewidth]{figures/signature.png}\\[-0.2cm]
     \hrule
-    \vspace{0.5cm}
+    \vspace{0.3cm}
     {\small signature}
   \end{minipage}
   }
@@ -196,7 +200,7 @@
 \newacronym{nlp}{NLP}{Natural Language Processing}
 
 %%% Document metadata %%%
-\title{Measuring Drift in Therapeutic AI: A Stability-Based Evaluation of Sovereign LLMs in Nightmare Therapy}
+\title{Measuring Drift in Therapeutic AI:\\A Stability-Based Evaluation of Sovereign LLMs\\in Nightmare Therapy}
 \author{Daniel Menzel}
 \date{\today}
 
@@ -213,7 +217,7 @@
   \vspace{2cm}
   \centering{
     Bachelor's Thesis\vspace{1cm}\\
-    \textbf{\Large{\MyTitle}}
+    \textbf{\Large{Measuring Drift in Therapeutic AI:\\A Stability-Based Evaluation of Sovereign LLMs\\in Nightmare Therapy}}
     \vspace{1cm}\\
     \begin{tabular}{c}
       \MyAuthor                             \\
@@ -234,6 +238,7 @@
 
 \end{titlepage}
 
+\pagenumbering{roman}
 
 % --- Declaration of Authorship ---
 \chapter*{Declaration of Authorship}
@@ -244,7 +249,6 @@ I am ready and able to explain and defend the positions developed in this thesis
 This thesis has not been submitted, either in part or whole, at this or any other university.
 
 \namesigdate
-\pagenumbering{gobble}
 \pagebreak
 
 
@@ -263,7 +267,7 @@ This thesis has not been submitted, either in part or whole, at this or any othe
   are evaluated across 6{,}000 trials at five temperature settings. A
   three-level evaluation framework compares strategy selections (Jaccard
   similarity), response texts (BERTScore), and whether the model does what
-  it declared (LLM judge alignment).
+  it declared (LLM judge coherence).
 
   The main findings are: (1)~Mistral Large~3 matches the proprietary
   models on plan consistency at its recommended temperature range.
