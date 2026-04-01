@@ -109,15 +109,15 @@ Both proprietary models also concentrate on a narrow set of strategies
 % [GRAPH] Temperature degradation curves per model -- the stochastic cost
 
 The five-point temperature sweep reveals that the relationship between
-temperature and stability is not monotonic for all models. Three models
-achieve their peak Jaccard at $T = 0.075$ rather than $T = 0.0$, meaning
-greedy decoding is actively counterproductive for them: \modelname{Mistral~Small~4} ($0.722 \to 1.000$),
-\modelname{Mistral~Large~3} ($0.933 \to 1.000$), and
-\modelname{Llama~3.3~70B} ($0.756 \to 0.881$). For these models, defaulting to $T = 0.0$ for maximum stability may be
-counterproductive. This is consistent with Mistral's optimisation for low
-non-zero temperatures: the vendor default sits at $T = 0.15$, and the
-results suggest that stability-sensitive tasks are best served in the
-range between zero and that default.
+temperature and stability is not monotonic for all models. Several models
+achieve higher mean Jaccard at a low non-zero temperature than at
+$T = 0.0$: \modelname{Mistral~Small~4} ($0.777 \to 0.881$ at $T = 0.15$),
+\modelname{Mistral~Large~3} ($0.796 \to 0.848$ at $T = 0.15$), and
+\modelname{Llama~3.3~70B} ($0.719 \to 0.775$ at $T = 0.075$). These
+differences are modest and based on n=6 vignettes per cell, so they
+should be interpreted cautiously. They are consistent with Mistral's
+vendor default of $T = 0.15$: stability-sensitive tasks may be best
+served in the range between zero and the default.
 
 The pooled Spearman correlation ($\rho = -0.228$, $p < 0.001$,
 \autoref{tab:temp-spearman}) confirms that higher temperature generally
