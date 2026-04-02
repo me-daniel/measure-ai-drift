@@ -352,11 +352,10 @@ do.
 % [Example] 10 plan sets -> pairwise Jaccard matrix -> mean score;
 %   one high- and one low-consistency condition shown
 
-Method~1 measures whether the model selects the same therapeutic strategies
-across independent trials. Strategy sets are extracted from the
-\techil{<plan>} block of each trial output using the fixed taxonomy from
-\autoref{tab:taxonomy}. Pairwise Jaccard similarity quantifies agreement
-between strategy sets:
+Method~1 measures whether the model selects the same therapeutic
+strategies across independent trials by extracting strategy sets from the
+\techil{<plan>} block of each trial and comparing them with pairwise
+Jaccard similarity:
 
 \begin{equation}
   J(A, B) = \frac{|A \cap B|}{|A \cup B|}
@@ -507,8 +506,8 @@ that can be self-hosted within \gls{eu} data residency boundaries
 fair comparison.
 
 The primary subject is \modelname{Mistral Large~3} (675B \gls{moe}, 41B
-active parameters, Apache~2.0), the \gls{eu}-sovereign flagship and the
-model that reDreamAI would deploy in production. Two additional Mistral
+active parameters, Apache~2.0), the \gls{eu}-sovereign model that
+reDreamAI would deploy in production. Two additional Mistral
 models complete the family comparison: \modelname{Mistral Small~4}
 (119B \gls{moe}, 6.5B active) is the newest and most parameter-efficient
 \gls{moe} in the set, and \modelname{Mistral Small 3.2} (24B dense)

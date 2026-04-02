@@ -57,9 +57,9 @@ informative.
 % [GRAPH] Summary: all models x all three metrics x both temperatures --
 %   the central comparative result
 
-The central question of this thesis is whether the \gls{eu}-sovereign
-flagship, \modelname{Mistral Large~3}, achieves therapeutic stability
-comparable to proprietary alternatives (\autoref{fig:jaccard}).
+Does \modelname{Mistral Large~3}, the \gls{eu}-sovereign model in this
+study, achieve therapeutic stability comparable to proprietary
+alternatives (\autoref{fig:jaccard})?
 
 At the vendor-recommended temperature ($T = 0.15$),
 \modelname{Mistral~Large~3} achieves $J = 0.848$, compared to $J = 0.871$
@@ -90,12 +90,13 @@ straightforwardly predict stability. \modelname{Qwen~3.5~122B}
 but degrades significantly at higher temperatures ($\rho = -0.576$,
 strongest sensitivity in the set).
 
-The proprietary models show the most stable temperature profiles but are
-not in a separate class. \modelname{GPT-5.4} ($J = 0.87$--$0.92$) and
-\modelname{Sonnet~4.6} ($J = 0.82$--$0.91$) overlap with the best
-open-weight models (\modelname{Qwen~3.5~122B}, \modelname{Mistral~Small~3.2}).
-Both proprietary models also concentrate on a narrow set of strategies
-(\autoref{fig:strategy-dist}), which reduces their room to vary.
+\modelname{GPT-5.4} ($J = 0.87$--$0.92$) and \modelname{Sonnet~4.6}
+($J = 0.82$--$0.91$) show the most stable temperature profiles, but they
+are not in a class of their own. \modelname{Qwen~3.5~122B} and
+\modelname{Mistral~Small~3.2} reach similar ranges. Part of the
+explanation is distributional: both proprietary models concentrate on a
+narrow set of strategies (\autoref{fig:strategy-dist}), leaving less
+room to vary.
 
 
 \section{Temperature and Clinical Deployment}
@@ -173,9 +174,8 @@ under which a specific model's consistency breaks down.
 %   protocol-driven AI agents. Computational evaluation complements but
 %   does not substitute clinical validation.
 
-The main strength of the framework is that measuring at three layers
-revealed a pattern no single metric could show: strategy selection varies
-while execution stays faithful. BERTScore alone would have missed this,
+Measuring at three layers revealed a pattern no single metric could
+show: strategy selection varies while execution stays faithful. BERTScore alone would have missed this,
 since it captures therapeutic tone but not the underlying strategy choices
 (\autoref{sec:res-similarity}). Frozen histories and 20-trial repetition
 \parencite{WA4QD3UE} ensure that observed variance comes from the model,

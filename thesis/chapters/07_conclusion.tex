@@ -20,7 +20,7 @@ The main findings are:
     $T = 0.6$) to $J = 1.0$ (\modelname{OLMo~3.1~32B} at $T = 0.0$).
     Temperature is the primary driver of variation for open-weight models.
 
-  \item \textbf{The \gls{eu}-sovereign flagship is close to proprietary
+  \item \textbf{The \gls{eu}-sovereign model is close to proprietary ones
     models at recommended temperatures.} \modelname{Mistral Large~3}
     achieves $J = 0.848$ at $T = 0.15$, compared to $J = 0.871$ for
     \modelname{GPT-5.4} and $J = 0.907$ for \modelname{Sonnet~4.6}. The
@@ -49,8 +49,8 @@ The main findings are:
 Regarding the two contributions stated in \autoref{sec:intro-objectives}:
 the three-level framework (Contribution~1) fulfilled its design goal by
 identifying that instability is concentrated at the strategy selection
-layer, a finding that neither BERTScore nor coherence alone could have
-revealed. The cross-model comparison (Contribution~2) shows that
+layer. Neither BERTScore nor coherence alone would have been enough to
+revealed that. The cross-model comparison (Contribution~2) shows that
 \modelname{Mistral Large~3} approaches proprietary-level stability at its
 recommended operating temperature, though a small gap remains.
 
@@ -108,8 +108,6 @@ own.
 % Clinical validation: human therapist ratings as external ground truth
 % Replication with future model generations to track whether stability
 %   improves across release cycles
-
-Several directions follow from this work.
 
 Extending the evaluation beyond the rescripting phase to all \gls{irt}
 stages would test whether the observed patterns hold when the

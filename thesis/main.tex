@@ -165,20 +165,18 @@
 \renewcommand*{\chapterautorefname}{Chapter}
 \renewcommand*{\sectionautorefname}{Section}
 
-% Signature line for declaration
+% Signature line for declaration (print version: sign by hand)
 \newcommand{\namesigdate}[1][5cm]{%
   \vspace{5cm}
   {\setlength{\parindent}{0cm}
   \noindent
   \begin{minipage}[b]{0.3\textwidth}
-    Osnabr\"uck, 31.03.2026\\[-0.2cm]
     \hrule
     \vspace{0.3cm}
     {\small city, date}
   \end{minipage}
   \hfill
   \begin{minipage}[b]{0.3\textwidth}
-    \includegraphics[width=\linewidth]{figures/signature.png}\\[-0.2cm]
     \hrule
     \vspace{0.3cm}
     {\small signature}
@@ -254,17 +252,20 @@ This thesis has not been submitted, either in part or whole, at this or any othe
 % --- Abstract ---
 \begin{abstract}
   \textbf{\LARGE{Abstract}}\\\\
-  Large language models are increasingly used as therapeutic agents in
-  mental health applications, but it is unclear how consistently they
-  respond when given the same patient input multiple times. This thesis
-  measures therapeutic stability in the rescripting phase of Imagery
-  Rehearsal Therapy, where the model must choose a therapeutic strategy
-  and generate a response that carries it out.
+  More and more people turn to large language models for mental health
+  support. The models respond fluently, but what drives their responses stays a
+  black box. Ask the same therapeutic question twice and you may get two
+  different answers. In therapy, where trust depends on predictable
+  guidance, that variation matters. How much does it change, and at what
+  cost?
 
-  Ten models, including the EU-sovereign Mistral Large~3, two proprietary
+  This thesis measures response consistency in the rescripting phase of
+  Imagery Rehearsal Therapy, where a model must choose a therapeutic
+  strategy and carry it out. Ten models, including the EU-sovereign Mistral Large~3, two proprietary
   models (GPT-5.4, Claude Sonnet~4.6), and seven open-weight comparators,
-  are evaluated across 6{,}000 trials at five temperature settings. A
-  three-level evaluation framework compares strategy selections (Jaccard
+  are evaluated across 6{,}000 trials at five temperature settings.
+
+  A three-level evaluation framework compares strategy selections (Jaccard
   similarity), response texts (BERTScore), and whether the model does what
   it declared (LLM judge coherence).
 

@@ -305,11 +305,9 @@ Measuring consistency between text outputs requires a similarity metric.
 The choice of metric determines what kind of consistency is captured, and
 standard options fail in different ways for therapeutic language.
 
-Surface-level metrics such as BLEU and ROUGE measure token overlap between
-texts. BLEU counts how many short word sequences (n-grams) in one text
-also appear in the other. ROUGE does the same in the opposite direction,
-measuring recall rather than precision. Both produce a score between 0 and
-1 based on how many tokens match.
+Surface-level metrics such as BLEU and ROUGE work by counting how many
+short word sequences (n-grams) appear in both texts, producing a score
+between 0 and 1.
 
 In therapeutic contexts, token overlap is misleading. A therapist
 naturally varies their wording while keeping the same clinical intent, so
