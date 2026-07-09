@@ -149,6 +149,15 @@ evaluation_targets:
         effort: "none"
     notes: "Primary subject. EU-sovereign, Apache 2.0. 119B MoE (6.5B active, 128 experts). Non-thinking mode. $0.15/$0.60"
 
+  - name: mistral_medium35
+    provider: openrouter
+    model: mistralai/mistral-medium-3-5
+    therapy_temp: 0.15  # Mistral family default, same as Small 4 / Large [NEEDS VERIFICATION]
+    extra_params:
+      reasoning:
+        effort: "none"
+    notes: "Mistral Medium 3.5, 128B dense. Post-hoc addition (July 2026) validating pipeline extensibility. Non-thinking mode. $1.50/$7.50"
+
   - name: mistral_large
     provider: openrouter
     model: mistralai/mistral-large-2512

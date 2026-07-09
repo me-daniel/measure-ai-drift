@@ -19,14 +19,7 @@ import pandas as pd
 
 RANDOM_BASELINE = 0.2  # Expected Jaccard for random 2-of-6 picks
 
-from model_display import MODEL_COLORS, display_name, sort_models
-
-
-MODEL_GROUPS = {
-    "Mistral family": ["mistral_small32", "mistral_small4", "mistral_large"],
-    "Qwen family": ["qwen35_27b", "qwen35_122b", "qwen35_397b"],
-    "US models": ["olmo3_32b", "llama70b", "gpt54", "sonnet46"],
-}
+from model_display import MODEL_COLORS, MODEL_GROUPS, display_name, sort_models
 
 
 def plot_metric(ax, df, metric, title, ylabel, model_filter=None):

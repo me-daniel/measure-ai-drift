@@ -416,7 +416,10 @@ async def compute_alignment(
         taxonomy: Loaded strategy_taxonomy.yaml dict.
 
     Returns:
-        Dict with keys: mean_alignment, per_trial, per_strategy, raw_judgments.
+        Dict with keys: mean_alignment, per_trial, per_strategy, raw_judgments,
+        n_judged, n_errors, n_skipped. mean_alignment averages judged trials
+        only; error/skipped trials appear as None in per_trial and are
+        excluded (None if no trial could be judged).
     """
     from src.core.config_loader import load_yaml, PROMPTS_DIR
     from src.llm.provider import create_provider
@@ -523,18 +526,27 @@ async def compute_alignment(
                     logger.warning("Pro fallback also scored 0.0 for trial %d", idx + 1)
                     results_map[idx] = (pro_score, pro_judgment, pro_strat_scores)
 
-    # Reassemble in order
-    per_trial: list[float] = []
+    # Reassemble in order. Error/skipped trials carry None so they are
+    # excluded from the mean: a judge timeout or an invalid plan is missing
+    # data, not evidence of zero alignment (invalid plans already lower
+    # validity_rate).
+    per_trial: list[float | None] = []
     raw_judgments: list[dict[str, Any]] = []
     strategy_scores: dict[str, list[int]] = {}
     pro_fallback_count = 0
+    n_errors = 0
 
     for i in range(len(strategy_sets)):
         if i in skip_indices:
-            per_trial.append(0.0)
+            per_trial.append(None)
             raw_judgments.append(skip_indices[i])
         elif i in results_map:
             score, judgment, strat_scores = results_map[i]
+            if "error" in judgment:
+                n_errors += 1
+                per_trial.append(None)
+                raw_judgments.append(judgment)
+                continue
             per_trial.append(score)
             raw_judgments.append(judgment)
             if judgment.get("pro_fallback"):
@@ -542,8 +554,9 @@ async def compute_alignment(
             for sid, scores_list in strat_scores.items():
                 strategy_scores.setdefault(sid, []).extend(scores_list)
 
-    # Aggregate
-    mean_alignment = sum(per_trial) / len(per_trial) if per_trial else 0.0
+    # Aggregate over judged trials only
+    judged = [s for s in per_trial if s is not None]
+    mean_alignment = sum(judged) / len(judged) if judged else None
     per_strategy = {
         sid: sum(scores) / (len(scores) * 2) if scores else 0.0
         for sid, scores in strategy_scores.items()
@@ -554,6 +567,9 @@ async def compute_alignment(
         "per_trial": per_trial,
         "per_strategy": per_strategy,
         "raw_judgments": raw_judgments,
+        "n_judged": len(judged),
+        "n_errors": n_errors,
+        "n_skipped": len(skip_indices),
     }
     if pro_fallback_count:
         result["pro_fallback_count"] = pro_fallback_count

@@ -25,7 +25,7 @@ from scipy import stats as sp
 def temperature_effect(df: pd.DataFrame, metric: str = "jaccard_all") -> dict:
     """Temperature effect: Spearman correlation + Kruskal-Wallis.
 
-    Scale: [0.0, 0.15, 0.3, 0.6]. Tests whether stability degrades
+    Scale: [0.0, 0.075, 0.15, 0.3, 0.6]. Tests whether stability degrades
     monotonically with temperature.
     """
     valid = df[["temperature", metric]].dropna()

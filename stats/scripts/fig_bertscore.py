@@ -16,13 +16,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from model_display import MODEL_COLORS, display_name, sort_models
-
-MODEL_GROUPS = {
-    "Mistral family": ["mistral_small32", "mistral_small4", "mistral_large"],
-    "Qwen family": ["qwen35_27b", "qwen35_122b", "qwen35_397b"],
-    "US models": ["olmo3_32b", "llama70b", "gpt54", "sonnet46"],
-}
+from model_display import MODEL_COLORS, MODEL_GROUPS, display_name, sort_models
 
 
 def plot_bertscore(ax, df, title, model_filter=None):

@@ -5,6 +5,7 @@ MODEL_NAMES = {
     # Mistral EU-sovereign
     "mistral_small32": "Mistral Small 3.2",
     "mistral_small4": "Mistral Small 4",
+    "mistral_medium35": "Mistral Medium 3.5",
     "mistral_large": "Mistral Large 3",
     # Qwen family
     "qwen35_27b": "Qwen 3.5 27B",
@@ -25,6 +26,7 @@ MODEL_NAMES = {
 MODEL_ORDER = [
     "mistral_small32",
     "mistral_small4",
+    "mistral_medium35",
     "mistral_large",
     "qwen35_27b",
     "qwen35_122b",
@@ -35,10 +37,18 @@ MODEL_ORDER = [
     "sonnet46",
 ]
 
+# Family panels for grouped figures (fig_jaccard, fig_bertscore)
+MODEL_GROUPS = {
+    "Mistral family": ["mistral_small32", "mistral_small4", "mistral_medium35", "mistral_large"],
+    "Qwen family": ["qwen35_27b", "qwen35_122b", "qwen35_397b"],
+    "US models": ["olmo3_32b", "llama70b", "gpt54", "sonnet46"],
+}
+
 MODEL_COLORS = {
     # Mistral EU-sovereign (orange, lighter=smaller, Small 4 slightly reddish)
     "mistral_small32": "#f4a261",    # light orange (24B, smallest)
     "mistral_small4": "#e76f51",     # reddish orange (119B, primary subject)
+    "mistral_medium35": "#d65f43",   # mid orange-red (128B dense, post-hoc addition)
     "mistral_large": "#c44536",      # dark orange-red (675B, largest)
     # Qwen family (violet to purple, lighter=smaller)
     "qwen35_27b": "#b89dd6",        # light violet-pink (27B, smallest)

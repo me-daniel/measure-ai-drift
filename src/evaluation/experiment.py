@@ -168,6 +168,10 @@ class ExperimentRun:
             "alignment_mean": alignment["mean_alignment"],
             "alignment_per_trial": alignment["per_trial"],
             "alignment_per_strategy": alignment["per_strategy"],
+            "alignment_n_judged": alignment["n_judged"],
+            "alignment_n_errors": alignment["n_errors"],
+            "alignment_n_skipped": alignment["n_skipped"],
+            "alignment_pro_fallback": alignment.get("pro_fallback_count", 0),
             "strategy_counts": self._compute_strategy_counts(strategy_sets),
         }
 
