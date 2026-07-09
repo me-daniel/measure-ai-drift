@@ -1,0 +1,10 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{IRT and digital delivery.} Imagery Rehearsal Therapy is the first-line psychological treatment for nightmare disorder \citep{krakow1995imagery, krakow2001imagery, morgenthaler2018position}, with rescripting as its cognitive core \citep{albanese2022nightmare}. Digital and conversational delivery of structured therapy protocols has shown feasibility \citep{fitzpatrick2017delivering, heinz2025randomized, wu2026pilot}. \todo{1--2 sentences tying reDreamAI / prior efficacy study (Llama 3.3 70B continuity).}
+
+\paragraph{Evaluating clinical LLMs.} Existing frameworks target competence and safety of single responses \citep{zhang2024psyeval, chiu2024computational, iftikhar2025llm, stade2024large}; protocol fidelity instruments from clinical psychology \citep{mowbray2003fidelity, bellg2004enhancing, kohrt2015therapist} inspire our ternary alignment rubric. Our focus differs: not \emph{whether one response is good}, but \emph{whether repeated responses agree}.
+
+\paragraph{LLM output consistency.} Sampling temperature and stochastic decoding measurably change task behavior \citep{renze2024effect}; recent work documents self-inconsistency across repeated runs \citep{novikova2025consistency, xu2025echoes, yuan2025understanding}. \todo{Position against these: none measure decision-level consistency in a clinical protocol.}
+
+\paragraph{Chain-of-thought and declared intent.} CoT prompting \citep{wei2022chain} structures generation, but CoT explanations are often unfaithful to internal computation \citep{turpin2023language, lanham2023measuring}. We therefore frame the plan block as declared intent (Section~\ref{sec:plan}). LLM-as-judge protocols \citep{zheng2023judging} underpin Method~3, with cross-family judging to mitigate self-preference bias.

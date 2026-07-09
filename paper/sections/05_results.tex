@@ -1,0 +1,29 @@
+\section{Results}
+\label{sec:results}
+
+\todo{All numbers below from \texttt{stats/data/experiment\_test\_results.json} and \texttt{experiment\_descriptives.json} after the 11-model aggregation. Structure mirrors the thesis results chapter.}
+
+\subsection{Plan Validity and Strategy Distribution}
+\todo{validity rates per model (fig\_5\_1 / fig\_A1); strategy distribution across taxonomy.}
+
+\subsection{Plan Consistency (Jaccard)}
+\todo{fig\_5\_2 by family panels + fig\_5\_2b modal-set agreement; temperature trend; model differences w/ Kruskal--Wallis + Bonferroni pairwise.}
+
+\subsection{Response Similarity (BERTScore)}
+\todo{fig\_5\_3; compare decision-level vs response-level stability.}
+
+\subsection{Vignette Effects}
+\todo{fig\_5\_4.}
+
+\subsection{Cross-Metric Relations}
+\todo{fig\_5\_5; Spearman correlations between the three methods.}
+
+\subsection{Plan--Response Alignment}
+\todo{fig\_5\_6; alignment as validation check; report n\_judged fraction, pro-fallback fraction, and the missing-data rule for judge failures.}
+
+\subsection{Robustness to Model-Set Enlargement: Mistral Medium 3.5}
+\label{sec:robustness-results}
+
+The post-hoc addition lands at the top of the stability ranking: Mistral Medium~3.5 attains a perfect median Jaccard of 1.000, the highest mean BERTScore F1 in the set (0.816), perfect plan validity (1.000), and mean alignment of 0.961 across its 30 conditions. Its Jaccard temperature profile stays at or near ceiling across all five temperatures.
+
+Enlarging the pairwise family from $\binom{10}{2}=45$ to $\binom{11}{2}=55$ comparisons tightens the Bonferroni correction; exactly two marginal pairs among the original ten models lost significance (Jaccard: Llama~3.3~70B vs.\ Qwen~3.5~122B, $p_{\text{bonf}}$ $0.046 \to 0.056$; alignment: GPT-5.4 vs.\ Mistral Large~3, $0.045 \to 0.055$). No pairwise conclusion reversed direction, no pair became newly significant among the original ten, and the BERTScore pairwise structure is unchanged. All substantive findings of the original study hold under model-set enlargement.

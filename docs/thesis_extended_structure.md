@@ -1,5 +1,7 @@
 # Thesis: Table of Contents
 
+> **STALE IN PARTS** — this outline predates the final experiment. §3.3 (slices), §3.4 (7 categories), §3.5.3 (judge model/temp), §3.6 (DeepSeek) and §3.7 (factorial design) do not match what was actually run. For all factual numbers (11 models, 6 vignettes, slice_2 only, 5 temperatures, 20 trials, 6-category taxonomy, Gemini 3 Flash judge) trust `master.md`.
+
 **Measuring Drift in Therapeutic AI: A Stability-Based Evaluation of Sovereign LLMs in Nightmare Therapy**
 
 Daniel Menzel, Institute of Cognitive Science, University of Osnabruck
@@ -136,7 +138,7 @@ Each section establishes one conceptual prerequisite and ends with an open tensi
       \-- Router bypassed, rescripting prompt injected directly (isolates therapist model from stage-classification error)
       \-- Fused generation: `<plan>` block declaring 1-2 strategies, then therapeutic response conditioned on that declaration
       \-- Why fused: plan and response in a single pass, so the response is directly conditioned on the declared plan (enables Method 3)
-      \-- 10 independent trials per condition: C(10,2) = 45 pairwise comparisons, balancing statistical power with compute cost
+      \-- 20 independent trials per condition: C(20,2) = 190 pairwise comparisons, balancing statistical power with compute cost
    - [FIG] *Evaluation stack -- frozen history, injected prompt, fused generation*
    - [Example] *Raw model output: `<plan>` block and response side by side*
 
@@ -172,7 +174,7 @@ Each section establishes one conceptual prerequisite and ends with an open tensi
       #### 3.5.1 Method 1: Plan Consistency
       - Measures: does the model make consistent therapeutic decisions?
       - Pairwise Jaccard similarity over strategy sets from `<plan>` blocks
-         \-- Mean over C(10,2) = 45 trial pairs
+         \-- Mean over C(20,2) = 190 trial pairs
          \-- Why Jaccard: set similarity for unordered strategy combinations, order does not matter clinically
       - Validity rate as upstream quality gate
          \-- Why a quality gate: malformed plan blocks cannot be scored, validity rate shows whether the model can follow the structured output format at all
@@ -225,7 +227,7 @@ Each section establishes one conceptual prerequisite and ends with an open tensi
    - [FIG] *Condition matrix -- factorial design as a grid; total run count labelled*
 
    ### 3.8 Statistical Analysis
-   - Descriptive statistics: means, standard deviations, confidence intervals across 45 trial pairs per condition
+   - Descriptive statistics: means, standard deviations, confidence intervals across 190 trial pairs per condition
    - Bootstrap 95% confidence intervals for model comparisons
    - Spearman rank correlations for cross-method analysis (5.5)
       \-- Why Spearman: rank-based, robust to non-normal distributions from bounded similarity scores

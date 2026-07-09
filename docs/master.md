@@ -114,7 +114,7 @@ Three levels, each measuring a distinct property:
 
 **Question:** Do stochastic runs produce the same therapeutic decisions?
 
-**Metric:** Mean pairwise Jaccard similarity over strategy sets across C(10,2) = 45 trial pairs.
+**Metric:** Mean pairwise Jaccard similarity over strategy sets across C(20,2) = 190 trial pairs.
 
 **Input:** Strategy sets extracted from `<plan>` blocks via `extract_plan_strategies()`.
 
@@ -124,7 +124,7 @@ Three levels, each measuring a distinct property:
 
 **Question:** Do stochastic runs produce therapeutically equivalent responses?
 
-**Metric:** Mean pairwise BERTScore F1 across 45 trial pairs.
+**Metric:** Mean pairwise BERTScore F1 across 190 trial pairs.
 
 **Embedding model:** DeBERTa-XLarge-MNLI (He et al., 2021), ranked #1 of 130+ models on WMT16 human correlation (r = 0.778). NLI fine-tuning aligns with the semantic comparison task.
 
@@ -136,7 +136,7 @@ Three levels, each measuring a distinct property:
 
 **Question:** Does the model's response implement its declared therapeutic plan?
 
-**Metric:** LLM judge (Gemini 3.1 Pro, T=1.0) scores each declared strategy on a ternary scale:
+**Metric:** LLM judge (Gemini 3 Flash, T=1.0; suspect trials re-judged by Gemini 3.1 Pro) scores each declared strategy on a ternary scale:
 - 0 = absent, 1 = partial, 2 = implemented
 
 **Inputs:** Both the extracted strategies AND the response text, scored against the strategy taxonomy definitions.
@@ -205,7 +205,7 @@ All other roles (patient, router, judge) and all other evaluation targets have *
 
 ### 6.2 Evaluation Targets (Therapist Role)
 
-These are the 10 models being compared on the three evaluation metrics, all running in non-thinking mode.
+These are the 11 models being compared on the three evaluation metrics, all running in non-thinking mode.
 
 **Primary subject:**
 
@@ -219,6 +219,7 @@ These are the 10 models being compared on the three evaluation metrics, all runn
 |-------|------|----------|----------------|
 | **Mistral Small 3.2** | 24B dense | OpenRouter | Smallest Mistral, baseline within the family |
 | **Mistral Small 4** | 119B MoE (6.5B active) | OpenRouter | Newest Mistral, fewest active parameters of any MoE in the set |
+| **Mistral Medium 3.5** | 128B dense | OpenRouter | Post-hoc addition (July 2026, run on identical frozen histories) validating pipeline extensibility. Open weights, modified MIT license (not Apache 2.0 like its siblings). Released 2026-04-30 |
 
 **Open-weight comparators (by size class):**
 
@@ -239,7 +240,7 @@ These are the 10 models being compared on the three evaluation metrics, all runn
 
 **Selection rationale:**
 - Size-class ladder: 24-32B (small dense) -> 70B (mid dense) -> 119-675B MoE (large) -> frontier (proprietary ceiling)
-- Three Mistral models test sovereignty across the family
+- Four Mistral models test sovereignty across the family (Medium 3.5 added post-hoc as extensibility check)
 - Qwen 3.5 at three scales (27B, 122B, 397B) tests scaling within one family
 - OLMo 3.1: full data provenance
 - Llama 3.3 70B: continuity with the original efficacy study
@@ -247,10 +248,10 @@ These are the 10 models being compared on the three evaluation metrics, all runn
 
 **Dropped (kept as commented options in models.yaml):**
 - DeepSeek V3.2 (internal temperature scaling makes cross-model comparison unreliable)
-- Mistral Medium 3.1 (closed weights, weak thesis story)
+- Mistral Medium 3.1 (closed weights, weak thesis story — superseded by the open-weight Medium 3.5, added July 2026)
 - GLM-5 (third MoE adds little)
 
-> All 10 evaluation targets are configured in `models.yaml`. See [thesis_models.md](thesis_models.md) for the full assignment table and [SOTA_LLMs.md](SOTA_LLMs.md) for current availability and pricing.
+> All 11 evaluation targets are configured in `models.yaml`. See [thesis_models.md](thesis_models.md) for the full assignment table and [SOTA_LLMs.md](SOTA_LLMs.md) for current availability and pricing.
 
 ### 6.3 Supporting Roles
 
@@ -260,14 +261,14 @@ These models are NOT being evaluated. They serve infrastructure roles:
 |------|--------------|---------|
 | **Patient** | Dolphin Mistral Venice 24B (OpenRouter, free) | Uncensored Mistral fine-tune for nightmare/trauma roleplay |
 | **Router** | Llama 3.3 70B (OpenRouter) | Classifies IRT stage during generation |
-| **Judge** | Gemini 3.1 Pro (Google AI Studio, T=1.0) | Scores plan-output alignment (Method 3). Thinking enabled. No family overlap with eval targets |
+| **Judge** | Gemini 3 Flash (Google AI Studio, T=1.0); Gemini 3.1 Pro re-judges suspect trials | Scores plan-output alignment (Method 3). Thinking enabled. No family overlap with eval targets |
 
 ### 6.4 Providers
 
 | Provider | Base URL | Used for |
 |----------|----------|----------|
-| OpenRouter | `openrouter.ai/api/v1` | All 10 evaluation targets, Patient (Venice), Router |
-| Google AI Studio | `generativelanguage.googleapis.com/v1beta/openai/` | Judge (Gemini 3.1 Pro) |
+| OpenRouter | `openrouter.ai/api/v1` | All 11 evaluation targets, Patient (Venice), Router |
+| Google AI Studio | `generativelanguage.googleapis.com/v1beta/openai/` | Judge (Gemini 3 Flash + 3.1 Pro fallback) |
 
 ### 6.5 OpenRouter Constraints
 
@@ -285,10 +286,12 @@ These models are NOT being evaluated. They serve infrastructure roles:
 | Slice | slice_2 (second rewriting-turn boundary) |
 | Trials per condition | 20 |
 | Temperatures | T=0.0, T=0.075, T=0.15, T=0.3, T=0.6 |
-| Models | 10 evaluation targets (see §6.2) |
+| Models | 11 evaluation targets (see §6.2) |
 
 Total per model: 6 x 1 x 20 x 5 = **600 trials**
-Total across all models: 600 x 10 = **6,000 trials**
+Total across all models: 600 x 11 = **6,600 trials**
+
+> Collection dates: 10 models on 2026-03-21 to 2026-03-24; Mistral Medium 3.5 added 2026-07-09 on the identical frozen histories (`run_date` column in the aggregated CSV).
 
 ### 7.2 Output Structure
 

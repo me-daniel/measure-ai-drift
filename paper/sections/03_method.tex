@@ -1,0 +1,48 @@
+\section{Method}
+\label{sec:method}
+
+\subsection{Two-Stack Architecture}
+
+The evaluation system separates dialogue creation from stability measurement (Figure~\ref{fig:pipeline}).
+A \emph{generation stack} produces synthetic therapy sessions through a three-agent loop: a patient agent simulates responses based on a BDI-profiled vignette, a router agent classifies the current stage of the Imagery Rehearsal Therapy (IRT) protocol from the conversation history, and a therapist agent generates stage-appropriate responses. The loop traverses the five-stage IRT protocol (recording, rewriting, summary, rehearsal, final) and exports the dialogue as a \emph{frozen history}, together with prefixes sliced at rewriting-turn boundaries.
+
+An \emph{evaluation stack} then measures stability on these frozen histories. The router is bypassed---the rescripting prompt is injected directly, since the protocol stage is known a priori---which isolates the therapist model from stage-classification error. Every trial receives byte-identical context: the frozen history sliced after the second rewriting exchange (slice~2), followed by the same rescripting instruction.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig_3_1_pipeline}
+  \caption{Pipeline overview: vignettes feed the generation stack; frozen histories feed the evaluation stack; each experiment run produces per-trial outputs and aggregated metrics.}
+  \label{fig:pipeline}
+\end{figure}
+
+\subsection{The Plan Mechanism}
+\label{sec:plan}
+
+Each trial uses \emph{fused} chain-of-thought generation: the model first emits a plan block, \texttt{<plan>strategy\_1 / strategy\_2</plan>}, declaring one or two therapeutic strategies from a fixed taxonomy, then produces its therapeutic response in the same call, so the plan tokens condition the response tokens.
+
+The plan block is a \emph{declared intent} mechanism, not a claim about internal reasoning. The chain-of-thought faithfulness debate \citep{turpin2023language, lanham2023measuring} is acknowledged but deliberately sidestepped: whether or not the declaration reflects internal computation, variable declarations predict variable clinical responses, and the declaration is what a clinical overseer would review.
+
+\subsection{Strategy Taxonomy}
+\label{sec:taxonomy}
+
+Declarations are constrained to six categories describing concrete therapeutic \emph{mechanisms} (not goals): \texttt{confrontation} (external action toward the threat), \texttt{self\_empowerment} (internal transformation), \texttt{safety} (environment modification), \texttt{cognitive\_reframe} (meaning change), \texttt{social\_support} (adding allies), and \texttt{sensory\_modulation} (sensory and calming details). The taxonomy was refined over four iterations to resolve a severe distribution skew in which a single broad ``empowerment'' category absorbed 87.7\% of all picks; the final six categories are mechanism-level and mutually discriminable (Appendix~\ref{app:taxonomy}).
+
+\subsection{Three Evaluation Metrics}
+\label{sec:metrics}
+
+Each experiment run consists of $N=20$ independent trials of one model on one vignette at one temperature. Three metrics target distinct layers of consistency (Figure~\ref{fig:measurement}):
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig_3_2_measurement}
+  \caption{The three-level measurement framework: each trial's output feeds plan consistency (Method~1), response similarity (Method~2), and plan--response alignment (Method~3).}
+  \label{fig:measurement}
+\end{figure}
+
+\paragraph{Method 1: Plan consistency.} Do stochastic runs produce the same therapeutic \emph{decisions}? We compute the mean pairwise Jaccard similarity over the declared strategy sets across all $\binom{20}{2}=190$ trial pairs. A plan \emph{validity rate} (fraction of trials whose plan block parses to taxonomy categories) serves as an upstream quality gate.
+
+\paragraph{Method 2: Response similarity.} Do stochastic runs produce therapeutically equivalent \emph{responses}? We compute mean pairwise BERTScore F1 \citep{zhang2020bertscore} over the response texts (plan blocks excluded) across the same 190 pairs, using DeBERTa-XLarge-MNLI \citep{he2021deberta} as the embedding model, which ranks first of 130+ models on WMT16 human correlation ($r=0.778$); its NLI fine-tuning aligns with the semantic-equivalence judgment the metric requires.
+
+\paragraph{Method 3: Plan--response alignment.} Does the model \emph{do what it says}? An LLM judge (Gemini~3 Flash at $T{=}1.0$; suspect trials re-judged by Gemini~3.1 Pro) scores each declared strategy on a ternary scale (0 = absent, 1 = partial, 2 = implemented), normalized to $[0,1]$ per trial. Bias mitigations: cross-family judging (the judge's model family does not appear among evaluation targets), chain-of-thought justification, and a transparent rubric (Appendix~\ref{app:judge}). Judge trials that fail (timeout or API error) or are unjudgeable (invalid plan) are treated as missing data and excluded from the alignment mean rather than scored zero; invalid plans are already penalized by the validity rate.
+
+Alignment primarily serves as a validation check: scores near the ceiling confirm that models implement what they declare, validating Jaccard as a measure of genuine decision stability rather than label noise.

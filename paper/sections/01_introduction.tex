@@ -1,0 +1,15 @@
+\section{Introduction}
+\label{sec:intro}
+
+Nightmare disorder affects roughly 4\% of adults \citep{sandman2013nightmares, li2010prevalence}, and Imagery Rehearsal Therapy (IRT) is its best-evidenced treatment \citep{krakow2001imagery, morgenthaler2018position}. Access, however, is scarce, motivating LLM-based delivery of structured protocols \citep{stade2024large, heinz2025randomized}. A therapeutic LLM must do more than produce plausible text: within a structured protocol it must make \emph{consistent clinical decisions} --- a patient re-entering the rescripting phase should not receive a confrontation strategy on one run and an avoidance-incompatible safety strategy on the next, purely by chance of sampling.
+
+Existing evaluations of clinical LLMs focus on quality, safety, or efficacy of single outputs \citep{zhang2024psyeval, chiu2024computational}; run-to-run \emph{stability} at fixed input is rarely measured, despite growing evidence that sampling variance materially affects LLM behavior \citep{renze2024effect, novikova2025consistency}. \todo{Sharpen the gap statement against 2--3 closest works.}
+
+\textbf{This paper.} We frame run-to-run consistency of clinical reasoning as a measurable property and evaluate it in the rescripting phase of IRT. Models declare their therapeutic strategy in a structured \texttt{<plan>} block before responding, enabling measurement at three levels: (1) \emph{plan consistency} --- pairwise Jaccard similarity of declared strategy sets; (2) \emph{response similarity} --- pairwise BERTScore of the therapeutic responses; (3) \emph{plan--response alignment} --- an LLM judge verifying that responses implement the declared strategies.
+
+\textbf{Contributions.}
+\begin{enumerate}
+  \item A three-level, protocol-grounded stability evaluation framework for therapeutic LLMs, applied to the rescripting core of IRT with frozen dialogue histories as deterministic evaluation entry points.
+  \item An empirical study of 11 models $\times$ 6 patient vignettes $\times$ 5 temperatures $\times$ 20 trials (6{,}600 trials), quantifying decision-level and response-level stability and their temperature dependence. \todo{one-sentence headline finding once results are final}
+  \item An extensibility validation: Mistral Medium 3.5 was added post hoc, four months after the main runs, on identical frozen histories with a single configuration entry --- testing both the pipeline's extensibility claim and the robustness of the findings to model-set enlargement.
+\end{enumerate}

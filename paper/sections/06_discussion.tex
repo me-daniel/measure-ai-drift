@@ -1,0 +1,19 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\todo{Interpret: what do the stability levels mean for clinical deployment; temperature guidance; EU-sovereign subject vs proprietary ceiling verdict.}
+
+\subsection{Robustness and Extensibility}
+\label{sec:robustness}
+
+Adding Mistral Medium~3.5 four months after the main data collection required a single configuration entry (model ID, temperature, reasoning mode) and one command; the 600-trial collection completed in roughly 8.5 hours of unattended wall-clock time on the identical frozen histories. No analysis code changed: aggregation, tests, and figures picked up the eleventh model automatically. The framework's extensibility is thus a demonstration rather than a claim, and the demonstration doubles as a robustness check --- Section~\ref{sec:robustness-results} shows all substantive findings survive the enlargement, with only two marginal Bonferroni boundary crossings. \todo{Optionally add API cost figure.}
+
+\subsection{Limitations}
+\label{sec:limitations}
+\begin{itemize}
+  \item \textbf{Synthetic patients.} Vignette-driven patient simulation, not clinical interactions.
+  \item \textbf{Serving-stack variance.} OpenRouter routes to third-party providers; quantization and batching may differ between requests and between March and July collections.
+  \item \textbf{Judge versioning.} Alignment scores depend on versioned Gemini preview endpoints; the judge for the July runs may differ in revision from March. Judge reliability is itself an open question \citep{zheng2023judging}.
+  \item \textbf{Single protocol phase.} Rescripting only; stability elsewhere in IRT is unmeasured.
+  \item \textbf{Exploratory statistics.} 30 runs per model; Bonferroni-corrected pairwise tests are conservative.
+\end{itemize}

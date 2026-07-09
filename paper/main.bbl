@@ -1,0 +1,209 @@
+\begin{thebibliography}{26}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Albanese et~al.(2022)Albanese, Liotti, Cornacchia, and
+  Mancini]{albanese2022nightmare}
+M.~Albanese, M.~Liotti, L.~Cornacchia, and F.~Mancini.
+\newblock Nightmare rescripting: Using imagery techniques to treat sleep
+  disturbances in post-traumatic stress disorder.
+\newblock \emph{Frontiers in Psychiatry}, 13:\penalty0 866144, 2022.
+\newblock \doi{10.3389/fpsyt.2022.866144}.
+
+\bibitem[Bellg et~al.(2004)Bellg, Resnick, Minicucci, Ogedegbe, Ernst,
+  Borrelli, Hecht, Ory, Orwig, and Czajkowski]{bellg2004enhancing}
+A.~J. Bellg, B.~Resnick, D.~S. Minicucci, G.~Ogedegbe, D.~Ernst, B.~Borrelli,
+  J.~Hecht, M.~Ory, D.~Orwig, and S.~Czajkowski.
+\newblock Enhancing treatment fidelity in health behavior change studies: Best
+  practices and recommendations from the {NIH} behavior change consortium.
+\newblock \emph{Health Psychology}, 23\penalty0 (5):\penalty0 443--451, 2004.
+
+\bibitem[Chiu et~al.(2024)Chiu, Sharma, Lin, and
+  Althoff]{chiu2024computational}
+Y.~Y. Chiu, A.~Sharma, I.~W. Lin, and T.~Althoff.
+\newblock A computational framework for behavioral assessment of {LLM}
+  therapists.
+\newblock \emph{arXiv preprint}, 2024.
+\newblock \doi{10.48550/arXiv.2401.00820}.
+
+\bibitem[Fitzpatrick et~al.(2017)Fitzpatrick, Darcy, and
+  Vierhile]{fitzpatrick2017delivering}
+K.~K. Fitzpatrick, A.~Darcy, and M.~Vierhile.
+\newblock Delivering cognitive behavior therapy to young adults with symptoms
+  of depression and anxiety using a fully automated conversational agent
+  ({Woebot}): A randomized controlled trial.
+\newblock \emph{JMIR Mental Health}, 4\penalty0 (2):\penalty0 e19, 2017.
+
+\bibitem[He et~al.(2021)He, Liu, Gao, and Chen]{he2021deberta}
+P.~He, X.~Liu, J.~Gao, and W.~Chen.
+\newblock {DeBERTa}: Decoding-enhanced {BERT} with disentangled attention.
+\newblock In \emph{International Conference on Learning Representations}, 2021.
+\newblock URL \url{https://openreview.net/forum?id=XPZIaotutsD}.
+
+\bibitem[Heinz et~al.(2025)Heinz, Mackin, Trudeau, Bhattacharya, Wang, Banta,
+  Jewett, Salzhauer, Griffin, and Jacobson]{heinz2025randomized}
+M.~V. Heinz, D.~M. Mackin, B.~M. Trudeau, S.~Bhattacharya, Y.~Wang, H.~A.
+  Banta, A.~D. Jewett, A.~J. Salzhauer, T.~Z. Griffin, and N.~C. Jacobson.
+\newblock Randomized trial of a generative {AI} chatbot for mental health
+  treatment.
+\newblock \emph{NEJM AI}, 2\penalty0 (4), 2025.
+\newblock \doi{10.1056/AIoa2400802}.
+
+\bibitem[Iftikhar et~al.(2025)Iftikhar, Xiao, Ransom, Huang, and
+  Suresh]{iftikhar2025llm}
+Z.~Iftikhar, A.~Xiao, S.~Ransom, J.~Huang, and H.~Suresh.
+\newblock How {LLM} counselors violate ethical standards in mental health
+  practice: A practitioner-informed framework.
+\newblock volume~8, page 1311, 2025.
+\newblock \doi{10.1609/aies.v8i2.36632}.
+
+\bibitem[Kohrt et~al.(2015)Kohrt, Jordans, Rai, Shrestha, Luitel, Ramaiya,
+  Singla, and Patel]{kohrt2015therapist}
+B.~A. Kohrt, M.~J.~D. Jordans, S.~Rai, P.~Shrestha, N.~P. Luitel, M.~K.
+  Ramaiya, D.~R. Singla, and V.~Patel.
+\newblock Therapist competence in global mental health: Development of the
+  {ENhancing} assessment of common therapeutic factors ({ENACT}) rating scale.
+\newblock \emph{Behaviour Research and Therapy}, 69:\penalty0 11--21, 2015.
+
+\bibitem[Krakow et~al.(1995)Krakow, Kellner, Pathak, and
+  Lambert]{krakow1995imagery}
+B.~Krakow, R.~Kellner, D.~Pathak, and L.~Lambert.
+\newblock Imagery rehearsal treatment for chronic nightmares.
+\newblock \emph{Behaviour Research and Therapy}, 33\penalty0 (7):\penalty0
+  837--843, 1995.
+
+\bibitem[Krakow et~al.(2001)Krakow, Hollifield, Johnston, Koss, Schrader,
+  Warner, and Prince]{krakow2001imagery}
+B.~Krakow, M.~Hollifield, L.~Johnston, M.~Koss, R.~Schrader, T.~D. Warner, and
+  H.~Prince.
+\newblock Imagery rehearsal therapy for chronic nightmares in sexual assault
+  survivors with posttraumatic stress disorder.
+\newblock \emph{JAMA}, 286\penalty0 (5):\penalty0 537--545, 2001.
+
+\bibitem[Lanham et~al.(2023)Lanham, Chen, Radhakrishnan, Steiner, Denison,
+  Hernandez, and Perez]{lanham2023measuring}
+T.~Lanham, A.~Chen, A.~Radhakrishnan, B.~Steiner, C.~Denison, D.~Hernandez, and
+  E.~Perez.
+\newblock Measuring faithfulness in chain-of-thought reasoning.
+\newblock \emph{arXiv preprint}, 2023.
+
+\bibitem[Li et~al.(2010)Li, Zhang, Li, and Wing]{li2010prevalence}
+Shirley~Xin Li, Bin Zhang, Albert~Martin Li, and Yun~Kwok Wing.
+\newblock Prevalence and correlates of frequent nightmares: A community-based
+  2-phase study.
+\newblock \emph{Sleep}, 33\penalty0 (6):\penalty0 774--780, 2010.
+\newblock \doi{10.1093/sleep/33.6.774}.
+
+\bibitem[Morgenthaler et~al.(2018)Morgenthaler, Auerbach, Casey, Kristo,
+  Maganti, Ramar, and Zak]{morgenthaler2018position}
+T.~I. Morgenthaler, S.~Auerbach, K.~R. Casey, D.~Kristo, R.~Maganti, K.~Ramar,
+  and R.~Zak.
+\newblock Position paper for the treatment of nightmare disorder in adults.
+\newblock \emph{Journal of Clinical Sleep Medicine}, 14\penalty0 (6):\penalty0
+  1041--1055, 2018.
+
+\bibitem[Mowbray et~al.(2003)Mowbray, Holter, Teague, and
+  Bybee]{mowbray2003fidelity}
+C.~T. Mowbray, M.~C. Holter, G.~B. Teague, and D.~Bybee.
+\newblock Fidelity criteria: Development, measurement, and validation.
+\newblock \emph{American Journal of Evaluation}, 24\penalty0 (3):\penalty0
+  315--340, 2003.
+
+\bibitem[Novikova et~al.(2025)Novikova, Anderson, Blili-Hamelin, Rosati, and
+  Majumdar]{novikova2025consistency}
+Jekaterina Novikova, Carol Anderson, Borhane Blili-Hamelin, Domenic Rosati, and
+  Subhabrata Majumdar.
+\newblock Consistency in language models: Current landscape, challenges, and
+  future directions.
+\newblock In \emph{ICML 2025 Workshop}, 2025.
+\newblock \doi{10.48550/arXiv.2505.00268}.
+
+\bibitem[Renze(2024)]{renze2024effect}
+M.~Renze.
+\newblock The effect of sampling temperature on problem solving in large
+  language models.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2024}, pages 7346--7356, 2024.
+\newblock \doi{10.18653/v1/2024.findings-emnlp.432}.
+\newblock URL \url{https://aclanthology.org/2024.findings-emnlp.432/}.
+
+\bibitem[Sandman et~al.(2013)Sandman, Valli, Kronholm, Ollila, Revonsuo,
+  Laatikainen, and Paunio]{sandman2013nightmares}
+Nils Sandman, Katja Valli, Erkki Kronholm, Hanna~M. Ollila, Antti Revonsuo,
+  Tiina Laatikainen, and Tiina Paunio.
+\newblock Nightmares: Prevalence among the {Finnish} general adult population
+  and war veterans during 1972--2007.
+\newblock \emph{Sleep}, 36\penalty0 (7):\penalty0 1041--1050, 2013.
+\newblock \doi{10.5665/sleep.2806}.
+
+\bibitem[Stade et~al.(2024)Stade, Wiltsey~Stirman, Ungar, Boland, Schwartz,
+  Yaden, Sedoc, DeRubeis, Willer, and Eichstaedt]{stade2024large}
+E.~C. Stade, S.~Wiltsey~Stirman, L.~H. Ungar, C.~L. Boland, H.~A. Schwartz,
+  D.~B. Yaden, J.~Sedoc, R.~J. DeRubeis, R.~Willer, and J.~C. Eichstaedt.
+\newblock Large language models could change the future of behavioral
+  healthcare: A proposal for responsible development and evaluation.
+\newblock \emph{npj Mental Health Research}, 3:\penalty0 12, 2024.
+
+\bibitem[Turpin et~al.(2023)Turpin, Michael, Perez, and
+  Bowman]{turpin2023language}
+M.~Turpin, J.~Michael, E.~Perez, and S.~R. Bowman.
+\newblock Language models don't always say what they think: Unfaithful
+  explanations in chain-of-thought prompting.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36, 2023.
+
+\bibitem[Wei et~al.(2022)Wei, Wang, Schuurmans, Bosma, Ichter, Xia, Chi, Le,
+  and Zhou]{wei2022chain}
+J.~Wei, X.~Wang, D.~Schuurmans, M.~Bosma, B.~Ichter, F.~Xia, E.~Chi, Q.~V. Le,
+  and D.~Zhou.
+\newblock Chain-of-thought prompting elicits reasoning in large language
+  models.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35, 2022.
+
+\bibitem[Wu et~al.(2026)Wu, Song, Ye, Lin, Huang, Wang, and Yang]{wu2026pilot}
+Y.~Wu, H.~Song, C.~Ye, R.~Lin, W.~Huang, Y.~Wang, and X.~Yang.
+\newblock A pilot randomized controlled trial of {AI}-delivered vs.\
+  human-delivered {iCBT} for depression in young adults.
+\newblock \emph{BMC Psychiatry}, 2026.
+\newblock \doi{10.1186/s12888-026-07925-1}.
+
+\bibitem[Xu et~al.(2025)Xu, Jojic, Rao, Brockett, and Dolan]{xu2025echoes}
+Weijia Xu, Nebojsa Jojic, Sudha Rao, Chris Brockett, and Bill Dolan.
+\newblock Echoes in {AI}: Quantifying lack of plot diversity in {LLM} outputs.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 122\penalty0
+  (35):\penalty0 e2504966122, 2025.
+\newblock \doi{10.1073/pnas.2504966122}.
+
+\bibitem[Yuan et~al.(2025)Yuan, Li, Ding, Xie, Li, Zhao, Wan, Shi, Hu, and
+  Liu]{yuan2025understanding}
+Jiayi Yuan, Hao Li, Xinheng Ding, Wenya Xie, Yu-Jhe Li, Wentian Zhao, Kun Wan,
+  Jing Shi, Xia Hu, and Zirui Liu.
+\newblock Understanding and mitigating numerical sources of nondeterminism in
+  {LLM} inference.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2025.
+\newblock \doi{10.48550/arXiv.2506.09501}.
+
+\bibitem[Zhang et~al.(2020)Zhang, Kishore, Wu, Weinberger, and
+  Artzi]{zhang2020bertscore}
+T.~Zhang, V.~Kishore, F.~Wu, K.~Q. Weinberger, and Y.~Artzi.
+\newblock {BERTScore}: Evaluating text generation with {BERT}.
+\newblock In \emph{International Conference on Learning Representations}, 2020.
+
+\bibitem[Zhang et~al.(2024)Zhang, Liu, Wang, Li, Xu, and Bi]{zhang2024psyeval}
+Y.~Zhang, Y.~Liu, S.~Wang, Y.~Li, J.~Xu, and G.~Bi.
+\newblock {PsyEval}: A suite of mental health related tasks for evaluating
+  large language models.
+\newblock 2024.
+
+\bibitem[Zheng et~al.(2023)Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, and
+  Stoica]{zheng2023judging}
+L.~Zheng, W.-L. Chiang, Y.~Sheng, S.~Zhuang, Z.~Wu, Y.~Zhuang, and I.~Stoica.
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and chatbot arena.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36, 2023.
+
+\end{thebibliography}
