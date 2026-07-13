@@ -66,6 +66,24 @@ MODEL_COLORS = {
 }
 
 
+def set_paper_style() -> None:
+    """Font sizes tuned so figures stay legible after shrinking to text width.
+
+    Multi-panel figures are ~13in wide and print at ~7in, so fonts must be
+    roughly double the target print size.
+    """
+    import matplotlib as mpl
+    mpl.rcParams.update({
+        "font.size": 13,
+        "axes.titlesize": 14,
+        "axes.labelsize": 13,
+        "xtick.labelsize": 11.5,
+        "ytick.labelsize": 11.5,
+        "legend.fontsize": 10.5,
+        "figure.titlesize": 15,
+    })
+
+
 def display_name(internal_name: str) -> str:
     """Get display name for a model, fallback to internal name."""
     return MODEL_NAMES.get(internal_name, internal_name)

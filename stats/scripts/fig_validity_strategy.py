@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from model_display import MODEL_COLORS, display_name, sort_models
+from model_display import MODEL_COLORS, display_name, set_paper_style, sort_models
 
 STRATEGY_CATEGORIES = [
     "confrontation",
@@ -45,6 +45,7 @@ def main() -> None:
     output_dir = Path(f"thesis/figures")
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    set_paper_style()
     df = pd.read_csv(args.input)
     models = sort_models(list(df["model"].unique()))
 
@@ -74,11 +75,11 @@ def main() -> None:
         bottom += values
 
     ax.set_xticks(range(len(models)))
-    ax.set_xticklabels([display_name(m) for m in models], rotation=45, ha="right", fontsize=8)
+    ax.set_xticklabels([display_name(m) for m in models], rotation=45, ha="right", fontsize=10.5)
     ax.set_ylabel("Strategy share (%)")
     ax.set_title("Strategy distribution by model")
     handles, labels = ax.get_legend_handles_labels()
-    ax.legend(handles[::-1], labels[::-1], bbox_to_anchor=(1.02, 1), loc="upper left", fontsize=8)
+    ax.legend(handles[::-1], labels[::-1], bbox_to_anchor=(1.02, 1), loc="upper left", fontsize=10)
 
     fig1.tight_layout()
     fig1.savefig(output_dir / "fig_5_1_strategy_distribution.pdf", bbox_inches="tight")
@@ -93,7 +94,7 @@ def main() -> None:
     colors = [MODEL_COLORS.get(m, "#888888") for m in models]
     ax2.bar(range(len(models)), validity.values, color=colors, edgecolor="white")
     ax2.set_xticks(range(len(models)))
-    ax2.set_xticklabels([display_name(m) for m in models], rotation=45, ha="right", fontsize=8)
+    ax2.set_xticklabels([display_name(m) for m in models], rotation=45, ha="right", fontsize=10.5)
     ax2.set_ylabel("Validity rate")
     ax2.set_ylim(0.95, 1.005)
     ax2.set_title("Plan validity rate by model")

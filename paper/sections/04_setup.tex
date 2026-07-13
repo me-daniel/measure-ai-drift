@@ -4,9 +4,9 @@
 \subsection{Models}
 \label{sec:models}
 
-We evaluate 11 models in the therapist role (Table~\ref{tab:models}), all in non-thinking mode via OpenRouter. The primary subject is Mistral Large~3, the EU-sovereign Apache-2.0 flagship; sovereignty motivates this choice but imposes no constraint on the comparison set. The set spans a size-class ladder from 24--32B dense models through 70B dense and 119--675B MoE up to two proprietary ceilings, with three scales of Qwen~3.5 probing within-family scaling and OLMo~3.1 providing full training-data provenance.
+EU data sovereignty is the primary selection criterion for the study's main subject: the reDreamAI deployment context requires a model that can be self-hosted within EU data residency boundaries \citep{dale2025sovereign}. The primary subject is therefore Mistral Large~3, the EU-sovereign Apache-2.0 flagship. Around it, the comparison set (Table~\ref{tab:models}) spans a size-class ladder from 24--32B dense models through 70B dense and 119--675B MoE up to two proprietary ceilings. Three scales of Qwen~3.5 probe within-family scaling, OLMo~3.1 provides full training-data provenance, and Llama~3.3~70B maintains continuity with the prior efficacy study. All models run in non-thinking mode via OpenRouter; Qwen~3.5 and Mistral Small~4 are hybrid-thinking models and run with reasoning disabled for fair comparison.
 
-Mistral Medium~3.5 (128B dense, open weights under a modified MIT license, released 2026-04-30) was added \emph{post hoc} in July 2026, four months after the main data collection, using the identical frozen histories, prompts, and analysis pipeline. This addition serves two purposes: it validates that the framework extends to a new model with a single configuration entry, and it tests whether the main findings are robust to enlarging the model set (Section~\ref{sec:robustness}).
+Mistral Medium~3.5 (128B dense, open weights under a modified MIT license, released 2026-04-30) was added \emph{post hoc} in July 2026, four months after the main data collection, using the identical frozen histories, prompts, and analysis pipeline. The addition serves two purposes: it tests whether the framework extends to a new model with a single configuration entry, and it tests whether the main findings are robust to enlarging the model set (Section~\ref{sec:robustness}).
 
 \begin{table}[t]
   \centering
@@ -34,12 +34,19 @@ Mistral Medium~3.5 (128B dense, open weights under a modified MIT license, relea
 
 \subsection{Conditions}
 
-The full design crosses 11 models $\times$ 6 vignettes (anxious, avoidant, cooperative, resistant, skeptic, trauma) $\times$ 5 temperatures ($T \in \{0.0, 0.075, 0.15, 0.3, 0.6\}$) $\times$ 20 trials at slice~2, i.e.\ 600 trials per model and 6{,}600 trials in total. Ten models were collected 2026-03-21 to 2026-03-24; Mistral Medium~3.5 on 2026-07-09 (a \texttt{run\_date} column in the released data marks this).
+The full design crosses 11 models $\times$ 6 vignettes $\times$ 5 temperatures $\times$ 20 trials at slice~2, i.e.\ 600 trials per model and 6{,}600 trials in total. Ten models were collected 2026-03-21 to 2026-03-24; Mistral Medium~3.5 on 2026-07-09 (a \texttt{run\_date} column in the released data marks this).
+
+The five-point temperature sweep, $T \in \{0.0, 0.075, 0.15, 0.3, 0.6\}$, is anchored in vendor documentation. $T{=}0.0$ (greedy decoding) serves as the deterministic reference, although GPU parallelisation leaves residual floating-point nondeterminism even there \citep{yuan2025understanding}, which the twenty-trial design captures directly \citep{blackwell2024towards}. $T{=}0.15$ is the Mistral vendor default. $T{=}0.6$ is the Qwen~3.5 and OLMo default, close to the standard Llama chat range and the proprietary defaults ($\approx 0.7$). $T{=}0.3$ fills the gap, and $T{=}0.075$ was added after an initial four-point run revealed that several models peak in consistency \emph{between} $T{=}0.0$ and $T{=}0.15$, a pattern examined in Section~\ref{sec:results-jaccard}.
+
+No reproducibility seed was set, since not all vendors support one and even where available it is best effort at most. A supplementary experiment on Mistral Large~3 confirms this choice: fixing \texttt{seed=42} does not improve consistency over unseeded runs (Appendix~\ref{app:seed}). Trial repetition captures the stochastic variance directly.
 
 \subsection{Statistical Analysis}
+\label{sec:stats}
 
-All tests are exploratory. Temperature effects are assessed with Spearman rank correlations (pooled and per model) and Kruskal--Wallis $H$ across temperature groups; model and vignette differences with Kruskal--Wallis $H$ plus pairwise Mann--Whitney $U$ under Bonferroni correction ($\binom{11}{2}=55$ comparisons); cross-metric relations with Spearman correlations. Effect sizes ($\eta^2$) are reported alongside $p$-values. No absolute threshold for ``stable enough'' exists in the literature; results are interpreted comparatively.
+The analysis is primarily descriptive, and all tests are exploratory rather than confirmatory: the study describes stability patterns, it does not test a preregistered hypothesis. Spearman rank correlations quantify per-model temperature sensitivity and cross-metric relations (rank-based, because Jaccard takes few discrete values and BERTScore distributions may be non-normal). Kruskal--Wallis $H$ assesses model and vignette differences, with pairwise Mann--Whitney $U$ under Bonferroni correction ($\binom{11}{2}=55$ comparisons) and $\eta^2$ effect sizes alongside $p$-values.
+
+No fixed threshold defines ``stable enough''; clinical significance thresholds for LLM stability do not yet exist. Results are interpreted comparatively, model against model and across the temperature sweep, with the random Jaccard baseline (expected value for random 2-of-6 selections, $\approx 0.2$) as the lower reference point.
 
 \subsection{Reproducibility}
 
-Model endpoints are pinned by OpenRouter model IDs; exact IDs, run dates, prompts, frozen histories, and per-trial outputs are released with the code. Two caveats: OpenRouter routes requests to third-party inference providers whose serving stacks (e.g.\ quantization) may differ, and the judge endpoints are versioned previews; both are discussed in Section~\ref{sec:limitations}.
+Model endpoints are pinned by OpenRouter model IDs; exact IDs, run dates, prompts, and aggregated per-condition results are released with the code. The frozen histories and per-trial raw outputs are retained by the author and available on request; a public release is planned. Two caveats: OpenRouter routes requests to third-party inference providers whose serving stacks (e.g.\ quantisation) may differ between requests and between the March and July collections, and the judge endpoints are versioned previews. Both are discussed in Section~\ref{sec:limitations}.

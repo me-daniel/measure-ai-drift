@@ -1,0 +1,65 @@
+\begin{table}[h]
+  \centering\small
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Model & $T{=}0.0$ & $T{=}0.075$ & $T{=}0.15$ & $T{=}0.3$ & $T{=}0.6$ \\
+    \midrule
+    Mistral Small 3.2 & 0.967 & 1.000 & 0.967 & 0.967 & 0.872 \\
+    Mistral Small 4 & 0.746 & 0.874 & 0.935 & 0.646 & 0.625 \\
+    Mistral Medium 3.5 & 1.000 & 1.000 & 1.000 & 1.000 & 0.967 \\
+    Mistral Large 3 & 0.772 & 0.709 & 0.877 & 0.775 & 0.712 \\
+    Qwen 3.5 27B & 0.760 & 0.754 & 0.768 & 0.595 & 0.518 \\
+    Qwen 3.5 122B & 1.000 & 1.000 & 0.967 & 0.853 & 0.730 \\
+    Qwen 3.5 397B & 0.799 & 0.737 & 0.775 & 0.642 & 0.626 \\
+    OLMo 3.1 32B & 1.000 & 1.000 & 0.911 & 0.911 & 0.746 \\
+    Llama 3.3 70B & 0.705 & 0.730 & 0.732 & 0.668 & 0.597 \\
+    GPT-5.4 & 0.937 & 0.937 & 0.937 & 0.967 & 0.937 \\
+    Claude Sonnet 4.6 & 0.868 & 0.779 & 1.000 & 0.854 & 0.933 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Median pairwise Jaccard per model and temperature (across 6 vignettes).}
+\end{table}
+
+\begin{table}[h]
+  \centering\small
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Model & $T{=}0.0$ & $T{=}0.075$ & $T{=}0.15$ & $T{=}0.3$ & $T{=}0.6$ \\
+    \midrule
+    Mistral Small 3.2 & 0.757 & 0.766 & 0.758 & 0.743 & 0.708 \\
+    Mistral Small 4 & 0.692 & 0.725 & 0.726 & 0.684 & 0.657 \\
+    Mistral Medium 3.5 & 0.830 & 0.886 & 0.824 & 0.785 & 0.754 \\
+    Mistral Large 3 & 0.742 & 0.756 & 0.764 & 0.743 & 0.705 \\
+    Qwen 3.5 27B & 0.831 & 0.780 & 0.754 & 0.715 & 0.687 \\
+    Qwen 3.5 122B & 0.882 & 0.840 & 0.789 & 0.743 & 0.710 \\
+    Qwen 3.5 397B & 0.750 & 0.759 & 0.735 & 0.726 & 0.717 \\
+    OLMo 3.1 32B & 0.941 & 0.813 & 0.760 & 0.730 & 0.699 \\
+    Llama 3.3 70B & 0.746 & 0.749 & 0.740 & 0.731 & 0.702 \\
+    GPT-5.4 & 0.734 & 0.737 & 0.733 & 0.739 & 0.733 \\
+    Claude Sonnet 4.6 & 0.844 & 0.801 & 0.799 & 0.771 & 0.743 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Mean pairwise BERTScore F1 per model and temperature (across 6 vignettes).}
+\end{table}
+
+\begin{table}[h]
+  \centering\small
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Model & $T{=}0.0$ & $T{=}0.075$ & $T{=}0.15$ & $T{=}0.3$ & $T{=}0.6$ \\
+    \midrule
+    Mistral Small 3.2 & 0.908 & 0.925 & 0.908 & 0.921 & 0.921 \\
+    Mistral Small 4 & 0.837 & 0.842 & 0.790 & 0.806 & 0.776 \\
+    Mistral Medium 3.5 & 0.965 & 0.944 & 0.960 & 0.963 & 0.975 \\
+    Mistral Large 3 & 0.983 & 0.996 & 0.977 & 0.967 & 0.973 \\
+    Qwen 3.5 27B & 0.965 & 0.954 & 0.923 & 0.927 & 0.960 \\
+    Qwen 3.5 122B & 0.983 & 0.973 & 0.979 & 0.983 & 0.969 \\
+    Qwen 3.5 397B & 0.994 & 0.977 & 0.994 & 0.996 & 0.994 \\
+    OLMo 3.1 32B & 0.898 & 0.917 & 0.910 & 0.915 & 0.894 \\
+    Llama 3.3 70B & 0.919 & 0.890 & 0.888 & 0.875 & 0.875 \\
+    GPT-5.4 & 0.992 & 1.000 & 1.000 & 0.998 & 0.998 \\
+    Claude Sonnet 4.6 & 1.000 & 1.000 & 1.000 & 1.000 & 0.998 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Mean plan--response alignment per model and temperature (across 6 vignettes).}
+\end{table}

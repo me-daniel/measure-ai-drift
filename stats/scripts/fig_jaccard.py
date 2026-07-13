@@ -19,7 +19,7 @@ import pandas as pd
 
 RANDOM_BASELINE = 0.2  # Expected Jaccard for random 2-of-6 picks
 
-from model_display import MODEL_COLORS, MODEL_GROUPS, display_name, sort_models
+from model_display import MODEL_COLORS, MODEL_GROUPS, display_name, set_paper_style, sort_models
 
 
 def plot_metric(ax, df, metric, title, ylabel, model_filter=None):
@@ -58,7 +58,7 @@ def plot_metric(ax, df, metric, title, ylabel, model_filter=None):
     ax.set_ylabel(ylabel)
     ax.set_ylim(0, 1.1)
     ax.set_title(title)
-    ax.legend(fontsize=8, loc="lower left")
+    ax.legend(fontsize=9.5, loc="lower left")
 
 
 def main() -> None:
@@ -71,19 +71,20 @@ def main() -> None:
         args.input = Path(f"stats/data/{args.tier}_runs.csv")
     output_dir = Path(f"thesis/figures")
 
+    set_paper_style()
     df = pd.read_csv(args.input)
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # --- Figure 5.2: Jaccard split into 3 family panels ---
-    fig, axes = plt.subplots(1, 3, figsize=(18, 5), sharey=True)
+    fig, axes = plt.subplots(1, 3, figsize=(13.5, 4.6), sharey=True)
     for ax, (group_name, group_models) in zip(axes, MODEL_GROUPS.items()):
         plot_metric(ax, df, "jaccard_all", group_name, "Median Jaccard (IQR)",
                     model_filter=set(group_models))
     # Only leftmost axis needs the y-label
     axes[1].set_ylabel("")
     axes[2].set_ylabel("")
-    fig.suptitle("Jaccard similarity by model and temperature", fontsize=13, y=1.02)
+    fig.suptitle("Jaccard similarity by model and temperature", y=1.02)
     fig.tight_layout()
     fig.savefig(output_dir / "fig_5_2_jaccard.pdf", bbox_inches="tight")
     fig.savefig(output_dir / "fig_5_2_jaccard.png", bbox_inches="tight", dpi=150)
@@ -93,7 +94,7 @@ def main() -> None:
     # --- Figure 5.2b: Modal-set agreement (all models, single panel) ---
     has_modal = df["modal_set_agreement"].notna().any() if "modal_set_agreement" in df.columns else False
     if has_modal:
-        fig2, ax2 = plt.subplots(1, 1, figsize=(8, 5))
+        fig2, ax2 = plt.subplots(1, 1, figsize=(7.5, 5))
         plot_metric(ax2, df, "modal_set_agreement", "Most common plan combination", "Agreement rate")
         fig2.tight_layout()
         fig2.savefig(output_dir / "fig_5_2b_modal_agreement.pdf", bbox_inches="tight")

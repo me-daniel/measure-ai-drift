@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from model_display import MODEL_COLORS, MODEL_GROUPS, display_name, sort_models
+from model_display import MODEL_COLORS, MODEL_GROUPS, display_name, set_paper_style, sort_models
 
 
 def plot_bertscore(ax, df, title, model_filter=None):
@@ -53,7 +53,7 @@ def plot_bertscore(ax, df, title, model_filter=None):
     ax.set_ylabel("Mean BERTScore F1 (SD)")
     ax.set_ylim(0.5, 1.0)
     ax.set_title(title)
-    ax.legend(fontsize=8)
+    ax.legend(fontsize=9.5)
 
 
 def main() -> None:
@@ -67,14 +67,15 @@ def main() -> None:
     output_dir = Path(f"thesis/figures")
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    set_paper_style()
     df = pd.read_csv(args.input)
 
-    fig, axes = plt.subplots(1, 3, figsize=(18, 5), sharey=True)
+    fig, axes = plt.subplots(1, 3, figsize=(13.5, 4.6), sharey=True)
     for ax, (group_name, group_models) in zip(axes, MODEL_GROUPS.items()):
         plot_bertscore(ax, df, group_name, model_filter=set(group_models))
     axes[1].set_ylabel("")
     axes[2].set_ylabel("")
-    fig.suptitle("BERTScore F1 by model and temperature", fontsize=13, y=1.02)
+    fig.suptitle("BERTScore F1 by model and temperature", y=1.02)
     fig.tight_layout()
     fig.savefig(output_dir / "fig_5_3_bertscore.pdf", bbox_inches="tight")
     fig.savefig(output_dir / "fig_5_3_bertscore.png", bbox_inches="tight", dpi=150)

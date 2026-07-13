@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from model_display import MODEL_COLORS, display_name, sort_models
+from model_display import MODEL_COLORS, display_name, set_paper_style, sort_models
 
 
 def main() -> None:
@@ -29,11 +29,12 @@ def main() -> None:
         args.input = Path(f"stats/data/{args.tier}_runs.csv")
     output_dir = Path(f"thesis/figures")
 
+    set_paper_style()
     df = pd.read_csv(args.input)
     models = sort_models(list(df["model"].unique()))
     temps = sorted(df["temperature"].unique())
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.5, 4.8))
 
     # Left: line plot by temperature
     for model in models:
@@ -66,7 +67,7 @@ def main() -> None:
     ax1.set_ylabel("Mean Alignment (SD)")
     ax1.set_ylim(0.5, 1.05)
     ax1.set_title("Plan-response alignment by temperature")
-    ax1.legend(fontsize=7, loc="lower left")
+    ax1.legend(fontsize=9, loc="lower left")
 
     # Right: bar chart per model (collapsed)
     model_means = df.groupby("model")["alignment_mean"].mean().reindex(models)
@@ -82,7 +83,7 @@ def main() -> None:
             color=colors, edgecolor="white", linewidth=0.5)
     ax2.set_xticks(list(x))
     ax2.set_xticklabels([display_name(m) for m in models], rotation=45,
-                         ha="right", fontsize=8)
+                         ha="right", fontsize=10.5)
     ax2.set_ylabel("Mean Alignment")
     ax2.set_ylim(0.5, 1.05)
     ax2.set_title("Overall alignment by model")

@@ -1,15 +1,105 @@
 \section{Strategy Taxonomy}
 \label{app:taxonomy}
-\todo{Taxonomy card: six categories with definitions and example phrases; brief evolution note (8 $\to$ 6 $\to$ 7 $\to$ 6, skew collapse figure).}
+
+The six mechanism-level categories that constrain plan declarations:
+
+\begin{table}[h]
+  \centering\small
+  \begin{tabular}{lp{9.5cm}}
+    \toprule
+    Category & Mechanism \\
+    \midrule
+    \texttt{confrontation} & External action toward the threat (fight, challenge, resist) \\
+    \texttt{self\_empowerment} & Internal transformation (grow stronger, gain abilities) \\
+    \texttt{safety} & Environment modification (safe spaces, protective elements) \\
+    \texttt{cognitive\_reframe} & Meaning change (reinterpret threatening elements) \\
+    \texttt{social\_support} & Adding allies (introduce helpful figures) \\
+    \texttt{sensory\_modulation} & Sensory and calming details (modify light, sound, texture; introduce comforting elements) \\
+    \bottomrule
+  \end{tabular}
+  \caption{Final strategy taxonomy (v4).}
+\end{table}
+
+The taxonomy evolved over four iterations ($8 \to 6 \to 7 \to 6$ categories). The initial version suffered a severe skew: a broad empowerment/mastery category absorbed 87.7\% of all picks. Merging it made the skew worse (100\% dominance of a single ``agency'' category); the resolution was a mechanism-level split distinguishing external action (\texttt{confrontation}) from internal transformation (\texttt{self\_empowerment}). A seventh category (\texttt{emotional\_regulation}) was merged into \texttt{sensory\_modulation} after smoke testing showed it was picked in 0.4\% of trials. Category definitions describe \emph{how} the dream changes (mechanism), not what the change achieves (outcome), with NOT-examples to reduce overlap.
 
 \section{Prompts}
 \label{app:prompts}
-\todo{Rescripting prompt, fused-generation instruction, vignette example.}
+
+The fused-generation system prompt injected into each trial (the \texttt{\{categories\_block\}} placeholder is filled with the six taxonomy definitions of Appendix~\ref{app:taxonomy}):
+
+\begin{quote}\small\ttfamily
+You are an Imagery Rehearsal Therapy (IRT) assistant helping a patient rescript their nightmare.\\[2pt]
+First, select 1-2 therapeutic strategies from this taxonomy:\\
+\{categories\_block\}\\[2pt]
+Choose the strategies most specifically suited to THIS patient's nightmare content. Avoid defaulting to general approaches when a more specific mechanism fits.\\[2pt]
+Then respond to the patient using those strategies.\\[2pt]
+STRICT output format:\\
+Line 1: <plan>category1 / category2</plan>\\
+Line 2: (empty)\\
+Line 3+: Your therapeutic response (conversational, supportive, max 3 sentences)\\[2pt]
+IMPORTANT:\\
+- You MUST include the closing </plan> tag on the SAME line as the opening tag.\\
+- The <plan> line must contain ONLY category names, nothing else.\\
+- Do NOT put your response inside the <plan> tags.
+\end{quote}
+
+An in-context example provided with the prompt:
+
+\begin{quote}\small\ttfamily
+<plan>safety / social\_support</plan>\\[4pt]
+What if, in this version of the dream, you could find a place that feels completely secure --- and someone you trust is already there waiting for you?
+\end{quote}
+
+Each trial receives this system prompt together with the frozen dialogue history (slice~2 of the vignette's generated session), so all trials of a condition share byte-identical input.
 
 \section{Judge Rubric}
 \label{app:judge}
-\todo{Judge system prompt, ternary rubric, example judgment with CoT justification; missing-data rule for judge failures.}
+
+The alignment judge receives the taxonomy definitions, the trial's declared strategies, and the therapist response, and scores each declared strategy on a ternary scale with mandatory reasoning:
+
+\begin{quote}\small\ttfamily
+For each declared strategy, assign ONE score:\\
+- 2 (implemented): The response clearly and specifically implements this strategy. The therapeutic technique is evident and developed --- you can point to specific sentences or passages that demonstrate it.\\
+- 1 (partial): The response touches on this strategy but does not fully develop it. Elements are present but incomplete, only implied, or mentioned without therapeutic depth.\\
+- 0 (absent): The response does not implement this strategy. No evidence of this technique in the response.\\[2pt]
+Output format: strategy\_id: <reasoning> | score: <0|1|2>
+\end{quote}
+
+Per-trial alignment is the mean score over declared strategies, normalised by the maximum (2). Trials whose judgment fails (timeout, API error) or that cannot be judged (invalid plan) are treated as missing data and excluded from the alignment mean. Zero-scored or partially parsed judgments are re-judged once by Gemini~3.1~Pro (9 of 6{,}600 trials; Section~\ref{sec:results-alignment}).
+
+\section{Plan Validity}
+\label{app:validity}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.85\linewidth]{fig_A1_validity}
+  \caption{Plan validity rate by model: fraction of trials whose \texttt{<plan>} block parses to valid taxonomy categories.}
+  \label{fig:validity}
+\end{figure}
+
+\section{Per-Vignette Stability}
+\label{app:vignettes}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=\linewidth]{fig_5_4_vignette_slice}
+  \caption{Median Jaccard per model $\times$ vignette, one heatmap per temperature. Individual model--vignette combinations can deviate noticeably from the aggregate even though the overall vignette effect is not significant (Section~\ref{sec:results-vignettes}).}
+  \label{fig:vignettes}
+\end{figure}
+
+\section{Seed Control Experiment}
+\label{app:seed}
+
+A supplementary experiment on Mistral Large~3 compares runs with a fixed seed (\texttt{seed=42}) against unseeded runs under otherwise identical conditions. Fixing the seed does not improve consistency (Figure~\ref{fig:seed}): vendor seed support is best effort at most, and residual serving-side nondeterminism persists \citep{yuan2025understanding}. The main experiment therefore sets no seed and captures stochastic variance through trial repetition instead.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.85\linewidth]{fig_seed_comparison}
+  \caption{Seeded (\texttt{seed=42}) versus unseeded runs for Mistral Large~3. A fixed seed does not improve run-to-run consistency.}
+  \label{fig:seed}
+\end{figure}
 
 \section{Per-Condition Results}
 \label{app:tables}
-\todo{Full 11-model $\times$ 5-temperature tables for all three metrics.}
+
+\input{sections/appendix_tables}

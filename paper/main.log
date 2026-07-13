@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.9)  9 JUL 2026 12:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.9)  10 JUL 2026 21:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -486,52 +486,181 @@ Package microtype Info: Loading generic protrusion settings for font family
 {/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/us
 r/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
 )
-(./sections/02_related_work.tex) (./sections/03_method.tex
-<figures/fig_3_1_pipeline.pdf, id=210, 969.25479pt x 570.93298pt>
+(./sections/02_related_work.tex [2]) (./sections/03_method.tex [3]
+<figures/fig_3_1_pipeline.pdf, id=324, 969.25479pt x 570.93298pt>
 File: figures/fig_3_1_pipeline.pdf Graphic file (type pdf)
 <use figures/fig_3_1_pipeline.pdf>
-Package pdftex.def Info: figures/fig_3_1_pipeline.pdf  used on input line 13.
+Package pdftex.def Info: figures/fig_3_1_pipeline.pdf  used on input line 12.
 (pdftex.def)             Requested size: 469.75502pt x 276.70178pt.
+<figures/dialogue_generation.png, id=326, 1009.27063pt x 626.34pt>
+File: figures/dialogue_generation.png Graphic file (type png)
+<use figures/dialogue_generation.png>
+Package pdftex.def Info: figures/dialogue_generation.png  used on input line 24
+.
+(pdftex.def)             Requested size: 422.77664pt x 262.37288pt.
+ [4 <./figures/fig_3_1_pipeline.pdf>] [5 <./figures/dialogue_generation.png>]
+<figures/fig_3_3_eval_stack.pdf, id=449, 1066.74904pt x 462.52798pt>
+File: figures/fig_3_3_eval_stack.pdf Graphic file (type pdf)
+<use figures/fig_3_3_eval_stack.pdf>
+Package pdftex.def Info: figures/fig_3_3_eval_stack.pdf  used on input line 47.
 
-Overfull \hbox (7.67769pt too wide) in paragraph at lines 21--22
-\T1/cmr/m/n/10.95 (-20) Each trial uses \T1/cmr/m/it/10.95 (-20) fused \T1/cmr/
-m/n/10.95 (-20) chain-of-thought gen-er-a-tion: the model first emits a plan bl
-ock, \T1/cmtt/m/n/10.95 <plan>strategy_1
- []
-
-[2]
-<figures/fig_3_2_measurement.pdf, id=244, 863.39188pt x 498.663pt>
+(pdftex.def)             Requested size: 469.75502pt x 203.68231pt.
+ [6 <./figures/fig_3_3_eval_stack.pdf>]
+<figures/fig_3_2_measurement.pdf, id=588, 863.39188pt x 498.663pt>
 File: figures/fig_3_2_measurement.pdf Graphic file (type pdf)
 <use figures/fig_3_2_measurement.pdf>
-Package pdftex.def Info: figures/fig_3_2_measurement.pdf  used on input line 37
+Package pdftex.def Info: figures/fig_3_2_measurement.pdf  used on input line 75
 .
 (pdftex.def)             Requested size: 469.75502pt x 271.3132pt.
- [3 <./figures/fig_3_1_pipeline.pdf>]) (./sections/04_setup.tex [4 <./figures/f
-ig_3_2_measurement.pdf>] [5]) (./sections/05_results.tex
-Overfull \hbox (83.58647pt too wide) in paragraph at lines 4--5
-[]\T1/cmr/m/n/10.95 (-20) [TODO: All num-bers be-low from \T1/cmtt/m/n/10.95 st
-ats/data/experiment_test_results.json \T1/cmr/m/n/10.95 (-20) and \T1/cmtt/m/n/
-10.95 experiment_descriptives.json
+ [7 <./figures/fig_3_2_measurement.pdf>])
+(./sections/04_setup.tex [8] [9]) (./sections/05_results.tex
+<figures/fig_5_1_strategy_distribution.pdf, id=750, 562.92259pt x 347.89345pt>
+File: figures/fig_5_1_strategy_distribution.pdf Graphic file (type pdf)
+<use figures/fig_5_1_strategy_distribution.pdf>
+Package pdftex.def Info: figures/fig_5_1_strategy_distribution.pdf  used on inp
+ut line 17.
+(pdftex.def)             Requested size: 446.26582pt x 275.80424pt.
+ [10]
+<figures/fig_5_2_jaccard.pdf, id=758, 962.17401pt x 339.52116pt>
+File: figures/fig_5_2_jaccard.pdf Graphic file (type pdf)
+<use figures/fig_5_2_jaccard.pdf>
+Package pdftex.def Info: figures/fig_5_2_jaccard.pdf  used on input line 29.
+(pdftex.def)             Requested size: 526.12332pt x 185.65962pt.
+ [11 <./figures/fig_5_1_strategy_distribution.pdf>]
+<figures/fig_5_2b_modal_agreement.pdf, id=818, 528.55402pt x 348.26486pt>
+File: figures/fig_5_2b_modal_agreement.pdf Graphic file (type pdf)
+<use figures/fig_5_2b_modal_agreement.pdf>
+Package pdftex.def Info: figures/fig_5_2b_modal_agreement.pdf  used on input li
+ne 42.
+(pdftex.def)             Requested size: 366.40834pt x 241.4349pt.
+<figures/fig_5_3_bertscore.pdf, id=820, 962.17401pt x 339.52116pt>
+File: figures/fig_5_3_bertscore.pdf Graphic file (type pdf)
+<use figures/fig_5_3_bertscore.pdf>
+Package pdftex.def Info: figures/fig_5_3_bertscore.pdf  used on input line 56.
+(pdftex.def)             Requested size: 526.12332pt x 185.65962pt.
+ [12 <./figures/fig_5_2_jaccard.pdf>]
+<figures/fig_5_5_correlations.pdf, id=894, 567.37514pt x 420.53487pt>
+File: figures/fig_5_5_correlations.pdf Graphic file (type pdf)
+<use figures/fig_5_5_correlations.pdf>
+Package pdftex.def Info: figures/fig_5_5_correlations.pdf  used on input line 7
+5.
+(pdftex.def)             Requested size: 385.20255pt x 285.52357pt.
+
+[13 <./figures/fig_5_2b_modal_agreement.pdf>]
+<figures/fig_5_6_alignment.pdf, id=965, 889.90402pt x 333.43945pt>
+File: figures/fig_5_6_alignment.pdf Graphic file (type pdf)
+<use figures/fig_5_6_alignment.pdf>
+Package pdftex.def Info: figures/fig_5_6_alignment.pdf  used on input line 89.
+(pdftex.def)             Requested size: 493.2442pt x 184.81686pt.
+) (./sections/06_discussion.tex
+[14 <./figures/fig_5_3_bertscore.pdf>] [15 <./figures/fig_5_5_correlations.pdf>
+] [16 <./figures/fig_5_6_alignment.pdf>] [17]) (./sections/07_conclusion.tex)
+(./main.bbl [18] [19] [20]) (./sections/appendix.tex [21]
+Overfull \hbox (30.61128pt too wide) in paragraph at lines 31--44
+[]\T1/cmtt/m/n/10 You are an Imagery Rehearsal Therapy (IRT) assistant helping 
+a patient rescript their
  []
 
-) (./sections/06_discussion.tex [6]) (./sections/07_conclusion.tex) (./main.bbl
-[7{/usr/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts
-1.enc}] [8]) (./sections/appendix.tex [9]) [10] (./main.aux)
+
+Overfull \hbox (16.96461pt too wide) in paragraph at lines 31--44
+\T1/cmtt/m/n/10 Choose the strategies most specifically suited to THIS patient'
+s nightmare content.
+ []
+
+
+Overfull \hbox (10.14128pt too wide) in paragraph at lines 31--44
+\T1/cmtt/m/n/10 Line 3+: Your therapeutic response (conversational, supportive,
+ max 3 sentences) 
+ []
+
+
+Overfull \hbox (20.11385pt too wide) in paragraph at lines 49--51
+\T1/cmtt/m/n/10 What if, in this version of the dream, you could find a place t
+hat feels completely
+ []
+
+
+Overfull \hbox (14.34026pt too wide) in paragraph at lines 61--66
+\T1/cmtt/m/n/10 - 2 (implemented): The response clearly and specifically implem
+ents this strategy.
+ []
+
+
+Overfull \hbox (51.86859pt too wide) in paragraph at lines 61--66
+\T1/cmtt/m/n/10 The therapeutic technique is evident and developed --- you can 
+point to specific sentences
+ []
+
+
+Overfull \hbox (2.2682pt too wide) in paragraph at lines 61--66
+\T1/cmtt/m/n/10 - 1 (partial): The response touches on this strategy but does n
+ot fully develop
+ []
+
+
+Overfull \hbox (46.88231pt too wide) in paragraph at lines 61--66
+\T1/cmtt/m/n/10 it. Elements are present but incomplete, only implied, or menti
+oned without therapeutic
+ []
+
+
+Overfull \hbox (12.76564pt too wide) in paragraph at lines 61--66
+\T1/cmtt/m/n/10 - 0 (absent): The response does not implement this strategy. No
+ evidence of this
+ []
+
+[22]
+<figures/fig_A1_validity.pdf, id=1240, 564.66647pt x 275.62344pt>
+File: figures/fig_A1_validity.pdf Graphic file (type pdf)
+<use figures/fig_A1_validity.pdf>
+Package pdftex.def Info: figures/fig_A1_validity.pdf  used on input line 75.
+(pdftex.def)             Requested size: 399.29463pt x 194.90334pt.
+<figures/fig_5_4_vignette_slice.pdf, id=1241, 911.29332pt x 1247.87898pt>
+File: figures/fig_5_4_vignette_slice.pdf Graphic file (type pdf)
+<use figures/fig_5_4_vignette_slice.pdf>
+Package pdftex.def Info: figures/fig_5_4_vignette_slice.pdf  used on input line
+ 85.
+(pdftex.def)             Requested size: 469.75502pt x 643.26466pt.
+
+
+LaTeX Warning: Float too large for page by 43.63466pt on input line 88.
+
+<figures/fig_seed_comparison.pdf, id=1247, 1076.34433pt x 371.78085pt>
+File: figures/fig_seed_comparison.pdf Graphic file (type pdf)
+<use figures/fig_seed_comparison.pdf>
+Package pdftex.def Info: figures/fig_seed_comparison.pdf  used on input line 97
+.
+(pdftex.def)             Requested size: 399.29463pt x 137.91982pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./sections/appendix_tables.tex
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)) [23 <./figures/fig_A1_validity.pdf>] [24 <./figures/fig_5_4_vignette_slice.p
+df>] [25 <./figures/fig_seed_comparison.pdf>] [26] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8E867E44EB070DFF9DAF140960E0E48D;4148.
+(rerunfilecheck)             Checksum: A4BAACB2D0E6B63E5BC860EB5971DE87;7786.
  ) 
 Here is how much of TeX's memory you used:
- 14429 strings out of 469006
- 230504 string characters out of 5454814
- 691036 words of memory out of 5000000
- 42698 multiletter control sequences out of 15000+600000
- 648987 words of font info for 163 fonts, out of 8000000 for 9000
+ 14724 strings out of 469006
+ 237590 string characters out of 5454814
+ 700568 words of memory out of 5000000
+ 42883 multiletter control sequences out of 15000+600000
+ 650840 words of font info for 191 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 75i,8n,79p,1001b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,1229b,628s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmex1
 0.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mmi10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/
@@ -548,12 +677,13 @@ onts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2026basic/texmf-dis
 t/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2026basic/texmf-
 dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2026basic/tex
 mf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2026basic/
-texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2026bas
-ic/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on main.pdf (10 pages, 411832 bytes).
+texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2026bas
+ic/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2026
+basic/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on main.pdf (26 pages, 784038 bytes).
 PDF statistics:
- 622 PDF objects out of 1000 (max. 8388607)
- 377 compressed objects within 4 object streams
- 79 named destinations out of 1000 (max. 500000)
- 42219 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 1519 PDF objects out of 1728 (max. 8388607)
+ 649 compressed objects within 7 object streams
+ 131 named destinations out of 1000 (max. 500000)
+ 40874 words of extra memory for PDF output out of 42996 (max. 10000000)
 

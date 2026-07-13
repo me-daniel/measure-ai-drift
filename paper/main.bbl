@@ -1,9 +1,15 @@
-\begin{thebibliography}{26}
+\begin{thebibliography}{35}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aboy et~al.(2024)Aboy, Minssen, and Vayena]{aboy2024navigating}
+M.~Aboy, T.~Minssen, and E.~Vayena.
+\newblock Navigating the {EU} {AI} act: Implications for regulated digital
+  medical products.
+\newblock \emph{npj Digital Medicine}, 7:\penalty0 237, 2024.
 
 \bibitem[Albanese et~al.(2022)Albanese, Liotti, Cornacchia, and
   Mancini]{albanese2022nightmare}
@@ -21,6 +27,14 @@ A.~J. Bellg, B.~Resnick, D.~S. Minicucci, G.~Ogedegbe, D.~Ernst, B.~Borrelli,
   practices and recommendations from the {NIH} behavior change consortium.
 \newblock \emph{Health Psychology}, 23\penalty0 (5):\penalty0 443--451, 2004.
 
+\bibitem[Blackwell et~al.(2024)Blackwell, Barry, and
+  Cohn]{blackwell2024towards}
+Robert~E. Blackwell, Jon Barry, and Anthony~G. Cohn.
+\newblock Towards reproducible {LLM} evaluation: Quantifying uncertainty in
+  {LLM} benchmark scores.
+\newblock \emph{arXiv preprint arXiv:2410.03492}, 2024.
+\newblock \doi{10.48550/arXiv.2410.03492}.
+
 \bibitem[Chiu et~al.(2024)Chiu, Sharma, Lin, and
   Althoff]{chiu2024computational}
 Y.~Y. Chiu, A.~Sharma, I.~W. Lin, and T.~Althoff.
@@ -29,6 +43,11 @@ Y.~Y. Chiu, A.~Sharma, I.~W. Lin, and T.~Althoff.
 \newblock \emph{arXiv preprint}, 2024.
 \newblock \doi{10.48550/arXiv.2401.00820}.
 
+\bibitem[Dale(2025)]{dale2025sovereign}
+R.~Dale.
+\newblock Sovereign {AI} in 2025.
+\newblock \emph{Natural Language Processing}, 31:\penalty0 1312--1321, 2025.
+
 \bibitem[Fitzpatrick et~al.(2017)Fitzpatrick, Darcy, and
   Vierhile]{fitzpatrick2017delivering}
 K.~K. Fitzpatrick, A.~Darcy, and M.~Vierhile.
@@ -36,6 +55,14 @@ K.~K. Fitzpatrick, A.~Darcy, and M.~Vierhile.
   of depression and anxiety using a fully automated conversational agent
   ({Woebot}): A randomized controlled trial.
 \newblock \emph{JMIR Mental Health}, 4\penalty0 (2):\penalty0 e19, 2017.
+
+\bibitem[Harb et~al.(2012)Harb, Thompson, Ross, and Cook]{harb2012combat}
+G.~C. Harb, R.~Thompson, R.~J. Ross, and J.~M. Cook.
+\newblock Combat-related {PTSD} nightmares and imagery rehearsal: Nightmare
+  characteristics and relation to treatment outcome.
+\newblock \emph{Journal of Traumatic Stress}, 25\penalty0 (5):\penalty0
+  511--518, 2012.
+\newblock \doi{10.1002/jts.21748}.
 
 \bibitem[He et~al.(2021)He, Liu, Gao, and Chen]{he2021deberta}
 P.~He, X.~Liu, J.~Gao, and W.~Chen.
@@ -155,6 +182,36 @@ M.~Turpin, J.~Michael, E.~Perez, and S.~R. Bowman.
 \newblock In \emph{Advances in Neural Information Processing Systems},
   volume~36, 2023.
 
+\bibitem[{van Kolfschooten} and {van
+  Oirschot}(2024)]{vankolfschooten2024artificial}
+H.~{van Kolfschooten} and J.~{van Oirschot}.
+\newblock The {EU} artificial intelligence act (2024): Implications for
+  healthcare.
+\newblock \emph{Health Policy}, 149:\penalty0 105152, 2024.
+
+\bibitem[Voss et~al.(2026)Voss, Peters, Pipa, and L{\"u}th]{voss2026efficacy}
+Julia Voss, Madlen Peters, Gordon Pipa, and Katharina L{\"u}th.
+\newblock Efficacy of a web application as a self-help intervention for
+  nightmares: A randomized controlled trial.
+\newblock \emph{Somnologie}, 2026.
+\newblock \doi{10.1007/s11818-026-00550-w}.
+\newblock Online first.
+
+\bibitem[Wang et~al.(2024{\natexlab{a}})Wang, Milani, Chiu, Zhi, Eack, Labrum,
+  Murphy, Jones, Hardy, Shen, Fang, and Chen]{wang2024patient}
+R.~Wang, S.~Milani, J.~C. Chiu, J.~Zhi, S.~M. Eack, T.~Labrum, S.~M. Murphy,
+  N.~Jones, K.~V. Hardy, H.~Shen, F.~Fang, and Z.~Chen.
+\newblock {PATIENT}-$\psi$: Using large language models to simulate patients
+  for training mental health professionals.
+\newblock 2024{\natexlab{a}}.
+
+\bibitem[Wang et~al.(2024{\natexlab{b}})Wang, Wu, Li, Xu, and
+  Zhang]{wang2024roleplay}
+Z.~Wang, J.~Wu, Y.~Li, J.~Xu, and H.~Zhang.
+\newblock Roleplay-doh: Enabling domain-experts to create {LLM}-simulated
+  patients via eliciting and adhering to principles.
+\newblock \emph{arXiv preprint}, 2024{\natexlab{b}}.
+
 \bibitem[Wei et~al.(2022)Wei, Wang, Schuurmans, Bosma, Ichter, Xia, Chi, Le,
   and Zhou]{wei2022chain}
 J.~Wei, X.~Wang, D.~Schuurmans, M.~Bosma, B.~Ichter, F.~Xia, E.~Chi, Q.~V. Le,
@@ -163,6 +220,14 @@ J.~Wei, X.~Wang, D.~Schuurmans, M.~Bosma, B.~Ichter, F.~Xia, E.~Chi, Q.~V. Le,
   models.
 \newblock In \emph{Advances in Neural Information Processing Systems},
   volume~35, 2022.
+
+\bibitem[Weizenbaum(1966)]{weizenbaum1966eliza}
+Joseph Weizenbaum.
+\newblock {ELIZA}---a computer program for the study of natural language
+  communication between man and machine.
+\newblock \emph{Communications of the ACM}, 9\penalty0 (1):\penalty0 36--45,
+  1966.
+\newblock \doi{10.1145/365153.365168}.
 
 \bibitem[Wu et~al.(2026)Wu, Song, Ye, Lin, Huang, Wang, and Yang]{wu2026pilot}
 Y.~Wu, H.~Song, C.~Ye, R.~Lin, W.~Huang, Y.~Wang, and X.~Yang.
