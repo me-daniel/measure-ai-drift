@@ -70,6 +70,8 @@ Per-trial alignment is the mean score over declared strategies, normalised by th
 \section{Plan Validity}
 \label{app:validity}
 
+Figure~\ref{fig:validity} reports the plan validity rate per model, the upstream quality gate for Method~1.
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=.85\linewidth]{fig_A1_validity}
@@ -80,12 +82,16 @@ Per-trial alignment is the mean score over declared strategies, normalised by th
 \section{Per-Vignette Stability}
 \label{app:vignettes}
 
+Figure~\ref{fig:vignettes} breaks decision consistency down to individual model--vignette cells, one heatmap per temperature, for consultation of specific combinations.
+
 \begin{figure}[p]
   \centering
-  \includegraphics[width=\linewidth]{fig_5_4_vignette_slice}
+  \includegraphics[width=\linewidth,height=.92\textheight,keepaspectratio]{fig_5_4_vignette_slice}
   \caption{Median Jaccard per model $\times$ vignette, one heatmap per temperature. Individual model--vignette combinations can deviate noticeably from the aggregate even though the overall vignette effect is not significant (Section~\ref{sec:results-vignettes}).}
   \label{fig:vignettes}
 \end{figure}
+
+\clearpage
 
 \section{Seed Control Experiment}
 \label{app:seed}
@@ -98,6 +104,8 @@ A supplementary experiment on Mistral Large~3 compares runs with a fixed seed (\
   \caption{Seeded (\texttt{seed=42}) versus unseeded runs for Mistral Large~3. A fixed seed does not improve run-to-run consistency.}
   \label{fig:seed}
 \end{figure}
+
+\clearpage
 
 \section{Per-Condition Results}
 \label{app:tables}

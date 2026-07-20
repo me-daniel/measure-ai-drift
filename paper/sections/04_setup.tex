@@ -6,35 +6,35 @@
 
 EU data sovereignty is the primary selection criterion for the study's main subject: the reDreamAI deployment context requires a model that can be self-hosted within EU data residency boundaries \citep{dale2025sovereign}. The primary subject is therefore Mistral Large~3, the EU-sovereign Apache-2.0 flagship. Around it, the comparison set (Table~\ref{tab:models}) spans a size-class ladder from 24--32B dense models through 70B dense and 119--675B MoE up to two proprietary ceilings. Three scales of Qwen~3.5 probe within-family scaling, OLMo~3.1 provides full training-data provenance, and Llama~3.3~70B maintains continuity with the prior efficacy study. All models run in non-thinking mode via OpenRouter; Qwen~3.5 and Mistral Small~4 are hybrid-thinking models and run with reasoning disabled for fair comparison.
 
-Mistral Medium~3.5 (128B dense, open weights under a modified MIT license, released 2026-04-30) was added \emph{post hoc} in July 2026, four months after the main data collection, using the identical frozen histories, prompts, and analysis pipeline. The addition serves two purposes: it tests whether the framework extends to a new model with a single configuration entry, and it tests whether the main findings are robust to enlarging the model set (Section~\ref{sec:robustness}).
+Mistral Medium~3.5 (128B dense, open weights under a modified MIT license, released 2026-04-30) was added \emph{post hoc} after the main data collection, using the identical frozen histories, prompts, and analysis pipeline. The addition serves two purposes: it tests whether the framework extends to a new model with a single configuration entry, and it tests whether the main findings are robust to enlarging the model set (Section~\ref{sec:robustness}).
 
 \begin{table}[t]
   \centering
   \small
-  \begin{tabular}{llllc}
+  \begin{tabular}{llll}
     \toprule
-    Model & Size & Class & License & Collected \\
+    Model & Size & Class & License \\
     \midrule
-    Mistral Small 3.2 & 24B dense & small & Apache 2.0 & 2026-03 \\
-    Mistral Small 4 & 119B MoE (6.5B act.) & large MoE & Apache 2.0 & 2026-03 \\
-    Mistral Medium 3.5 & 128B dense & large dense & modified MIT & 2026-07 \\
-    Mistral Large 3 & 675B MoE (41B act.) & large MoE & Apache 2.0 & 2026-03 \\
-    Qwen 3.5 27B & 27B dense & small & Apache 2.0 & 2026-03 \\
-    Qwen 3.5 122B & 122B MoE (10B act.) & large MoE & Apache 2.0 & 2026-03 \\
-    Qwen 3.5 397B & 397B MoE (17B act.) & large MoE & Apache 2.0 & 2026-03 \\
-    OLMo 3.1 32B & 32B dense & small & Apache 2.0 (full provenance) & 2026-03 \\
-    Llama 3.3 70B & 70B dense & mid & Llama license & 2026-03 \\
-    GPT-5.4 & undisclosed & proprietary & --- & 2026-03 \\
-    Claude Sonnet 4.6 & undisclosed & proprietary & --- & 2026-03 \\
+    Mistral Small 3.2 & 24B dense & small & Apache 2.0 \\
+    Mistral Small 4 & 119B MoE (6.5B act.) & large MoE & Apache 2.0 \\
+    Mistral Medium 3.5 & 128B dense & large dense & modified MIT \\
+    Mistral Large 3 & 675B MoE (41B act.) & large MoE & Apache 2.0 \\
+    Qwen 3.5 27B & 27B dense & small & Apache 2.0 \\
+    Qwen 3.5 122B & 122B MoE (10B act.) & large MoE & Apache 2.0 \\
+    Qwen 3.5 397B & 397B MoE (17B act.) & large MoE & Apache 2.0 \\
+    OLMo 3.1 32B & 32B dense & small & Apache 2.0 (full provenance) \\
+    Llama 3.3 70B & 70B dense & mid & Llama license \\
+    GPT-5.4 & undisclosed & proprietary & --- \\
+    Claude Sonnet 4.6 & undisclosed & proprietary & --- \\
     \bottomrule
   \end{tabular}
-  \caption{Evaluation targets (therapist role). All models run in non-thinking mode via OpenRouter. Supporting roles are fixed across all runs: patient = Dolphin Mistral Venice 24B, router = Llama 3.3 70B, judge = Gemini 3 Flash with Gemini 3.1 Pro fallback (no family overlap with any evaluation target).}
+  \caption{Evaluation targets (therapist role). All models run in non-thinking mode via OpenRouter and were collected in March 2026, except Mistral Medium~3.5 (July 2026). Supporting roles are fixed across all runs: patient = Dolphin Mistral Venice 24B, router = Llama 3.3 70B, judge = Gemini 3 Flash with Gemini 3.1 Pro fallback (no family overlap with any evaluation target).}
   \label{tab:models}
 \end{table}
 
 \subsection{Conditions}
 
-The full design crosses 11 models $\times$ 6 vignettes $\times$ 5 temperatures $\times$ 20 trials at slice~2, i.e.\ 600 trials per model and 6{,}600 trials in total. Ten models were collected 2026-03-21 to 2026-03-24; Mistral Medium~3.5 on 2026-07-09 (a \texttt{run\_date} column in the released data marks this).
+The full design crosses 11 models $\times$ 6 vignettes $\times$ 5 temperatures $\times$ 20 trials at slice~2, i.e.\ 600 trials per model and 6{,}600 trials in total.
 
 The five-point temperature sweep, $T \in \{0.0, 0.075, 0.15, 0.3, 0.6\}$, is anchored in vendor documentation. $T{=}0.0$ (greedy decoding) serves as the deterministic reference, although GPU parallelisation leaves residual floating-point nondeterminism even there \citep{yuan2025understanding}, which the twenty-trial design captures directly \citep{blackwell2024towards}. $T{=}0.15$ is the Mistral vendor default. $T{=}0.6$ is the Qwen~3.5 and OLMo default, close to the standard Llama chat range and the proprietary defaults ($\approx 0.7$). $T{=}0.3$ fills the gap, and $T{=}0.075$ was added after an initial four-point run revealed that several models peak in consistency \emph{between} $T{=}0.0$ and $T{=}0.15$, a pattern examined in Section~\ref{sec:results-jaccard}.
 
@@ -49,4 +49,4 @@ No fixed threshold defines ``stable enough''; clinical significance thresholds f
 
 \subsection{Reproducibility}
 
-Model endpoints are pinned by OpenRouter model IDs; exact IDs, run dates, prompts, and aggregated per-condition results are released with the code. The frozen histories and per-trial raw outputs are retained by the author and available on request; a public release is planned. Two caveats: OpenRouter routes requests to third-party inference providers whose serving stacks (e.g.\ quantisation) may differ between requests and between the March and July collections, and the judge endpoints are versioned previews. Both are discussed in Section~\ref{sec:limitations}.
+Model endpoints are pinned by OpenRouter model IDs; exact IDs, prompts, and aggregated per-condition results are released with the code. The ten main models were collected between 2026-03-21 and 2026-03-24, Mistral Medium~3.5 on 2026-07-09, and a \texttt{run\_date} column in the released data records the collection date of every run. The frozen histories and per-trial raw outputs are retained by the author and available on request; a public release is planned. Two caveats: OpenRouter routes requests to third-party inference providers whose serving stacks (e.g.\ quantisation) may differ between requests and between the two collections, and the judge endpoints are versioned previews. Both are discussed in Section~\ref{sec:limitations}.
