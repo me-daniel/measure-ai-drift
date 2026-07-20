@@ -67,7 +67,6 @@ def main() -> None:
     ax1.set_ylabel("Mean Alignment (SD)")
     ax1.set_ylim(0.5, 1.05)
     ax1.set_title("Plan-response alignment by temperature")
-    ax1.legend(fontsize=9, loc="lower left")
 
     # Right: bar chart per model (collapsed)
     model_means = df.groupby("model")["alignment_mean"].mean().reindex(models)
@@ -89,6 +88,10 @@ def main() -> None:
     ax2.set_title("Overall alignment by model")
 
     fig.tight_layout()
+    # Shared legend below both panels: inside ax1 it covers the lower curves
+    handles, labels = ax1.get_legend_handles_labels()
+    fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(0.5, 0.02),
+               ncol=4, fontsize=9.5, frameon=False)
     output_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_dir / "fig_5_6_alignment.pdf", bbox_inches="tight")
     fig.savefig(output_dir / "fig_5_6_alignment.png", bbox_inches="tight", dpi=150)

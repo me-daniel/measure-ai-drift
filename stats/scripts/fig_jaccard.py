@@ -96,6 +96,8 @@ def main() -> None:
     if has_modal:
         fig2, ax2 = plt.subplots(1, 1, figsize=(7.5, 5))
         plot_metric(ax2, df, "modal_set_agreement", "Most common plan combination", "Agreement rate")
+        # 13 entries cover the data if drawn inside the axes: park the legend outside
+        ax2.legend(fontsize=9.5, loc="center left", bbox_to_anchor=(1.02, 0.5), frameon=False)
         fig2.tight_layout()
         fig2.savefig(output_dir / "fig_5_2b_modal_agreement.pdf", bbox_inches="tight")
         fig2.savefig(output_dir / "fig_5_2b_modal_agreement.png", bbox_inches="tight", dpi=150)
