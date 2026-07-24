@@ -58,6 +58,14 @@ thesis/*.glg
 thesis/*.glo
 thesis/*.gls
 thesis/*.ist
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.bbl
+paper/*.blg
+paper/arxiv_submission.tar.gz
 
 # Ignore screenshots
 screenshots/

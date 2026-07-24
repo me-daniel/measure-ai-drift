@@ -34,13 +34,13 @@ A Stability-Based Evaluation of Sovereign LLMs in Nightmare Therapy}
 \maketitle
 
 \begin{abstract}
-More and more people turn to large language models for mental health support. The models respond fluently, but ask the same therapeutic question twice and you may get two different answers. In therapy, where trust depends on predictable guidance, that variation matters: it changes the treatment a patient receives.
+More and more people turn to large language models for mental health support. The models respond fluently, but ask the same therapeutic question twice and you may get two different answers. In therapy, where trust depends on predictable guidance, that variation changes the treatment a patient receives.
 
 This paper measures response consistency in the rescripting phase of Imagery Rehearsal Therapy, where a model must choose a therapeutic strategy and carry it out. Eleven models, spanning the EU-sovereign Mistral family, two proprietary ceilings (GPT-5.4, Claude Sonnet~4.6), and open-weight comparators, are evaluated across 6{,}600 trials at five temperature settings. Every trial sees a byte-identical frozen dialogue history, so any variation comes from the model alone. A three-level framework compares strategy selections (Jaccard similarity), response texts (BERTScore), and whether the model does what it declared (LLM-judge alignment, validated against human annotation, $\kappa = 0.777$).
 
-The main findings are: (1)~Consistency is a model property, not a patient property. Median decision consistency spans 0.69 to 1.00 across models but barely moves across patient profiles. (2)~The instability sits in strategy selection, not in execution. Temperature changes which strategies a model picks, not how well it carries them out. (3)~Greedy decoding is not optimal for all models. Eight of eleven reach their best mean consistency at a low non-zero temperature. (4)~BERTScore captures whether the therapeutic tone stays similar but does not detect changes in the underlying strategy. The three levels together reveal patterns that no single metric shows on its own.
+The main findings are: (1)~Consistency is a model property, not a patient property. Median decision consistency spans 0.69 to 1.00 across models but barely moves across patient profiles. (2)~The instability sits in strategy selection, not in execution. Temperature changes which strategies a model picks, not how well it carries them out. (3)~Greedy decoding is not optimal for all models. Eight of eleven reach their best mean consistency at a low non-zero temperature. (4)~BERTScore detects when the therapeutic tone changes but not when the underlying strategy does, so no single metric shows the full pattern.
 
-Four months after the main collection, Mistral Medium~3.5 was added with a single configuration entry on identical inputs. It tops the stability ranking, and every substantive finding survives the enlargement. The framework is not specific to IRT and carries over to other structured therapy protocols.
+Four months after the main collection, Mistral Medium~3.5 was added with a single configuration entry on identical inputs. It tops the stability ranking, and every substantive finding survives the enlargement. The framework carries over to other structured therapy protocols.
 \end{abstract}
 
 \input{sections/01_introduction}
