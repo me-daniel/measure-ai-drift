@@ -35,14 +35,7 @@ Temperature degrades decision consistency overall (pooled Spearman $\rho=-0.215$
 
 Greedy decoding, however, is not always optimal. Ten of the twelve models reach their best mean Jaccard at a non-zero temperature. The pattern is clearest in the Mistral family: Mistral Small~4 rises from 0.777 at $T{=}0.0$ to 0.881 at $T{=}0.15$, Mistral Large~3 from 0.796 to 0.848 at $T{=}0.15$, and Llama~3.3~70B from 0.719 to 0.775 at $T{=}0.075$. The post-hoc additions follow the same pattern: Mistral Medium~3.5 peaks at a perfect 1.000 mean at $T{=}0.075$, above its 0.979 at $T{=}0.0$, and Command~A rises from 0.832 to 0.861 at $T{=}0.15$. Whether these differences reflect a genuine benefit of low sampling variance or sample variation ($n=6$ vignettes per cell) cannot be determined from these results alone, but they are consistent with Mistral's vendor default of $T{=}0.15$.
 
-Model differences are substantial (Kruskal--Wallis $H(11)=104.5$, $p<.001$, $\eta^2=0.291$; 20 of 66 Bonferroni-corrected pairs significant). Modal-set agreement, the fraction of trials whose declared set equals the run's most common set, tells the same story (Figure~\ref{fig:modal}), from 0.993 (GPT-5.4) and 0.972 (Mistral Medium~3.5) down to 0.670 (Qwen~3.5~27B).
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=.95\linewidth]{fig_5_2b_modal_agreement}
-  \caption{Modal-set agreement by model: fraction of trials whose declared strategy set equals the run's modal set.}
-  \label{fig:modal}
-\end{figure}
+Model differences are substantial (Kruskal--Wallis $H(11)=104.5$, $p<.001$, $\eta^2=0.291$; 20 of 66 Bonferroni-corrected pairs significant). Modal-set agreement, the fraction of trials whose declared set equals the run's most common set, tells the same story (Figure~\ref{fig:modal} in Appendix~\ref{app:modal}), from 0.993 (GPT-5.4) and 0.972 (Mistral Medium~3.5) down to 0.670 (Qwen~3.5~27B).
 
 \subsection{Response Similarity (Method 2)}
 \label{sec:results-bertscore}
