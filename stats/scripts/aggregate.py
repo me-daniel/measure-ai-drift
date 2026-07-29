@@ -18,16 +18,18 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
-STRATEGY_CATEGORIES = [
-    "confrontation",
-    "self_empowerment",
-    "safety",
-    "cognitive_reframe",
-    "social_support",
-    "sensory_modulation",
-]
-
 MODELS_YAML = Path("src/config/models.yaml")
+TAXONOMY_YAML = Path("data/prompts/evaluation/strategy_taxonomy.yaml")
+
+
+def load_strategy_categories(taxonomy_path: Path = TAXONOMY_YAML) -> list[str]:
+    """Category IDs from the strategy taxonomy (single source of truth)."""
+    with open(taxonomy_path) as f:
+        taxonomy = yaml.safe_load(f)
+    return [s["id"] for s in taxonomy.get("strategies", [])]
+
+
+STRATEGY_CATEGORIES = load_strategy_categories()
 
 
 def load_evaluation_targets(config_path: Path = MODELS_YAML) -> dict[str, set[str]]:
@@ -66,6 +68,7 @@ def load_run(run_dir: Path) -> dict | None:
 
     row = {
         "run_id": run_dir.name,
+        "run_date": run_dir.name[:8],  # runs are named {YYYYMMDD}_{HHMMSS}_{model}_{vignette}
         "model": config.get("model", "unknown"),
         "vignette": config.get("vignette", "unknown"),
         "temperature": config.get("temperature", metrics.get("temperature", 0.0)),
@@ -81,6 +84,11 @@ def load_run(run_dir: Path) -> dict | None:
         "bertscore_precision": metrics.get("bertscore_precision"),
         "bertscore_recall": metrics.get("bertscore_recall"),
         "alignment_mean": metrics.get("alignment_mean"),
+        # Judge accounting (absent in runs predating the missing-data rule)
+        "alignment_n_judged": metrics.get("alignment_n_judged"),
+        "alignment_n_errors": metrics.get("alignment_n_errors"),
+        "alignment_n_skipped": metrics.get("alignment_n_skipped"),
+        "alignment_pro_fallback": metrics.get("alignment_pro_fallback"),
     }
 
     # Expand strategy counts into separate columns
@@ -96,13 +104,17 @@ def load_run(run_dir: Path) -> dict | None:
     return row
 
 
-def aggregate(runs_dir: Path, tier: str = "experiment") -> pd.DataFrame:
+def aggregate(runs_dirs: Path | list[Path], tier: str = "experiment") -> pd.DataFrame:
     """Scan run directories and return a DataFrame filtered by tier.
 
     Args:
-        runs_dir: Directory containing experiment run folders.
+        runs_dirs: One or more directories containing experiment run folders
+            (multiple batches are merged into one DataFrame).
         tier: "test", "experiment", or "all".
     """
+    if isinstance(runs_dirs, Path):
+        runs_dirs = [runs_dirs]
+
     targets = load_evaluation_targets()
     if tier == "test":
         allowed = targets["test"]
@@ -113,24 +125,25 @@ def aggregate(runs_dir: Path, tier: str = "experiment") -> pd.DataFrame:
 
     rows = []
     skipped = []
-    for run_path in sorted(runs_dir.iterdir()):
-        if not run_path.is_dir():
-            continue
-        row = load_run(run_path)
-        if row is None:
-            continue
-        if row["model"] in allowed:
-            row["tier"] = "test" if row["model"] in targets["test"] else "experiment"
-            rows.append(row)
-        else:
-            skipped.append(row["model"])
+    for runs_dir in runs_dirs:
+        for run_path in sorted(runs_dir.iterdir()):
+            if not run_path.is_dir():
+                continue
+            row = load_run(run_path)
+            if row is None:
+                continue
+            if row["model"] in allowed:
+                row["tier"] = "test" if row["model"] in targets["test"] else "experiment"
+                rows.append(row)
+            else:
+                skipped.append(row["model"])
 
     if skipped:
         skipped_unique = sorted(set(skipped))
         print(f"Skipped {len(skipped)} runs from non-target models: {skipped_unique}")
 
     if not rows:
-        print(f"No valid {tier} runs found in {runs_dir}")
+        print(f"No valid {tier} runs found in {[str(d) for d in runs_dirs]}")
         return pd.DataFrame()
 
     df = pd.DataFrame(rows)
@@ -143,7 +156,9 @@ def main() -> None:
     parser.add_argument(
         "--runs-dir",
         type=Path,
-        default=Path("experiments/latest"),
+        nargs="+",
+        default=[Path("experiments/latest")],
+        help="One or more batch directories to aggregate (merged into one CSV)",
     )
     parser.add_argument(
         "--output",

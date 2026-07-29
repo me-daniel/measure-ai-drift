@@ -140,6 +140,14 @@ evaluation_targets:
   #   Sources and verification status: docs/grounded/temperature_sources.md
 
   # --- Main targets (Mistral EU-sovereign) ---
+  # Provider pinning (added 2026-07-24, before the July additions batch).
+  # Earlier runs used OpenRouter default routing; providers are now locked
+  # precisely:
+  #   order + allow_fallbacks: false -> every trial served by ONE provider
+  #   require_parameters: true -> request fails loudly (404) if an endpoint
+  #   would drop a sampling parameter instead of applying it.
+  #   Pin rule: cheapest healthy endpoint at reference precision (no fp8/fp4
+  #   requant), first party wins ties. Survey: docs/SOTA_LLMs.md.
   - name: mistral_small4
     provider: openrouter
     model: mistralai/mistral-small-2603
@@ -147,19 +155,57 @@ evaluation_targets:
     extra_params:
       reasoning:
         effort: "none"
-    notes: "Primary subject. EU-sovereign, Apache 2.0. 119B MoE (6.5B active, 128 experts). Non-thinking mode. $0.15/$0.60"
+      provider:
+        order: ["mistral"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Primary subject. EU-sovereign, Apache 2.0. 119B MoE (6.5B active, 128 experts). Non-thinking mode. Pinned: Mistral first party, cheapest endpoint. $0.15/$0.60"
+
+  - name: mistral_medium35
+    provider: openrouter
+    model: mistralai/mistral-medium-3-5
+    therapy_temp: 0.15  # Mistral family default, same as Small 4 / Large [NEEDS VERIFICATION]
+    extra_params:
+      reasoning:
+        effort: "none"
+      provider:
+        order: ["mistral"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Mistral Medium 3.5, 128B dense. Post-hoc addition (July 2026) validating pipeline extensibility. Non-thinking mode. Pinned: Mistral, sole endpoint. $1.50/$7.50"
 
   - name: mistral_large
     provider: openrouter
     model: mistralai/mistral-large-2512
     therapy_temp: 0.15  # see docs/grounded/temperature_sources.md [NEEDS VERIFICATION]
-    notes: "EU-sovereign, Apache 2.0. 675B MoE (41B active). 256K context. EU scaling comparison"
+    extra_params:
+      provider:
+        order: ["mistral"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "EU-sovereign, Apache 2.0. 675B MoE (41B active). 256K context. EU scaling comparison. Pinned: Mistral, sole endpoint. $0.50/$1.50"
+
+  - name: mistral_large2
+    provider: openrouter
+    model: mistralai/mistral-large-2407
+    therapy_temp: 0.15  # Mistral family default [NEEDS VERIFICATION for the 2407 generation]
+    extra_params:
+      provider:
+        order: ["mistral"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Mistral Large 2 (2407), 123B dense, MRL non-commercial weights. Candidate third member of the large-dense comparison (Medium 3.5, Command A): previous-generation Mistral dense flagship. No reasoning mode. Pinned: Mistral, sole endpoint. $2.00/$6.00"
 
   - name: mistral_small32
     provider: openrouter
     model: mistralai/mistral-small-3.2-24b-instruct
     therapy_temp: 0.15  # HF generation_config default 0.15 [VERIFIED]
-    notes: "EU-sovereign, Apache 2.0. 24B dense. Predecessor to Small 4. $0.075/$0.20"
+    extra_params:
+      provider:
+        order: ["mistral"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "EU-sovereign, Apache 2.0. 24B dense. Predecessor to Small 4. Pinned: Mistral first party (DeepInfra fp8 is cheaper but requantized). $0.10/$0.30"
 
   # --- ~120B MoE weight class (peer comparators to Mistral Small 4) ---
   - name: qwen35_122b
@@ -169,7 +215,11 @@ evaluation_targets:
     extra_params:
       reasoning:
         effort: "none"
-    notes: "Qwen 3.5 122B MoE (10B active, 256 experts). Apache 2.0. Non-thinking mode. $0.26/$2.08"
+      provider:
+        order: ["alibaba"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Qwen 3.5 122B MoE (10B active, 256 experts). Apache 2.0. Non-thinking mode. Pinned: Alibaba first party, cheapest endpoint. $0.26/$2.08"
 
   # --- ~400B MoE weight class ---
   - name: qwen35_397b
@@ -179,7 +229,24 @@ evaluation_targets:
     extra_params:
       reasoning:
         effort: "none"
-    notes: "Qwen 3.5 397B MoE (17B active, 512 experts). Apache 2.0. Non-thinking mode. Large MoE comparator to Mistral Large. $0.39/$2.34"
+      provider:
+        order: ["alibaba"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Qwen 3.5 397B MoE (17B active, 512 experts). Apache 2.0. Non-thinking mode. Large MoE comparator to Mistral Large. Pinned: Alibaba first party, cheapest endpoint. $0.39/$2.34"
+
+  - name: glm52
+    provider: openrouter
+    model: z-ai/glm-5.2
+    therapy_temp: 0.6  # in-scale placeholder pending vendor guidance [NEEDS VERIFICATION]
+    extra_params:
+      reasoning:
+        enabled: false
+      provider:
+        order: ["novita"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Z.ai GLM 5.2, ~744B MoE (40B active). MIT. Non-thinking mode. July 2026 addition, open-weight leader. Pinned: Novita fp8 (reference precision, Z.AI first party also serves fp8). $0.81/$2.54"
 
   # --- Dense comparators ---
   - name: qwen35_27b
@@ -189,35 +256,59 @@ evaluation_targets:
     extra_params:
       reasoning:
         effort: "none"
-    notes: "Qwen 3.5 27B dense. Apache 2.0. Non-thinking mode"
+      provider:
+        order: ["alibaba"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Qwen 3.5 27B dense. Apache 2.0. Non-thinking mode. Pinned: Alibaba first party, cheapest endpoint. $0.20/$1.56"
 
   - name: olmo3_32b
     provider: openrouter
     model: allenai/olmo-3.1-32b-instruct
     therapy_temp: 0.6  # see docs/grounded/temperature_sources.md [VERIFIED]
-    notes: "Fully open (weights + training data + code). Best provenance for thesis"
+    notes: "Fully open (weights + training data + code). Best provenance for thesis. DELISTED from OpenRouter (0 endpoints, July 2026): March data cannot be re-collected"
 
   - name: llama70b
     provider: openrouter
     model: meta-llama/llama-3.3-70b-instruct
     therapy_temp: 0.6  # see docs/grounded/temperature_sources.md [NEEDS VERIFICATION]
-    notes: "Original efficacy study model. Continuity with prior work"
+    extra_params:
+      provider:
+        order: ["crusoe"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Original efficacy study model. Continuity with prior work. Pinned: Crusoe, cheapest healthy bf16 (cheaper endpoints are fp8 requants). $0.25/$0.75"
+
+  - name: command_a
+    provider: openrouter
+    model: cohere/command-a
+    therapy_temp: 0.3  # Cohere Chat API v2 default 0.3 [VERIFIED 2026-07-28]
+    extra_params:
+      provider:
+        order: ["cohere"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Cohere Command A, 111B dense. Open weights (CC-BY-NC). July 2026 addition, dense comparator to Mistral Medium 3.5. No reasoning mode. Pinned: Cohere, sole endpoint. $2.50/$10.00"
 
   # --- Proprietary ceiling ---
   - name: sonnet46
     provider: openrouter
     model: anthropic/claude-sonnet-4.6
     therapy_temp: 0.7  # see docs/grounded/temperature_sources.md [VERIFIED]
-    notes: "Anthropic Sonnet 4.6. Character-trained for thoughtful, safety-aware interaction. $3/$15. Max temp 1.0"
+    extra_params:
+      provider:
+        order: ["anthropic"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Anthropic Sonnet 4.6. Character-trained for thoughtful, safety-aware interaction. Pinned: Anthropic first party (Bedrock/Azure/Vertex same price). $3/$15. Max temp 1.0"
 
   - name: gpt54
-    provider: openrouter
-    model: openai/gpt-5.4
+    provider: openai
+    model: gpt-5.4
     therapy_temp: 0.7  # see docs/grounded/temperature_sources.md [NEEDS VERIFICATION]
     extra_params:
-      reasoning:
-        effort: "none"
-    notes: "Proprietary ceiling. Non-thinking mode. $2.50/$15.00"
+      reasoning_effort: "none"  # Chat Completions param name (OpenRouter used reasoning.effort)
+    notes: "Proprietary ceiling. Non-thinking mode. $2.50/$15.00. Native OpenAI API since July 2026: OpenRouter does not forward temperature for GPT-5.1+, so the temperature sweep runs natively (March batch ran via OpenRouter at default sampling). Temperature applies at reasoning_effort none per OpenAI docs"
 
   # --- Dropped (available if needed) ---
   # - name: trinity_large

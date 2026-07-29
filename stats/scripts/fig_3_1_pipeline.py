@@ -110,7 +110,7 @@ def main():
     for i in range(1, 4):
         ex.append(ex[i - 1] + ew[i - 1] / 2 + egap + ew[i] / 2)
 
-    draw_box(ax, ex[0], ey, "Model", "10 LLMs tested", w=ew[0])
+    draw_box(ax, ex[0], ey, "Model", "11 LLMs tested", w=ew[0])
     draw_box(ax, ex[1], ey, "20 Trials", "Plan + Response\nunder same conditions", w=ew[1])
     draw_box(ax, ex[2], ey, "3 Metrics", "Jaccard / BERTScore / Alignment", w=ew[2])
     draw_box(ax, ex[3], ey, "Analysis", "Cross-Model Comparisons", w=ew[3])

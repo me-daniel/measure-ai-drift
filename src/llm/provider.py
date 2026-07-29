@@ -122,11 +122,16 @@ class LLMProvider:
         if extra_body:
             api_kwargs["extra_body"] = extra_body
 
+        # Native OpenAI rejects max_tokens for GPT-5.x; gateways translate it
+        if self.config.provider == "openai":
+            api_kwargs["max_completion_tokens"] = max_tokens
+        else:
+            api_kwargs["max_tokens"] = max_tokens
+
         response = await self._client.chat.completions.create(
             model=self.config.model,
             messages=messages,
             temperature=temperature,
-            max_tokens=max_tokens,
             **api_kwargs
         )
 
@@ -137,6 +142,9 @@ class LLMProvider:
             "completion_tokens": response.usage.completion_tokens if response.usage else 0,
             "total_tokens": response.usage.total_tokens if response.usage else 0,
             "model": response.model,
+            # OpenRouter reports which upstream provider served the request;
+            # None for direct APIs. Persisted per trial via plan/response usage.
+            "provider": getattr(response, "provider", None),
         }
 
         logger.debug(f"{self.config.provider}/{self.config.model}: {usage['total_tokens']} tokens")

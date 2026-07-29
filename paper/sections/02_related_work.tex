@@ -1,0 +1,18 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{IRT and Digital Delivery}
+
+Imagery Rehearsal Therapy is the first-line psychological treatment for nightmare disorder \citep{krakow1995imagery, krakow2001imagery, morgenthaler2018position}, with rescripting as its cognitive core \citep{albanese2022nightmare}. Conversational agents in psychotherapy date back to ELIZA's Rogerian script \citep{weizenbaum1966eliza}. Modern digital and conversational delivery of structured protocols has shown feasibility and efficacy \citep{fitzpatrick2017delivering, heinz2025randomized, wu2026pilot}, including the randomised controlled trial of web-based IRT that precedes this work \citep{voss2026efficacy}. Llama~3.3~70B, the model of that prior study, is included in the comparison for continuity. The present work asks the evaluation question that deployment raises: whether the LLM component of such a system makes stable clinical decisions.
+
+\subsection{Evaluating Clinical LLMs}
+
+Existing frameworks target competence and safety of single responses \citep{zhang2024psyeval, iftikhar2025llm, stade2024large}. The closest existing work, BOLT \citep{chiu2024computational}, measures whether a model applies appropriate therapeutic techniques, but like its peers it evaluates single responses rather than the distribution across repeated runs. Protocol fidelity instruments from clinical psychology \citep{mowbray2003fidelity, bellg2004enhancing, kohrt2015therapist} inspire the ternary alignment rubric used here. The focus of this study differs from all of these: not whether one response is good, but whether repeated responses agree.
+
+\subsection{LLM Output Consistency}
+
+Sampling temperature and stochastic decoding measurably change task behaviour \citep{renze2024effect}, and even nominally deterministic inference carries numerical nondeterminism \citep{yuan2025understanding}. \citet{novikova2025consistency} survey the consistency landscape, largely over factual and task-answer settings, and \citet{xu2025echoes} quantify diversity collapse in creative generation. The present setting differs on both axes. The unit of consistency is a clinical decision drawn from a fixed therapeutic taxonomy, not a fact or a plot, and the context is a mid-protocol therapy state where run-to-run disagreement directly changes treatment. To our knowledge, decision-level stability within a structured clinical protocol has not been measured.
+
+\subsection{Chain-of-Thought and Declared Intent}
+
+Chain-of-thought prompting \citep{wei2022chain} structures generation, but CoT explanations are often unfaithful to internal computation \citep{turpin2023language, lanham2023measuring}. The plan block is therefore framed as declared intent rather than as a reasoning trace (Section~\ref{sec:plan}). LLM-as-judge protocols \citep{zheng2023judging} underpin Method~3, with cross-family judging to mitigate self-preference bias.

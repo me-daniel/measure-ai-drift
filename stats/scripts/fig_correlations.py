@@ -17,7 +17,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats as sp
 
-from model_display import MODEL_COLORS, display_name, sort_models
+from model_display import MODEL_COLORS, display_name, set_paper_style, sort_models
 
 
 def main() -> None:
@@ -30,6 +30,7 @@ def main() -> None:
         args.input = Path(f"stats/data/{args.tier}_runs.csv")
     output_dir = Path(f"thesis/figures")
 
+    set_paper_style()
     df = pd.read_csv(args.input).dropna(subset=["jaccard_all", "bertscore_f1"])
 
     model_stats = df.groupby("model").agg(
@@ -48,51 +49,50 @@ def main() -> None:
             row["jaccard"],
             row["bertscore"],
             color=color,
-            s=140,
+            s=170,
             zorder=3,
             edgecolors="white",
             linewidth=1.5,
         )
 
-    # Smart label placement: try to avoid overlaps
-    points = [(row["jaccard"], row["bertscore"], model) for model, row in model_stats.iterrows()]
-    points.sort(key=lambda p: (p[0], p[1]))
+    # Hand-tuned label placement per model: (dx, dy, ha), offsets in points.
+    # Tuned for the 11-model dataset: four models share Jaccard = 1.0 on the
+    # right edge (labels staggered right), OLMo and Qwen 122B dots coincide.
+    LABEL_OFFSETS = {
+        # left cluster
+        "qwen35_397b": (-10, -3, "right"),
+        "llama70b": (0, -16, "center"),
+        "qwen35_27b": (0, 10, "center"),
+        "mistral_large": (10, -3, "left"),
+        "mistral_large2": (2, -30, "center"),
+        "mistral_small4": (10, -3, "left"),
+        "command_a": (10, -3, "left"),
+        # right cluster
+        "sonnet46": (-10, -3, "right"),
+        "gpt54": (0, -16, "center"),
+        "mistral_small32": (10, -3, "left"),
+        "olmo3_32b": (10, -12, "left"),
+        "qwen35_122b": (10, 5, "left"),
+        "mistral_medium35": (10, -3, "left"),
+    }
 
-    for x, y, model in points:
+    for model, row in model_stats.iterrows():
+        x, y = row["jaccard"], row["bertscore"]
         name = display_name(model)
         color = MODEL_COLORS.get(model, "#888888")
 
-        # Default: label to the right
-        ha, dx, dy = "left", 10, 0
-
-        # Adjust for crowded regions
-        if model == "qwen35_27b":
-            dx, dy = -10, -12
-            ha = "right"
-        elif model == "qwen35_397b":
-            dx, dy = 10, -10
-        elif model == "llama70b":
-            dx, dy = 10, 3
-        elif model == "mistral_small4":
-            dx, dy = 10, -10
-        elif model == "mistral_large":
-            dx, dy = 10, -10
-        elif model == "qwen35_122b":
-            dx, dy = -10, 0
-            ha = "right"
-        elif model == "olmo3_32b":
-            dx, dy = -10, 8
-            ha = "right"
-        elif model == "mistral_small32":
-            dx, dy = -10, 8
-            ha = "right"
+        if model in LABEL_OFFSETS:
+            dx, dy, ha = LABEL_OFFSETS[model]
+        else:
+            dx, dy, ha = 10, -3, "left"
+            print(f"WARNING: no label offset tuned for '{model}', using default -- check for overlaps")
 
         ax.annotate(
             name,
             (x, y),
             textcoords="offset points",
             xytext=(dx, dy),
-            fontsize=8,
+            fontsize=10.5,
             ha=ha,
             color=color,
             fontweight="bold",
@@ -113,17 +113,17 @@ def main() -> None:
             label,
             xy=(0.05, 0.95),
             xycoords="axes fraction",
-            fontsize=9,
+            fontsize=10.5,
             va="top",
             bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8),
         )
 
-    ax.set_xlabel("Median Jaccard similarity (strategy consistency)", fontsize=10)
-    ax.set_ylabel("Mean BERTScore F1 (semantic consistency)", fontsize=10)
+    ax.set_xlabel("Median Jaccard similarity (strategy consistency)")
+    ax.set_ylabel("Mean BERTScore F1 (semantic consistency)")
     ax.set_title("Strategy consistency vs semantic consistency")
 
-    ax.set_xlim(0.3, 1.05)
-    ax.set_ylim(0.65, 1.0)
+    ax.set_xlim(0.6, 1.06)
+    ax.set_ylim(0.66, 0.88)
 
     fig.tight_layout()
     output_dir.mkdir(parents=True, exist_ok=True)

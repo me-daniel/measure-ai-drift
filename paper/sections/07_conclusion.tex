@@ -1,0 +1,18 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper asked how consistent LLM therapeutic responses are across independent runs within a structured IRT protocol. Three evaluation methods were applied to thirteen models across 7{,}800 trials spanning five temperature conditions, on frozen histories that make every trial's input byte-identical.
+
+The main findings are:
+
+\begin{enumerate}
+  \item Consistency varies widely across models and far less across patients. Median decision consistency spans 0.69 to 1.00 between models, while the vignette effect on decisions is not significant. Stability is a model property.
+  \item The instability sits in strategy selection, not execution. Temperature reduces plan consistency but not plan--response alignment: models pick different strategies at higher temperatures but carry out whichever strategy they pick equally well.
+  \item Greedy decoding is not always optimal. Eleven of thirteen models reach their best mean consistency at a low non-zero temperature, and the Mistral family peaks at its vendor default. Deployments should verify stability at the vendor-recommended setting rather than assume $T{=}0.0$ is safest.
+  \item No single metric captures the full picture. The three levels correlate only moderately ($\rho = 0.26$ to $0.57$). BERTScore misses strategy changes and overstates drift from harmless paraphrase, and only the combination localises where instability lives.
+  \item The framework is cheap to extend, and the findings are robust to model-set changes. Adding a model requires a single configuration entry on identical frozen inputs, the framework's own stability signature exposed a gateway silently dropping GPT-5.4's temperature parameter, and every substantive finding holds across these revisions. Mistral Medium~3.5, an EU-sovereign open-weight model, tops the overall stability ranking, while its 2024 dense predecessor Mistral Large~2 sits near the bottom, which points to training generation rather than architecture, family, or size as the driver of stability.
+\end{enumerate}
+
+The three-level framework fulfilled its design goal by identifying that instability concentrates at the strategy selection layer. Neither BERTScore nor alignment alone would have revealed that. The cross-model comparison shows that EU-sovereign deployment no longer requires a stability compromise: what was a small gap for Mistral Large~3 at its recommended temperature became, with Mistral Medium~3.5, the top of the ranking.
+
+Several directions follow. Extending the evaluation beyond the rescripting phase would test whether the patterns hold across different types of clinical decisions, and the framework transfers to other manualised protocols (CBT, motivational interviewing) given a protocol-specific taxonomy. Since vendors update weights and serving infrastructure without notice, repeating the evaluation across model versions would show whether stability improves or fluctuates over release cycles. reDreamAI targets German-speaking users, so evaluating stability in German would test whether the English-language patterns transfer. A larger human annotation study would strengthen the judge validation beyond the current 60-trial subset. Finally, because consistency is necessary but not sufficient, the natural companion to this framework is an evaluation of therapeutic quality: a model must make the same decision every time, and it must be the right one.

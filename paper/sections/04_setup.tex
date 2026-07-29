@@ -1,0 +1,56 @@
+\section{Experimental Setup}
+\label{sec:setup}
+
+\subsection{Models}
+\label{sec:models}
+
+EU data sovereignty is the primary selection criterion for the study's main subject: the reDreamAI deployment context requires a model that can be self-hosted within EU data residency boundaries \citep{dale2025sovereign}. At design time that pointed to Mistral Large~3, the EU-sovereign Apache-2.0 flagship. Around it, the comparison set (Table~\ref{tab:models}) spans a size-class ladder from 24--32B dense models through 70B dense and 119--675B MoE up to two proprietary ceilings. Three scales of Qwen~3.5 probe within-family scaling, OLMo~3.1 provides full training-data provenance, and Llama~3.3~70B maintains continuity with the prior efficacy study. All models run in non-thinking mode; where a model exposes a configurable reasoning mode, it is explicitly disabled. Mistral Medium~3.5, added after the main collection (below), ultimately overtakes Large~3 as the recommended EU-sovereign candidate (Section~\ref{sec:sovereign-deployment}).
+
+Mistral Medium~3.5 (128B dense, open weights under a modified MIT license, released 2026-04-30) was added after the main data collection, using the identical frozen histories, prompts, and analysis pipeline. The addition is deployment-driven, not incidental: Medium~3.5 has since been selected as the successor model for the reDreamAI chat deployment, and its dense architecture raised the expectation of higher run-to-run stability, since a dense forward pass has no expert routing to vary between runs. The addition also serves two methodological purposes: it tests whether the framework extends to a new model with a single configuration entry, and it tests whether the main findings are robust to enlarging the model set (Section~\ref{sec:robustness}).
+
+Command~A (Cohere, 111B dense, no reasoning variant) was later added by the same single-entry route as a control for the dense-architecture expectation: a second model in the 111--128B dense weight class, from a different vendor, shows whether stability tracks the architecture class or the specific model. Mistral Large~2 (123B dense, released 2024, non-commercial research licence) completes the trio: the previous-generation Mistral dense flagship holds family and architecture class constant while varying training generation, separating what recent training contributes from what architecture contributes. All models are accessed through the OpenRouter gateway except GPT-5.4. End-to-end tests of parameter forwarding caught OpenRouter accepting but silently dropping \texttt{temperature} for GPT-5.1 and later models, so GPT-5.4 is accessed directly through the native OpenAI API, which validates sampling parameters rather than ignoring them, and its earlier gateway runs are excluded from all analyses (Section~\ref{sec:robustness-results}).
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{llll}
+    \toprule
+    Model & Size & Class & License \\
+    \midrule
+    Mistral Small 3.2 & 24B dense & small & Apache 2.0 \\
+    Mistral Small 4 & 119B MoE (6.5B act.) & large MoE & Apache 2.0 \\
+    Mistral Medium 3.5 & 128B dense & large dense & modified MIT \\
+    Mistral Large 2 & 123B dense & large dense & MRL (non-commercial) \\
+    Mistral Large 3 & 675B MoE (41B act.) & large MoE & Apache 2.0 \\
+    Qwen 3.5 27B & 27B dense & small & Apache 2.0 \\
+    Qwen 3.5 122B & 122B MoE (10B act.) & large MoE & Apache 2.0 \\
+    Qwen 3.5 397B & 397B MoE (17B act.) & large MoE & Apache 2.0 \\
+    OLMo 3.1 32B & 32B dense & small & Apache 2.0 (full provenance) \\
+    Llama 3.3 70B & 70B dense & mid & Llama license \\
+    Command A & 111B dense & large dense & CC-BY-NC \\
+    GPT-5.4 & undisclosed & proprietary & --- \\
+    Claude Sonnet 4.6 & undisclosed & proprietary & --- \\
+    \bottomrule
+  \end{tabular}
+  \caption{Evaluation targets (therapist role). All models run in non-thinking mode and are accessed via OpenRouter, except GPT-5.4 (native OpenAI API, Section~\ref{sec:models}). Supporting roles are fixed across all runs: patient = Dolphin Mistral Venice 24B, router = Llama 3.3 70B, judge = Gemini 3 Flash with Gemini 3.1 Pro fallback (no family overlap with any evaluation target).}
+  \label{tab:models}
+\end{table}
+
+\subsection{Conditions}
+
+The full design crosses 13 models $\times$ 6 vignettes $\times$ 5 temperatures $\times$ 20 trials at slice~2, i.e.\ 600 trials per model and 7{,}800 trials in total.
+
+The five-point temperature sweep, $T \in \{0.0, 0.075, 0.15, 0.3, 0.6\}$, is anchored in vendor documentation. $T{=}0.0$ (greedy decoding) serves as the deterministic reference, although GPU parallelisation leaves residual floating-point nondeterminism even there \citep{yuan2025understanding}, which the twenty-trial design captures directly \citep{blackwell2024towards}. $T{=}0.15$ is the Mistral vendor default. $T{=}0.6$ is the Qwen~3.5 and OLMo default, close to the standard Llama chat range and the proprietary defaults ($\approx 0.7$). $T{=}0.3$ fills the gap, and $T{=}0.075$ was added after an initial four-point run revealed that several models peak in consistency \emph{between} $T{=}0.0$ and $T{=}0.15$, a pattern examined in Section~\ref{sec:results-jaccard}.
+
+No reproducibility seed was set, since not all vendors support one and even where available it is best effort at most. A supplementary experiment on Mistral Large~3 confirms this choice: fixing \texttt{seed=42} does not improve consistency over unseeded runs (Appendix~\ref{app:seed}). Trial repetition captures the stochastic variance directly.
+
+\subsection{Statistical Analysis}
+\label{sec:stats}
+
+The analysis is primarily descriptive, and all tests are exploratory rather than confirmatory: the study describes stability patterns, it does not test a preregistered hypothesis. Spearman rank correlations quantify per-model temperature sensitivity and cross-metric relations (rank-based, because Jaccard takes few discrete values and BERTScore distributions may be non-normal). Kruskal--Wallis $H$ assesses model and vignette differences, with pairwise Mann--Whitney $U$ under Bonferroni correction ($\binom{13}{2}=78$ comparisons) and $\eta^2$ effect sizes alongside $p$-values.
+
+No fixed threshold defines ``stable enough''; clinical significance thresholds for LLM stability do not yet exist. Results are interpreted comparatively, model against model and across the temperature sweep, with the random Jaccard baseline (expected value for random 2-of-6 selections, $\approx 0.2$) as the lower reference point.
+
+\subsection{Reproducibility}
+
+Model endpoints are pinned by model IDs; exact IDs, prompts, and aggregated per-condition results are released with the code at \url{https://github.com/me-daniel/measure-ai-drift}. The main set was collected 2026-03-21 to 2026-03-24, Mistral Medium~3.5 on 2026-07-09, Command~A and the GPT-5.4 re-collection (same dated snapshot, \texttt{gpt-5.4-2026-03-05}) on 2026-07-28, and Mistral Large~2 on 2026-07-29; a \texttt{run\_date} column in the released data records the collection date of every run. The frozen histories and per-trial raw outputs are retained by the author and available on request; a public release is planned. The original collections used OpenRouter's default routing, under which the third-party serving stack (provider, quantisation) may differ between requests. The 2026-07-28 and 2026-07-29 collections lock this down: each model is pinned to a single serving provider, requests are rejected rather than silently modified if an endpoint cannot honour a sampling parameter, and the serving provider is logged per trial. The judge endpoints are versioned previews. These caveats are discussed in Section~\ref{sec:limitations}.

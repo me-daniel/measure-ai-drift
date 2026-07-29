@@ -5,7 +5,7 @@ Judge calls use a semaphore to stay within Gemini rate limits (25 RPM).
 Optionally includes a therapy_temp run per model (vendor-recommended clinical temperature).
 
 Usage:
-    python scripts/run_experiment.py [--trials 10] [--slice 2]
+    python scripts/run_experiment.py [--trials 20] [--slice 2]
     python scripts/run_experiment.py --temps 0.0 0.5 1.0   # custom subset
     python scripts/run_experiment.py --no-therapy-temp      # skip therapy_temp runs
 """
@@ -32,7 +32,7 @@ from src.llm.provider import load_config, create_provider
 
 FROZEN_HISTORIES = Path("data/synthetic/frozen_histories")
 VIGNETTES = ["anxious", "avoidant", "cooperative", "resistant", "skeptic", "trauma"]
-DEFAULT_TEMPS = [0.0, 0.15, 0.3, 0.6]
+DEFAULT_TEMPS = [0.0, 0.075, 0.15, 0.3, 0.6]  # production scale, matches src/config/experiment.yaml
 
 
 def load_therapy_temps(config: dict) -> dict[str, float]:
@@ -150,9 +150,9 @@ def print_progress(done: int, total: int, elapsed: float, failed: int) -> None:
 
 async def main() -> None:
     parser = argparse.ArgumentParser(description="Run full experiment")
-    parser.add_argument("--trials", "-n", type=int, default=10)
+    parser.add_argument("--trials", "-n", type=int, default=20)
     parser.add_argument("--temps", type=float, nargs="+", default=DEFAULT_TEMPS,
-                        help="Temperature scale (default: 0.0 0.15 0.3 0.6)")
+                        help="Temperature scale (default: 0.0 0.075 0.15 0.3 0.6)")
     parser.add_argument("--slice", "-s", type=int, default=2)
     parser.add_argument("--no-therapy-temp", action="store_true",
                         help="Skip the extra therapy_temp run per model")

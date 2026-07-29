@@ -6,9 +6,17 @@
 # Ignore markdown files in root directory only (keep docs/*.md, etc.)
 /*.md
 
-# Promptfoo (node_modules + result files)
-promptfoo/node_modules/
-promptfoo/*-results.json
+# Promptfoo (kept fully local)
+promptfoo/
+
+# Editor settings
+.vscode/
+
+# Stray logs in root
+/*.log
+
+# Packaging metadata
+*.egg-info/
 
 # ignore temporary data files
 .DS_Store
@@ -50,6 +58,14 @@ thesis/*.glg
 thesis/*.glo
 thesis/*.gls
 thesis/*.ist
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.bbl
+paper/*.blg
+paper/arxiv_submission.tar.gz
 
 # Ignore screenshots
 screenshots/
