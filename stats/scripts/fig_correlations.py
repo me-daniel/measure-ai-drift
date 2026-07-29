@@ -65,6 +65,7 @@ def main() -> None:
         "qwen35_27b": (0, 10, "center"),
         "mistral_large": (10, -3, "left"),
         "mistral_small4": (10, -3, "left"),
+        "command_a": (10, -3, "left"),
         # right cluster
         "sonnet46": (-10, -3, "right"),
         "gpt54": (0, -16, "center"),

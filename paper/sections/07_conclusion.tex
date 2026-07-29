@@ -1,16 +1,16 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-This paper asked how consistent LLM therapeutic responses are across independent runs within a structured IRT protocol. Three evaluation methods were applied to eleven models across 6{,}600 trials spanning five temperature conditions, on frozen histories that make every trial's input byte-identical.
+This paper asked how consistent LLM therapeutic responses are across independent runs within a structured IRT protocol. Three evaluation methods were applied to twelve models across 7{,}200 trials spanning five temperature conditions, on frozen histories that make every trial's input byte-identical.
 
 The main findings are:
 
 \begin{enumerate}
   \item Consistency varies widely across models and far less across patients. Median decision consistency spans 0.69 to 1.00 between models, while the vignette effect is not significant. Stability is a model property.
   \item The instability sits in strategy selection, not execution. Temperature reduces plan consistency but not plan--response alignment: models pick different strategies at higher temperatures but carry out whichever strategy they pick equally well.
-  \item Greedy decoding is not always optimal. Eight of eleven models reach their best mean consistency at a low non-zero temperature, and the Mistral family peaks at its vendor default. Deployments should verify stability at the vendor-recommended setting rather than assume $T{=}0.0$ is safest.
-  \item No single metric captures the full picture. The three levels correlate only moderately ($\rho = 0.21$ to $0.55$). BERTScore misses strategy changes and overstates drift from harmless paraphrase, and only the combination localises where instability lives.
-  \item The findings are robust to model-set enlargement, and the framework is cheap to extend. Mistral Medium~3.5, added post hoc with one configuration entry on identical inputs, topped the stability ranking as an EU-sovereign open-weight model, and every substantive finding survived.
+  \item Greedy decoding is not always optimal. Ten of twelve models reach their best mean consistency at a low non-zero temperature, and the Mistral family peaks at its vendor default. Deployments should verify stability at the vendor-recommended setting rather than assume $T{=}0.0$ is safest.
+  \item No single metric captures the full picture. The three levels correlate only moderately ($\rho = 0.29$ to $0.55$). BERTScore misses strategy changes and overstates drift from harmless paraphrase, and only the combination localises where instability lives.
+  \item The framework is cheap to extend, and the findings are robust to model-set changes. Adding a model requires a single configuration entry on identical frozen inputs, the framework's own stability signature exposed a gateway silently dropping GPT-5.4's temperature parameter, and every substantive finding holds across these revisions. Mistral Medium~3.5, an EU-sovereign open-weight model, tops the overall stability ranking.
 \end{enumerate}
 
 The three-level framework fulfilled its design goal by identifying that instability concentrates at the strategy selection layer. Neither BERTScore nor alignment alone would have revealed that. The cross-model comparison shows that EU-sovereign deployment no longer requires a stability compromise: what was a small gap for Mistral Large~3 at its recommended temperature became, with Mistral Medium~3.5, the top of the ranking.

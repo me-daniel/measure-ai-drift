@@ -60,6 +60,20 @@ We run Qwen in non-thinking mode (`reasoning.effort: "none"`), so 0.7 could also
 
 ---
 
+## Command A -- therapy_temp: 0.3 [VERIFIED]
+
+**Source:** Cohere Chat API v2 reference (docstring generated from the official API spec)
+**URL:** https://docs.cohere.com/reference/chat (rendered), verifiable in plain text at https://raw.githubusercontent.com/cohere-ai/cohere-python/main/src/cohere/v2/client.py
+**Value in spec:** `temperature` "Defaults to `0.3`."
+
+**Notes:** Verified 2026-07-28. The API default is 0.3, so the lower bound rule
+and the vendor default coincide. Cohere's prose guide (docs.cohere.com/docs/temperature)
+suggests 1 as a generic "starting point" for creative use, which does not apply
+to clinical stability. Command A has no reasoning mode, so no thinking-related
+temperature caveats exist.
+
+---
+
 ## DeepSeek V3.2 -- therapy_temp: 1.0 [VERIFIED]
 
 **Source:** DeepSeek API Documentation

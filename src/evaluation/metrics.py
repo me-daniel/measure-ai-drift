@@ -473,29 +473,25 @@ async def compute_alignment(
 
     if suspect_indices and experiment:
         try:
-            pro_judge = create_provider("judge", config_path=None, experiment=False)
-            # Check if the experiment judge is already Pro (avoid double-judging with same model)
-            is_already_pro = judge.config.model == pro_judge.config.model
-            if is_already_pro:
-                # Try loading gemini31_pro explicitly
-                from src.llm.provider import load_config as _lc
-                _cfg = _lc()
-                _pro_def = _cfg.get("model_options", {}).get("judge", {}).get("gemini31_pro")
-                if not _pro_def:
-                    is_already_pro = True  # no Pro available, skip fallback
-                else:
-                    import os
-                    _prov_cfg = _cfg["providers"][_pro_def["provider"]]
-                    from src.llm.provider import LLMConfig, LLMProvider
-                    pro_judge = LLMProvider(LLMConfig(
-                        provider=_pro_def["provider"],
-                        model=_pro_def["model"],
-                        temperature=1.0,
-                        max_tokens=4096,
-                        api_key=os.environ.get(_prov_cfg.get("api_key_env", ""), ""),
-                        base_url=_prov_cfg.get("base_url", ""),
-                    ))
-                    is_already_pro = False
+            # Load gemini31_pro explicitly so the fallback judge is always Pro
+            from src.llm.provider import load_config as _lc
+            _cfg = _lc()
+            _pro_def = _cfg.get("model_options", {}).get("judge", {}).get("gemini31_pro")
+            if not _pro_def or _pro_def["model"] == judge.config.model:
+                is_already_pro = True  # no Pro available or experiment judge already Pro
+            else:
+                import os
+                _prov_cfg = _cfg["providers"][_pro_def["provider"]]
+                from src.llm.provider import LLMConfig, LLMProvider
+                pro_judge = LLMProvider(LLMConfig(
+                    provider=_pro_def["provider"],
+                    model=_pro_def["model"],
+                    temperature=1.0,
+                    max_tokens=4096,
+                    api_key=os.environ.get(_prov_cfg.get("api_key_env", ""), ""),
+                    base_url=_prov_cfg.get("base_url", ""),
+                ))
+                is_already_pro = False
         except Exception:
             is_already_pro = True  # can't create Pro judge, skip fallback
 

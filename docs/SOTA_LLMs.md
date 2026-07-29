@@ -1,9 +1,9 @@
-# SOTA LLMs - Living Reference (March 2026)
+# SOTA LLMs - Living Reference (July 2026)
 
 > **Purpose:** This file overrides Claude's training data on model availability and performance.
 > LLM landscape changes faster than any training cutoff can track. Before recommending or configuring models, **always check live sources first** rather than relying on built-in knowledge.
 >
-> **Last verified:** 2026-03-19
+> **Last verified:** 2026-07-24
 >
 > **Live sources to check before any model decision:**
 > - [Artificial Analysis Leaderboard](https://artificialanalysis.ai/leaderboards/models) - intelligence, speed, price rankings
@@ -19,6 +19,63 @@
 2. **Cross-check** this file against live data, as it may already be outdated
 3. **Update this file** whenever new information is confirmed
 4. **Flag staleness**: if `Last verified` is more than 2 weeks old, re-research before trusting the content below
+
+---
+
+## Recent News (July 2026)
+
+Verified 2026-07-24 against Artificial Analysis, OpenRouter, vendor docs, and HuggingFace model cards. The March 2026 sections below are kept as a historical snapshot matching the main data collection.
+
+### Frontier Closed Models
+
+- **GPT-5.6 family** (limited preview Jun 26, public Jul 9): three tiers named Sol, Terra, Luna (most to least capable). Sol is the flagship. OpenRouter `openai/gpt-5.6-sol`, $5.00/$30.00 per M, 1M context. Supports `reasoning_effort: none` but the default changed to `medium` (GPT-5.4 defaulted to none), so `none` must be set explicitly. AA Intelligence Index 59 (max effort). Temperature: **stripped via OpenRouter** (same as GPT-5.4, proven empirically 2026-07-24). Native API support at effort none is likely (the documented GPT-5.1 through 5.4 policy) but the 5.6 docs no longer carry the explicit parameter-compatibility sentence and no community confirmation exists yet. One probe with a real OpenAI key settles it
+- **Claude Sonnet 5** (Jun 30): `anthropic/claude-sonnet-5`, $2/$10 intro until Aug 31 then $3/$15, 1M context. Adaptive thinking on by default, can be disabled. **Returns HTTP 400 for any non-default `temperature`, `top_p`, or `top_k`.** Unusable for temperature-sweep protocols. New tokenizer (~30% more tokens for same text)
+- **Claude Fable 5** (Jun 9, redeployed Jul 1 after export-control suspension): Anthropic's actual frontier, "Mythos-class" above Opus. $10/$50 per M. Thinking cannot be disabled. AA Index 60, currently rank 1. No Opus 5 exists, top Opus remains Opus 4.8
+- **AA top 5 (Jul 24):** Claude Fable 5 (60), GPT-5.6 Sol max (59), GPT-5.6 Sol xhigh (58), Kimi K3 (57, weights unreleased), GPT-5.6 Sol high / Opus 4.8 max (56)
+- **GPT-5.4 and Sonnet 4.6 both remain live on OpenRouter** with no deprecation notice. Existing March data stays reproducible for now
+
+### Open-Weight Models
+
+- **GLM 5.2** (Z.ai, mid-Jun): current open-weight leader on AA (Index 51). MoE, ~744B total (some sources say 753B) / ~40B active, MIT, 1M context. OpenRouter `z-ai/glm-5.2`, ~$0.77/$2.42 per M. Has a genuine non-thinking mode via `enable_thinking: false` (vLLM) or `thinking: {type: disabled}` (z.ai API). Whether the OpenRouter reasoning toggle maps cleanly to non-thinking mode is unverified, smoke test needed
+- **Kimi K3** (Moonshot, announced Jul 17): 2.7-2.8T MoE, AA ~57 per secondary reporting. **Open weights due Jul 27.** Will likely displace GLM 5.2 as top open-weight model
+- **Kimi K2.6** (Apr 20, 1T/32B active) superseded K2.5. K2.7-Code (Jun 12) is coding-focused
+- **Qwen family moved closed at the top:** Qwen 3.6-Plus (Apr 2), 3.7-Max, and 3.8-Max-Preview (Jul 19) are API-only. The only open 3.6 release is Qwen3.6-27B (Apr 22, Apache 2.0). **Qwen 3.5 397B/122B remain the largest open Qwen checkpoints**
+- **Other new open-weight entries on AA:** MiniMax-M3 (44), DeepSeek V4 Pro (44, 1.6T/49B), MiMo-V2.5-Pro (Xiaomi, 42, 1T/42B), Inkling (Thinking Machines, 41), Nemotron 3 Ultra 550B (38)
+- **Dense models above ~70B are nearly extinct:** every 2026 flagship open model above ~100B is MoE. The only general-purpose dense instruct models in the 70-150B class with hosted inference are Mistral Medium 3.5 (128B dense, modified MIT, `mistralai/mistral-medium-3-5`, $1.50/$7.50, sole-provider) and **Cohere Command A** (111B dense, Mar 2025, CC-BY-NC weights, `cohere/command-a`, $2.50/$10.00, 256K context, served solely by Cohere, no reasoning mode at all). Devstral 2 123B dense is coding-specialised and being folded into Medium 3.5. K2-V2 70B still has no hosted inference. Apertus 70B (Swiss, dense, Apache 2.0) is EU-sovereign but not on OpenRouter
+
+### Mistral Ecosystem
+
+- **Mistral Medium 3.5** (Apr 29 or 30 depending on source): 128B dense per HF card, modified MIT, 262K context on OpenRouter. Consolidates and replaces Magistral and Devstral 2. Official replacement for deprecated `mistral-large-2411`. `reasoning_effort` takes only "none" or "high", default "none"
+- No Large 3.x update since Large 3 2512. A new sparse MoE family entered early access in July per press coverage, unverified, not on OpenRouter
+
+### Gemini Lineup and Judge Considerations
+
+- **Gemini 3.6 Flash** (GA Jul 21): stable ID `gemini-3.6-flash`, $1.50/$7.50 per M. AA Index 50, identical to 3.5 Flash (speed doubled, no intelligence gain). **Sampling parameters (`temperature`, `top_p`, `top_k`) are deprecated and ignored as of Jul 21** for 3.6 Flash, 3.5 Flash-Lite, and all future Gemini models
+- **`gemini-3-flash-preview`** (current judge): still live but on Google's deprecations page, "no shutdown date announced". Never got a stable GA ID and is two Flash generations behind. Sibling previews died within months of their successors (3-pro-preview shut down Mar 9, 3.1-flash-lite-preview May 25)
+- **`gemini-3.1-pro-preview`** (fallback judge): still the newest callable Pro. Gemini 3.5 Pro is in partner testing, not released. Gemini 4 only teased
+- Google's bulk-scoring recommendation: `gemini-3.5-flash-lite` ($0.30/$2.50, AA 36) for high-volume extraction, `gemini-3.6-flash` as the quality tier
+
+### Protocol-Relevant Trend
+
+Frontier vendors are removing user control over sampling. Claude Sonnet 5 and Opus 4.7+ reject non-default temperature outright (Anthropic docs state the restriction unconditionally, with no thinking-disabled exemption). Gemini 3.6+ ignores the parameter. OpenAI GPT-5.x models expose no temperature at all through OpenRouter. Temperature-sweep stability protocols can no longer run on these models. Stability evaluation of closed frontier models increasingly means accepting vendor-controlled decoding.
+
+### Sampling-Parameter Support via OpenRouter (probed empirically 2026-07-24)
+
+Direct API probes with `provider: {require_parameters: true}`. Without that flag OpenRouter returns 200 and silently drops parameters the endpoint does not support, so a 200 alone proves nothing. **All future runs must set `require_parameters: true` and log the serving provider per trial.**
+
+| Model | temperature via OpenRouter | Evidence |
+|---|---|---|
+| `anthropic/claude-sonnet-5` | **No** (404 with require_parameters, not in supported_parameters) | Plain requests 200 because OpenRouter drops the param |
+| `openai/gpt-5.6-sol` | **No** (404 with require_parameters) | Same silent-drop behaviour |
+| `openai/gpt-5.4` | **No, confirmed stripped, also during the March 2026 collection** | Four-way evidence. (1) OpenAI's own archived docs (2026-03-18) say GPT-5.4 accepts temperature only at `reasoning_effort: none`, so the model itself supported it. (2) Wayback snapshots of the OpenRouter models API show temperature absent from gpt-5.4's supported_parameters in every snapshot from launch through 2026-03-21 (mid-collection) to today. (3) Strip behaviour proven empirically: temperature plus `effort: high` returns 200 from provider OpenAI, a combination OpenAI natively rejects, so OpenRouter removes the field before forwarding. (4) The March data shows the corresponding signature: BERTScore flat within 0.006 across all five temperatures while Sonnet 4.6 declines monotonically 0.844 to 0.743. Conclusion: the GPT-5.4 sweep never varied temperature, all 150 runs used OpenAI default sampling. A genuine sweep remains possible via the native OpenAI API at `reasoning_effort: none` |
+| `anthropic/claude-sonnet-4.6` | **Yes** (200 with require_parameters, provider Anthropic) | Last sweepable Anthropic Sonnet. Temperature or top_p, not both |
+| `z-ai/glm-5.2` | **Yes** (200 with require_parameters) | Non-thinking mode also confirmed working via OpenRouter reasoning toggle |
+| `cohere/command-a` | **Yes** (200 with require_parameters, provider Cohere) | Documented range 0 to 1, default 0.3 |
+| `mistralai/mistral-medium-3-5` | Yes (listed in supported_parameters) | |
+
+The other ten study models are unaffected: the 2026-03-23 registry snapshot (mid-collection) lists temperature for all of them, every current provider of the multi-provider models supports it, and each shows a genuine BERTScore temperature response in the March data (+0.032 to +0.242 from t=0 to t=0.6, versus +0.001 for GPT-5.4). Sonnet 4.6's flat Jaccard is genuine robustness, not a dropped parameter: its BERTScore declines cleanly.
+
+Also discovered: **`allenai/olmo-3.1-32b-instruct` is delisted from OpenRouter.** Only `allenai/olmo-3-32b-think` remains. The study's OLMo data cannot be re-collected or extended through OpenRouter.
 
 ---
 

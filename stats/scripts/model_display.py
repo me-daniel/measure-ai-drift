@@ -14,6 +14,7 @@ MODEL_NAMES = {
     # Dense comparators
     "olmo3_32b": "OLMo 3.1 32B",
     "llama70b": "Llama 3.3 70B",
+    "command_a": "Command A",
     # Proprietary
     "gpt54": "GPT-5.4",
     "sonnet46": "Claude Sonnet 4.6",
@@ -33,6 +34,7 @@ MODEL_ORDER = [
     "qwen35_397b",
     "olmo3_32b",
     "llama70b",
+    "command_a",
     "gpt54",
     "sonnet46",
 ]
@@ -41,7 +43,7 @@ MODEL_ORDER = [
 MODEL_GROUPS = {
     "Mistral family": ["mistral_small32", "mistral_small4", "mistral_medium35", "mistral_large"],
     "Qwen family": ["qwen35_27b", "qwen35_122b", "qwen35_397b"],
-    "US models": ["olmo3_32b", "llama70b", "gpt54", "sonnet46"],
+    "North American models": ["olmo3_32b", "llama70b", "command_a", "gpt54", "sonnet46"],
 }
 
 MODEL_COLORS = {
@@ -57,6 +59,7 @@ MODEL_COLORS = {
     # Dense comparators
     "olmo3_32b": "#e891b2",         # pink
     "llama70b": "#3a86c8",          # blue
+    "command_a": "#2a9d8f",         # teal (111B dense, July 2026 addition)
     # Proprietary ceiling
     "sonnet46": "#8b5e3c",          # brown
     "gpt54": "#1a1a1a",             # black

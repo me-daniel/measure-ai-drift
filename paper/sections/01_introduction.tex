@@ -17,7 +17,7 @@ How consistent are LLM therapeutic responses across independent runs when given 
 
 \textbf{Contribution 1.} A three-level evaluation framework that measures stability at each layer of the generation process: \emph{plan consistency} (do strategy selections repeat?), \emph{response similarity} (do the generated texts convey the same meaning?), and \emph{plan--response alignment} (does the model do what it declared?). Together, the layers reveal divergence patterns that no single metric can detect.
 
-\textbf{Contribution 2.} A cross-model comparison applying this framework to 11 models across 6 patient vignettes, 5 temperatures, and 20 trials per condition (6{,}600 trials), spanning EU-sovereign, proprietary, and open-weight model classes. Decision stability separates models sharply (median Jaccard 0.69--1.00) and is a model property rather than a patient-difficulty property. Response wording drifts with temperature faster than the underlying strategy choice.
+\textbf{Contribution 2.} A cross-model comparison applying this framework to 12 models across 6 patient vignettes, 5 temperatures, and 20 trials per condition (7{,}200 trials), spanning EU-sovereign, proprietary, and open-weight model classes. Decision stability separates models sharply (median Jaccard 0.69--1.00) and is a model property rather than a patient-difficulty property. Response wording drifts with temperature faster than the underlying strategy choice.
 
 \textbf{Contribution 3.} An extensibility demonstration that doubles as a robustness check: Mistral Medium~3.5 was added four months after the main runs, on identical frozen histories, with a single configuration entry. All substantive findings survive the model-set enlargement.
 

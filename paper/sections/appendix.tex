@@ -65,7 +65,7 @@ For each declared strategy, assign ONE score:\\
 Output format: strategy\_id: <reasoning> | score: <0|1|2>
 \end{quote}
 
-Per-trial alignment is the mean score over declared strategies, normalised by the maximum (2). Trials whose judgment fails (timeout, API error) or that cannot be judged (invalid plan) are treated as missing data and excluded from the alignment mean. Zero-scored or partially parsed judgments are re-judged once by Gemini~3.1~Pro (9 of 6{,}600 trials; Section~\ref{sec:results-alignment}).
+Per-trial alignment is the mean score over declared strategies, normalised by the maximum (2). Trials whose judgment fails (timeout, API error) or that cannot be judged (invalid plan) are treated as missing data and excluded from the alignment mean. Zero-scored or partially parsed judgments are re-judged once by Gemini~3.1~Pro (9 of 7{,}200 trials; Section~\ref{sec:results-alignment}).
 
 \section{Plan Validity}
 \label{app:validity}
@@ -79,14 +79,16 @@ Figure~\ref{fig:validity} reports the plan validity rate per model, the upstream
   \label{fig:validity}
 \end{figure}
 
+\clearpage
+
 \section{Per-Vignette Stability}
 \label{app:vignettes}
 
 Figure~\ref{fig:vignettes} breaks decision consistency down to individual model--vignette cells, one heatmap per temperature, for consultation of specific combinations.
 
-\begin{figure}[p]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth,height=.92\textheight,keepaspectratio]{fig_5_4_vignette_slice}
+  \includegraphics[width=\linewidth,height=.8\textheight,keepaspectratio]{fig_5_4_vignette_slice}
   \caption{Median Jaccard per model $\times$ vignette, one heatmap per temperature. Individual model--vignette combinations can deviate noticeably from the aggregate even though the overall vignette effect is not significant (Section~\ref{sec:results-vignettes}).}
   \label{fig:vignettes}
 \end{figure}
