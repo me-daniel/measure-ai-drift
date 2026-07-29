@@ -77,7 +77,8 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # --- Figure 5.2: Jaccard split into 3 family panels ---
-    fig, axes = plt.subplots(1, 3, figsize=(13.5, 4.6), sharey=True)
+    # 11in wide prints at ~66% scale (vs ~55% at 13.5in), so fonts render larger
+    fig, axes = plt.subplots(1, 3, figsize=(11, 3.8), sharey=True)
     for ax, (group_name, group_models) in zip(axes, MODEL_GROUPS.items()):
         plot_metric(ax, df, "jaccard_all", group_name, "Median Jaccard (IQR)",
                     model_filter=set(group_models))

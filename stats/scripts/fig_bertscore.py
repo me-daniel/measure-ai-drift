@@ -70,7 +70,8 @@ def main() -> None:
     set_paper_style()
     df = pd.read_csv(args.input)
 
-    fig, axes = plt.subplots(1, 3, figsize=(13.5, 4.6), sharey=True)
+    # 11in wide prints at ~66% scale (vs ~55% at 13.5in), so fonts render larger
+    fig, axes = plt.subplots(1, 3, figsize=(11, 3.8), sharey=True)
     for ax, (group_name, group_models) in zip(axes, MODEL_GROUPS.items()):
         plot_bertscore(ax, df, group_name, model_filter=set(group_models))
     axes[1].set_ylabel("")
