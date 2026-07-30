@@ -205,7 +205,7 @@ All other roles (patient, router, judge) and all other evaluation targets have *
 
 ### 6.2 Evaluation Targets (Therapist Role)
 
-These are the 11 models being compared on the three evaluation metrics, all running in non-thinking mode.
+These are the 12 models being compared on the three evaluation metrics, all running in non-thinking mode.
 
 **Primary subject:**
 
@@ -230,12 +230,13 @@ These are the 11 models being compared on the three evaluation metrics, all runn
 | Mid | **Llama 3.3 70B** | 70B dense | OpenRouter | Original model from the efficacy study. Provides continuity with prior work |
 | Large | **Qwen 3.5 122B** | 122B MoE (10B active) | OpenRouter | Mid-size MoE comparator |
 | Large | **Qwen 3.5 397B** | 397B MoE (17B active) | OpenRouter | Large MoE comparator, replaced DeepSeek V3.2 |
+| Large | **Command A** | 111B dense | OpenRouter (pinned to Cohere) | Dense control for the dense-architecture expectation behind Medium 3.5. CC-BY-NC, added 2026-07-28 |
 
 **Proprietary ceiling:**
 
 | Model | Provider | Why this model |
 |-------|----------|----------------|
-| **GPT-5.4** | OpenRouter ($2.50/$15.00) | Strongest proprietary model without thinking overhead |
+| **GPT-5.4** | OpenAI API (native, gateway dropped temperature) | Strongest proprietary model without thinking overhead |
 | **Claude Sonnet 4.6** | OpenRouter ($3/$15) | Character-trained for safety-aware interaction. Near-Opus capability at Sonnet pricing |
 
 **Selection rationale:**
@@ -244,6 +245,7 @@ These are the 11 models being compared on the three evaluation metrics, all runn
 - Qwen 3.5 at three scales (27B, 122B, 397B) tests scaling within one family
 - OLMo 3.1: full data provenance
 - Llama 3.3 70B: continuity with the original efficacy study
+- Command A: second 111-128B dense model, controls whether stability tracks the dense architecture class or the specific model
 - Two proprietary ceilings: GPT-5.4 + Sonnet 4.6
 
 **Dropped (kept as commented options in models.yaml):**
@@ -251,7 +253,7 @@ These are the 11 models being compared on the three evaluation metrics, all runn
 - Mistral Medium 3.1 (closed weights, weak thesis story — superseded by the open-weight Medium 3.5, added July 2026)
 - GLM-5 (third MoE adds little)
 
-> All 11 evaluation targets are configured in `models.yaml`. See [thesis_models.md](thesis_models.md) for the full assignment table and [SOTA_LLMs.md](SOTA_LLMs.md) for current availability and pricing.
+> All 12 evaluation targets are configured in `models.yaml`. See [thesis_models.md](thesis_models.md) for the full assignment table and [SOTA_LLMs.md](SOTA_LLMs.md) for current availability and pricing.
 
 ### 6.3 Supporting Roles
 
@@ -267,8 +269,11 @@ These models are NOT being evaluated. They serve infrastructure roles:
 
 | Provider | Base URL | Used for |
 |----------|----------|----------|
-| OpenRouter | `openrouter.ai/api/v1` | All 11 evaluation targets, Patient (Venice), Router |
+| OpenRouter | `openrouter.ai/api/v1` | All evaluation targets except GPT-5.4, Patient (Venice), Router |
+| OpenAI | `api.openai.com/v1` | GPT-5.4 (native re-collection, gateway dropped temperature) |
 | Google AI Studio | `generativelanguage.googleapis.com/v1beta/openai/` | Judge (Gemini 3 Flash + 3.1 Pro fallback) |
+
+Per-collection serving conditions (routing mode, pinning, quantisation snapshots): [LLM_run_recordings.md](LLM_run_recordings.md).
 
 ### 6.5 OpenRouter Constraints
 
@@ -286,10 +291,10 @@ These models are NOT being evaluated. They serve infrastructure roles:
 | Slice | slice_2 (second rewriting-turn boundary) |
 | Trials per condition | 20 |
 | Temperatures | T=0.0, T=0.075, T=0.15, T=0.3, T=0.6 |
-| Models | 11 evaluation targets (see §6.2) |
+| Models | 12 evaluation targets (see §6.2) |
 
 Total per model: 6 x 1 x 20 x 5 = **600 trials**
-Total across all models: 600 x 11 = **6,600 trials**
+Total across all models: 600 x 12 = **7,200 trials**
 
 > Collection dates: 10 models on 2026-03-21 to 2026-03-24; Mistral Medium 3.5 added 2026-07-09 on the identical frozen histories (`run_date` column in the aggregated CSV).
 

@@ -10,6 +10,8 @@
 > - [OpenRouter Models](https://openrouter.ai/models) - available models, pricing, free tier
 > - [OpenRouter Rankings](https://openrouter.ai/rankings) - community usage rankings
 > - [LM Arena](https://lmarena.ai/) - head-to-head human preference rankings
+>
+> **Serving conditions of our own runs** (providers, pinning, quantisation per collection): [LLM_run_recordings.md](LLM_run_recordings.md)
 
 ---
 

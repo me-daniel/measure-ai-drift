@@ -4,6 +4,7 @@
 > Data: `experiments/latest/` plus `batch_20260709_mistral_medium35`, `batch_20260728_command_a`, and `batch_20260728_gpt54_native`, aggregated in `stats/data/experiment_runs.csv`.
 > Generated 2026-03-24, revised 2026-07-28 (12-model set, GPT-5.4 native re-collection).
 > The superseded GPT-5.4 runs are excluded from all analyses and preserved in `experiments/runs/batch_20260321_gpt54_openrouter_default_sampling/` (see finding 10).
+> Serving conditions per collection (routing, pinning, quantisation): [LLM_run_recordings.md](LLM_run_recordings.md).
 
 ## Models tested
 
@@ -155,6 +156,27 @@ The re-collection went through the native OpenAI API (same dated snapshot, `gpt-
 
 Command A was added as a control for the dense-architecture expectation behind Medium 3.5 (reDreamAI's successor chat model, expected to be more stable because a dense forward pass has no expert routing to vary between runs). It combines one of the broadest strategy repertoires (47% top-two share) with mid-ranking consistency (median J 0.812), a genuine temperature response, and the standard low-temperature optimum at T=0.15. Its plan validity is the lowest in the set (98.3%, 10 empty-plan trials). Nothing about the pinned-provider collection route produces qualitatively different behaviour from the original cohort. Together with Medium 3.5 it forms a 111-128B dense pair sitting at opposite ends of the consistency ranking. The control result answers the expectation: dense weights alone do not confer stability, and parameter count does not predict it.
 
+### 12. Serving infrastructure contributes to measured instability (pinned bridge, 2026-07-30)
+
+Four original-cohort models were re-run on identical frozen histories under pinned first-party serving (Mistral, Alibaba at fp8), judge skipped. 120 runs, 2,400 trials, in `experiments/runs/batch_20260730_bridge_pinned/`, aggregated to `stats/data/bridge_runs.csv`, excluded from the canonical 360 runs. Serving conditions: [LLM_run_recordings.md](LLM_run_recordings.md).
+
+| Model | Arch | Pooled median J orig | pinned | Regime effect |
+|---|---|---|---|---|
+| Qwen 3.5 27B | dense 27B | 0.727 | 1.000 | large: bottom rank was mostly serving variance |
+| Mistral Large 3 | MoE 675B (41B act.) | 0.756 | 0.904 | moderate lift, shape preserved |
+| Mistral Small 4 | MoE 119B (6.5B act.) | 0.814 | 0.814 | none, profile reproduces |
+| Qwen 3.5 122B | MoE 122B (10B act.) | 1.000 | 1.000 | none, profile reproduces |
+
+Two separate results. First, the regime effect is model-specific, not architecture-specific: it hit the dense Qwen 27B hardest (six OpenRouter endpoints at mixed quantisations under default routing) and left two of three MoEs untouched. Second, the residual pinned behaviour patterns by architecture: all three MoEs keep a genuine temperature response (peak at low non-zero T, decline at T=0.6) and two of three stay nondeterministic at T=0.0 (Small 4 mean J 0.783, Large 3 0.888), while the pinned dense models sit at ceiling across the sweep, except Command A (0.812, see finding 11). Qwen 27B's pinned ceiling is not a dropped-parameter artefact: its BERTScore falls 0.952 to 0.854 across the sweep, so temperature reaches the model. Pattern in six models, not a law. Cross-regime comparisons in the main ranking inherit this confound (paper Sections 5.7 and 6.6).
+
+### 13. BERTScore barely separates strategy switches from rewording (quantified)
+
+Per-pair analysis over all 68,400 trial pairs of the canonical 360 runs (`stats/data/pairwise_jaccard_bertscore.json`, script `stats/scripts/pairwise_jaccard_bertscore.py`, resumable cache under `stats/data/cache/pairwise_bertscore/`). Pairs with identical strategy sets average F1 0.781 (n=51,950), fully disjoint sets 0.614 (n=1,560). Pooled gap 0.17, but model identity inflates it: within a single model the gap is typically 0.06-0.13 with bucket SDs near 0.10 (Command A the outlier at 0.31). Distributions overlap too heavily for any threshold to classify strategy switches. Confirms finding 6 with numbers.
+
+### 14. The judge is noisy but unbiased (re-run agreement)
+
+One seeded trial per canonical run (360 trials) re-judged with the identical setup (`scripts/rejudge_subset.py`, results `stats/data/judge_rerun_agreement.json`). Strategy-level exact agreement 96.2% (720 pairs, linear-weighted kappa 0.807), 93.1% of trials keep their alignment value, mean signed delta -0.003. Disagreement concentrates in the partial category: score 2 reproduces at 98.2%, score 1 at 60%. Llama 3.3 70B is the outlier (63.3% exact, borderline 1-vs-2 calls). No temperature pattern, consistent with judge noise rather than properties of the judged runs.
+
 ## Supplementary experiments
 
 | Experiment | Runs | Data location |
@@ -162,6 +184,8 @@ Command A was added as a control for the dense-architecture expectation behind M
 | Seed batch (Mistral Large 3, seed=42) | 18 | `experiments/runs/seed_batch/` |
 | Slice depth (Mistral Large 3, slices 1-5) | 60 | `experiments/runs/slice_batch/` |
 | Original GPT-5.4 (default sampling, excluded) | 30 | `experiments/runs/batch_20260321_gpt54_openrouter_default_sampling/` |
+| Pinned bridge, no judge (4 models, finding 12) | 120 | `experiments/runs/batch_20260730_bridge_pinned/` |
+| Judge re-run agreement (finding 14) | 360 trials | `stats/data/judge_rerun_agreement.json` |
 
 ## Figures
 

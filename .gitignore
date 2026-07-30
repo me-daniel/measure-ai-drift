@@ -69,3 +69,5 @@ paper/arxiv_submission.tar.gz
 
 # Ignore screenshots
 screenshots/
+# Ignore derived analysis caches
+stats/data/cache/

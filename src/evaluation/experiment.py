@@ -76,8 +76,13 @@ class ExperimentRun:
         parallel: bool = False,
         mode: str = "split",
         therapist_provider: Any = None,
+        judge: bool = True,
     ) -> list[TrialResult]:
-        """Run the experiment and save results."""
+        """Run the experiment and save results.
+
+        Set judge=False to skip the LLM judge (alignment fields stay empty and
+        no judgments.json is written). All other metrics are unaffected.
+        """
         # Detect slice from frozen history filename (e.g., "slice_2.json" -> 2)
         slice_number = self._detect_slice(self.frozen_history)
 
@@ -91,6 +96,7 @@ class ExperimentRun:
             "language": language,
             "parallel": parallel,
             "mode": mode,
+            "judge": judge,
             "timestamp": self.timestamp,
         }
 
@@ -125,14 +131,16 @@ class ExperimentRun:
                 json.dump(trial_data, f, indent=2, ensure_ascii=False)
 
         # Compute and save metrics
-        await self._save_metrics()
+        await self._save_metrics(judge=judge)
 
         return self._results
 
-    async def _save_metrics(self) -> None:
-        """Compute and save metrics to metrics.json (and judgments.json)."""
-        from src.core.config_loader import load_strategy_taxonomy
+    async def _save_metrics(self, judge: bool = True) -> None:
+        """Compute and save metrics to metrics.json (and judgments.json).
 
+        With judge=False the LLM judge is not called: alignment fields are
+        written empty and judgments.json is omitted.
+        """
         strategy_sets = [extract_plan_strategies(r.plan) for r in self._results]
 
         # Compute BERTScore on responses
@@ -140,19 +148,31 @@ class ExperimentRun:
         bertscore = compute_pairwise_bertscore(responses)
 
         # Compute alignment (Level 3.3) — LLM judge call
-        # Auto-detect experiment tier: experiment models use gemini31_pro judge
-        from src.llm.provider import load_config
-        _cfg = load_config()
-        _experiment_names = {
-            t["name"] for t in _cfg.get("evaluation_targets", [])
-            if not t.get("name", "").endswith("_test")
-        }
-        is_experiment = self.model_name in _experiment_names
+        if judge:
+            from src.core.config_loader import load_strategy_taxonomy
 
-        taxonomy = load_strategy_taxonomy()
-        alignment = await compute_alignment(
-            strategy_sets, responses, taxonomy, experiment=is_experiment,
-        )
+            # Auto-detect experiment tier: experiment models use gemini31_pro judge
+            from src.llm.provider import load_config
+            _cfg = load_config()
+            _experiment_names = {
+                t["name"] for t in _cfg.get("evaluation_targets", [])
+                if not t.get("name", "").endswith("_test")
+            }
+            is_experiment = self.model_name in _experiment_names
+
+            taxonomy = load_strategy_taxonomy()
+            alignment = await compute_alignment(
+                strategy_sets, responses, taxonomy, experiment=is_experiment,
+            )
+        else:
+            alignment = {
+                "mean_alignment": None,
+                "per_trial": [],
+                "per_strategy": {},
+                "n_judged": 0,
+                "n_errors": 0,
+                "n_skipped": 0,
+            }
 
         metrics = {
             "n_trials": len(self._results),
@@ -180,9 +200,10 @@ class ExperimentRun:
             json.dump(metrics, f, indent=2)
 
         # Save raw judge outputs for transparency/debugging
-        judgments_path = self.run_dir / "judgments.json"
-        with open(judgments_path, "w") as f:
-            json.dump(alignment["raw_judgments"], f, indent=2, ensure_ascii=False)
+        if judge:
+            judgments_path = self.run_dir / "judgments.json"
+            with open(judgments_path, "w") as f:
+                json.dump(alignment["raw_judgments"], f, indent=2, ensure_ascii=False)
 
     def _compute_strategy_counts(self, strategy_sets: list[set[str]]) -> dict[str, int]:
         """Count frequency of each strategy across trials."""

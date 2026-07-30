@@ -67,6 +67,10 @@ Output format: strategy\_id: <reasoning> | score: <0|1|2>
 
 Per-trial alignment is the mean score over declared strategies, normalised by the maximum (2). Trials whose judgment fails (timeout, API error) or that cannot be judged (invalid plan) are treated as missing data and excluded from the alignment mean. Zero-scored or partially parsed judgments are re-judged once by Gemini~3.1~Pro (9 of 7{,}200 trials; Section~\ref{sec:results-alignment}).
 
+Because the judge runs at $T{=}1.0$ and scores each trial once, a re-judging control quantifies its own sampling variance: one seeded trial per run (360 trials) was re-judged with the identical setup. Strategy-level exact agreement is 96.2\% (720 score pairs, linear-weighted $\kappa = 0.807$), 93.1\% of trials keep their alignment value unchanged, and the mean signed difference is $-0.003$. Disagreement concentrates in the partial category (score 1), while full implementation (score 2) reproduces at 98.2\%. Single judgments are therefore noisy at the implemented--partial boundary but not biased.
+
+\clearpage
+
 \section{Plan Validity}
 \label{app:validity}
 

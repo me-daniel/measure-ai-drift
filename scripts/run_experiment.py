@@ -8,6 +8,7 @@ Usage:
     python scripts/run_experiment.py [--trials 20] [--slice 2]
     python scripts/run_experiment.py --temps 0.0 0.5 1.0   # custom subset
     python scripts/run_experiment.py --no-therapy-temp      # skip therapy_temp runs
+    python scripts/run_experiment.py --no-judge             # skip the LLM judge (no alignment)
 """
 
 from __future__ import annotations
@@ -61,6 +62,7 @@ async def run_single(
     n_trials: int,
     temperature: float,
     batch_dir: Path | None = None,
+    judge: bool = True,
 ) -> dict:
     """Run one experiment (model x vignette x temperature) and return summary."""
     with open(history_path) as f:
@@ -87,6 +89,7 @@ async def run_single(
         language="en",
         mode="fused",
         therapist_provider=provider,
+        judge=judge,
     )
     elapsed = time.time() - start
 
@@ -100,7 +103,7 @@ async def run_single(
         "temperature": temperature,
         "jaccard": metrics["jaccard_all"],
         "bertscore": metrics["bertscore_f1"],
-        "alignment": metrics["alignment_mean"],
+        "alignment": metrics.get("alignment_mean"),
         "path": str(experiment.path),
         "elapsed": round(elapsed, 1),
     }
@@ -120,10 +123,12 @@ def print_result(r: dict) -> None:
     if "error" in r:
         print(f"    T={r['temperature']}: FAILED: {r['error']}")
     else:
+        align = r.get("alignment")
+        align_str = f"{align:.3f}" if align is not None else "--"
         print(
             f"    T={r['temperature']}: "
             f"J={r['jaccard']:.3f} B={r['bertscore']:.3f} "
-            f"A={r['alignment']:.3f} ({r['elapsed']}s)"
+            f"A={align_str} ({r['elapsed']}s)"
         )
 
 
@@ -156,6 +161,8 @@ async def main() -> None:
     parser.add_argument("--slice", "-s", type=int, default=2)
     parser.add_argument("--no-therapy-temp", action="store_true",
                         help="Skip the extra therapy_temp run per model")
+    parser.add_argument("--no-judge", action="store_true",
+                        help="Skip the LLM judge: no alignment scores, no Google API key needed")
     parser.add_argument("--models", type=str, nargs="+", default=None,
                         help="Run only these models (by name). Default: all non-test targets")
     parser.add_argument("--add", action="store_true",
@@ -233,6 +240,8 @@ async def main() -> None:
     if extra_therapy:
         print(f"  Extra therapy_temp runs: {extra_therapy}")
     print(f"  Trials per run: {args.trials}")
+    if args.no_judge:
+        print("  Judge: disabled (alignment not scored)")
     print(f"  Total runs: {total_runs} ({total_runs * args.trials} trials)")
     print()
 
@@ -263,7 +272,10 @@ async def main() -> None:
             # Run each temperature sequentially
             for temp in model_temps:
                 try:
-                    result = await run_single(model, vignette, history_path, args.trials, temp, batch_dir)
+                    result = await run_single(
+                        model, vignette, history_path, args.trials, temp, batch_dir,
+                        judge=not args.no_judge,
+                    )
                     results.append(result)
                     print_result(result)
                 except Exception as e:

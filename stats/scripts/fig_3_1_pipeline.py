@@ -89,7 +89,7 @@ def main():
     draw_box(ax, gx[1], gy, "3-Agents", "Dialogue Loop", w=bw)
     draw_box(ax, gx[2], gy, "Therapy", "Sessions", w=bw)
     draw_box(ax, gx[3], gy, "Histories", "frozen dialogues", w=bw)
-    draw_box(ax, gx[4], gy, "Slices", "cut at rewriting turns", color="#fff9c4", w=bw)
+    draw_box(ax, gx[4], gy, "Slices", "cut at rescripting turns", color="#fff9c4", w=bw)
 
     ax.text(gx[1], 4.95, "Patient + Router + Therapist",
             ha="center", va="top", fontsize=8, color="#555", zorder=4)
@@ -110,7 +110,7 @@ def main():
     for i in range(1, 4):
         ex.append(ex[i - 1] + ew[i - 1] / 2 + egap + ew[i] / 2)
 
-    draw_box(ax, ex[0], ey, "Model", "11 LLMs tested", w=ew[0])
+    draw_box(ax, ex[0], ey, "Model", "12 LLMs tested", w=ew[0])
     draw_box(ax, ex[1], ey, "20 Trials", "Plan + Response\nunder same conditions", w=ew[1])
     draw_box(ax, ex[2], ey, "3 Metrics", "Jaccard / BERTScore / Alignment", w=ew[2])
     draw_box(ax, ex[3], ey, "Analysis", "Cross-Model Comparisons", w=ew[3])
