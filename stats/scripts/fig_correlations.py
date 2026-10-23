@@ -56,8 +56,9 @@ def main() -> None:
         )
 
     # Hand-tuned label placement per model: (dx, dy, ha), offsets in points.
-    # Tuned for the 11-model dataset: four models share Jaccard = 1.0 on the
-    # right edge (labels staggered right), OLMo and Qwen 122B dots coincide.
+    # Tuned for the 13-model dataset: six models share Jaccard = 1.0 on the
+    # right edge (labels staggered right), OLMo and Qwen 122B dots coincide,
+    # and so do Mistral Small 3.2 and Mistral Large 4.
     LABEL_OFFSETS = {
         # left cluster
         "qwen35_397b": (-10, -3, "right"),
@@ -68,8 +69,9 @@ def main() -> None:
         "command_a": (10, -3, "left"),
         # right cluster
         "sonnet46": (-10, -3, "right"),
-        "gpt54": (0, -16, "center"),
-        "mistral_small32": (10, -3, "left"),
+        "gpt54": (-10, -3, "right"),
+        "mistral_small32": (10, 3, "left"),
+        "mistral_large4": (10, -11, "left"),
         "olmo3_32b": (10, -12, "left"),
         "qwen35_122b": (10, 5, "left"),
         "mistral_medium35": (10, -3, "left"),

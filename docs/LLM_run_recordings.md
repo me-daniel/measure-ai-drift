@@ -2,7 +2,7 @@
 
 > **Purpose:** per-collection record of the serving conditions behind every experiment batch: gateway, routing mode, provider pinning, quantisation. The bridge re-collection (2026-07-30) showed that serving infrastructure contributes materially to measured stability, so the serving state of each collection is part of the experiment record.
 >
-> **Last updated:** 2026-07-30
+> **Last updated:** 2026-10-22
 
 ## Collection register
 
@@ -14,6 +14,7 @@
 | `batch_20260728_command_a` | 2026-07-28 | Command A | Pinned to Cohere (`allow_fallbacks: false`, `require_parameters: true`) | yes (Cohere) | yes |
 | `batch_20260728_gpt54_native` | 2026-07-28 | GPT-5.4 | Direct OpenAI API, no gateway. Replaces the excluded March batch | n/a | yes |
 | `batch_20260730_bridge_pinned` | 2026-07-30 | Mistral Large 3, Qwen 3.5 27B, Mistral Small 4, Qwen 3.5 122B | Pinned first-party (Mistral, Alibaba), `require_parameters: true` | yes (Mistral, Alibaba) | no (judge skipped, alignment columns empty) |
+| `batch_20261022_mistral_large4` | 2026-10-22 | Mistral Large 4 (non-thinking) | Pinned to the Mistral base endpoint: `order: ["mistral"]` plus `ignore: ["mistral/zdr", "mistral/eu"]`, since a base slug matches every variant of a provider. `allow_fallbacks: false`, `require_parameters: true`. 19 of 30 conditions hit upstream 429s on the first pass and were re-run with backoff, failed runs left no trials | yes (Mistral, all 600 trials) | yes |
 
 Trial-level provider logging exists from 2026-07-28 onward. Earlier trials carry no provider field, so the actual serving mix of the March cohort cannot be reconstructed.
 
@@ -39,6 +40,18 @@ Reading notes:
 - Under default routing, Qwen 3.5 27B trials could bounce across six stacks (fp8, bf16, unknown) and Qwen 3.5 122B across five, including fp4 at DeepInfra.
 - Mistral and Cohere do not disclose the precision of their first-party endpoints.
 - Mistral Large 3 and Medium 3.5 list a single endpoint. If that was already true in March, the original Large 3 runs were de facto single-provider, and its bridge lift would be mostly temporal (four months of serving-stack changes) rather than routing variance.
+
+## OpenRouter endpoint snapshot, 2026-10-22
+
+Source: OpenRouter endpoints API, accessed 2026-10-22.
+
+| Model | Endpoints (provider, quantisation) |
+|---|---|
+| `mistralai/mistral-large-4-0` | Mistral (unknown), Mistral `zdr` variant (unknown, same price), Mistral `eu` variant (unknown, +10% price, 512K context) |
+
+Model status at collection: public preview, API only. Mistral announced the open weights for the end of October 2026, no licence published yet. The batch measures the preview checkpoint.
+
+Reading note: Large 4 is the first model in this study with several endpoints from the same first-party provider. A plain `"mistral"` slug would let trials move between the three, so the variants are excluded explicitly.
 
 ## Why this matters
 

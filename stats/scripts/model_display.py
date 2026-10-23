@@ -7,6 +7,7 @@ MODEL_NAMES = {
     "mistral_small4": "Mistral Small 4",
     "mistral_medium35": "Mistral Medium 3.5",
     "mistral_large": "Mistral Large 3",
+    "mistral_large4": "Mistral Large 4",
     # Qwen family
     "qwen35_27b": "Qwen 3.5 27B",
     "qwen35_122b": "Qwen 3.5 122B",
@@ -29,6 +30,7 @@ MODEL_ORDER = [
     "mistral_small4",
     "mistral_medium35",
     "mistral_large",
+    "mistral_large4",
     "qwen35_27b",
     "qwen35_122b",
     "qwen35_397b",
@@ -41,7 +43,7 @@ MODEL_ORDER = [
 
 # Family panels for grouped figures (fig_jaccard, fig_bertscore)
 MODEL_GROUPS = {
-    "Mistral family": ["mistral_small32", "mistral_small4", "mistral_medium35", "mistral_large"],
+    "Mistral family": ["mistral_small32", "mistral_small4", "mistral_medium35", "mistral_large", "mistral_large4"],
     "Qwen family": ["qwen35_27b", "qwen35_122b", "qwen35_397b"],
     "North American models": ["olmo3_32b", "llama70b", "command_a", "gpt54", "sonnet46"],
 }
@@ -52,6 +54,7 @@ MODEL_COLORS = {
     "mistral_small4": "#e76f51",     # reddish orange (119B, primary subject)
     "mistral_medium35": "#d65f43",   # mid orange-red (128B dense, post-hoc addition)
     "mistral_large": "#c44536",      # dark orange-red (675B, largest)
+    "mistral_large4": "#8f2d24",     # brick red (October 2026 addition, newest)
     # Qwen family (violet to purple, lighter=smaller)
     "qwen35_27b": "#b89dd6",        # light violet-pink (27B, smallest)
     "qwen35_122b": "#8e6bbf",       # medium purple (122B)

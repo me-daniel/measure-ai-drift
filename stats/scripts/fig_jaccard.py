@@ -58,7 +58,8 @@ def plot_metric(ax, df, metric, title, ylabel, model_filter=None):
     ax.set_ylabel(ylabel)
     ax.set_ylim(0, 1.1)
     ax.set_title(title)
-    ax.legend(fontsize=9.5, loc="lower left")
+    # Compact spacing keeps the legend under the lowest curve (5 models in the Mistral panel)
+    ax.legend(fontsize=9.5, loc="lower left", labelspacing=0.25, handlelength=1.5, borderpad=0.3)
 
 
 def main() -> None:

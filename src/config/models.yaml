@@ -174,6 +174,23 @@ evaluation_targets:
         require_parameters: true
     notes: "Mistral Medium 3.5, 128B dense. Post-hoc addition (July 2026) validating pipeline extensibility. Non-thinking mode. Pinned: Mistral, sole endpoint. $1.50/$7.50"
 
+  - name: mistral_large4
+    provider: openrouter
+    model: mistralai/mistral-large-4-0
+    therapy_temp: 0.15  # Mistral family default, same as Small 4 / Large [NEEDS VERIFICATION]
+    extra_params:
+      reasoning:
+        effort: "none"
+      provider:
+        # A base slug matches every variant of the provider, and Mistral serves
+        # Large 4 on three endpoints (mistral, mistral/zdr, mistral/eu). Ignoring
+        # the two variants keeps every trial on the base endpoint.
+        order: ["mistral"]
+        ignore: ["mistral/zdr", "mistral/eu"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Mistral Large 4 (released 2026-10-06), multimodal, 1M context. Post-hoc addition (October 2026). Non-thinking mode. Pinned: Mistral base endpoint (mistral/zdr same price, mistral/eu +10%, 512K context). $1.36/$4.18"
+
   - name: mistral_large
     provider: openrouter
     model: mistralai/mistral-large-2512

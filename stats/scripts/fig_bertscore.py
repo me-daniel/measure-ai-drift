@@ -53,7 +53,8 @@ def plot_bertscore(ax, df, title, model_filter=None):
     ax.set_ylabel("Mean BERTScore F1 (SD)")
     ax.set_ylim(0.5, 1.0)
     ax.set_title(title)
-    ax.legend(fontsize=9.5)
+    # Upper right with compact spacing: clears the Mistral Medium 3.5 curve (5 models in the Mistral panel)
+    ax.legend(fontsize=9.5, loc="upper right", labelspacing=0.25, handlelength=1.5, borderpad=0.3)
 
 
 def main() -> None:
