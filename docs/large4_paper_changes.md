@@ -188,6 +188,12 @@ P4. Rewrite. In `04_setup.tex`, find the sentence starting `The proprietary ceil
 
 P5. New, one sentence, in `04_setup.tex`, in the data paragraph, right after the collection-date list that ends with `and Mistral Large~4 on 2026-10-22.`: the model set was closed with the Large~4 collection, and models released later are not part of this study. Wording is yours, keep it short.
 
+## Addendum 2026-10-23 (2): age-gap caveat for Command A
+
+Facts: Command A was released in March 2025 (model ID `command-a-03-2025`), Mistral Medium 3.5 on 2026-04-30, about a year later. The dense-pair comparison therefore differs in training generation as well as vendor. The conclusion that dense weights alone do not confer stability still holds. What the pair cannot do is say whether the gap comes from the vendor or from the newer training generation.
+
+P6. New, one sentence, in `06_discussion.tex`, in the paragraph starting `Parameter count does not straightforwardly predict stability`, right after `dense weights alone do not confer stability.`: the pair also differs in age, Command A (March 2025) being about a year older than Medium~3.5 (April 2026), so the comparison cannot separate vendor from training generation as the source of the gap. Keep it under about 30 words. Change nothing else.
+
 ## Open points (for Daniel, not the agent)
 
 - Large 4 licence: not published yet (state 2026-10-22). Most likely the modified MIT licence of Medium 3.5 (free use, except companies above $20M monthly revenue). Mistral's two strongest open releases since December 2025, Devstral 2 and Medium 3.5, both use it, while Large 3 and the 119B Small 4 stayed Apache 2.0. Fill the table TODO once the weights ship.
