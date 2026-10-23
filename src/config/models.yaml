@@ -317,8 +317,9 @@ evaluation_targets:
     notes: "Proprietary ceiling. Non-thinking mode. $2.50/$15.00. Native OpenAI API since July 2026: OpenRouter does not forward temperature for GPT-5.1+, so the temperature sweep runs natively (March batch ran via OpenRouter at default sampling). Temperature applies at reasoning_effort none per OpenAI docs"
 
   # --- Exploratory: Mamba-Transformer hybrids (branch 24_Nemotron, not in the paper) ---
-  # NVIDIA recommends T=1.0 for every mode, so these run the standard sweep
-  # plus therapy_temp 1.0 as an extra temperature (6 temps instead of 5).
+  # Super/Ultra cards: T=1.0, top_p=0.95 for every mode incl. reasoning off. Nano card:
+  # greedy for reasoning off. All three run the standard sweep plus therapy_temp 1.0
+  # as an extra temperature (6 temps instead of 5); top_p is not sent.
   - name: nemotron3_ultra
     provider: openrouter
     model: nvidia/nemotron-3-ultra-550b-a55b:free
@@ -348,7 +349,7 @@ evaluation_targets:
   - name: nemotron3_nano
     provider: openrouter
     model: nvidia/nemotron-3-nano-30b-a3b
-    therapy_temp: 1.0  # HF card: T=1.0 (reasoning), 0.6 (tool calling) [VERIFIED 2026-10-23]
+    therapy_temp: 1.0  # HF card: T=1.0 reasoning, 0.6 tool calling, greedy in the reasoning-off example; 1.0 kept to match Super/Ultra [VERIFIED 2026-10-23]
     extra_params:
       reasoning:
         effort: "none"
