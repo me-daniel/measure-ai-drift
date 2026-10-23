@@ -316,6 +316,48 @@ evaluation_targets:
       reasoning_effort: "none"  # Chat Completions param name (OpenRouter used reasoning.effort)
     notes: "Proprietary ceiling. Non-thinking mode. $2.50/$15.00. Native OpenAI API since July 2026: OpenRouter does not forward temperature for GPT-5.1+, so the temperature sweep runs natively (March batch ran via OpenRouter at default sampling). Temperature applies at reasoning_effort none per OpenAI docs"
 
+  # --- Exploratory: Mamba-Transformer hybrids (branch 24_Nemotron, not in the paper) ---
+  # NVIDIA recommends T=1.0 for every mode, so these run the standard sweep
+  # plus therapy_temp 1.0 as an extra temperature (6 temps instead of 5).
+  - name: nemotron3_ultra
+    provider: openrouter
+    model: nvidia/nemotron-3-ultra-550b-a55b:free
+    therapy_temp: 1.0  # HF generation_config: T=1.0, top_p=0.95 [VERIFIED 2026-10-23]
+    extra_params:
+      reasoning:
+        effort: "none"
+      provider:
+        order: ["nvidia"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Nemotron 3 Ultra, 550B-A55B LatentMoE, Mamba-2 + MoE + attention hybrid (released 2026-06). Free tier, served by NVIDIA only (quantisation undisclosed). Non-thinking mode. Exploratory"
+
+  - name: nemotron3_super
+    provider: openrouter
+    model: nvidia/nemotron-3-super-120b-a12b
+    therapy_temp: 1.0  # HF card: T=1.0, top_p=0.95 for all tasks [VERIFIED 2026-10-23]
+    extra_params:
+      reasoning:
+        effort: "none"
+      provider:
+        order: ["deepinfra/bf16"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Nemotron 3 Super, 120B-A12B LatentMoE, Mamba-2 + MoE + attention hybrid (released 2026-03). Free endpoint (NVIDIA) was down on 2026-10-23, so pinned to DeepInfra bf16. Non-thinking mode. Exploratory. $0.085 in"
+
+  - name: nemotron3_nano
+    provider: openrouter
+    model: nvidia/nemotron-3-nano-30b-a3b
+    therapy_temp: 1.0  # HF card: T=1.0 (reasoning), 0.6 (tool calling) [VERIFIED 2026-10-23]
+    extra_params:
+      reasoning:
+        effort: "none"
+      provider:
+        order: ["nebius/fp8"]
+        allow_fallbacks: false
+        require_parameters: true
+    notes: "Nemotron 3 Nano, 30B-A3B MoE, Mamba-2 + MoE + attention hybrid (released 2025-12). No free variant, pinned to Nebius fp8. Non-thinking mode. Exploratory. $0.06/$0.24"
+
   # --- Dropped (available if needed) ---
   # - name: trinity_large
   #   provider: openrouter

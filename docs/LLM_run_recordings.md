@@ -15,6 +15,7 @@
 | `batch_20260728_gpt54_native` | 2026-07-28 | GPT-5.4 | Direct OpenAI API, no gateway. Replaces the excluded March batch | n/a | yes |
 | `batch_20260730_bridge_pinned` | 2026-07-30 | Mistral Large 3, Qwen 3.5 27B, Mistral Small 4, Qwen 3.5 122B | Pinned first-party (Mistral, Alibaba), `require_parameters: true` | yes (Mistral, Alibaba) | no (judge skipped, alignment columns empty) |
 | `batch_20261022_mistral_large4` | 2026-10-22 | Mistral Large 4 (non-thinking) | Pinned to the Mistral base endpoint: `order: ["mistral"]` plus `ignore: ["mistral/zdr", "mistral/eu"]`, since a base slug matches every variant of a provider. `allow_fallbacks: false`, `require_parameters: true`. 19 of 30 conditions hit upstream 429s on the first pass and were re-run with backoff, failed runs left no trials | yes (Mistral, all 600 trials) | yes |
+| `batch_20261023_nemotron` | 2026-10-23 | Nemotron 3 Ultra, Super, Nano (non-thinking). Exploratory, branch `24_Nemotron`, not in the paper | Ultra: free variant, NVIDIA only. Super: DeepInfra bf16 (the free NVIDIA endpoint was down). Nano: Nebius fp8 (no free variant). All `allow_fallbacks: false`, `require_parameters: true`. Standard sweep plus T=1.0 (vendor default), 720 trials per model | yes (NVIDIA, DeepInfra, Nebius: 720 trials each) | yes |
 
 Trial-level provider logging exists from 2026-07-28 onward. Earlier trials carry no provider field, so the actual serving mix of the March cohort cannot be reconstructed.
 
@@ -52,6 +53,24 @@ Source: OpenRouter endpoints API, accessed 2026-10-22.
 Model status at collection: public preview, API only. Mistral announced the open weights for the end of October 2026, no licence published yet. The batch measures the preview checkpoint.
 
 Reading note: Large 4 is the first model in this study with several endpoints from the same first-party provider. A plain `"mistral"` slug would let trials move between the three, so the variants are excluded explicitly.
+
+## OpenRouter endpoint snapshot, 2026-10-23
+
+Source: OpenRouter endpoints API, accessed 2026-10-23. Exploratory Nemotron batch only.
+
+| Model | Endpoints (provider, quantisation) |
+|---|---|
+| `nvidia/nemotron-3-ultra-550b-a55b` | DeepInfra (fp4, plus a `flex` variant), BaseTen (fp4, plus a `us` variant), Venice (fp8) |
+| `nvidia/nemotron-3-ultra-550b-a55b:free` | NVIDIA (unknown). Single endpoint |
+| `nvidia/nemotron-3-super-120b-a12b` | DekaLLM (fp8), DeepInfra (bf16), Crusoe (fp8) |
+| `nvidia/nemotron-3-super-120b-a12b:free` | NVIDIA (unknown). Down at collection time (status -5, 0% uptime) |
+| `nvidia/nemotron-3-nano-30b-a3b` | Novita (fp4), Nebius (fp8). No free variant |
+
+Reading notes:
+
+- NVIDIA serves its own models only on the free variants. The paid endpoints are all third-party.
+- The three models therefore run on three different stacks (NVIDIA unknown precision, DeepInfra bf16, Nebius fp8). Differences between them mix size and serving.
+- The free tier allows 1,000 requests per day on this account. Ultra (720 trials) fits, Ultra plus Super on free would not.
 
 ## Why this matters
 
