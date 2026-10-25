@@ -1,8 +1,8 @@
 # Experiment Analysis
 
-> Key findings from 360 runs (12 models x 6 vignettes x 5 temperatures x 20 trials = 7,200 trials).
-> Data: `experiments/latest/` plus `batch_20260709_mistral_medium35`, `batch_20260728_command_a`, and `batch_20260728_gpt54_native`, aggregated in `stats/data/experiment_runs.csv`.
-> Generated 2026-03-24, revised 2026-07-28 (12-model set, GPT-5.4 native re-collection).
+> Key findings from 390 runs (13 models x 6 vignettes x 5 temperatures x 20 trials = 7,800 trials).
+> Data: `experiments/latest/` plus `batch_20260709_mistral_medium35`, `batch_20260728_command_a`, `batch_20260728_gpt54_native`, and `batch_20261022_mistral_large4`, aggregated in `stats/data/experiment_runs.csv`.
+> Generated 2026-03-24, revised 2026-07-28 (12-model set, GPT-5.4 native re-collection) and 2026-10-23 (13-model set, Mistral Large 4).
 > The superseded GPT-5.4 runs are excluded from all analyses and preserved in `experiments/runs/batch_20260321_gpt54_openrouter_default_sampling/` (see finding 10).
 > Serving conditions per collection (routing, pinning, quantisation): [LLM_run_recordings.md](LLM_run_recordings.md).
 
@@ -14,6 +14,7 @@
 | EU-sovereign | Mistral Small 4 | 119B MoE | 6.5B |
 | EU-sovereign | Mistral Medium 3.5 | 128B dense | 128B |
 | EU-sovereign | Mistral Large 3 | 675B MoE | 41B |
+| EU-sovereign | Mistral Large 4 (public preview) | 1.05T MoE | 52B |
 | Open-weight | Qwen 3.5 27B | 27B dense | 27B |
 | Open-weight | Qwen 3.5 122B | 122B MoE | 10B |
 | Open-weight | Qwen 3.5 397B | 397B MoE | 17B |
@@ -37,6 +38,7 @@ All models via OpenRouter except GPT-5.4 (native OpenAI API, finding 10). Per-ru
 | Mistral Small 4 (119B MoE) | 0.746 | 0.874 | 0.935 | 0.646 | 0.625 |
 | Mistral Medium 3.5 (128B) | 1.000 | 1.000 | 1.000 | 1.000 | 0.967 |
 | Mistral Large 3 (675B MoE) | 0.772 | 0.709 | 0.877 | 0.775 | 0.712 |
+| Mistral Large 4 (1.05T MoE) | 1.000 | 1.000 | 1.000 | 1.000 | 0.854 |
 | Qwen 3.5 27B | 0.760 | 0.754 | 0.768 | 0.595 | 0.518 |
 | Qwen 3.5 122B | 1.000 | 1.000 | 0.967 | 0.853 | 0.730 |
 | Qwen 3.5 397B | 0.799 | 0.737 | 0.775 | 0.642 | 0.626 |
@@ -48,13 +50,13 @@ All models via OpenRouter except GPT-5.4 (native OpenAI API, finding 10). Per-ru
 
 ## Statistical tests
 
-All tests exploratory. Effect sizes reported alongside p-values. Pairwise contrasts use Mann-Whitney U with Bonferroni over C(12,2) = 66 pairs.
+All tests exploratory. Effect sizes reported alongside p-values. Pairwise contrasts use Mann-Whitney U with Bonferroni over C(13,2) = 78 pairs.
 
 ### Temperature effect (pooled)
 
-- Jaccard vs temperature: rho=-0.215, p<0.001. Higher temperature reduces strategy consistency.
-- BERTScore vs temperature: rho=-0.489, p<0.001. Stronger effect on semantic wording than strategy choice.
-- Alignment vs temperature: rho=-0.069, p=0.193. **Not significant.** Models implement chosen strategies equally well regardless of temperature.
+- Jaccard vs temperature: rho=-0.220, p<0.001. Higher temperature reduces strategy consistency.
+- BERTScore vs temperature: rho=-0.499, p<0.001. Stronger effect on semantic wording than strategy choice.
+- Alignment vs temperature: rho=-0.058, p=0.252. **Not significant.** Models implement chosen strategies equally well regardless of temperature.
 
 ### Temperature effect (per-model Spearman, Jaccard)
 
@@ -64,6 +66,7 @@ All tests exploratory. Effect sizes reported alongside p-values. Pairwise contra
 | Mistral Small 4 | -0.216 | 0.251 | No |
 | Mistral Medium 3.5 | -0.306 | 0.100 | No |
 | Mistral Large 3 | -0.081 | 0.672 | No |
+| Mistral Large 4 | -0.311 | 0.095 | No |
 | Qwen 3.5 27B | -0.485 | 0.007 | Yes |
 | Qwen 3.5 122B | -0.560 | 0.001 | Yes |
 | Qwen 3.5 397B | -0.150 | 0.427 | No |
@@ -78,39 +81,39 @@ Temperature-robust: all Mistrals, Llama, Qwen 397B, Command A, GPT-5.4, Sonnet.
 
 ### Model differences (Kruskal-Wallis)
 
-- Jaccard: H(11)=104.5, p<0.001, eta2=0.291. 20 of 66 pairs significant.
-- BERTScore: H(11)=92.0, p<0.001, eta2=0.256. 19 of 66 pairs significant.
-- Alignment: H(11)=155.8, p<0.001, eta2=0.434. 34 of 66 pairs significant.
+- Jaccard: H(12)=109.6, p<0.001, eta2=0.282. 22 of 78 pairs significant.
+- BERTScore: H(12)=92.0, p<0.001, eta2=0.237. 20 of 78 pairs significant.
+- Alignment: H(12)=164.9, p<0.001, eta2=0.424. 38 of 78 pairs significant.
 
 ### Vignette effect
 
-- Jaccard: H(5)=6.3, p=0.280, eta2=0.018. **Not significant.**
-- BERTScore: H(5)=11.0, p=0.052, eta2=0.031. **Not significant** (boundary).
+- Jaccard: H(5)=5.4, p=0.370, eta2=0.014. **Not significant.**
+- BERTScore: H(5)=10.1, p=0.072, eta2=0.026. **Not significant.**
 
-The earlier 10-model analysis had shown a significant vignette effect (p=0.007). With the corrected GPT-5.4 data and two added models it disappears: stability is a model property, not a patient-difficulty property.
+The earlier 10-model analysis had shown a significant vignette effect (p=0.007). With the corrected GPT-5.4 data and two added models it disappears, and it stays absent with Large 4: stability is a model property, not a patient-difficulty property.
 
 ### Metric correlations
 
-- Jaccard vs BERTScore: rho=0.552, p<0.001. Moderate. Related but distinct dimensions.
-- Jaccard vs Alignment: rho=0.293, p<0.001. Weak.
-- BERTScore vs Alignment: rho=0.403, p<0.001. Weak-moderate.
+- Jaccard vs BERTScore: rho=0.543, p<0.001. Moderate. Related but distinct dimensions.
+- Jaccard vs Alignment: rho=0.245, p<0.001. Weak.
+- BERTScore vs Alignment: rho=0.382, p<0.001. Weak-moderate.
 
 ## Key findings
 
 ### 1. Four stability tiers
 
 1. **Decision-deterministic ceiling:** GPT-5.4, Mistral Medium 3.5. Median J=1.000 at essentially every temperature. GPT-5.4 produces a single strategy set across all 20 trials in 28 of its 30 conditions (modal-set agreement 0.993). Medium 3.5 matches it at the median with a broader repertoire.
-2. **Temperature-robust:** Sonnet 4.6, Mistral family, Llama, Qwen 397B, Command A. No statistically significant degradation. Sonnet varies stochastically (2-3 distinct strategy sets in about half its conditions, including at T=0.0) but without temperature dependence.
+2. **Temperature-robust:** Sonnet 4.6, Mistral family, Llama, Qwen 397B, Command A. No statistically significant degradation. Sonnet varies stochastically (2-3 distinct strategy sets in about half its conditions, including at T=0.0) but without temperature dependence. Mistral Large 4 reaches the ceiling median at T<=0.3, but its modal-set agreement (0.892, fifth of thirteen) and the narrowest repertoire in the set keep it below tier 1 (finding 15).
 3. **Temperature-sensitive:** OLMo, Qwen 122B. High peak at T=0.0, significant degradation as temperature increases.
 4. **Consistently variable:** Qwen 27B. Lower baseline, significant degradation. Smallest model in the set.
 
 ### 2. T=0.0 is not optimal for all models
 
-Ten of twelve models reach their best mean Jaccard at a non-zero temperature. Mistral Small 4 rises from 0.777 at T=0.0 to 0.881 at T=0.15, Mistral Large from 0.796 to 0.848 at T=0.15, Llama from 0.719 to 0.775 at T=0.075, Command A from 0.832 to 0.861 at T=0.15. A tiny amount of sampling variance produces more consistent strategy selection than pure greedy decoding.
+Ten of thirteen models reach their best mean Jaccard at a non-zero temperature. Mistral Small 4 rises from 0.777 at T=0.0 to 0.881 at T=0.15, Mistral Large from 0.796 to 0.848 at T=0.15, Llama from 0.719 to 0.775 at T=0.075, Command A from 0.832 to 0.861 at T=0.15. A tiny amount of sampling variance produces more consistent strategy selection than pure greedy decoding. Mistral Large 4 is the exception within its family: mean J is highest at T=0.0 (0.956).
 
 ### 3. The optimum sits at 0.075-0.15, not at one universal point
 
-Five models peak at T=0.075 (GPT-5.4, Medium 3.5, Small 3.2, Qwen 122B, Llama) and five at T=0.15 (Command A, Mistral Large, Small 4, Qwen 397B, Sonnet). Only OLMo and Qwen 27B peak at T=0.0. The Mistral family peaks exactly in the region of its vendor default (0.15).
+Five models peak at T=0.075 (GPT-5.4, Medium 3.5, Small 3.2, Qwen 122B, Llama) and five at T=0.15 (Command A, Mistral Large, Small 4, Qwen 397B, Sonnet). Only OLMo, Qwen 27B and Mistral Large 4 peak at T=0.0. The older Mistral models peak in the region of their vendor default (0.15), Large 4 does not.
 
 ### 4. Alignment is temperature-independent
 
@@ -118,11 +121,11 @@ Models do not get worse at implementing strategies as temperature rises. They pi
 
 ### 5. Vignette difficulty does not matter (revised)
 
-The vignette effect is not significant in the 12-model set (Jaccard p=0.280, BERTScore p=0.052). The significant effect in the earlier 10-model analysis (p=0.007) did not survive the corrected GPT-5.4 data and the two additions. Median Jaccard spans a narrow 0.818 (cooperative) to 1.000 (anxious, skeptic). Per-vignette heatmaps stay useful for spotting where a specific model breaks down.
+The vignette effect is not significant in the 13-model set (Jaccard p=0.370, BERTScore p=0.072). The significant effect in the earlier 10-model analysis (p=0.007) did not survive the corrected GPT-5.4 data and the two additions. Median Jaccard spans a narrow 0.821 (cooperative, resistant) to 1.000 (anxious, skeptic). Per-vignette heatmaps stay useful for spotting where a specific model breaks down.
 
 ### 6. BERTScore is insensitive to plan-level instability
 
-BERTScore correlates with Jaccard (rho=0.552) but measures a different, shallower dimension. The slice depth analysis confirms this: across conversation depths, Jaccard varies visibly (deeper slices anchor strategy choice) while BERTScore stays flat. The model produces semantically similar therapeutic text regardless of which strategies it picks. Swapping "confrontation" for "cognitive reframe" changes the plan but not the response surface enough for BERTScore to detect it.
+BERTScore correlates with Jaccard (rho=0.543) but measures a different, shallower dimension. The slice depth analysis confirms this: across conversation depths, Jaccard varies visibly (deeper slices anchor strategy choice) while BERTScore stays flat. The model produces semantically similar therapeutic text regardless of which strategies it picks. Swapping "confrontation" for "cognitive reframe" changes the plan but not the response surface enough for BERTScore to detect it.
 
 This means BERTScore captures response *style* consistency, not decision *content* consistency. It serves as a sanity check (if BERTScore were low, the model would be generating erratic text) but does not distinguish between clinically different plans. The real signal for therapeutic stability lives in Jaccard (strategy decisions) and Alignment (plan-response coherence).
 
@@ -158,7 +161,7 @@ Command A was added as a control for the dense-architecture expectation behind M
 
 ### 12. Serving infrastructure contributes to measured instability (pinned bridge, 2026-07-30)
 
-Four original-cohort models were re-run on identical frozen histories under pinned first-party serving (Mistral, Alibaba at fp8), judge skipped. 120 runs, 2,400 trials, in `experiments/runs/batch_20260730_bridge_pinned/`, aggregated to `stats/data/bridge_runs.csv`, excluded from the canonical 360 runs. Serving conditions: [LLM_run_recordings.md](LLM_run_recordings.md).
+Four original-cohort models were re-run on identical frozen histories under pinned first-party serving (Mistral, Alibaba at fp8), judge skipped. 120 runs, 2,400 trials, in `experiments/runs/batch_20260730_bridge_pinned/`, aggregated to `stats/data/bridge_runs.csv`, excluded from the canonical runs. Serving conditions: [LLM_run_recordings.md](LLM_run_recordings.md).
 
 | Model | Arch | Pooled median J orig | pinned | Regime effect |
 |---|---|---|---|---|
@@ -167,15 +170,23 @@ Four original-cohort models were re-run on identical frozen histories under pinn
 | Mistral Small 4 | MoE 119B (6.5B act.) | 0.814 | 0.814 | none, profile reproduces |
 | Qwen 3.5 122B | MoE 122B (10B act.) | 1.000 | 1.000 | none, profile reproduces |
 
-Two separate results. First, the regime effect is model-specific, not architecture-specific: it hit the dense Qwen 27B hardest (six OpenRouter endpoints at mixed quantisations under default routing) and left two of three MoEs untouched. Second, the residual pinned behaviour patterns by architecture: all three MoEs keep a genuine temperature response (peak at low non-zero T, decline at T=0.6) and two of three stay nondeterministic at T=0.0 (Small 4 mean J 0.783, Large 3 0.888), while the pinned dense models sit at ceiling across the sweep, except Command A (0.812, see finding 11). Qwen 27B's pinned ceiling is not a dropped-parameter artefact: its BERTScore falls 0.952 to 0.854 across the sweep, so temperature reaches the model. Pattern in six models, not a law. Cross-regime comparisons in the main ranking inherit this confound (paper Sections 5.7 and 6.6).
+Two separate results. First, the regime effect is model-specific, not architecture-specific: it hit the dense Qwen 27B hardest (six OpenRouter endpoints at mixed quantisations under default routing) and left two of three MoEs untouched. Second, the residual pinned behaviour patterns by architecture: all three MoEs keep a genuine temperature response (peak at low non-zero T, decline at T=0.6) and two of three stay nondeterministic at T=0.0 (Small 4 mean J 0.783, Large 3 0.888), while the pinned dense models sit at ceiling across the sweep, except Command A (0.812, see finding 11). Qwen 27B's pinned ceiling is not a dropped-parameter artefact: its BERTScore falls 0.952 to 0.854 across the sweep, so temperature reaches the model. Mistral Large 4 (pinned MoE, finding 15) fits half of the pattern: nondeterministic at T=0.0 (mean J 0.956) and declining at T=0.6 (0.818), but without the low non-zero peak. Pattern in seven models, not a law. Cross-regime comparisons in the main ranking inherit this confound (paper Sections 5.7 and 6.6).
 
 ### 13. BERTScore barely separates strategy switches from rewording (quantified)
 
-Per-pair analysis over all 68,400 trial pairs of the canonical 360 runs (`stats/data/pairwise_jaccard_bertscore.json`, script `stats/scripts/pairwise_jaccard_bertscore.py`, resumable cache under `stats/data/cache/pairwise_bertscore/`). Pairs with identical strategy sets average F1 0.781 (n=51,950), fully disjoint sets 0.614 (n=1,560). Pooled gap 0.17, but model identity inflates it: within a single model the gap is typically 0.06-0.13 with bucket SDs near 0.10 (Command A the outlier at 0.31). Distributions overlap too heavily for any threshold to classify strategy switches. Confirms finding 6 with numbers.
+Per-pair analysis over all 68,400 trial pairs of the original 360 runs (Large 4 not included) (`stats/data/pairwise_jaccard_bertscore.json`, script `stats/scripts/pairwise_jaccard_bertscore.py`, resumable cache under `stats/data/cache/pairwise_bertscore/`). Pairs with identical strategy sets average F1 0.781 (n=51,950), fully disjoint sets 0.614 (n=1,560). Pooled gap 0.17, but model identity inflates it: within a single model the gap is typically 0.06-0.13 with bucket SDs near 0.10 (Command A the outlier at 0.31). Distributions overlap too heavily for any threshold to classify strategy switches. Confirms finding 6 with numbers.
 
 ### 14. The judge is noisy but unbiased (re-run agreement)
 
-One seeded trial per canonical run (360 trials) re-judged with the identical setup (`scripts/rejudge_subset.py`, results `stats/data/judge_rerun_agreement.json`). Strategy-level exact agreement 96.2% (720 pairs, linear-weighted kappa 0.807), 93.1% of trials keep their alignment value, mean signed delta -0.003. Disagreement concentrates in the partial category: score 2 reproduces at 98.2%, score 1 at 60%. Llama 3.3 70B is the outlier (63.3% exact, borderline 1-vs-2 calls). No temperature pattern, consistent with judge noise rather than properties of the judged runs.
+One seeded trial per original run (360 trials, Large 4 not included) re-judged with the identical setup (`scripts/rejudge_subset.py`, results `stats/data/judge_rerun_agreement.json`). Strategy-level exact agreement 96.2% (720 pairs, linear-weighted kappa 0.807), 93.1% of trials keep their alignment value, mean signed delta -0.003. Disagreement concentrates in the partial category: score 2 reproduces at 98.2%, score 1 at 60%. Llama 3.3 70B is the outlier (63.3% exact, borderline 1-vs-2 calls). No temperature pattern, consistent with judge noise rather than properties of the judged runs.
+
+### 15. Mistral Large 4: ceiling median, narrow repertoire, no low-temperature optimum
+
+Third post-hoc addition, collected 2026-10-22 under the pinned regime (base endpoint, provider logged for all 600 trials), seven months after the main set. Large 4 is a public preview: weights not yet downloadable (announced for end of October 2026), licence unpublished. Median J 1.000, but modal-set agreement 0.892 (fifth of thirteen), and one strategy set covers all 20 trials in only 19 of 30 conditions. Mean BERTScore 0.746, mean alignment 0.963, plan validity 100%.
+
+Mean J is highest at T=0.0 (0.956) and falls to 0.818 at T=0.6, not significant (rho=-0.311, p=0.095). BERTScore falls 0.794 to 0.691. The ceiling median is partly distributional: Large 4 has the narrowest repertoire in the set (77% top-two share, 0 of 1,200 picks confrontation), against 59% for Medium 3.5. The remaining instability sits mostly in the avoidant vignette (median 0.653).
+
+Pairwise (Bonferroni, 78 pairs): Jaccard significantly above Llama 3.3 70B and Qwen 3.5 27B. Against Medium 3.5 only BERTScore differs (Jaccard p_bonf 1.0). Moving from 66 to 78 comparisons moves no pair across the significance boundary. Comparisons with the main cohort are cross-regime, with seven months of serving changes in between (finding 12).
 
 ## Supplementary experiments
 
@@ -204,4 +215,4 @@ One seeded trial per canonical run (360 trials) re-judged with the identical set
 | D.1 | Strategy distribution by model | `fig_5_1_strategy_distribution` |
 | A.1 | Plan validity rate | `fig_A1_validity` |
 
-All regenerated 2026-07-28 for the 12-model set, in `thesis/figures/` (copied to `paper/figures/`), PDF + PNG.
+All regenerated 2026-10-22 for the 13-model set, in `thesis/figures/` (copied to `paper/figures/`), PDF + PNG.
