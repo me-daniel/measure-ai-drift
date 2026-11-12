@@ -51,6 +51,8 @@ Source: OpenRouter endpoints API, accessed 2026-10-22.
 
 Model status at collection: public preview, API only. Mistral announced the open weights for the end of October 2026, no licence published yet. The batch measures the preview checkpoint.
 
+Update 2026-11-10: the weights shipped on 2026-10-29 under the Mistral Ecosystem Open-Weight License (modified MIT). The released model rejects `reasoning.effort: "none"`, the level this batch used, on Mistral's API and through OpenRouter. `low` is accepted but reasons (tested 2026-11-10, see `docs/grounded/temperature_sources.md`). The base endpoint this batch was pinned to is no longer listed on OpenRouter.
+
 Reading note: Large 4 is the first model in this study with several endpoints from the same first-party provider. A plain `"mistral"` slug would let trials move between the three, so the variants are excluded explicitly.
 
 ## Why this matters

@@ -17,7 +17,7 @@ If the evaluation stack generated its own dialogue context, any measured instabi
 \subsection{Dialogue Generation}
 \label{sec:dialogue}
 
-The generation stack orchestrates a three-agent loop that produces naturalistic IRT sessions. Each turn passes through a \emph{patient} agent that responds based on a behavioural profile (nightmare content, emotional style, engagement pattern), a \emph{router} agent that classifies the current protocol stage, and a \emph{therapist} agent that generates a stage-appropriate response. The loop traverses the full IRT protocol (Figure~\ref{fig:dialogue-gen}): the dialogue cycles through recording and rescripting until each stage is complete, then proceeds to rehearsal, and the complete session is exported.
+The generation stack orchestrates a three-agent loop that produces naturalistic IRT sessions. Each turn passes through a \emph{patient} agent that responds based on a behavioural profile (nightmare content, emotional style, engagement pattern), a \emph{router} agent that classifies the current protocol stage, and a \emph{therapist} agent that generates a stage-appropriate response. The loop traverses the IRT protocol (Figure~\ref{fig:dialogue-gen}): the dialogue moves through recording and rescripting and on to rehearsal as the router judges each stage complete. Sessions were capped at 20 or 30 messages, and all six contain at least five rescripting exchanges, which is all the experiment uses.
 
 \begin{figure}[t]
   \centering
@@ -33,7 +33,7 @@ Six patient vignettes cover the range of clinical presentation difficulty expect
 
 Frozen conversation histories serve as deterministic evaluation entry points. Each vignette's session is sliced at rescripting-turn boundaries, where each slice ends after a complete therapist--patient exchange. Every trial, across all models and temperatures, receives the identical frozen history as input.
 
-The evaluation depth was chosen empirically. A preliminary analysis tested Mistral Large~3 at five slice depths across all six vignettes: consistency was lowest at the second slice (mean Jaccard 0.77 at $T{=}0.075$), where the strategy is not yet anchored by prior exchanges, and rose to near-ceiling values from the third slice onward ($J > 0.93$). The main experiment therefore evaluates at the second rescripting boundary (slice~2), the depth at which the pilot model was least consistent. The pilot covers a single model, so reading slice~2 as a conservative lower bound for all thirteen assumes that this depth profile generalises: a model that is consistent here would plausibly be at least as consistent later in the conversation.
+The evaluation depth was chosen empirically. A preliminary analysis tested Mistral Large~3 at five slice depths across all six vignettes: consistency was lowest at the second slice (mean Jaccard 0.77 at $T{=}0.075$), where the strategy is not yet anchored by prior exchanges, and rose to near-ceiling values from the third slice onward ($J > 0.93$). The main experiment therefore evaluates at the second rescripting boundary (slice~2), the depth at which the pilot model was least consistent. The pilot covers a single model, so reading slice~2 as a conservative lower bound for all twelve assumes that this depth profile generalises: a model that is consistent here would plausibly be at least as consistent later in the conversation.
 
 \subsection{Evaluation Stack and Fused Generation}
 \label{sec:evalstack}
@@ -54,9 +54,9 @@ Twenty independent trials are collected per condition, yielding $\binom{20}{2}=1
 \subsection{The Plan Mechanism}
 \label{sec:plan}
 
-The plan block raises a methodological question. The faithfulness literature shows that chain-of-thought explanations do not always reflect a model's actual computation \citep{turpin2023language, lanham2023measuring}, so a declared strategy may be a post-hoc rationalisation rather than a window into decision-making. This study sidesteps the problem by framing the plan as \emph{declared intent}: the plan captures what the model commits to, not what it internally computes. Whether or not the declaration reflects genuine reasoning, a practical consequence holds: if strategy declarations vary across runs, clinical responses will also vary.
+The plan block raises a methodological question. The faithfulness literature shows that chain-of-thought explanations do not always reflect a model's actual computation \citep{turpin2023language, lanham2023measuring}, so a declared strategy may be a post-hoc rationalisation rather than a window into decision-making. This study sidesteps the problem by framing the plan as \emph{declared intent}, what the model commits to, not what it internally computes. Whether or not the declaration reflects genuine reasoning, one consequence holds: if strategy declarations vary across runs, clinical responses will also vary.
 
-The framing preserves three uses. The declared strategies enable consistency scoring at the decision level (Method~1). Comparing declaration against response enables alignment verification (Method~3). And the plan provides a human-readable summary of the model's intended approach, which is what a clinical overseer would review in deployment.
+Three uses follow. The declared strategies enable consistency scoring at the decision level (Method~1), comparing declaration against response enables alignment verification (Method~3), and the plan provides a human-readable summary of the model's intended approach, which is what a clinical overseer would review in deployment.
 
 \subsection{Strategy Taxonomy}
 \label{sec:taxonomy}
@@ -83,7 +83,7 @@ Strategy sets are extracted from the plan block of each trial and compared with 
 
 \subsubsection{Method 2: Response Similarity}
 
-Pairwise BERTScore F1 \citep{zhang2020bertscore} is computed over the response texts (plan blocks excluded) across the same 190 pairs, with DeBERTa-XLarge-MNLI \citep{he2021deberta} as the embedding model. It ranks first of 130+ models on WMT16 human correlation ($r=0.778$), and its NLI fine-tuning matches the semantic-equivalence judgement the metric requires: surface metrics such as BLEU or ROUGE would penalise valid therapeutic paraphrasing.
+Pairwise BERTScore F1 \citep{zhang2020bertscore} is computed over the response texts (plan blocks excluded) across the same 190 pairs. The metric compares contextual embeddings rather than surface tokens, so two responses that apply the same strategy in different words score as similar, where BLEU or ROUGE would penalise the paraphrase. The embedding model is DeBERTa-XLarge-MNLI \citep{he2021deberta}, which ranks first of 130+ candidate models on the BERTScore WMT16 human-correlation benchmark ($r=0.778$) and whose NLI fine-tuning targets the judgement the metric needs here, whether two sentences mean the same thing.
 
 \subsubsection{Method 3: Plan--Response Alignment}
 

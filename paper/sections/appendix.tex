@@ -27,7 +27,7 @@ The taxonomy evolved over four iterations ($8 \to 6 \to 7 \to 6$ categories). Th
 
 The fused-generation system prompt injected into each trial (the \texttt{\{categories\_block\}} placeholder is filled with the six taxonomy definitions of Appendix~\ref{app:taxonomy}):
 
-\begin{quote}\small\ttfamily
+\begin{quote}\small\ttfamily\raggedright
 You are an Imagery Rehearsal Therapy (IRT) assistant helping a patient rescript their nightmare.\\[2pt]
 First, select 1-2 therapeutic strategies from this taxonomy:\\
 \{categories\_block\}\\[2pt]
@@ -45,7 +45,7 @@ IMPORTANT:\\
 
 An in-context example provided with the prompt:
 
-\begin{quote}\small\ttfamily
+\begin{quote}\small\ttfamily\raggedright
 <plan>safety / social\_support</plan>\\[4pt]
 What if, in this version of the dream, you could find a place that feels completely secure --- and someone you trust is already there waiting for you?
 \end{quote}
@@ -57,7 +57,7 @@ Each trial receives this system prompt together with the frozen dialogue history
 
 The alignment judge receives the taxonomy definitions, the trial's declared strategies, and the therapist response, and scores each declared strategy on a ternary scale with mandatory reasoning:
 
-\begin{quote}\small\ttfamily
+\begin{quote}\small\ttfamily\raggedright
 For each declared strategy, assign ONE score:\\
 - 2 (implemented): The response clearly and specifically implements this strategy. The therapeutic technique is evident and developed --- you can point to specific sentences or passages that demonstrate it.\\
 - 1 (partial): The response touches on this strategy but does not fully develop it. Elements are present but incomplete, only implied, or mentioned without therapeutic depth.\\
@@ -65,9 +65,9 @@ For each declared strategy, assign ONE score:\\
 Output format: strategy\_id: <reasoning> | score: <0|1|2>
 \end{quote}
 
-Per-trial alignment is the mean score over declared strategies, normalised by the maximum (2). Trials whose judgment fails (timeout, API error) or that cannot be judged (invalid plan) are treated as missing data and excluded from the alignment mean. Zero-scored or partially parsed judgments are re-judged once by Gemini~3.1~Pro (9 of 7{,}800 trials; Section~\ref{sec:results-alignment}).
+Per-trial alignment is the mean score over declared strategies, normalised by the maximum (2). Trials whose judgment fails (timeout, API error) or that cannot be judged (invalid plan) are treated as missing data and excluded from the alignment mean. Zero-scored or partially parsed judgments are re-judged once by Gemini~3.1~Pro (9 of 7{,}200 trials; Section~\ref{sec:results-alignment}).
 
-Because the judge runs at $T{=}1.0$ and scores each trial once, a re-judging control quantifies its own sampling variance: one seeded trial per run for the original 360 runs was re-judged with the identical setup. Strategy-level exact agreement is 96.2\% (720 score pairs, linear-weighted $\kappa = 0.807$), 93.1\% of trials keep their alignment value unchanged, and the mean signed difference is $-0.003$. Disagreement concentrates in the partial category (score 1), while full implementation (score 2) reproduces at 98.2\%. Single judgments are therefore noisy at the implemented--partial boundary but not biased.
+Because the judge runs at $T{=}1.0$ and scores each trial once, a re-judging control quantifies its own sampling variance: one seeded trial per run (360 trials) was re-judged with the identical setup. Strategy-level exact agreement is 96.2\% (720 score pairs, linear-weighted $\kappa = 0.807$), 93.1\% of trials keep their alignment value unchanged, and the mean signed difference is $-0.003$. Disagreement concentrates in the partial category (score 1), while full implementation (score 2) reproduces at 98.2\%. Single judgments are therefore noisy at the implemented--partial boundary but not biased.
 
 \clearpage
 
@@ -124,6 +124,71 @@ A supplementary experiment on Mistral Large~3 compares runs with a fixed seed (\
 \end{figure}
 
 \clearpage
+
+\section{Models and Configurations Outside the Sweep}
+\label{app:excluded}
+
+The protocol needs two controls on the serving side: a temperature that reaches the model and a reasoning mode that can be switched off. Newer frontier models increasingly offer neither. Table~\ref{tab:excluded} records the cases met during this study, each re-probed on 2026-11-10 with single requests.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{llll}
+    \toprule
+    Model & Route & Request & Result \\
+    \midrule
+    GPT-5.4 & OpenRouter & $T{=}0.6$, effort \texttt{none} & 200, temperature dropped \\
+    GPT-5.4 & OpenRouter, strict & $T{=}0.6$, effort \texttt{none} & 404, no endpoint \\
+    GPT-5.4 & OpenRouter & $T{=}0.6$, effort \texttt{high} & 200, temperature dropped \\
+    GPT-5.4 & OpenAI & $T{=}0.6$, effort \texttt{none} & 200 \\
+    GPT-5.4 & OpenAI & $T{=}0.6$, effort \texttt{high} & 400, default temperature only \\
+    GPT-6.1 Terra & OpenRouter & $T{=}0.6$, effort \texttt{none} & 200, temperature dropped \\
+    GPT-6.1 Terra & OpenRouter, strict & $T{=}0.6$, effort \texttt{none} & 404, no endpoint \\
+    GPT-6.1 Terra & OpenAI & $T{=}0.6$, effort \texttt{none} & 200 \\
+    Claude Sonnet 4.6 & OpenRouter, strict & $T{=}0.6$ & 200 \\
+    Opus 4.7 to Sonnet 5.5 & OpenRouter & $T{=}0.6$ & 200, temperature dropped \\
+    Opus 4.7 to Sonnet 5.5 & OpenRouter, strict & $T{=}0.6$ & 404, no endpoint \\
+    Claude Sonnet 5.5 & OpenRouter & $T{=}0.6$, effort \texttt{none} & 400, reasoning mandatory \\
+    Mistral Large 4 & Mistral & effort \texttt{none} & 400, unsupported value \\
+    Mistral Large 4 & OpenRouter & effort \texttt{none} & 400, unsupported value \\
+    Mistral Large 4 & Mistral & effort \texttt{low} & 200, reasoning tokens returned \\
+    \bottomrule
+  \end{tabular}
+  \caption{Parameter probes of 2026-11-10. ``Strict'' adds \texttt{require\_parameters}, under which OpenRouter refuses a request instead of dropping a parameter the endpoint does not support.}
+  \label{tab:excluded}
+\end{table}
+
+The gateway behaviour that invalidated the first GPT-5.4 collection is unchanged. OpenRouter still answers a GPT-5.4 request that carries a temperature, and it also answers when the temperature is combined with high reasoning effort, a combination the OpenAI API itself rejects. The parameter is therefore removed before the request reaches the model. The native API accepts temperature at reasoning effort \texttt{none}, for GPT-5.4 and for the newer GPT-6.1 Terra alike, so later OpenAI models remain sweepable by the direct route. They are absent from this study because the proprietary pair was fixed in March 2026 (Section~\ref{sec:models}).
+
+Anthropic models after Sonnet~4.6 are excluded for a different reason. Their API returns an error when a temperature is set \citep{anthropic2026sonnet5}, and the two 5.5 models can no longer switch reasoning off completely, so neither control is available. Through OpenRouter, the six Opus and Sonnet models released since then (Opus~4.7, 4.8, 5 and 5.5, Sonnet~5 and 5.5) all show the GPT pattern: the request with a temperature succeeds and the strict request fails. Sonnet~4.6 passes both.
+
+Mistral Large~4 is the one case that was collected before the control disappeared. The public preview accepted reasoning effort \texttt{none}. The released model accepts only \texttt{low}, \texttt{medium} and \texttt{high} \citep{mistral2026reasoning}, rejects \texttt{none} on both routes, and reasons at \texttt{low}. Its preview results are therefore kept out of the model set and reported in Appendix~\ref{app:large4}.
+
+\section{Mistral Large~4 Preview}
+\label{app:large4}
+
+Mistral Large~4 (1.05T MoE with 52B active parameters) was released as a public preview on 2026-10-06. It was collected on 2026-10-22, seven months after the main set, on the identical frozen histories and with a single registry entry plus one line that pins the base endpoint and excludes the zero-data-retention and EU variants. All 600 trials ran at reasoning effort \texttt{none} under the pinned regime, with the provider logged per trial and completion-token counts that match the visible output. The collection took 1\,h\,20\,min including re-runs after upstream rate limits. The weights followed on 2026-10-29 under the Mistral Ecosystem Open-Weight License, and the released model no longer accepts \texttt{none} (Appendix~\ref{app:excluded}). The measured configuration can no longer be requested, so Large~4 is not part of the model set and enters none of the statistics in Section~\ref{sec:results}. Table~\ref{tab:large4} reports what the preview showed.
+
+\begin{table}[h]
+  \centering\small
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Metric & $T{=}0.0$ & $T{=}0.075$ & $T{=}0.15$ & $T{=}0.3$ & $T{=}0.6$ \\
+    \midrule
+    Median Jaccard & 1.000 & 1.000 & 1.000 & 1.000 & 0.854 \\
+    Mean Jaccard & 0.956 & 0.930 & 0.931 & 0.889 & 0.818 \\
+    Modal-set agreement & 0.958 & 0.908 & 0.917 & 0.867 & 0.808 \\
+    Mean BERTScore F1 & 0.794 & 0.771 & 0.751 & 0.720 & 0.691 \\
+    Mean alignment & 0.954 & 0.952 & 0.971 & 0.969 & 0.969 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Mistral Large~4 preview by temperature (six vignettes per cell, 20 trials each).}
+  \label{tab:large4}
+\end{table}
+
+Plan validity is 100\% and no trial failed with a judge error. Pooled median Jaccard is 1.000, modal-set agreement is 0.892, one strategy set covers all 20 trials in 19 of 30 conditions, mean BERTScore is 0.746, and mean alignment is 0.963. Large~4 shows no low-temperature optimum: mean Jaccard is highest at $T{=}0.0$ and falls to 0.818 at $T{=}0.6$, a trend that is not significant ($\rho=-0.31$, $p=.095$). The ceiling median comes with a narrower repertoire than any model in the set (77\% of 1{,}200 picks in the top two categories against 73\% for OLMo~3.1~32B, and no confrontation at all), so part of it is distributional (Section~\ref{sec:validity}). The remaining instability sits mostly in one vignette (avoidant, median 0.653).
+
+Set next to the model set, Large~4 would share the median ceiling of 1.000 but trail Mistral Medium~3.5 on modal-set agreement (0.892 against 0.972) and response similarity (0.746 against 0.816). The comparison is cross-regime, seven months of serving changes lie in between, and the open-weight release may not behave like the measured checkpoint. It gives no reason to revise the recommendation for Medium~3.5 (Section~\ref{sec:sovereign-deployment}).
 
 \section{Per-Condition Results}
 \label{app:tables}

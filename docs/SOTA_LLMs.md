@@ -77,6 +77,36 @@ Direct API probes with `provider: {require_parameters: true}`. Without that flag
 
 The other ten study models are unaffected: the 2026-03-23 registry snapshot (mid-collection) lists temperature for all of them, every current provider of the multi-provider models supports it, and each shows a genuine BERTScore temperature response in the March data (+0.032 to +0.242 from t=0 to t=0.6, versus +0.001 for GPT-5.4). Sonnet 4.6's flat Jaccard is genuine robustness, not a dropped parameter: its BERTScore declines cleanly.
 
+**Re-probe 2026-11-10 (single requests, T=0.6 unless noted).** Nothing changed for GPT, and the pattern extends to later models.
+
+| Model | Route | Request | Result |
+|---|---|---|---|
+| `openai/gpt-5.4` | OpenRouter | T + effort none | 200, provider OpenAI, temperature dropped |
+| `openai/gpt-5.4` | OpenRouter, `require_parameters` | T + effort none | 404 "No endpoints found that can handle the requested parameters" |
+| `openai/gpt-5.4` | OpenRouter | T + effort high | 200 (strip proof, natively invalid) |
+| `gpt-5.4` | OpenAI native | T + effort none | 200, snapshot `gpt-5.4-2026-03-05` |
+| `gpt-5.4` | OpenAI native | T + effort high | 400 "'temperature' does not support 0.6 with this model. Only the default (1) value is supported." |
+| `openai/gpt-5.4` | OpenRouter, `require_parameters` | effort none or high, no T | 200, so the reasoning flag itself is forwarded. Only temperature is dropped |
+| `openai/gpt-6.1-terra` | OpenRouter | T + effort none | 200 plain, 404 with `require_parameters` |
+| `gpt-6.1-terra` | OpenAI native | T + effort none | 200 |
+| `anthropic/claude-sonnet-5.5` | OpenRouter | T + effort none | 400 "Reasoning is mandatory for this endpoint and cannot be disabled", 404 with `require_parameters` |
+| `mistralai/mistral-large-4-0` | OpenRouter, no `require_parameters` | effort none | 400, Mistral's error passed through (not dropped) |
+
+**Anthropic re-probe 2026-11-11 (OpenRouter, provider pinned to Anthropic, no Anthropic key in `.env` so no native test).** Models: opus-4.7, opus-4.8, sonnet-5, opus-5, opus-5.5, sonnet-5.5, with sonnet-4.6 as control.
+
+| Request | sonnet-4.6 | all six later models |
+|---|---|---|
+| T=0.6, plain | 200 | 200, provider Anthropic |
+| T=0.6, `require_parameters` | 200 | 404 "No endpoints found that can handle the requested parameters" |
+| T=1.0 (the default), `require_parameters` | 200 | 404, so even the default value fails the strict filter |
+| no T, effort none or low, `require_parameters` | 200 | 200, reasoning flag is forwarded |
+
+Documentation: Anthropic's model pages for Sonnet 5 and Sonnet 5.5 say "Setting `temperature`, `top_p`, or `top_k` returns a 400 error", and the Opus 5.5 migration guide says to omit all three (Opus 5.5 thinking "can't be disabled", Sonnet 5.5 lowest setting is `between_tools`). OpenRouter documents the drop itself in its Sonnet 5 migration guide: "If you pass these parameters, they will be silently ignored -- your request will still succeed, but the parameters will have no effect." So native 400 plus gateway 200 means stripped, same as GPT. Third-party reports: bobmatnyc/trusty-git-analytics #141 read the 200 as "OpenRouter accepts temperature 0.0 for Sonnet 5" (the false-positive this study hit with GPT-5.4), ricki2828/run-solo #343 hit the 404 on Sonnet 5.5, maximhq/bifrost #8091 and github/copilot-sdk #1557 see Bedrock reject it. Note: the paper's `anthropic2026sonnet5` URL now redirects to `platform.claude.com/docs/en/models/sonnet-5/overview`.
+
+OpenRouter's models API lists no `temperature` for gpt-5.1, gpt-5.4, gpt-5.5, every gpt-5.6, gpt-6 and gpt-6.1 model and every Claude 5.x model. Sonnet 4.6 still lists it.
+
+Same behaviour reported elsewhere: arXiv 2607.23424 (economics-exam field experiment, direct OpenAI call with temperature returns 400, the same call through OpenRouter succeeds), getzep/graphiti #874 (commenter calls the silent stripping an anti-pattern), vectorize-io/hindsight #5586 and OMGBrews/llmkit #72 (forced `require_parameters` gives the 404 without naming the parameter), HKUDS/nanobot #6002 (reasoning effort silently drops temperature for 38 OpenAI-compatible providers), maximhq/bifrost #9731 (gateway rewrites every Mistral reasoning effort to high). LiteLLM does the opposite by default: it raises unless `drop_params` is set.
+
 Also discovered: **`allenai/olmo-3.1-32b-instruct` is delisted from OpenRouter.** Only `allenai/olmo-3-32b-think` remains. The study's OLMo data cannot be re-collected or extended through OpenRouter.
 
 ---

@@ -1,5 +1,7 @@
 # Paper changes: Mistral Large 4 as 13th model
 
+> **Superseded 2026-11-12.** Large 4 was moved out of the model set again: the released model rejects reasoning effort `none`, so the measured preview configuration can no longer be requested. The paper is back to twelve models (360 runs, 7,200 trials), and Large 4 is reported in Appendix I (`app:large4`). `stats/data/experiment_runs.csv` holds the 360 runs again, the 30 Large 4 runs stay in `stats/data/mistral_large4_runs.csv`. The table below remains useful as the 12 to 13 mapping.
+
 > Brief for the `paper-editor` agent. Branch `23_mistral_l4`.
 > Data: `stats/data/experiment_runs.csv` now holds 390 runs (360 + 30 from `experiments/runs/batch_20261022_mistral_large4/`). Descriptives, tests and all figures are regenerated and copied to `paper/figures/`. Only the text is left.
 > Every number below comes from the regenerated stats. Don't compute or round anything yourself. If something is missing, leave `% TODO:` in the .tex.

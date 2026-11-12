@@ -1,0 +1,6760 @@
+{
+  "by_model": {
+    "command_a": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 0.9833333333333332,
+        "sd": 0.03032392174315614,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 0.8122807017543863,
+        "q1": 0.6249999999999992,
+        "q3": 1.0,
+        "min": 0.3649122807017546,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 0.8175438596491231,
+        "q1": 0.6653508771929812,
+        "q3": 1.0,
+        "min": 0.4054580896686162,
+        "max": 1.0,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.7354315082232158,
+        "sd": 0.053492505303850385,
+        "min": 0.64019376039505,
+        "max": 0.8292717933654785,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.9035648148148147,
+        "sd": 0.08613354959969731,
+        "min": 0.6625,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 0.85,
+        "q1": 0.7,
+        "q3": 1.0,
+        "min": 0.3,
+        "max": 1.0,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 218,
+          "pct": 18.5
+        },
+        "self_empowerment": {
+          "count": 258,
+          "pct": 21.9
+        },
+        "safety": {
+          "count": 92,
+          "pct": 7.8
+        },
+        "cognitive_reframe": {
+          "count": 242,
+          "pct": 20.5
+        },
+        "social_support": {
+          "count": 70,
+          "pct": 5.9
+        },
+        "sensory_modulation": {
+          "count": 300,
+          "pct": 25.4
+        }
+      }
+    },
+    "gpt54": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.8210526315789478,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.8210526315789478,
+        "max": 1.0,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.7577444573243459,
+        "sd": 0.03207257162073742,
+        "min": 0.713930606842041,
+        "max": 0.8300485610961914,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.9995833333333334,
+        "sd": 0.0022821773229381843,
+        "min": 0.9875,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.85,
+        "max": 1.0,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 100,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 200,
+          "pct": 16.7
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 400,
+          "pct": 33.3
+        },
+        "social_support": {
+          "count": 96,
+          "pct": 8.0
+        },
+        "sensory_modulation": {
+          "count": 404,
+          "pct": 33.7
+        }
+      }
+    },
+    "llama70b": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 0.6964912280701747,
+        "q1": 0.5815789473684202,
+        "q3": 0.9052631578947364,
+        "min": 0.4087719298245612,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 0.6964912280701747,
+        "q1": 0.5815789473684202,
+        "q3": 0.9052631578947364,
+        "min": 0.4087719298245612,
+        "max": 1.0,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.7337042232354481,
+        "sd": 0.0320994277345972,
+        "min": 0.6842373609542847,
+        "max": 0.7970273494720459,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.8891666666666665,
+        "sd": 0.09764099737208799,
+        "min": 0.6375,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 0.7,
+        "q1": 0.6,
+        "q3": 0.9249999999999999,
+        "min": 0.35,
+        "max": 1.0,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 53,
+          "pct": 4.4
+        },
+        "self_empowerment": {
+          "count": 245,
+          "pct": 20.4
+        },
+        "safety": {
+          "count": 47,
+          "pct": 3.9
+        },
+        "cognitive_reframe": {
+          "count": 462,
+          "pct": 38.5
+        },
+        "social_support": {
+          "count": 104,
+          "pct": 8.7
+        },
+        "sensory_modulation": {
+          "count": 289,
+          "pct": 24.1
+        }
+      }
+    },
+    "mistral_large": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 0.7561403508771928,
+        "q1": 0.6807017543859639,
+        "q3": 0.9184210526315792,
+        "min": 0.4807017543859647,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 0.7561403508771928,
+        "q1": 0.6807017543859639,
+        "q3": 0.9184210526315792,
+        "min": 0.4807017543859647,
+        "max": 1.0,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.7419165511926015,
+        "sd": 0.05333675512997713,
+        "min": 0.6717332601547241,
+        "max": 0.8586058020591736,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.9791666666666665,
+        "sd": 0.0273336136795267,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 0.775,
+        "q1": 0.65,
+        "q3": 0.9375,
+        "min": 0.3,
+        "max": 1.0,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 211,
+          "pct": 17.6
+        },
+        "self_empowerment": {
+          "count": 269,
+          "pct": 22.4
+        },
+        "safety": {
+          "count": 1,
+          "pct": 0.1
+        },
+        "cognitive_reframe": {
+          "count": 129,
+          "pct": 10.8
+        },
+        "social_support": {
+          "count": 314,
+          "pct": 26.2
+        },
+        "sensory_modulation": {
+          "count": 276,
+          "pct": 23.0
+        }
+      }
+    },
+    "mistral_large4": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 0.8149122807017541,
+        "q3": 1.0,
+        "min": 0.5614035087719287,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.8149122807017541,
+        "q3": 1.0,
+        "min": 0.5614035087719287,
+        "max": 1.0,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.7455866436163584,
+        "sd": 0.05842886922333984,
+        "min": 0.6374006271362305,
+        "max": 0.8477396368980408,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.9629166666666669,
+        "sd": 0.03070355571156757,
+        "min": 0.8875,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 0.8375,
+        "q3": 1.0,
+        "min": 0.45,
+        "max": 1.0,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 539,
+          "pct": 44.9
+        },
+        "safety": {
+          "count": 54,
+          "pct": 4.5
+        },
+        "cognitive_reframe": {
+          "count": 110,
+          "pct": 9.2
+        },
+        "social_support": {
+          "count": 111,
+          "pct": 9.2
+        },
+        "sensory_modulation": {
+          "count": 386,
+          "pct": 32.2
+        }
+      }
+    },
+    "mistral_medium35": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.6666666666666651,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.6666666666666651,
+        "max": 1.0,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.815587596098582,
+        "sd": 0.056693918700228475,
+        "min": 0.6899963617324829,
+        "max": 0.9123882055282592,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.96125,
+        "sd": 0.08248236488632815,
+        "min": 0.6625,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.7,
+        "max": 1.0,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 86,
+          "pct": 7.2
+        },
+        "self_empowerment": {
+          "count": 201,
+          "pct": 16.8
+        },
+        "safety": {
+          "count": 1,
+          "pct": 0.1
+        },
+        "cognitive_reframe": {
+          "count": 302,
+          "pct": 25.2
+        },
+        "social_support": {
+          "count": 200,
+          "pct": 16.7
+        },
+        "sensory_modulation": {
+          "count": 410,
+          "pct": 34.2
+        }
+      }
+    },
+    "mistral_small32": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 0.8333333333333337,
+        "q3": 1.0,
+        "min": 0.4175438596491228,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.8333333333333337,
+        "q3": 1.0,
+        "min": 0.4175438596491228,
+        "max": 1.0,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.7461854338645935,
+        "sd": 0.043004821636162927,
+        "min": 0.6758790612220764,
+        "max": 0.8570597767829895,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.9166666666666666,
+        "sd": 0.12786936580996905,
+        "min": 0.575,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 0.8625,
+        "q3": 1.0,
+        "min": 0.45,
+        "max": 1.0,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 100,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 308,
+          "pct": 25.7
+        },
+        "safety": {
+          "count": 86,
+          "pct": 7.2
+        },
+        "cognitive_reframe": {
+          "count": 389,
+          "pct": 32.4
+        },
+        "social_support": {
+          "count": 10,
+          "pct": 0.8
+        },
+        "sensory_modulation": {
+          "count": 307,
+          "pct": 25.6
+        }
+      }
+    },
+    "mistral_small4": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 0.9983333333333333,
+        "sd": 0.009128709291752775,
+        "min": 0.95,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 0.8140350877192986,
+        "q1": 0.6083333333333323,
+        "q3": 1.0,
+        "min": 0.3456140350877199,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 0.8140350877192986,
+        "q1": 0.6083333333333323,
+        "q3": 1.0,
+        "min": 0.3456140350877199,
+        "max": 1.0,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.6970542470614115,
+        "sd": 0.031806829479569636,
+        "min": 0.6441895365715027,
+        "max": 0.7752229571342468,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.8102777777777778,
+        "sd": 0.11441135648604002,
+        "min": 0.5625,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 0.85,
+        "q1": 0.5125,
+        "q3": 1.0,
+        "min": 0.3,
+        "max": 1.0,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 227,
+          "pct": 18.9
+        },
+        "self_empowerment": {
+          "count": 113,
+          "pct": 9.4
+        },
+        "safety": {
+          "count": 244,
+          "pct": 20.3
+        },
+        "cognitive_reframe": {
+          "count": 311,
+          "pct": 25.9
+        },
+        "social_support": {
+          "count": 108,
+          "pct": 9.0
+        },
+        "sensory_modulation": {
+          "count": 198,
+          "pct": 16.5
+        }
+      }
+    },
+    "olmo3_32b": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 0.9966666666666666,
+        "sd": 0.01825741858350553,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 0.813157894736842,
+        "q3": 1.0,
+        "min": 0.5438596491228062,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.821052631578947,
+        "q3": 1.0,
+        "min": 0.5438596491228062,
+        "max": 1.0,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.7885647575060527,
+        "sd": 0.09292258247656728,
+        "min": 0.6806232929229736,
+        "max": 1.0,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.9068055555555555,
+        "sd": 0.16367093355004825,
+        "min": 0.525,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 0.85,
+        "q3": 1.0,
+        "min": 0.5,
+        "max": 1.0,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 20,
+          "pct": 1.7
+        },
+        "safety": {
+          "count": 369,
+          "pct": 30.9
+        },
+        "cognitive_reframe": {
+          "count": 502,
+          "pct": 42.0
+        },
+        "social_support": {
+          "count": 100,
+          "pct": 8.4
+        },
+        "sensory_modulation": {
+          "count": 205,
+          "pct": 17.1
+        }
+      }
+    },
+    "qwen35_122b": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 0.81578947368421,
+        "q3": 1.0,
+        "min": 0.3473684210526321,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.81578947368421,
+        "q3": 1.0,
+        "min": 0.3473684210526321,
+        "max": 1.0,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.7925455292065938,
+        "sd": 0.07259791124554105,
+        "min": 0.6799513697624207,
+        "max": 0.9317821860313416,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.9775000000000001,
+        "sd": 0.031724840696863696,
+        "min": 0.8625,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 0.85,
+        "q3": 1.0,
+        "min": 0.3,
+        "max": 1.0,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 7,
+          "pct": 0.6
+        },
+        "self_empowerment": {
+          "count": 390,
+          "pct": 32.5
+        },
+        "safety": {
+          "count": 112,
+          "pct": 9.3
+        },
+        "cognitive_reframe": {
+          "count": 153,
+          "pct": 12.8
+        },
+        "social_support": {
+          "count": 76,
+          "pct": 6.3
+        },
+        "sensory_modulation": {
+          "count": 462,
+          "pct": 38.5
+        }
+      }
+    },
+    "qwen35_27b": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 0.9933333333333334,
+        "sd": 0.0285673231861683,
+        "min": 0.85,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 0.7271929824561403,
+        "q1": 0.5214912280701749,
+        "q3": 0.775438596491228,
+        "min": 0.3561403508771932,
+        "max": 0.8736842105263152,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 0.7271929824561403,
+        "q1": 0.5508771929824559,
+        "q3": 0.775438596491228,
+        "min": 0.3957115009746591,
+        "max": 0.8736842105263152,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.7532876789569855,
+        "sd": 0.05835488173601379,
+        "min": 0.6694538593292236,
+        "max": 0.8731809854507446,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.9457598039215688,
+        "sd": 0.05692934121891746,
+        "min": 0.825,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 0.775,
+        "q1": 0.55,
+        "q3": 0.8,
+        "min": 0.25,
+        "max": 0.9,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 31,
+          "pct": 2.6
+        },
+        "self_empowerment": {
+          "count": 182,
+          "pct": 15.4
+        },
+        "safety": {
+          "count": 375,
+          "pct": 31.7
+        },
+        "cognitive_reframe": {
+          "count": 343,
+          "pct": 29.0
+        },
+        "social_support": {
+          "count": 3,
+          "pct": 0.3
+        },
+        "sensory_modulation": {
+          "count": 250,
+          "pct": 21.1
+        }
+      }
+    },
+    "qwen35_397b": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 0.6885964912280694,
+        "q1": 0.58157894736842,
+        "q3": 1.0,
+        "min": 0.4385964912280701,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 0.6885964912280694,
+        "q1": 0.58157894736842,
+        "q3": 1.0,
+        "min": 0.4385964912280701,
+        "max": 1.0,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.7372555176417033,
+        "sd": 0.03509817530894362,
+        "min": 0.6776123046875,
+        "max": 0.8048979043960571,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.9908333333333333,
+        "sd": 0.021257182694137854,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 0.725,
+        "q1": 0.6,
+        "q3": 1.0,
+        "min": 0.35,
+        "max": 1.0,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 55,
+          "pct": 4.6
+        },
+        "self_empowerment": {
+          "count": 317,
+          "pct": 26.4
+        },
+        "safety": {
+          "count": 160,
+          "pct": 13.3
+        },
+        "cognitive_reframe": {
+          "count": 220,
+          "pct": 18.3
+        },
+        "social_support": {
+          "count": 129,
+          "pct": 10.8
+        },
+        "sensory_modulation": {
+          "count": 319,
+          "pct": 26.6
+        }
+      }
+    },
+    "sonnet46": {
+      "n_runs": 30,
+      "total_trials": 600,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_all": {
+        "median": 0.9333333333333336,
+        "q1": 0.7131578947368414,
+        "q3": 1.0,
+        "min": 0.6491228070175434,
+        "max": 1.0,
+        "n": 30
+      },
+      "jaccard_valid": {
+        "median": 0.9333333333333336,
+        "q1": 0.7131578947368414,
+        "q3": 1.0,
+        "min": 0.6491228070175434,
+        "max": 1.0,
+        "n": 30
+      },
+      "bertscore_f1": {
+        "mean": 0.7915485481421153,
+        "sd": 0.056735056245664446,
+        "min": 0.7081637978553772,
+        "max": 0.9378657341003418,
+        "n": 30
+      },
+      "alignment_mean": {
+        "mean": 0.9995833333333334,
+        "sd": 0.0022821773229381847,
+        "min": 0.9875,
+        "max": 1.0,
+        "n": 30
+      },
+      "modal_set_agreement": {
+        "median": 0.95,
+        "q1": 0.7124999999999999,
+        "q3": 1.0,
+        "min": 0.5,
+        "max": 1.0,
+        "n": 30
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 41,
+          "pct": 3.4
+        },
+        "self_empowerment": {
+          "count": 369,
+          "pct": 30.8
+        },
+        "safety": {
+          "count": 1,
+          "pct": 0.1
+        },
+        "cognitive_reframe": {
+          "count": 200,
+          "pct": 16.7
+        },
+        "social_support": {
+          "count": 175,
+          "pct": 14.6
+        },
+        "sensory_modulation": {
+          "count": 414,
+          "pct": 34.5
+        }
+      }
+    }
+  },
+  "by_vignette": {
+    "anxious": {
+      "n_runs": 65,
+      "total_trials": 1300,
+      "validity_rate": {
+        "mean": 0.9984615384615385,
+        "sd": 0.00870179026672983,
+        "min": 0.95,
+        "max": 1.0,
+        "n": 65
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 0.7368421052631574,
+        "q3": 1.0,
+        "min": 0.3649122807017546,
+        "max": 1.0,
+        "n": 65
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.7368421052631574,
+        "q3": 1.0,
+        "min": 0.4035087719298242,
+        "max": 1.0,
+        "n": 65
+      },
+      "bertscore_f1": {
+        "mean": 0.7569760350080637,
+        "sd": 0.06228583508500955,
+        "min": 0.6374006271362305,
+        "max": 0.950255811214447,
+        "n": 65
+      },
+      "alignment_mean": {
+        "mean": 0.9573245614035087,
+        "sd": 0.0652874532172267,
+        "min": 0.6625,
+        "max": 1.0,
+        "n": 65
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 0.75,
+        "q3": 1.0,
+        "min": 0.3,
+        "max": 1.0,
+        "n": 65
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 26,
+          "pct": 1.0
+        },
+        "self_empowerment": {
+          "count": 294,
+          "pct": 11.3
+        },
+        "safety": {
+          "count": 97,
+          "pct": 3.7
+        },
+        "cognitive_reframe": {
+          "count": 1009,
+          "pct": 38.9
+        },
+        "social_support": {
+          "count": 233,
+          "pct": 9.0
+        },
+        "sensory_modulation": {
+          "count": 933,
+          "pct": 36.0
+        }
+      }
+    },
+    "avoidant": {
+      "n_runs": 65,
+      "total_trials": 1300,
+      "validity_rate": {
+        "mean": 0.9961538461538462,
+        "sd": 0.022198839193490763,
+        "min": 0.85,
+        "max": 1.0,
+        "n": 65
+      },
+      "jaccard_all": {
+        "median": 0.8385964912280698,
+        "q1": 0.6526315789473677,
+        "q3": 1.0,
+        "min": 0.3456140350877199,
+        "max": 1.0,
+        "n": 65
+      },
+      "jaccard_valid": {
+        "median": 0.8736842105263164,
+        "q1": 0.6526315789473677,
+        "q3": 1.0,
+        "min": 0.3456140350877199,
+        "max": 1.0,
+        "n": 65
+      },
+      "bertscore_f1": {
+        "mean": 0.7538269033798805,
+        "sd": 0.06307214090999995,
+        "min": 0.6441895365715027,
+        "max": 0.9823224544525146,
+        "n": 65
+      },
+      "alignment_mean": {
+        "mean": 0.9544532428355958,
+        "sd": 0.08178659317543896,
+        "min": 0.6625,
+        "max": 1.0,
+        "n": 65
+      },
+      "modal_set_agreement": {
+        "median": 0.9,
+        "q1": 0.65,
+        "q3": 1.0,
+        "min": 0.3,
+        "max": 1.0,
+        "n": 65
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 285,
+          "pct": 11.0
+        },
+        "self_empowerment": {
+          "count": 338,
+          "pct": 13.1
+        },
+        "safety": {
+          "count": 377,
+          "pct": 14.6
+        },
+        "cognitive_reframe": {
+          "count": 1092,
+          "pct": 42.2
+        },
+        "social_support": {
+          "count": 492,
+          "pct": 19.0
+        },
+        "sensory_modulation": {
+          "count": 6,
+          "pct": 0.2
+        }
+      }
+    },
+    "cooperative": {
+      "n_runs": 65,
+      "total_trials": 1300,
+      "validity_rate": {
+        "mean": 0.9969230769230769,
+        "sd": 0.014991985038166743,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 65
+      },
+      "jaccard_all": {
+        "median": 0.8210526315789475,
+        "q1": 0.6807017543859638,
+        "q3": 1.0,
+        "min": 0.5333333333333329,
+        "max": 1.0,
+        "n": 65
+      },
+      "jaccard_valid": {
+        "median": 0.8210526315789475,
+        "q1": 0.6807017543859639,
+        "q3": 1.0,
+        "min": 0.5333333333333329,
+        "max": 1.0,
+        "n": 65
+      },
+      "bertscore_f1": {
+        "mean": 0.7723294093058659,
+        "sd": 0.05795443586461404,
+        "min": 0.6484570503234863,
+        "max": 0.9317821860313416,
+        "n": 65
+      },
+      "alignment_mean": {
+        "mean": 0.9319118308591992,
+        "sd": 0.10746464810130066,
+        "min": 0.5625,
+        "max": 1.0,
+        "n": 65
+      },
+      "modal_set_agreement": {
+        "median": 0.85,
+        "q1": 0.65,
+        "q3": 1.0,
+        "min": 0.35,
+        "max": 1.0,
+        "n": 65
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 64,
+          "pct": 2.5
+        },
+        "self_empowerment": {
+          "count": 834,
+          "pct": 32.2
+        },
+        "safety": {
+          "count": 311,
+          "pct": 12.0
+        },
+        "cognitive_reframe": {
+          "count": 58,
+          "pct": 2.2
+        },
+        "social_support": {
+          "count": 30,
+          "pct": 1.2
+        },
+        "sensory_modulation": {
+          "count": 1295,
+          "pct": 50.0
+        }
+      }
+    },
+    "resistant": {
+      "n_runs": 65,
+      "total_trials": 1300,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 65
+      },
+      "jaccard_all": {
+        "median": 0.8210526315789474,
+        "q1": 0.6649122807017536,
+        "q3": 1.0,
+        "min": 0.3473684210526321,
+        "max": 1.0,
+        "n": 65
+      },
+      "jaccard_valid": {
+        "median": 0.8210526315789474,
+        "q1": 0.6649122807017536,
+        "q3": 1.0,
+        "min": 0.3473684210526321,
+        "max": 1.0,
+        "n": 65
+      },
+      "bertscore_f1": {
+        "mean": 0.7486024122971755,
+        "sd": 0.05735019245058576,
+        "min": 0.6483326554298401,
+        "max": 0.9091877937316896,
+        "n": 65
+      },
+      "alignment_mean": {
+        "mean": 0.9484615384615385,
+        "sd": 0.06837638867947148,
+        "min": 0.7,
+        "max": 1.0,
+        "n": 65
+      },
+      "modal_set_agreement": {
+        "median": 0.85,
+        "q1": 0.7,
+        "q3": 1.0,
+        "min": 0.3,
+        "max": 1.0,
+        "n": 65
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 3,
+          "pct": 0.1
+        },
+        "self_empowerment": {
+          "count": 315,
+          "pct": 12.1
+        },
+        "safety": {
+          "count": 351,
+          "pct": 13.5
+        },
+        "cognitive_reframe": {
+          "count": 728,
+          "pct": 28.0
+        },
+        "social_support": {
+          "count": 721,
+          "pct": 27.7
+        },
+        "sensory_modulation": {
+          "count": 482,
+          "pct": 18.5
+        }
+      }
+    },
+    "skeptic": {
+      "n_runs": 65,
+      "total_trials": 1300,
+      "validity_rate": {
+        "mean": 0.9992307692307693,
+        "sd": 0.006201736729460428,
+        "min": 0.95,
+        "max": 1.0,
+        "n": 65
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 0.7052631578947361,
+        "q3": 1.0,
+        "min": 0.3561403508771932,
+        "max": 1.0,
+        "n": 65
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.7052631578947361,
+        "q3": 1.0,
+        "min": 0.3957115009746591,
+        "max": 1.0,
+        "n": 65
+      },
+      "bertscore_f1": {
+        "mean": 0.7591095392520611,
+        "sd": 0.06371324373962517,
+        "min": 0.6660724878311157,
+        "max": 1.0,
+        "n": 65
+      },
+      "alignment_mean": {
+        "mean": 0.9659615384615384,
+        "sd": 0.05772830407474443,
+        "min": 0.75,
+        "max": 1.0,
+        "n": 65
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 0.7,
+        "q3": 1.0,
+        "min": 0.25,
+        "max": 1.0,
+        "n": 65
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 133,
+          "pct": 5.1
+        },
+        "self_empowerment": {
+          "count": 453,
+          "pct": 17.4
+        },
+        "safety": {
+          "count": 208,
+          "pct": 8.0
+        },
+        "cognitive_reframe": {
+          "count": 688,
+          "pct": 26.5
+        },
+        "social_support": {
+          "count": 16,
+          "pct": 0.6
+        },
+        "sensory_modulation": {
+          "count": 1099,
+          "pct": 42.3
+        }
+      }
+    },
+    "trauma": {
+      "n_runs": 65,
+      "total_trials": 1300,
+      "validity_rate": {
+        "mean": 0.9961538461538462,
+        "sd": 0.01607524374740432,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 65
+      },
+      "jaccard_all": {
+        "median": 0.9333333333333338,
+        "q1": 0.6877192982456133,
+        "q3": 1.0,
+        "min": 0.4087719298245612,
+        "max": 1.0,
+        "n": 65
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.6877192982456133,
+        "q3": 1.0,
+        "min": 0.4087719298245612,
+        "max": 1.0,
+        "n": 65
+      },
+      "bertscore_f1": {
+        "mean": 0.7490384817123413,
+        "sd": 0.06724172134291619,
+        "min": 0.6482291221618652,
+        "max": 0.955014705657959,
+        "n": 65
+      },
+      "alignment_mean": {
+        "mean": 0.8925371120107961,
+        "sd": 0.14795529571290378,
+        "min": 0.525,
+        "max": 1.0,
+        "n": 65
+      },
+      "modal_set_agreement": {
+        "median": 0.95,
+        "q1": 0.7,
+        "q3": 1.0,
+        "min": 0.35,
+        "max": 1.0,
+        "n": 65
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 618,
+          "pct": 23.9
+        },
+        "self_empowerment": {
+          "count": 1177,
+          "pct": 45.4
+        },
+        "safety": {
+          "count": 198,
+          "pct": 7.6
+        },
+        "cognitive_reframe": {
+          "count": 188,
+          "pct": 7.3
+        },
+        "social_support": {
+          "count": 4,
+          "pct": 0.2
+        },
+        "sensory_modulation": {
+          "count": 405,
+          "pct": 15.6
+        }
+      }
+    }
+  },
+  "by_temperature": {
+    "0.0": {
+      "n_runs": 78,
+      "total_trials": 1560,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 78
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 0.7368421052631574,
+        "q3": 1.0,
+        "min": 0.4543859649122804,
+        "max": 1.0,
+        "n": 78
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.7368421052631574,
+        "q3": 1.0,
+        "min": 0.4543859649122804,
+        "max": 1.0,
+        "n": 78
+      },
+      "bertscore_f1": {
+        "mean": 0.7960943090610015,
+        "sd": 0.07665567623182157,
+        "min": 0.6698558330535889,
+        "max": 1.0,
+        "n": 78
+      },
+      "alignment_mean": {
+        "mean": 0.94775641025641,
+        "sd": 0.0929045992874657,
+        "min": 0.525,
+        "max": 1.0,
+        "n": 78
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 0.7625,
+        "q3": 1.0,
+        "min": 0.35,
+        "max": 1.0,
+        "n": 78
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 235,
+          "pct": 7.5
+        },
+        "self_empowerment": {
+          "count": 682,
+          "pct": 21.9
+        },
+        "safety": {
+          "count": 314,
+          "pct": 10.1
+        },
+        "cognitive_reframe": {
+          "count": 751,
+          "pct": 24.1
+        },
+        "social_support": {
+          "count": 303,
+          "pct": 9.7
+        },
+        "sensory_modulation": {
+          "count": 835,
+          "pct": 26.8
+        }
+      }
+    },
+    "0.075": {
+      "n_runs": 78,
+      "total_trials": 1560,
+      "validity_rate": {
+        "mean": 0.998076923076923,
+        "sd": 0.012593308087687225,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 78
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 0.7368421052631573,
+        "q3": 1.0,
+        "min": 0.4385964912280701,
+        "max": 1.0,
+        "n": 78
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.7412280701754383,
+        "q3": 1.0,
+        "min": 0.4385964912280701,
+        "max": 1.0,
+        "n": 78
+      },
+      "bertscore_f1": {
+        "mean": 0.7822445760934781,
+        "sd": 0.058252714603425085,
+        "min": 0.6803082227706909,
+        "max": 0.9123882055282592,
+        "n": 78
+      },
+      "alignment_mean": {
+        "mean": 0.94460751237067,
+        "sd": 0.09283690758753109,
+        "min": 0.5875,
+        "max": 1.0,
+        "n": 78
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 0.8,
+        "q3": 1.0,
+        "min": 0.4,
+        "max": 1.0,
+        "n": 78
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 215,
+          "pct": 6.9
+        },
+        "self_empowerment": {
+          "count": 683,
+          "pct": 21.9
+        },
+        "safety": {
+          "count": 313,
+          "pct": 10.1
+        },
+        "cognitive_reframe": {
+          "count": 742,
+          "pct": 23.8
+        },
+        "social_support": {
+          "count": 307,
+          "pct": 9.9
+        },
+        "sensory_modulation": {
+          "count": 854,
+          "pct": 27.4
+        }
+      }
+    },
+    "0.15": {
+      "n_runs": 78,
+      "total_trials": 1560,
+      "validity_rate": {
+        "mean": 0.9993589743589744,
+        "sd": 0.005661385170722983,
+        "min": 0.95,
+        "max": 1.0,
+        "n": 78
+      },
+      "jaccard_all": {
+        "median": 0.9666666666666669,
+        "q1": 0.7754385964912281,
+        "q3": 1.0,
+        "min": 0.4456140350877192,
+        "max": 1.0,
+        "n": 78
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.7754385964912281,
+        "q3": 1.0,
+        "min": 0.4456140350877192,
+        "max": 1.0,
+        "n": 78
+      },
+      "bertscore_f1": {
+        "mean": 0.7626553338307601,
+        "sd": 0.04487098476510008,
+        "min": 0.6813875436782837,
+        "max": 0.8641167879104614,
+        "n": 78
+      },
+      "alignment_mean": {
+        "mean": 0.9391025641025641,
+        "sd": 0.10522777887936934,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 78
+      },
+      "modal_set_agreement": {
+        "median": 0.975,
+        "q1": 0.8,
+        "q3": 1.0,
+        "min": 0.35,
+        "max": 1.0,
+        "n": 78
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 226,
+          "pct": 7.3
+        },
+        "self_empowerment": {
+          "count": 686,
+          "pct": 22.0
+        },
+        "safety": {
+          "count": 317,
+          "pct": 10.2
+        },
+        "cognitive_reframe": {
+          "count": 740,
+          "pct": 23.7
+        },
+        "social_support": {
+          "count": 290,
+          "pct": 9.3
+        },
+        "sensory_modulation": {
+          "count": 858,
+          "pct": 27.5
+        }
+      }
+    },
+    "0.3": {
+      "n_runs": 78,
+      "total_trials": 1560,
+      "validity_rate": {
+        "mean": 0.998076923076923,
+        "sd": 0.012593308087687225,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 78
+      },
+      "jaccard_all": {
+        "median": 0.8210526315789477,
+        "q1": 0.6552631578947361,
+        "q3": 1.0,
+        "min": 0.4491228070175437,
+        "max": 1.0,
+        "n": 78
+      },
+      "jaccard_valid": {
+        "median": 0.8210526315789477,
+        "q1": 0.6657894736842096,
+        "q3": 1.0,
+        "min": 0.4491228070175437,
+        "max": 1.0,
+        "n": 78
+      },
+      "bertscore_f1": {
+        "mean": 0.7339440989188659,
+        "sd": 0.04040305749946465,
+        "min": 0.6515920758247375,
+        "max": 0.8360435366630554,
+        "n": 78
+      },
+      "alignment_mean": {
+        "mean": 0.9396836107362421,
+        "sd": 0.09415803700595222,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 78
+      },
+      "modal_set_agreement": {
+        "median": 0.85,
+        "q1": 0.65,
+        "q3": 1.0,
+        "min": 0.3,
+        "max": 1.0,
+        "n": 78
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 239,
+          "pct": 7.7
+        },
+        "self_empowerment": {
+          "count": 675,
+          "pct": 21.7
+        },
+        "safety": {
+          "count": 300,
+          "pct": 9.6
+        },
+        "cognitive_reframe": {
+          "count": 752,
+          "pct": 24.2
+        },
+        "social_support": {
+          "count": 307,
+          "pct": 9.9
+        },
+        "sensory_modulation": {
+          "count": 838,
+          "pct": 26.9
+        }
+      }
+    },
+    "0.6": {
+      "n_runs": 78,
+      "total_trials": 1560,
+      "validity_rate": {
+        "mean": 0.9935897435897436,
+        "sd": 0.023297865627360442,
+        "min": 0.85,
+        "max": 1.0,
+        "n": 78
+      },
+      "jaccard_all": {
+        "median": 0.7666666666666668,
+        "q1": 0.5947368421052621,
+        "q3": 0.9833333333333334,
+        "min": 0.3456140350877199,
+        "max": 1.0,
+        "n": 78
+      },
+      "jaccard_valid": {
+        "median": 0.7707602339181282,
+        "q1": 0.6007352941176461,
+        "q3": 1.0,
+        "min": 0.3456140350877199,
+        "max": 1.0,
+        "n": 78
+      },
+      "bertscore_f1": {
+        "mean": 0.7082973328920511,
+        "sd": 0.03780879973735895,
+        "min": 0.6374006271362305,
+        "max": 0.8147154450416565,
+        "n": 78
+      },
+      "alignment_mean": {
+        "mean": 0.9377247558942605,
+        "sd": 0.09639009730720416,
+        "min": 0.5625,
+        "max": 1.0,
+        "n": 78
+      },
+      "modal_set_agreement": {
+        "median": 0.8,
+        "q1": 0.55,
+        "q3": 0.9875,
+        "min": 0.25,
+        "max": 1.0,
+        "n": 78
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 214,
+          "pct": 6.9
+        },
+        "self_empowerment": {
+          "count": 685,
+          "pct": 22.1
+        },
+        "safety": {
+          "count": 298,
+          "pct": 9.6
+        },
+        "cognitive_reframe": {
+          "count": 778,
+          "pct": 25.1
+        },
+        "social_support": {
+          "count": 289,
+          "pct": 9.3
+        },
+        "sensory_modulation": {
+          "count": 835,
+          "pct": 26.9
+        }
+      }
+    }
+  },
+  "by_model_temperature": {
+    "command_a_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.9105263157894737,
+        "q1": 0.647368421052631,
+        "q3": 1.0,
+        "min": 0.5789473684210518,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.9105263157894737,
+        "q1": 0.647368421052631,
+        "q3": 1.0,
+        "min": 0.5789473684210518,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7713514765103658,
+        "sd": 0.03606025857678384,
+        "min": 0.7225128412246704,
+        "max": 0.8109419941902161,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9145833333333333,
+        "sd": 0.07681823785187127,
+        "min": 0.8125,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.925,
+        "q1": 0.6625,
+        "q3": 1.0,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 45,
+          "pct": 18.8
+        },
+        "self_empowerment": {
+          "count": 55,
+          "pct": 22.9
+        },
+        "safety": {
+          "count": 17,
+          "pct": 7.1
+        },
+        "cognitive_reframe": {
+          "count": 52,
+          "pct": 21.7
+        },
+        "social_support": {
+          "count": 14,
+          "pct": 5.8
+        },
+        "sensory_modulation": {
+          "count": 57,
+          "pct": 23.8
+        }
+      }
+    },
+    "command_a_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 0.9750000000000001,
+        "sd": 0.04183300132670378,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7929824561403509,
+        "q1": 0.7425438596491226,
+        "q3": 0.9526315789473684,
+        "min": 0.6578947368421041,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.9064327485380115,
+        "q1": 0.7847953216374268,
+        "q3": 1.0,
+        "min": 0.6578947368421041,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7618931631247202,
+        "sd": 0.05196129392404583,
+        "min": 0.7013596892356873,
+        "max": 0.8292717933654785,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9111476608187133,
+        "sd": 0.07600213026462112,
+        "min": 0.775,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.8500000000000001,
+        "q1": 0.8,
+        "q3": 0.975,
+        "min": 0.7,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 44,
+          "pct": 18.8
+        },
+        "self_empowerment": {
+          "count": 51,
+          "pct": 21.8
+        },
+        "safety": {
+          "count": 20,
+          "pct": 8.5
+        },
+        "cognitive_reframe": {
+          "count": 43,
+          "pct": 18.4
+        },
+        "social_support": {
+          "count": 16,
+          "pct": 6.8
+        },
+        "sensory_modulation": {
+          "count": 60,
+          "pct": 25.6
+        }
+      }
+    },
+    "command_a_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 0.9916666666666667,
+        "sd": 0.02041241452319317,
+        "min": 0.95,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.95,
+        "q1": 0.7407894736842094,
+        "q3": 1.0,
+        "min": 0.5789473684210518,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.7657894736842095,
+        "q3": 1.0,
+        "min": 0.5789473684210518,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7544509470462799,
+        "sd": 0.042790853931387644,
+        "min": 0.6908911466598511,
+        "max": 0.8212851881980896,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9104166666666668,
+        "sd": 0.12806655170912765,
+        "min": 0.6625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.975,
+        "q1": 0.7625,
+        "q3": 1.0,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 41,
+          "pct": 17.2
+        },
+        "self_empowerment": {
+          "count": 57,
+          "pct": 23.9
+        },
+        "safety": {
+          "count": 19,
+          "pct": 8.0
+        },
+        "cognitive_reframe": {
+          "count": 47,
+          "pct": 19.7
+        },
+        "social_support": {
+          "count": 15,
+          "pct": 6.3
+        },
+        "sensory_modulation": {
+          "count": 59,
+          "pct": 24.8
+        }
+      }
+    },
+    "command_a_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 0.9750000000000001,
+        "sd": 0.04183300132670377,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7140350877192982,
+        "q1": 0.5956140350877184,
+        "q3": 0.8785087719298247,
+        "min": 0.4964912280701751,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.785013186561174,
+        "q1": 0.6311030845086563,
+        "q3": 0.9535087719298247,
+        "min": 0.4964912280701751,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.6998556355635325,
+        "sd": 0.039029291651802,
+        "min": 0.6515920758247375,
+        "max": 0.7653059959411621,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.8950536062378167,
+        "sd": 0.07949642120537538,
+        "min": 0.7875,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.7749999999999999,
+        "q1": 0.5125,
+        "q3": 0.9249999999999999,
+        "min": 0.45,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 43,
+          "pct": 18.4
+        },
+        "self_empowerment": {
+          "count": 49,
+          "pct": 20.9
+        },
+        "safety": {
+          "count": 20,
+          "pct": 8.5
+        },
+        "cognitive_reframe": {
+          "count": 49,
+          "pct": 20.9
+        },
+        "social_support": {
+          "count": 12,
+          "pct": 5.1
+        },
+        "sensory_modulation": {
+          "count": 61,
+          "pct": 26.1
+        }
+      }
+    },
+    "command_a_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 0.9750000000000001,
+        "sd": 0.02738612787525833,
+        "min": 0.95,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7236842105263159,
+        "q1": 0.5276315789473679,
+        "q3": 0.8644736842105265,
+        "min": 0.3649122807017546,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7619883040935673,
+        "q1": 0.5447368421052629,
+        "q3": 0.9415204678362572,
+        "min": 0.4054580896686162,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.6896063188711802,
+        "sd": 0.048789203271337234,
+        "min": 0.64019376039505,
+        "max": 0.7715947031974792,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.8866228070175439,
+        "sd": 0.08904859028198935,
+        "min": 0.75,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.775,
+        "q1": 0.4125,
+        "q3": 0.9125,
+        "min": 0.3,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 45,
+          "pct": 19.2
+        },
+        "self_empowerment": {
+          "count": 46,
+          "pct": 19.7
+        },
+        "safety": {
+          "count": 16,
+          "pct": 6.8
+        },
+        "cognitive_reframe": {
+          "count": 51,
+          "pct": 21.8
+        },
+        "social_support": {
+          "count": 13,
+          "pct": 5.6
+        },
+        "sensory_modulation": {
+          "count": 63,
+          "pct": 26.9
+        }
+      }
+    },
+    "gpt54_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.9333333333333338,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.9333333333333338,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7699374457200369,
+        "sd": 0.03948883062315765,
+        "min": 0.7169448733329773,
+        "max": 0.8300485610961914,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.95,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 80,
+          "pct": 33.3
+        },
+        "social_support": {
+          "count": 19,
+          "pct": 7.9
+        },
+        "sensory_modulation": {
+          "count": 81,
+          "pct": 33.8
+        }
+      }
+    },
+    "gpt54_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7622212866942087,
+        "sd": 0.0395458053777471,
+        "min": 0.7175207734107971,
+        "max": 0.8150037527084351,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 80,
+          "pct": 33.3
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 80,
+          "pct": 33.3
+        }
+      }
+    },
+    "gpt54_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7602850298086802,
+        "sd": 0.03162936501158703,
+        "min": 0.7224952578544617,
+        "max": 0.8056851029396057,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9979166666666667,
+        "sd": 0.00510310363079827,
+        "min": 0.9875,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 80,
+          "pct": 33.3
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 80,
+          "pct": 33.3
+        }
+      }
+    },
+    "gpt54_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.8210526315789478,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.8210526315789478,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7510932783285776,
+        "sd": 0.024822059215886646,
+        "min": 0.7199147343635559,
+        "max": 0.7840310335159302,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.85,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 80,
+          "pct": 33.3
+        },
+        "social_support": {
+          "count": 17,
+          "pct": 7.1
+        },
+        "sensory_modulation": {
+          "count": 83,
+          "pct": 34.6
+        }
+      }
+    },
+    "gpt54_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7451852460702261,
+        "sd": 0.027817519232671412,
+        "min": 0.713930606842041,
+        "max": 0.7880198955535889,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 80,
+          "pct": 33.3
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 80,
+          "pct": 33.3
+        }
+      }
+    },
+    "llama70b_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7052631578947365,
+        "q1": 0.5942982456140339,
+        "q3": 0.8070175438596492,
+        "min": 0.5052631578947362,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7052631578947365,
+        "q1": 0.5942982456140339,
+        "q3": 0.8070175438596492,
+        "min": 0.5052631578947362,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7457184890906016,
+        "sd": 0.04133509674681029,
+        "min": 0.7008074522018433,
+        "max": 0.7970273494720459,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9187500000000002,
+        "sd": 0.08091276166341128,
+        "min": 0.775,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.7250000000000001,
+        "q1": 0.6125,
+        "q3": 0.8375,
+        "min": 0.45,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 9,
+          "pct": 3.8
+        },
+        "self_empowerment": {
+          "count": 46,
+          "pct": 19.2
+        },
+        "safety": {
+          "count": 7,
+          "pct": 2.9
+        },
+        "cognitive_reframe": {
+          "count": 98,
+          "pct": 40.8
+        },
+        "social_support": {
+          "count": 23,
+          "pct": 9.6
+        },
+        "sensory_modulation": {
+          "count": 57,
+          "pct": 23.8
+        }
+      }
+    },
+    "llama70b_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7298245614035084,
+        "q1": 0.6342105263157882,
+        "q3": 0.9385964912280702,
+        "min": 0.5789473684210519,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7298245614035084,
+        "q1": 0.6342105263157882,
+        "q3": 0.9385964912280702,
+        "min": 0.5789473684210519,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7489634056886038,
+        "sd": 0.022707153385110854,
+        "min": 0.718981921672821,
+        "max": 0.777805507183075,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.8895833333333333,
+        "sd": 0.10259649929050538,
+        "min": 0.725,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.75,
+        "q1": 0.625,
+        "q3": 0.95,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 8,
+          "pct": 3.3
+        },
+        "self_empowerment": {
+          "count": 50,
+          "pct": 20.8
+        },
+        "safety": {
+          "count": 7,
+          "pct": 2.9
+        },
+        "cognitive_reframe": {
+          "count": 97,
+          "pct": 40.4
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 58,
+          "pct": 24.2
+        }
+      }
+    },
+    "llama70b_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7315789473684211,
+        "q1": 0.6140350877192972,
+        "q3": 0.8938596491228068,
+        "min": 0.5789473684210517,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7315789473684211,
+        "q1": 0.6140350877192972,
+        "q3": 0.8938596491228068,
+        "min": 0.5789473684210517,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7403542300065359,
+        "sd": 0.0309685085838945,
+        "min": 0.6953653693199158,
+        "max": 0.7796082496643066,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.8875000000000001,
+        "sd": 0.10517841983981316,
+        "min": 0.7,
+        "max": 0.975,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.75,
+        "q1": 0.625,
+        "q3": 0.9125,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 12,
+          "pct": 5.0
+        },
+        "self_empowerment": {
+          "count": 53,
+          "pct": 22.1
+        },
+        "safety": {
+          "count": 5,
+          "pct": 2.1
+        },
+        "cognitive_reframe": {
+          "count": 90,
+          "pct": 37.5
+        },
+        "social_support": {
+          "count": 21,
+          "pct": 8.8
+        },
+        "sensory_modulation": {
+          "count": 59,
+          "pct": 24.6
+        }
+      }
+    },
+    "llama70b_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.6684210526315781,
+        "q1": 0.613157894736841,
+        "q3": 0.926315789473684,
+        "min": 0.457894736842105,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.6684210526315781,
+        "q1": 0.613157894736841,
+        "q3": 0.926315789473684,
+        "min": 0.457894736842105,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.731067955493927,
+        "sd": 0.028453958350529315,
+        "min": 0.6886816620826721,
+        "max": 0.7627888917922974,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.875,
+        "sd": 0.09420721840708388,
+        "min": 0.7625,
+        "max": 0.975,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.675,
+        "q1": 0.6125,
+        "q3": 0.925,
+        "min": 0.4,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 10,
+          "pct": 4.2
+        },
+        "self_empowerment": {
+          "count": 50,
+          "pct": 20.8
+        },
+        "safety": {
+          "count": 10,
+          "pct": 4.2
+        },
+        "cognitive_reframe": {
+          "count": 91,
+          "pct": 37.9
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 59,
+          "pct": 24.6
+        }
+      }
+    },
+    "llama70b_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.5973684210526307,
+        "q1": 0.4859649122807013,
+        "q3": 0.7811403508771922,
+        "min": 0.4087719298245612,
+        "max": 0.9333333333333336,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.5973684210526307,
+        "q1": 0.4859649122807013,
+        "q3": 0.7811403508771922,
+        "min": 0.4087719298245612,
+        "max": 0.9333333333333336,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7024170358975729,
+        "sd": 0.01716358408617383,
+        "min": 0.6842373609542847,
+        "max": 0.7262281179428101,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.875,
+        "sd": 0.12942179105544788,
+        "min": 0.6375,
+        "max": 0.9875,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.575,
+        "q1": 0.375,
+        "q3": 0.8125,
+        "min": 0.35,
+        "max": 0.95,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 14,
+          "pct": 5.8
+        },
+        "self_empowerment": {
+          "count": 46,
+          "pct": 19.2
+        },
+        "safety": {
+          "count": 18,
+          "pct": 7.5
+        },
+        "cognitive_reframe": {
+          "count": 86,
+          "pct": 35.8
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 56,
+          "pct": 23.3
+        }
+      }
+    },
+    "mistral_large_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7719298245614032,
+        "q1": 0.6701754385964903,
+        "q3": 0.9052631578947371,
+        "min": 0.6491228070175431,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7719298245614032,
+        "q1": 0.6701754385964903,
+        "q3": 0.9052631578947371,
+        "min": 0.6491228070175431,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7416012287139893,
+        "sd": 0.057011355980569015,
+        "min": 0.6778832077980042,
+        "max": 0.817423939704895,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9833333333333334,
+        "sd": 0.01513825177048746,
+        "min": 0.9625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.8,
+        "q1": 0.6000000000000001,
+        "q3": 0.9249999999999999,
+        "min": 0.5,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 42,
+          "pct": 17.5
+        },
+        "self_empowerment": {
+          "count": 53,
+          "pct": 22.1
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 23,
+          "pct": 9.6
+        },
+        "social_support": {
+          "count": 61,
+          "pct": 25.4
+        },
+        "sensory_modulation": {
+          "count": 61,
+          "pct": 25.4
+        }
+      }
+    },
+    "mistral_large_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7087719298245607,
+        "q1": 0.6596491228070165,
+        "q3": 0.8842105263157896,
+        "min": 0.6035087719298231,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7087719298245607,
+        "q1": 0.6596491228070165,
+        "q3": 0.8842105263157896,
+        "min": 0.6035087719298231,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7560036778450012,
+        "sd": 0.04113869220308012,
+        "min": 0.708425760269165,
+        "max": 0.8123900294303894,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9958333333333332,
+        "sd": 0.010206207261596585,
+        "min": 0.975,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.7,
+        "q1": 0.6125,
+        "q3": 0.8999999999999999,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "self_empowerment": {
+          "count": 52,
+          "pct": 21.7
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 26,
+          "pct": 10.8
+        },
+        "social_support": {
+          "count": 64,
+          "pct": 26.7
+        },
+        "sensory_modulation": {
+          "count": 58,
+          "pct": 24.2
+        }
+      }
+    },
+    "mistral_large_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.8771929824561406,
+        "q1": 0.7157894736842099,
+        "q3": 0.9833333333333334,
+        "min": 0.6526315789473675,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.8771929824561406,
+        "q1": 0.7157894736842099,
+        "q3": 0.9833333333333334,
+        "min": 0.6526315789473675,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7643514374891917,
+        "sd": 0.062487001623582526,
+        "min": 0.6884821653366089,
+        "max": 0.8586058020591736,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9770833333333333,
+        "sd": 0.022935598240871498,
+        "min": 0.95,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.8999999999999999,
+        "q1": 0.7,
+        "q3": 0.9875,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 49,
+          "pct": 20.4
+        },
+        "self_empowerment": {
+          "count": 52,
+          "pct": 21.7
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 23,
+          "pct": 9.6
+        },
+        "social_support": {
+          "count": 60,
+          "pct": 25.0
+        },
+        "sensory_modulation": {
+          "count": 56,
+          "pct": 23.3
+        }
+      }
+    },
+    "mistral_large_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7754385964912283,
+        "q1": 0.7359649122807015,
+        "q3": 0.8491228070175444,
+        "min": 0.6807017543859639,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7754385964912283,
+        "q1": 0.7359649122807015,
+        "q3": 0.8491228070175444,
+        "min": 0.6807017543859639,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7431262532869974,
+        "sd": 0.060976851274028444,
+        "min": 0.6746571063995361,
+        "max": 0.8360435366630554,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9666666666666668,
+        "sd": 0.041583249832915496,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.8,
+        "q1": 0.7625,
+        "q3": 0.875,
+        "min": 0.65,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 50,
+          "pct": 20.8
+        },
+        "self_empowerment": {
+          "count": 53,
+          "pct": 22.1
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 22,
+          "pct": 9.2
+        },
+        "social_support": {
+          "count": 64,
+          "pct": 26.7
+        },
+        "sensory_modulation": {
+          "count": 51,
+          "pct": 21.2
+        }
+      }
+    },
+    "mistral_large_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7122807017543853,
+        "q1": 0.6219298245614024,
+        "q3": 0.7999999999999999,
+        "min": 0.4807017543859647,
+        "max": 0.8736842105263164,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7122807017543853,
+        "q1": 0.6219298245614024,
+        "q3": 0.7999999999999999,
+        "min": 0.4807017543859647,
+        "max": 0.8736842105263164,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.704500158627828,
+        "sd": 0.037555581829517175,
+        "min": 0.6717332601547241,
+        "max": 0.7623209357261658,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9729166666666665,
+        "sd": 0.03392700497637046,
+        "min": 0.925,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.725,
+        "q1": 0.5875,
+        "q3": 0.825,
+        "min": 0.3,
+        "max": 0.9,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 30,
+          "pct": 12.5
+        },
+        "self_empowerment": {
+          "count": 59,
+          "pct": 24.6
+        },
+        "safety": {
+          "count": 1,
+          "pct": 0.4
+        },
+        "cognitive_reframe": {
+          "count": 35,
+          "pct": 14.6
+        },
+        "social_support": {
+          "count": 65,
+          "pct": 27.1
+        },
+        "sensory_modulation": {
+          "count": 50,
+          "pct": 20.8
+        }
+      }
+    },
+    "mistral_large4_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.7368421052631577,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.7368421052631577,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7938770254453024,
+        "sd": 0.04991596473518902,
+        "min": 0.7145501375198364,
+        "max": 0.8477396368980408,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9541666666666666,
+        "sd": 0.040824829046386304,
+        "min": 0.8875,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.75,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 105,
+          "pct": 43.8
+        },
+        "safety": {
+          "count": 15,
+          "pct": 6.2
+        },
+        "cognitive_reframe": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 80,
+          "pct": 33.3
+        }
+      }
+    },
+    "mistral_large4_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 0.95,
+        "q3": 1.0,
+        "min": 0.6491228070175429,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.95,
+        "q3": 1.0,
+        "min": 0.6491228070175429,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7712689240773519,
+        "sd": 0.06065903449737549,
+        "min": 0.690039873123169,
+        "max": 0.8370121121406555,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9520833333333333,
+        "sd": 0.035721725415588004,
+        "min": 0.9125,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 0.9624999999999999,
+        "q3": 1.0,
+        "min": 0.5,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 110,
+          "pct": 45.8
+        },
+        "safety": {
+          "count": 10,
+          "pct": 4.2
+        },
+        "cognitive_reframe": {
+          "count": 21,
+          "pct": 8.8
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 79,
+          "pct": 32.9
+        }
+      }
+    },
+    "mistral_large4_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 0.9500000000000004,
+        "q3": 1.0,
+        "min": 0.6526315789473677,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.9500000000000004,
+        "q3": 1.0,
+        "min": 0.6526315789473677,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7510139147440592,
+        "sd": 0.05043109130199771,
+        "min": 0.6854100227355957,
+        "max": 0.8219667077064514,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9708333333333332,
+        "sd": 0.027003086243366094,
+        "min": 0.9375,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 0.9624999999999999,
+        "q3": 1.0,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 111,
+          "pct": 46.2
+        },
+        "safety": {
+          "count": 9,
+          "pct": 3.8
+        },
+        "cognitive_reframe": {
+          "count": 21,
+          "pct": 8.8
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 79,
+          "pct": 32.9
+        }
+      }
+    },
+    "mistral_large4_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 0.760526315789473,
+        "q3": 1.0,
+        "min": 0.6526315789473677,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.760526315789473,
+        "q3": 1.0,
+        "min": 0.6526315789473677,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7204170723756155,
+        "sd": 0.045006093539830816,
+        "min": 0.6675176024436951,
+        "max": 0.7743193507194519,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.96875,
+        "sd": 0.027099354235848496,
+        "min": 0.925,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 0.7375,
+        "q3": 1.0,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 109,
+          "pct": 45.4
+        },
+        "safety": {
+          "count": 11,
+          "pct": 4.6
+        },
+        "cognitive_reframe": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "social_support": {
+          "count": 27,
+          "pct": 11.2
+        },
+        "sensory_modulation": {
+          "count": 73,
+          "pct": 30.4
+        }
+      }
+    },
+    "mistral_large4_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.8543859649122807,
+        "q1": 0.6728070175438587,
+        "q3": 0.9833333333333334,
+        "min": 0.5614035087719287,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.8543859649122807,
+        "q1": 0.6728070175438587,
+        "q3": 0.9833333333333334,
+        "min": 0.5614035087719287,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.6913562814394633,
+        "sd": 0.03385738089246231,
+        "min": 0.6374006271362305,
+        "max": 0.7256039977073669,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.96875,
+        "sd": 0.02592055169165964,
+        "min": 0.925,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.875,
+        "q1": 0.6875,
+        "q3": 0.9875,
+        "min": 0.45,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 104,
+          "pct": 43.3
+        },
+        "safety": {
+          "count": 9,
+          "pct": 3.8
+        },
+        "cognitive_reframe": {
+          "count": 28,
+          "pct": 11.7
+        },
+        "social_support": {
+          "count": 24,
+          "pct": 10.0
+        },
+        "sensory_modulation": {
+          "count": 75,
+          "pct": 31.2
+        }
+      }
+    },
+    "mistral_medium35_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.873684210526316,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.873684210526316,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.8297043144702911,
+        "sd": 0.026106500992805513,
+        "min": 0.7974439263343811,
+        "max": 0.8607704043388367,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9645833333333332,
+        "sd": 0.08078391960450214,
+        "min": 0.8,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 18,
+          "pct": 7.5
+        },
+        "self_empowerment": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 60,
+          "pct": 25.0
+        },
+        "social_support": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "sensory_modulation": {
+          "count": 82,
+          "pct": 34.2
+        }
+      }
+    },
+    "mistral_medium35_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.8856993118921915,
+        "sd": 0.03764426185478015,
+        "min": 0.8200840950012207,
+        "max": 0.9123882055282592,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.94375,
+        "sd": 0.1377837980315538,
+        "min": 0.6625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 60,
+          "pct": 25.0
+        },
+        "social_support": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "sensory_modulation": {
+          "count": 80,
+          "pct": 33.3
+        }
+      }
+    },
+    "mistral_medium35_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.9333333333333336,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.9333333333333336,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.8238655229409536,
+        "sd": 0.037185612599803415,
+        "min": 0.772335946559906,
+        "max": 0.8641167879104614,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9604166666666667,
+        "sd": 0.07922147225763142,
+        "min": 0.8,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.95,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 19,
+          "pct": 7.9
+        },
+        "self_empowerment": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 60,
+          "pct": 25.0
+        },
+        "social_support": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "sensory_modulation": {
+          "count": 81,
+          "pct": 33.8
+        }
+      }
+    },
+    "mistral_medium35_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.7228070175438592,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.7228070175438592,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7851286133130392,
+        "sd": 0.03360383706503762,
+        "min": 0.743502676486969,
+        "max": 0.8355081677436829,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9625,
+        "sd": 0.06324555320336757,
+        "min": 0.8375,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.75,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 15,
+          "pct": 6.2
+        },
+        "self_empowerment": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 60,
+          "pct": 25.0
+        },
+        "social_support": {
+          "count": 41,
+          "pct": 17.1
+        },
+        "sensory_modulation": {
+          "count": 84,
+          "pct": 35.0
+        }
+      }
+    },
+    "mistral_medium35_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.9666666666666669,
+        "q1": 0.8885964912280704,
+        "q3": 1.0,
+        "min": 0.6666666666666651,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.9666666666666669,
+        "q1": 0.8885964912280704,
+        "q3": 1.0,
+        "min": 0.6666666666666651,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7535402178764343,
+        "sd": 0.04558982993199564,
+        "min": 0.6899963617324829,
+        "max": 0.8147154450416565,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.975,
+        "sd": 0.05533985905294662,
+        "min": 0.8625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.975,
+        "q1": 0.9125,
+        "q3": 1.0,
+        "min": 0.7,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 14,
+          "pct": 5.8
+        },
+        "self_empowerment": {
+          "count": 41,
+          "pct": 17.1
+        },
+        "safety": {
+          "count": 1,
+          "pct": 0.4
+        },
+        "cognitive_reframe": {
+          "count": 62,
+          "pct": 25.8
+        },
+        "social_support": {
+          "count": 39,
+          "pct": 16.2
+        },
+        "sensory_modulation": {
+          "count": 83,
+          "pct": 34.6
+        }
+      }
+    },
+    "mistral_small32_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.9666666666666669,
+        "q1": 0.9333333333333336,
+        "q3": 1.0,
+        "min": 0.6631578947368421,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.9666666666666669,
+        "q1": 0.9333333333333336,
+        "q3": 1.0,
+        "min": 0.6631578947368421,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.756898045539856,
+        "sd": 0.0390664849028477,
+        "min": 0.7186380624771118,
+        "max": 0.8109381198883057,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9083333333333333,
+        "sd": 0.13911925340033518,
+        "min": 0.6375,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.975,
+        "q1": 0.95,
+        "q3": 1.0,
+        "min": 0.6,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 66,
+          "pct": 27.5
+        },
+        "safety": {
+          "count": 14,
+          "pct": 5.8
+        },
+        "cognitive_reframe": {
+          "count": 80,
+          "pct": 33.3
+        },
+        "social_support": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "sensory_modulation": {
+          "count": 60,
+          "pct": 25.0
+        }
+      }
+    },
+    "mistral_small32_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.6263157894736837,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.6263157894736837,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7655134399731954,
+        "sd": 0.047988188445256305,
+        "min": 0.7184554934501648,
+        "max": 0.8570597767829895,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9249999999999999,
+        "sd": 0.13205112646244258,
+        "min": 0.6625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.65,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 66,
+          "pct": 27.5
+        },
+        "safety": {
+          "count": 13,
+          "pct": 5.4
+        },
+        "cognitive_reframe": {
+          "count": 79,
+          "pct": 32.9
+        },
+        "social_support": {
+          "count": 1,
+          "pct": 0.4
+        },
+        "sensory_modulation": {
+          "count": 61,
+          "pct": 25.4
+        }
+      }
+    },
+    "mistral_small32_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.9666666666666668,
+        "q1": 0.8491228070175443,
+        "q3": 1.0,
+        "min": 0.8210526315789465,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.9666666666666668,
+        "q1": 0.8491228070175443,
+        "q3": 1.0,
+        "min": 0.8210526315789465,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7580767273902893,
+        "sd": 0.047721298888975396,
+        "min": 0.710990846157074,
+        "max": 0.8353999257087708,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9083333333333333,
+        "sd": 0.16764297380643983,
+        "min": 0.575,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.975,
+        "q1": 0.875,
+        "q3": 1.0,
+        "min": 0.85,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 59,
+          "pct": 24.6
+        },
+        "safety": {
+          "count": 21,
+          "pct": 8.8
+        },
+        "cognitive_reframe": {
+          "count": 80,
+          "pct": 33.3
+        },
+        "social_support": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "sensory_modulation": {
+          "count": 60,
+          "pct": 25.0
+        }
+      }
+    },
+    "mistral_small32_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.9666666666666669,
+        "q1": 0.8491228070175443,
+        "q3": 1.0,
+        "min": 0.526315789473684,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.9666666666666669,
+        "q1": 0.8491228070175443,
+        "q3": 1.0,
+        "min": 0.526315789473684,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7427097260951996,
+        "sd": 0.03673093311068209,
+        "min": 0.7044185400009155,
+        "max": 0.8057112693786621,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9208333333333333,
+        "sd": 0.12982359826574932,
+        "min": 0.6625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.975,
+        "q1": 0.875,
+        "q3": 1.0,
+        "min": 0.65,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 60,
+          "pct": 25.0
+        },
+        "safety": {
+          "count": 17,
+          "pct": 7.1
+        },
+        "cognitive_reframe": {
+          "count": 76,
+          "pct": 31.7
+        },
+        "social_support": {
+          "count": 4,
+          "pct": 1.7
+        },
+        "sensory_modulation": {
+          "count": 63,
+          "pct": 26.2
+        }
+      }
+    },
+    "mistral_small32_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.8719298245614038,
+        "q1": 0.7280701754385959,
+        "q3": 0.9684210526315791,
+        "min": 0.4175438596491228,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.8719298245614038,
+        "q1": 0.7280701754385959,
+        "q3": 0.9684210526315791,
+        "min": 0.4175438596491228,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7077292303244272,
+        "sd": 0.02694867417952404,
+        "min": 0.6758790612220764,
+        "max": 0.7455034852027893,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9208333333333334,
+        "sd": 0.11310025051549034,
+        "min": 0.7,
+        "max": 0.9875,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.9,
+        "q1": 0.7125,
+        "q3": 0.975,
+        "min": 0.45,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "self_empowerment": {
+          "count": 57,
+          "pct": 23.8
+        },
+        "safety": {
+          "count": 21,
+          "pct": 8.8
+        },
+        "cognitive_reframe": {
+          "count": 74,
+          "pct": 30.8
+        },
+        "social_support": {
+          "count": 5,
+          "pct": 2.1
+        },
+        "sensory_modulation": {
+          "count": 63,
+          "pct": 26.2
+        }
+      }
+    },
+    "mistral_small4_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.745614035087719,
+        "q1": 0.6017543859649114,
+        "q3": 0.968421052631579,
+        "min": 0.5719298245614025,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.745614035087719,
+        "q1": 0.6017543859649114,
+        "q3": 0.968421052631579,
+        "min": 0.5719298245614025,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.6924228171507517,
+        "sd": 0.014331344067921931,
+        "min": 0.6698558330535889,
+        "max": 0.7148339748382568,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.8374999999999999,
+        "sd": 0.1420827223838282,
+        "min": 0.5625,
+        "max": 0.95,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.75,
+        "q1": 0.5625,
+        "q3": 0.975,
+        "min": 0.5,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 48,
+          "pct": 20.0
+        },
+        "self_empowerment": {
+          "count": 23,
+          "pct": 9.6
+        },
+        "safety": {
+          "count": 42,
+          "pct": 17.5
+        },
+        "cognitive_reframe": {
+          "count": 63,
+          "pct": 26.2
+        },
+        "social_support": {
+          "count": 24,
+          "pct": 10.0
+        },
+        "sensory_modulation": {
+          "count": 40,
+          "pct": 16.7
+        }
+      }
+    },
+    "mistral_small4_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.8736842105263163,
+        "q1": 0.8140350877192984,
+        "q3": 0.9833333333333334,
+        "min": 0.6052631578947357,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.8736842105263163,
+        "q1": 0.8140350877192984,
+        "q3": 0.9833333333333334,
+        "min": 0.6052631578947357,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7248397866884867,
+        "sd": 0.029038221614863614,
+        "min": 0.6924103498458862,
+        "max": 0.7752229571342468,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.8416666666666667,
+        "sd": 0.10113934282299179,
+        "min": 0.675,
+        "max": 0.975,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.8999999999999999,
+        "q1": 0.85,
+        "q3": 0.9875,
+        "min": 0.6,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 35,
+          "pct": 14.6
+        },
+        "self_empowerment": {
+          "count": 23,
+          "pct": 9.6
+        },
+        "safety": {
+          "count": 56,
+          "pct": 23.3
+        },
+        "cognitive_reframe": {
+          "count": 61,
+          "pct": 25.4
+        },
+        "social_support": {
+          "count": 25,
+          "pct": 10.4
+        },
+        "sensory_modulation": {
+          "count": 40,
+          "pct": 16.7
+        }
+      }
+    },
+    "mistral_small4_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.9350877192982456,
+        "q1": 0.7912280701754386,
+        "q3": 1.0,
+        "min": 0.649122807017543,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.9350877192982456,
+        "q1": 0.7912280701754386,
+        "q3": 1.0,
+        "min": 0.649122807017543,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7261920670668284,
+        "sd": 0.02251706236851819,
+        "min": 0.6813875436782837,
+        "max": 0.7442591786384583,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.7895833333333333,
+        "sd": 0.13495755505590146,
+        "min": 0.6625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.95,
+        "q1": 0.8250000000000001,
+        "q3": 1.0,
+        "min": 0.5,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 47,
+          "pct": 19.6
+        },
+        "self_empowerment": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "safety": {
+          "count": 51,
+          "pct": 21.2
+        },
+        "cognitive_reframe": {
+          "count": 61,
+          "pct": 25.4
+        },
+        "social_support": {
+          "count": 21,
+          "pct": 8.8
+        },
+        "sensory_modulation": {
+          "count": 40,
+          "pct": 16.7
+        }
+      }
+    },
+    "mistral_small4_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.6456140350877183,
+        "q1": 0.5649122807017535,
+        "q3": 0.9184210526315787,
+        "min": 0.5280701754385957,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.6456140350877183,
+        "q1": 0.5649122807017535,
+        "q3": 0.9184210526315787,
+        "min": 0.5280701754385957,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.684413860241572,
+        "sd": 0.007036135207811557,
+        "min": 0.6764588952064514,
+        "max": 0.6975381970405579,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.80625,
+        "sd": 0.12164240625702864,
+        "min": 0.5625,
+        "max": 0.9,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.6,
+        "q1": 0.4625,
+        "q3": 0.925,
+        "min": 0.45,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 50,
+          "pct": 20.8
+        },
+        "self_empowerment": {
+          "count": 21,
+          "pct": 8.8
+        },
+        "safety": {
+          "count": 47,
+          "pct": 19.6
+        },
+        "cognitive_reframe": {
+          "count": 64,
+          "pct": 26.7
+        },
+        "social_support": {
+          "count": 19,
+          "pct": 7.9
+        },
+        "sensory_modulation": {
+          "count": 39,
+          "pct": 16.2
+        }
+      }
+    },
+    "mistral_small4_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 0.9916666666666667,
+        "sd": 0.02041241452319317,
+        "min": 0.95,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.6245614035087708,
+        "q1": 0.5285087719298236,
+        "q3": 0.8640350877192983,
+        "min": 0.3456140350877199,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.6288499025341122,
+        "q1": 0.5285087719298236,
+        "q3": 0.866179337231969,
+        "min": 0.3456140350877199,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.6574027041594187,
+        "sd": 0.014599750785827594,
+        "min": 0.6441895365715027,
+        "max": 0.6814560890197754,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.776388888888889,
+        "sd": 0.09225819244963598,
+        "min": 0.6125,
+        "max": 0.8875,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.575,
+        "q1": 0.38749999999999996,
+        "q3": 0.875,
+        "min": 0.3,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 47,
+          "pct": 19.5
+        },
+        "self_empowerment": {
+          "count": 26,
+          "pct": 10.8
+        },
+        "safety": {
+          "count": 48,
+          "pct": 19.9
+        },
+        "cognitive_reframe": {
+          "count": 62,
+          "pct": 25.7
+        },
+        "social_support": {
+          "count": 19,
+          "pct": 7.9
+        },
+        "sensory_modulation": {
+          "count": 39,
+          "pct": 16.2
+        }
+      }
+    },
+    "olmo3_32b_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.9411032497882843,
+        "sd": 0.05329145229077672,
+        "min": 0.8553462028503418,
+        "max": 1.0,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.8979166666666667,
+        "sd": 0.19079057017228773,
+        "min": 0.525,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "safety": {
+          "count": 80,
+          "pct": 33.3
+        },
+        "cognitive_reframe": {
+          "count": 100,
+          "pct": 41.7
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 40,
+          "pct": 16.7
+        }
+      }
+    },
+    "olmo3_32b_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.8132364054520925,
+        "sd": 0.039731644480370004,
+        "min": 0.7595012187957764,
+        "max": 0.8658455014228821,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9166666666666666,
+        "sd": 0.16387240971764183,
+        "min": 0.5875,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "safety": {
+          "count": 80,
+          "pct": 33.3
+        },
+        "cognitive_reframe": {
+          "count": 100,
+          "pct": 41.7
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 40,
+          "pct": 16.7
+        }
+      }
+    },
+    "olmo3_32b_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.9105263157894736,
+        "q1": 0.786842105263158,
+        "q3": 1.0,
+        "min": 0.680701754385964,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.9105263157894736,
+        "q1": 0.786842105263158,
+        "q3": 1.0,
+        "min": 0.680701754385964,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7596384187539419,
+        "sd": 0.0364771681147519,
+        "min": 0.7269419431686401,
+        "max": 0.804842472076416,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9104166666666665,
+        "sd": 0.17825835651286212,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.925,
+        "q1": 0.8125,
+        "q3": 1.0,
+        "min": 0.65,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 3,
+          "pct": 1.2
+        },
+        "safety": {
+          "count": 80,
+          "pct": 33.3
+        },
+        "cognitive_reframe": {
+          "count": 100,
+          "pct": 41.7
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 37,
+          "pct": 15.4
+        }
+      }
+    },
+    "olmo3_32b_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.9105263157894735,
+        "q1": 0.7157894736842098,
+        "q3": 1.0,
+        "min": 0.6631578947368412,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.9105263157894735,
+        "q1": 0.7157894736842098,
+        "q3": 1.0,
+        "min": 0.6631578947368412,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.729886382818222,
+        "sd": 0.020891136111131546,
+        "min": 0.6970129609107971,
+        "max": 0.7604894638061523,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9145833333333333,
+        "sd": 0.17965534132517924,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.925,
+        "q1": 0.7,
+        "q3": 1.0,
+        "min": 0.6,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 8,
+          "pct": 3.3
+        },
+        "safety": {
+          "count": 68,
+          "pct": 28.3
+        },
+        "cognitive_reframe": {
+          "count": 100,
+          "pct": 41.7
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "sensory_modulation": {
+          "count": 44,
+          "pct": 18.3
+        }
+      }
+    },
+    "olmo3_32b_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 0.9833333333333334,
+        "sd": 0.0408248290463863,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7456140350877187,
+        "q1": 0.6675438596491217,
+        "q3": 0.8184210526315787,
+        "min": 0.5438596491228062,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7508771929824554,
+        "q1": 0.6675438596491217,
+        "q3": 0.9552631578947368,
+        "min": 0.5438596491228062,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.6989593307177225,
+        "sd": 0.021731820453897092,
+        "min": 0.6806232929229736,
+        "max": 0.7297347187995911,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.8944444444444445,
+        "sd": 0.16607533988680714,
+        "min": 0.5625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.75,
+        "q1": 0.6125,
+        "q3": 0.8875,
+        "min": 0.5,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 9,
+          "pct": 3.8
+        },
+        "safety": {
+          "count": 61,
+          "pct": 25.8
+        },
+        "cognitive_reframe": {
+          "count": 102,
+          "pct": 43.2
+        },
+        "social_support": {
+          "count": 20,
+          "pct": 8.5
+        },
+        "sensory_modulation": {
+          "count": 44,
+          "pct": 18.6
+        }
+      }
+    },
+    "qwen35_122b_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.8736842105263152,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.8736842105263152,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.8818950951099396,
+        "sd": 0.05051998585010637,
+        "min": 0.7847505211830139,
+        "max": 0.9317821860313416,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9833333333333334,
+        "sd": 0.02457980200625438,
+        "min": 0.9375,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 80,
+          "pct": 33.3
+        },
+        "safety": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "cognitive_reframe": {
+          "count": 22,
+          "pct": 9.2
+        },
+        "social_support": {
+          "count": 18,
+          "pct": 7.5
+        },
+        "sensory_modulation": {
+          "count": 100,
+          "pct": 41.7
+        }
+      }
+    },
+    "qwen35_122b_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.9333333333333338,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.9333333333333338,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.8401143848896027,
+        "sd": 0.04710089764245715,
+        "min": 0.8007736802101135,
+        "max": 0.900982677936554,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9729166666666668,
+        "sd": 0.055009468881881275,
+        "min": 0.8625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 1.0,
+        "q3": 1.0,
+        "min": 0.95,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 80,
+          "pct": 33.3
+        },
+        "safety": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "cognitive_reframe": {
+          "count": 21,
+          "pct": 8.8
+        },
+        "social_support": {
+          "count": 19,
+          "pct": 7.9
+        },
+        "sensory_modulation": {
+          "count": 100,
+          "pct": 41.7
+        }
+      }
+    },
+    "qwen35_122b_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.9666666666666663,
+        "q1": 0.8438596491228063,
+        "q3": 1.0,
+        "min": 0.7754385964912283,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.9666666666666663,
+        "q1": 0.8438596491228063,
+        "q3": 1.0,
+        "min": 0.7754385964912283,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7885556817054749,
+        "sd": 0.03229948915017915,
+        "min": 0.7418570518493652,
+        "max": 0.8290435671806335,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9791666666666666,
+        "sd": 0.028136571693556874,
+        "min": 0.925,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.975,
+        "q1": 0.875,
+        "q3": 1.0,
+        "min": 0.8,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 1,
+          "pct": 0.4
+        },
+        "self_empowerment": {
+          "count": 79,
+          "pct": 32.9
+        },
+        "safety": {
+          "count": 20,
+          "pct": 8.3
+        },
+        "cognitive_reframe": {
+          "count": 27,
+          "pct": 11.2
+        },
+        "social_support": {
+          "count": 16,
+          "pct": 6.7
+        },
+        "sensory_modulation": {
+          "count": 97,
+          "pct": 40.4
+        }
+      }
+    },
+    "qwen35_122b_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.8526315789473682,
+        "q1": 0.6342105263157888,
+        "q3": 1.0,
+        "min": 0.5421052631578943,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.8526315789473682,
+        "q1": 0.6342105263157888,
+        "q3": 1.0,
+        "min": 0.5421052631578943,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7426583568255106,
+        "sd": 0.027331611522445932,
+        "min": 0.6954043507575989,
+        "max": 0.7676488161087036,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9833333333333333,
+        "sd": 0.01290994448735806,
+        "min": 0.9625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.85,
+        "q1": 0.625,
+        "q3": 1.0,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 5,
+          "pct": 2.1
+        },
+        "self_empowerment": {
+          "count": 74,
+          "pct": 30.8
+        },
+        "safety": {
+          "count": 23,
+          "pct": 9.6
+        },
+        "cognitive_reframe": {
+          "count": 36,
+          "pct": 15.0
+        },
+        "social_support": {
+          "count": 13,
+          "pct": 5.4
+        },
+        "sensory_modulation": {
+          "count": 89,
+          "pct": 37.1
+        }
+      }
+    },
+    "qwen35_122b_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7298245614035082,
+        "q1": 0.6228070175438586,
+        "q3": 0.8578947368421053,
+        "min": 0.3473684210526321,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7298245614035082,
+        "q1": 0.6228070175438586,
+        "q3": 0.8578947368421053,
+        "min": 0.3473684210526321,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7095041275024414,
+        "sd": 0.020775331415438848,
+        "min": 0.6799513697624207,
+        "max": 0.733715832233429,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9687499999999999,
+        "sd": 0.032355447763861955,
+        "min": 0.925,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.725,
+        "q1": 0.525,
+        "q3": 0.8875,
+        "min": 0.3,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 1,
+          "pct": 0.4
+        },
+        "self_empowerment": {
+          "count": 77,
+          "pct": 32.1
+        },
+        "safety": {
+          "count": 29,
+          "pct": 12.1
+        },
+        "cognitive_reframe": {
+          "count": 47,
+          "pct": 19.6
+        },
+        "social_support": {
+          "count": 10,
+          "pct": 4.2
+        },
+        "sensory_modulation": {
+          "count": 76,
+          "pct": 31.7
+        }
+      }
+    },
+    "qwen35_27b_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7596491228070175,
+        "q1": 0.737280701754386,
+        "q3": 0.8070175438596494,
+        "min": 0.7052631578947371,
+        "max": 0.8736842105263152,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7596491228070175,
+        "q1": 0.737280701754386,
+        "q3": 0.8070175438596494,
+        "min": 0.7052631578947371,
+        "max": 0.8736842105263152,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.8306887149810791,
+        "sd": 0.030298761194943027,
+        "min": 0.787810742855072,
+        "max": 0.8731809854507446,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9645833333333332,
+        "sd": 0.027857524417411298,
+        "min": 0.925,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.825,
+        "q1": 0.8,
+        "q3": 0.85,
+        "min": 0.7,
+        "max": 0.9,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 6,
+          "pct": 2.5
+        },
+        "self_empowerment": {
+          "count": 33,
+          "pct": 13.8
+        },
+        "safety": {
+          "count": 84,
+          "pct": 35.0
+        },
+        "cognitive_reframe": {
+          "count": 76,
+          "pct": 31.7
+        },
+        "social_support": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "sensory_modulation": {
+          "count": 41,
+          "pct": 17.1
+        }
+      }
+    },
+    "qwen35_27b_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7535087719298244,
+        "q1": 0.5907894736842104,
+        "q3": 0.775438596491228,
+        "min": 0.5140350877192975,
+        "max": 0.7754385964912284,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7535087719298244,
+        "q1": 0.5907894736842104,
+        "q3": 0.775438596491228,
+        "min": 0.5140350877192975,
+        "max": 0.7754385964912284,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7799809177716573,
+        "sd": 0.03831384140201609,
+        "min": 0.731940507888794,
+        "max": 0.8184250593185425,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9541666666666666,
+        "sd": 0.06967184988692827,
+        "min": 0.825,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.8,
+        "q1": 0.6125,
+        "q3": 0.8,
+        "min": 0.4,
+        "max": 0.85,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 7,
+          "pct": 2.9
+        },
+        "self_empowerment": {
+          "count": 34,
+          "pct": 14.2
+        },
+        "safety": {
+          "count": 73,
+          "pct": 30.4
+        },
+        "cognitive_reframe": {
+          "count": 67,
+          "pct": 27.9
+        },
+        "social_support": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "sensory_modulation": {
+          "count": 59,
+          "pct": 24.6
+        }
+      }
+    },
+    "qwen35_27b_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7684210526315793,
+        "q1": 0.5719298245614031,
+        "q3": 0.8096491228070175,
+        "min": 0.4456140350877192,
+        "max": 0.8385964912280698,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7684210526315793,
+        "q1": 0.5719298245614031,
+        "q3": 0.8096491228070175,
+        "min": 0.4456140350877192,
+        "max": 0.8385964912280698,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7537582616011301,
+        "sd": 0.040027183674270626,
+        "min": 0.6963770985603333,
+        "max": 0.8182105422019958,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9229166666666666,
+        "sd": 0.07306532465312578,
+        "min": 0.825,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.8,
+        "q1": 0.575,
+        "q3": 0.8375,
+        "min": 0.35,
+        "max": 0.9,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 3,
+          "pct": 1.3
+        },
+        "self_empowerment": {
+          "count": 36,
+          "pct": 15.1
+        },
+        "safety": {
+          "count": 78,
+          "pct": 32.6
+        },
+        "cognitive_reframe": {
+          "count": 71,
+          "pct": 29.7
+        },
+        "social_support": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "sensory_modulation": {
+          "count": 51,
+          "pct": 21.3
+        }
+      }
+    },
+    "qwen35_27b_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.5947368421052628,
+        "q1": 0.4837719298245609,
+        "q3": 0.7359649122807016,
+        "min": 0.4491228070175437,
+        "max": 0.8684210526315786,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.5947368421052628,
+        "q1": 0.4837719298245609,
+        "q3": 0.7359649122807016,
+        "min": 0.4491228070175437,
+        "max": 0.8684210526315786,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7148014803727468,
+        "sd": 0.024552279788398045,
+        "min": 0.6694538593292236,
+        "max": 0.7406110167503357,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9270833333333334,
+        "sd": 0.05668810868838955,
+        "min": 0.8625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.65,
+        "q1": 0.4,
+        "q3": 0.7875000000000001,
+        "min": 0.3,
+        "max": 0.9,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 10,
+          "pct": 4.2
+        },
+        "self_empowerment": {
+          "count": 35,
+          "pct": 14.8
+        },
+        "safety": {
+          "count": 75,
+          "pct": 31.6
+        },
+        "cognitive_reframe": {
+          "count": 65,
+          "pct": 27.4
+        },
+        "social_support": {
+          "count": 1,
+          "pct": 0.4
+        },
+        "sensory_modulation": {
+          "count": 51,
+          "pct": 21.5
+        }
+      }
+    },
+    "qwen35_27b_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 0.9666666666666667,
+        "sd": 0.06055300708194984,
+        "min": 0.85,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.5184210526315786,
+        "q1": 0.41447368421052605,
+        "q3": 0.6447368421052624,
+        "min": 0.3561403508771932,
+        "max": 0.7228070175438595,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.5962074303405569,
+        "q1": 0.4499999999999995,
+        "q3": 0.648103715170278,
+        "min": 0.3957115009746591,
+        "max": 0.7228070175438595,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.687209020058314,
+        "sd": 0.009911744579157026,
+        "min": 0.6765960454940796,
+        "max": 0.7050150632858276,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9600490196078432,
+        "sd": 0.05306086687948386,
+        "min": 0.875,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.55,
+        "q1": 0.4,
+        "q3": 0.6625,
+        "min": 0.25,
+        "max": 0.75,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 5,
+          "pct": 2.2
+        },
+        "self_empowerment": {
+          "count": 44,
+          "pct": 19.3
+        },
+        "safety": {
+          "count": 65,
+          "pct": 28.5
+        },
+        "cognitive_reframe": {
+          "count": 64,
+          "pct": 28.1
+        },
+        "social_support": {
+          "count": 2,
+          "pct": 0.9
+        },
+        "sensory_modulation": {
+          "count": 48,
+          "pct": 21.1
+        }
+      }
+    },
+    "qwen35_397b_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7991228070175436,
+        "q1": 0.6635964912280692,
+        "q3": 0.9833333333333334,
+        "min": 0.4543859649122804,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7991228070175436,
+        "q1": 0.6635964912280692,
+        "q3": 0.9833333333333334,
+        "min": 0.4543859649122804,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7498017251491547,
+        "sd": 0.026732970285701273,
+        "min": 0.7099508047103882,
+        "max": 0.776150643825531,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9937499999999999,
+        "sd": 0.010458250331675948,
+        "min": 0.975,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.825,
+        "q1": 0.625,
+        "q3": 0.9875,
+        "min": 0.35,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 12,
+          "pct": 5.0
+        },
+        "self_empowerment": {
+          "count": 67,
+          "pct": 27.9
+        },
+        "safety": {
+          "count": 35,
+          "pct": 14.6
+        },
+        "cognitive_reframe": {
+          "count": 37,
+          "pct": 15.4
+        },
+        "social_support": {
+          "count": 28,
+          "pct": 11.7
+        },
+        "sensory_modulation": {
+          "count": 61,
+          "pct": 25.4
+        }
+      }
+    },
+    "qwen35_397b_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7368421052631577,
+        "q1": 0.578947368421052,
+        "q3": 0.9526315789473685,
+        "min": 0.4385964912280701,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7368421052631577,
+        "q1": 0.578947368421052,
+        "q3": 0.9526315789473685,
+        "min": 0.4385964912280701,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7585742473602295,
+        "sd": 0.04738126273908096,
+        "min": 0.6803082227706909,
+        "max": 0.8048979043960571,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9770833333333334,
+        "sd": 0.040633012030449646,
+        "min": 0.9,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.725,
+        "q1": 0.5625,
+        "q3": 0.9625,
+        "min": 0.5,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 7,
+          "pct": 2.9
+        },
+        "self_empowerment": {
+          "count": 62,
+          "pct": 25.8
+        },
+        "safety": {
+          "count": 34,
+          "pct": 14.2
+        },
+        "cognitive_reframe": {
+          "count": 47,
+          "pct": 19.6
+        },
+        "social_support": {
+          "count": 25,
+          "pct": 10.4
+        },
+        "sensory_modulation": {
+          "count": 65,
+          "pct": 27.1
+        }
+      }
+    },
+    "qwen35_397b_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7754385964912278,
+        "q1": 0.7065789473684206,
+        "q3": 0.9535087719298245,
+        "min": 0.5491228070175429,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7754385964912278,
+        "q1": 0.7065789473684206,
+        "q3": 0.9535087719298245,
+        "min": 0.5491228070175429,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7350263893604279,
+        "sd": 0.028740766208948117,
+        "min": 0.6982031464576721,
+        "max": 0.7596911787986755,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.99375,
+        "sd": 0.015309310892394856,
+        "min": 0.9625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.825,
+        "q1": 0.7625,
+        "q3": 0.9625,
+        "min": 0.5,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 14,
+          "pct": 5.8
+        },
+        "self_empowerment": {
+          "count": 62,
+          "pct": 25.8
+        },
+        "safety": {
+          "count": 34,
+          "pct": 14.2
+        },
+        "cognitive_reframe": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "social_support": {
+          "count": 26,
+          "pct": 10.8
+        },
+        "sensory_modulation": {
+          "count": 64,
+          "pct": 26.7
+        }
+      }
+    },
+    "qwen35_397b_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.6421052631578938,
+        "q1": 0.5850877192982445,
+        "q3": 0.920175438596491,
+        "min": 0.4736842105263155,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.6421052631578938,
+        "q1": 0.5850877192982445,
+        "q3": 0.920175438596491,
+        "min": 0.4736842105263155,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.725545326868693,
+        "sd": 0.029768487543502295,
+        "min": 0.6839625239372253,
+        "max": 0.7657942771911621,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9958333333333332,
+        "sd": 0.010206207261596583,
+        "min": 0.975,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.625,
+        "q1": 0.6,
+        "q3": 0.9125,
+        "min": 0.4,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 11,
+          "pct": 4.6
+        },
+        "self_empowerment": {
+          "count": 63,
+          "pct": 26.2
+        },
+        "safety": {
+          "count": 29,
+          "pct": 12.1
+        },
+        "cognitive_reframe": {
+          "count": 49,
+          "pct": 20.4
+        },
+        "social_support": {
+          "count": 25,
+          "pct": 10.4
+        },
+        "sensory_modulation": {
+          "count": 63,
+          "pct": 26.2
+        }
+      }
+    },
+    "qwen35_397b_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.6263157894736833,
+        "q1": 0.5105263157894729,
+        "q3": 0.86578947368421,
+        "min": 0.4491228070175435,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.6263157894736833,
+        "q1": 0.5105263157894729,
+        "q3": 0.86578947368421,
+        "min": 0.4491228070175435,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7173298994700114,
+        "sd": 0.033043255683438556,
+        "min": 0.6776123046875,
+        "max": 0.7627993226051331,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.99375,
+        "sd": 0.015309310892394856,
+        "min": 0.9625,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.6,
+        "q1": 0.5625,
+        "q3": 0.8624999999999999,
+        "min": 0.45,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 11,
+          "pct": 4.6
+        },
+        "self_empowerment": {
+          "count": 63,
+          "pct": 26.2
+        },
+        "safety": {
+          "count": 28,
+          "pct": 11.7
+        },
+        "cognitive_reframe": {
+          "count": 47,
+          "pct": 19.6
+        },
+        "social_support": {
+          "count": 25,
+          "pct": 10.4
+        },
+        "sensory_modulation": {
+          "count": 66,
+          "pct": 27.5
+        }
+      }
+    },
+    "sonnet46_t0.0": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.8684210526315786,
+        "q1": 0.7131578947368415,
+        "q3": 1.0,
+        "min": 0.6491228070175434,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.8684210526315786,
+        "q1": 0.7131578947368415,
+        "q3": 1.0,
+        "min": 0.6491228070175434,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.8442263901233673,
+        "sd": 0.07497892462075477,
+        "min": 0.7537472248077393,
+        "max": 0.9378657341003418,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.875,
+        "q1": 0.7124999999999999,
+        "q3": 1.0,
+        "min": 0.5,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 15,
+          "pct": 6.2
+        },
+        "self_empowerment": {
+          "count": 74,
+          "pct": 30.8
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "social_support": {
+          "count": 36,
+          "pct": 15.0
+        },
+        "sensory_modulation": {
+          "count": 75,
+          "pct": 31.2
+        }
+      }
+    },
+    "sonnet46_t0.075": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.7789473684210523,
+        "q1": 0.7131578947368414,
+        "q3": 0.9552631578947368,
+        "min": 0.6526315789473686,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.7789473684210523,
+        "q1": 0.7131578947368414,
+        "q3": 0.9552631578947368,
+        "min": 0.6526315789473686,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.8008705377578735,
+        "sd": 0.05792629567571085,
+        "min": 0.7156688570976257,
+        "max": 0.8561319708824158,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.8,
+        "q1": 0.7124999999999999,
+        "q3": 0.9625,
+        "min": 0.55,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 14,
+          "pct": 5.8
+        },
+        "self_empowerment": {
+          "count": 75,
+          "pct": 31.2
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "social_support": {
+          "count": 37,
+          "pct": 15.4
+        },
+        "sensory_modulation": {
+          "count": 74,
+          "pct": 30.8
+        }
+      }
+    },
+    "sonnet46_t0.15": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 1.0,
+        "q1": 0.802631578947368,
+        "q3": 1.0,
+        "min": 0.7052631578947363,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 1.0,
+        "q1": 0.802631578947368,
+        "q3": 1.0,
+        "min": 0.7052631578947363,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.798950711886088,
+        "sd": 0.03773608168176743,
+        "min": 0.7412967085838318,
+        "max": 0.8378179669380188,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 1.0,
+        "q1": 0.8125,
+        "q3": 1.0,
+        "min": 0.7,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "self_empowerment": {
+          "count": 74,
+          "pct": 30.8
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "social_support": {
+          "count": 31,
+          "pct": 12.9
+        },
+        "sensory_modulation": {
+          "count": 95,
+          "pct": 39.6
+        }
+      }
+    },
+    "sonnet46_t0.3": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.8543859649122809,
+        "q1": 0.7464912280701747,
+        "q3": 0.9833333333333334,
+        "min": 0.6807017543859638,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.8543859649122809,
+        "q1": 0.7464912280701747,
+        "q3": 0.9833333333333334,
+        "min": 0.6807017543859638,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7705693443616232,
+        "sd": 0.02725958500771588,
+        "min": 0.7414740324020386,
+        "max": 0.8181495070457458,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.875,
+        "q1": 0.7625,
+        "q3": 0.9875,
+        "min": 0.65,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 5,
+          "pct": 2.1
+        },
+        "self_empowerment": {
+          "count": 73,
+          "pct": 30.4
+        },
+        "safety": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "cognitive_reframe": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "social_support": {
+          "count": 44,
+          "pct": 18.3
+        },
+        "sensory_modulation": {
+          "count": 78,
+          "pct": 32.5
+        }
+      }
+    },
+    "sonnet46_t0.6": {
+      "n_runs": 6,
+      "total_trials": 120,
+      "validity_rate": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_all": {
+        "median": 0.9333333333333337,
+        "q1": 0.7622807017543856,
+        "q3": 0.9833333333333334,
+        "min": 0.6596491228070163,
+        "max": 1.0,
+        "n": 6
+      },
+      "jaccard_valid": {
+        "median": 0.9333333333333337,
+        "q1": 0.7622807017543856,
+        "q3": 0.9833333333333334,
+        "min": 0.6596491228070163,
+        "max": 1.0,
+        "n": 6
+      },
+      "bertscore_f1": {
+        "mean": 0.7431257565816244,
+        "sd": 0.02613783220915822,
+        "min": 0.7081637978553772,
+        "max": 0.7739664316177368,
+        "n": 6
+      },
+      "alignment_mean": {
+        "mean": 0.9979166666666667,
+        "sd": 0.00510310363079827,
+        "min": 0.9875,
+        "max": 1.0,
+        "n": 6
+      },
+      "modal_set_agreement": {
+        "median": 0.95,
+        "q1": 0.7625,
+        "q3": 0.9875,
+        "min": 0.65,
+        "max": 1.0,
+        "n": 6
+      },
+      "strategy_distribution": {
+        "confrontation": {
+          "count": 7,
+          "pct": 2.9
+        },
+        "self_empowerment": {
+          "count": 73,
+          "pct": 30.4
+        },
+        "safety": {
+          "count": 1,
+          "pct": 0.4
+        },
+        "cognitive_reframe": {
+          "count": 40,
+          "pct": 16.7
+        },
+        "social_support": {
+          "count": 27,
+          "pct": 11.2
+        },
+        "sensory_modulation": {
+          "count": 92,
+          "pct": 38.3
+        }
+      }
+    }
+  },
+  "overall": {
+    "n_runs": 390,
+    "total_trials": 7800,
+    "validity_rate": {
+      "mean": 0.9978205128205128,
+      "sd": 0.013476384743385864,
+      "min": 0.85,
+      "max": 1.0,
+      "n": 390
+    },
+    "jaccard_all": {
+      "median": 0.9333333333333336,
+      "q1": 0.680701754385964,
+      "q3": 1.0,
+      "min": 0.3456140350877199,
+      "max": 1.0,
+      "n": 390
+    },
+    "jaccard_valid": {
+      "median": 0.9333333333333336,
+      "q1": 0.680701754385964,
+      "q3": 1.0,
+      "min": 0.3456140350877199,
+      "max": 1.0,
+      "n": 390
+    },
+    "bertscore_f1": {
+      "mean": 0.7566471301592314,
+      "sd": 0.062146496257219304,
+      "min": 0.6374006271362305,
+      "max": 1.0,
+      "n": 390
+    },
+    "alignment_mean": {
+      "mean": 0.9417749706720294,
+      "sd": 0.09599332650130189,
+      "min": 0.525,
+      "max": 1.0,
+      "n": 390
+    },
+    "modal_set_agreement": {
+      "median": 0.95,
+      "q1": 0.7,
+      "q3": 1.0,
+      "min": 0.25,
+      "max": 1.0,
+      "n": 390
+    },
+    "strategy_distribution": {
+      "confrontation": {
+        "count": 1129,
+        "pct": 7.3
+      },
+      "self_empowerment": {
+        "count": 3411,
+        "pct": 21.9
+      },
+      "safety": {
+        "count": 1542,
+        "pct": 9.9
+      },
+      "cognitive_reframe": {
+        "count": 3763,
+        "pct": 24.2
+      },
+      "social_support": {
+        "count": 1496,
+        "pct": 9.6
+      },
+      "sensory_modulation": {
+        "count": 4220,
+        "pct": 27.1
+      }
+    }
+  }
+}

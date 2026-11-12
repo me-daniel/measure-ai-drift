@@ -11,18 +11,54 @@
 
 ---
 
-## Mistral Large 3 -- therapy_temp: 0.15 [NEEDS VERIFICATION]
+## Mistral Large 3 -- therapy_temp: 0.15 [MODEL CARD, checked 2026-11-10]
 
-**Claimed source:** Mistral API Documentation (Sampling Parameters)
+**Source:** Hugging Face model card
+**URL:** https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512
 
-**What we found:**
-- Mistral API docs say "recommend between 0.0 and 0.7" but the default is model-dependent ("call the `/models` endpoint to retrieve the appropriate value")
-- No specific mention of 0.15 in the sampling docs at `docs.mistral.ai/capabilities/completion/sampling/`
-- The Mistral Large 3 HuggingFace repo has no temperature in `generation_config.json`
+**What the card says:**
+- Text: "Use a temperature below 0.1 for daily-driver and production environments". Higher values "may be explored for creative use cases".
+- Example code on the same card sets `TEMP = 0.15` in all three snippets.
+- Large 3 has no reasoning mode, so there is no separate non-reasoning value.
 
-**TODO:** Query the Mistral `/models` endpoint directly for `mistral-large-2512` to get the actual default. Alternatively, check the Mistral model card or La Plateforme dashboard.
+**What is still open:** the API default. Mistral's docs give no per-model number and point to the `default_model_temperature` field of `GET /v1/models`. The repo has no Mistral key, so this was not queried.
 
-**Lower bound rule applied:** 0.15 is at the low end of 0.0-0.7, consistent with the clinical stability rationale. If unverifiable, consider 0.3 as a safer midpoint.
+**Rest of the family (same check):**
+- Small 3.2: `generation_config.json` 0.15, card "such as `temperature=0.15`". This is the only place where 0.15 is a stated default.
+- Small 4 and Medium 3.5: cards say 0.0 to 0.7 for `reasoning_effort="none"` depending on the task, 0.7 for `high`. The Small 4 snippets use 0.1.
+- Large 4: see below.
+
+**Consequence for the paper:** 0.15 is no longer called "the Mistral vendor default". The paper now says it is the setting on Mistral's model cards (recommended for Small 3.2, used in the Large 3 examples) and notes the "below 0.1" advice. The sweep point 0.075 covers that advice.
+
+---
+
+## Mistral Large 4 -- vendor value 1.0, not in the sweep [VERIFIED 2026-11-10]
+
+**Source:** Hugging Face model card and `generation_config.json`
+**URL:** https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B
+**Value in config:** `"temperature": 1.0`, `"top_p": 0.95`
+
+**What the card says:** "for all reasoning efforts, we recommend the following sampling parameters", then `temperature=1.0` and `top_p=0.95`. There is no lower value for light reasoning.
+
+**Reasoning levels changed between preview and release.** The released model accepts only `low`, `medium` and `high`. Mistral's reasoning docs say "Use `low` for the level previously called `none`" and that `none` is not accepted as an alias (https://docs.mistral.ai/inference/conversations/reasoning).
+
+**What the study measured:** the 2026-10-22 batch ran on the preview with `reasoning.effort: "none"`. Completion tokens match the visible output in all 600 trials (3.9 to 4.8 characters per token), so no hidden reasoning tokens were produced.
+
+**Live test, 2026-11-10 (one short prompt per call, T=0.15):**
+
+| Route | Effort | Result |
+|---|---|---|
+| Mistral API direct | `none` | HTTP 400, "reasoning_effort none is not supported for this model, supported values: high, low, medium" |
+| Mistral API direct | `low` | HTTP 200, 70 reasoning tokens of 121, thinking chunk returned |
+| OpenRouter, config as in `models.yaml` | `none` and `low` | HTTP 404, "All providers have been ignored". The base endpoint is gone, only `mistral/zdr` and `mistral/eu` remain |
+| OpenRouter, any Mistral endpoint | `none` | HTTP 400, same provider error as direct |
+| OpenRouter, any Mistral endpoint | `low` | HTTP 200, 862 reasoning tokens of 941 |
+
+So the released Large 4 always reasons. `low` is not a renamed `none`, whatever the migration note suggests. The non-thinking condition this study measured can no longer be requested on either route, and the `mistral_large4` entry in `models.yaml` cannot be re-run as written.
+
+**API defaults from `GET /v1/models` (same day):** `mistral-large-4-0` 1.0, `mistral-medium-3-5` 1.0, `mistral-small-2603` (Small 4) 0.3. Large 3 (`mistral-large-2512`) and Small 3.2 are not in the list for this key, so their API defaults stay unknown.
+
+**Release facts:** weights on Hugging Face since 2026-10-29 under the Mistral Ecosystem Open-Weight License (modified MIT, model-as-a-service operators need a separate commercial agreement). Mistral's docs list Large 3 and Medium 3.5 as deprecated on its API from 2026-10-31, replacement Large 4.
 
 ---
 
@@ -206,3 +242,11 @@ When a vendor recommends a temperature range for standard chat (e.g., 0.3-0.7), 
 - For therapeutic personas, stability matters more than expressiveness
 
 This rule comes from analysis of model behavior in the nightmare therapy context (IRT rescripting). Models at the upper bound of their range tend to be more creative but less clinically grounded.
+
+### Large 4 `none` rejection, independent confirmation (2026-11-10)
+
+- Hugging Face launch post (2026-10-29): levels low, medium, high, "reasoning cannot be disabled".
+- pydantic/pydantic-ai #12860 (opened 2026-11-08): "Since Mistral Large 4 left preview" it rejects `none`, same 400 text as our probe.
+- maximhq/bifrost #9731 (direct API check 2026-11-07): mistral-large-4 accepts low, medium, high.
+- Also spring-projects/spring-ai #7312 and agentjido/req_llm #1226. Tutorials from the preview period still recommend `none` and are outdated.
+- Mistral's changelog has the 2026-10-06 preview entry only. No entry announces the change, and no dated GA announcement was found.
