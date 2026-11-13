@@ -19,7 +19,7 @@ import pandas as pd
 
 RANDOM_BASELINE = 0.2  # Expected Jaccard for random 2-of-6 picks
 
-from model_display import MODEL_COLORS, MODEL_GROUPS, display_name, set_paper_style, sort_models
+from model_display import MODEL_COLORS, MODEL_GROUPS, display_name, line_style, set_paper_style, sort_models
 
 
 def plot_metric(ax, df, metric, title, ylabel, model_filter=None):
@@ -49,7 +49,7 @@ def plot_metric(ax, df, metric, title, ylabel, model_filter=None):
             continue
 
         color = MODEL_COLORS.get(model, "#888888")
-        ax.plot(valid_temps, medians, marker="o", label=display_name(model), color=color, linewidth=2)
+        ax.plot(valid_temps, medians, label=display_name(model), color=color, **line_style(model))
         ax.fill_between(valid_temps, q1s, q3s, alpha=0.07, color=color)
 
     ax.axhline(y=1.0, color="green", linestyle="--", alpha=0.4, label="Perfect")

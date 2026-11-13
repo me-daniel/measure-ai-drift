@@ -5,7 +5,11 @@ then compares Jaccard, BERTScore, Alignment side by side.
 
 Outputs:
   - Console summary table
+  - stats/data/seed_comparison_summary.csv (mean and SD per metric, temperature, source)
   - Figure: paired bar chart (seeded vs unseeded) per temperature
+
+If the raw run folders are not on this machine, the figure is redrawn from the
+summary CSV alone.
 """
 
 from __future__ import annotations
@@ -18,9 +22,13 @@ import numpy as np
 import pandas as pd
 import yaml
 
+from model_display import MODEL_COLORS, set_paper_style
+
 SEED_DIR = Path("experiments/runs/seed_batch")
 MAIN_DIR = Path("experiments/latest")
 OUTPUT_DIR = Path("thesis/figures")
+SUMMARY_PATH = Path("stats/data/seed_comparison_summary.csv")
+METRICS = ["jaccard", "bertscore_f1", "alignment"]
 
 
 def load_runs(batch_dir: Path, model_filter: str = "mistral_large") -> pd.DataFrame:
@@ -55,7 +63,67 @@ def load_runs(batch_dir: Path, model_filter: str = "mistral_large") -> pd.DataFr
     return pd.DataFrame(rows)
 
 
+def summarise(seed_df: pd.DataFrame, main_df: pd.DataFrame) -> pd.DataFrame:
+    """Mean and SD across vignettes per metric, temperature and source."""
+    rows = []
+    for metric in METRICS:
+        for source, df in [("seeded", seed_df), ("unseeded", main_df)]:
+            for temp in sorted(seed_df["temperature"].unique()):
+                vals = df[df["temperature"] == temp][metric]
+                rows.append({"metric": metric, "temperature": temp, "source": source,
+                             "mean": round(vals.mean(), 4), "sd": round(vals.std(), 4)})
+    return pd.DataFrame(rows)
+
+
+def plot_comparison(summary: pd.DataFrame) -> None:
+    """Paired bars in the Mistral Large 3 colour: unseeded solid, seeded hatched."""
+    set_paper_style()
+    color = MODEL_COLORS["mistral_large"]
+    temps = sorted(summary["temperature"].unique())
+    fig, axes = plt.subplots(1, 3, figsize=(15, 5), sharey=True)
+
+    bar_width = 0.3
+    x = np.arange(len(temps))
+
+    for ax, metric, label in zip(axes, METRICS,
+                                  ["Jaccard", "BERTScore F1", "Alignment"]):
+        sub = summary[summary["metric"] == metric].set_index(["source", "temperature"])
+        seeded = sub.loc["seeded"].loc[temps]
+        unseeded = sub.loc["unseeded"].loc[temps]
+
+        ax.bar(x - bar_width / 2, seeded["mean"], bar_width, yerr=seeded["sd"],
+               label="Seeded (seed=42)", facecolor="white", edgecolor=color,
+               hatch="/////", linewidth=1.2, capsize=3)
+        ax.bar(x + bar_width / 2, unseeded["mean"], bar_width, yerr=unseeded["sd"],
+               label="Unseeded (main)", facecolor=color, edgecolor=color,
+               linewidth=1.2, capsize=3)
+
+        ax.set_xticks(x)
+        ax.set_xticklabels([f"T={t}" for t in temps])
+        ax.set_title(label)
+        ax.set_ylim(0.5, 1.05)
+
+    axes[0].set_ylabel("Score")
+    fig.suptitle("Mistral Large 3: Seeded vs Unseeded (20 trials, seed=42)", y=1.02)
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=2, frameon=False,
+               handlelength=2.6, handleheight=1.3,
+               bbox_to_anchor=(0.5, -0.08))
+    fig.tight_layout()
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    fig.savefig(OUTPUT_DIR / "fig_seed_comparison.pdf", bbox_inches="tight")
+    fig.savefig(OUTPUT_DIR / "fig_seed_comparison.png", bbox_inches="tight", dpi=150)
+    print(f"\nSaved fig_seed_comparison to {OUTPUT_DIR}/")
+    plt.close(fig)
+
+
 def main():
+    if not SEED_DIR.exists() and SUMMARY_PATH.exists():
+        print(f"No raw runs at {SEED_DIR}, redrawing from {SUMMARY_PATH}")
+        plot_comparison(pd.read_csv(SUMMARY_PATH))
+        return
+
     seed_df = load_runs(SEED_DIR)
     main_df = load_runs(MAIN_DIR)
 
@@ -76,7 +144,7 @@ def main():
     print("=" * 70)
 
     # Per-temperature comparison
-    metrics = ["jaccard", "bertscore_f1", "alignment"]
+    metrics = METRICS
     for temp in sorted(seed_temps):
         print(f"\n--- T = {temp} ---")
         s = seed_df[seed_df["temperature"] == temp]
@@ -105,42 +173,9 @@ def main():
             mv = mj.values[0]
             print(f"  {vig:>12s} {temp:6.3f} {sv:8.3f} {mv:8.3f} {sv - mv:+8.3f}")
 
-    # --- Figure: grouped bar comparison ---
-    temps = sorted(seed_temps)
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5), sharey=True)
-
-    bar_width = 0.3
-    x = np.arange(len(temps))
-
-    for ax, metric, label in zip(axes, metrics,
-                                  ["Jaccard", "BERTScore F1", "Alignment"]):
-        seeded_vals = [seed_df[seed_df["temperature"] == t][metric].mean() for t in temps]
-        unseeded_vals = [main_df[main_df["temperature"] == t][metric].mean() for t in temps]
-
-        seeded_sds = [seed_df[seed_df["temperature"] == t][metric].std() for t in temps]
-        unseeded_sds = [main_df[main_df["temperature"] == t][metric].std() for t in temps]
-
-        ax.bar(x - bar_width / 2, seeded_vals, bar_width, yerr=seeded_sds,
-               label="Seeded (seed=42)", color="#3a86c8", alpha=0.8, capsize=3)
-        ax.bar(x + bar_width / 2, unseeded_vals, bar_width, yerr=unseeded_sds,
-               label="Unseeded (main)", color="#e8a830", alpha=0.8, capsize=3)
-
-        ax.set_xticks(x)
-        ax.set_xticklabels([f"T={t}" for t in temps])
-        ax.set_title(label)
-        ax.legend(fontsize=8)
-        ax.set_ylim(0.5, 1.05)
-
-    axes[0].set_ylabel("Score")
-    fig.suptitle("Mistral Large 3: Seeded vs Unseeded (20 trials, seed=42)",
-                 fontsize=13, y=1.02)
-    fig.tight_layout()
-
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    fig.savefig(OUTPUT_DIR / "fig_seed_comparison.pdf", bbox_inches="tight")
-    fig.savefig(OUTPUT_DIR / "fig_seed_comparison.png", bbox_inches="tight", dpi=150)
-    print(f"\nSaved fig_seed_comparison to {OUTPUT_DIR}/")
-    plt.close(fig)
+    summary = summarise(seed_df, main_df)
+    summary.to_csv(SUMMARY_PATH, index=False)
+    plot_comparison(summary)
 
 
 if __name__ == "__main__":

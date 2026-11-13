@@ -49,16 +49,16 @@ MODEL_GROUPS = {
 }
 
 MODEL_COLORS = {
-    # Mistral EU-sovereign (orange, lighter=smaller, Small 4 slightly reddish)
-    "mistral_small32": "#f4a261",    # light orange (24B, smallest)
-    "mistral_small4": "#e76f51",     # reddish orange (119B, primary subject)
-    "mistral_medium35": "#d65f43",   # mid orange-red (128B dense, post-hoc addition)
-    "mistral_large": "#c44536",      # dark orange-red (675B, largest)
-    "mistral_large4": "#8f2d24",     # brick red (October 2026 addition, newest)
-    # Qwen family (violet to purple, lighter=smaller)
-    "qwen35_27b": "#b89dd6",        # light violet-pink (27B, smallest)
-    "qwen35_122b": "#8e6bbf",       # medium purple (122B)
-    "qwen35_397b": "#5a2d82",       # dark purple (397B, largest)
+    # Mistral EU-sovereign (yellow to dark red, lighter=smaller)
+    "mistral_small32": "#f0b400",    # yellow (24B, smallest)
+    "mistral_small4": "#f08223",     # orange (119B)
+    "mistral_medium35": "#d9482b",   # red-orange (128B dense, post-hoc addition)
+    "mistral_large": "#8e1b16",      # dark red (675B, largest in the set)
+    "mistral_large4": "#4f0f0c",     # maroon (outside the model set)
+    # Qwen family (grey-lavender to dark purple, lighter=smaller)
+    "qwen35_27b": "#a9a4b8",        # grey-lavender (27B, smallest)
+    "qwen35_122b": "#9a5fd0",       # vivid purple (122B)
+    "qwen35_397b": "#45176e",       # dark purple (397B, largest)
     # Dense comparators
     "olmo3_32b": "#e891b2",         # pink
     "llama70b": "#3a86c8",          # blue
@@ -70,6 +70,20 @@ MODEL_COLORS = {
     "llama70b_test": "#a8c8e8",     # light blue
     "gpt_oss_test": "#6d6875",      # gray
 }
+
+# Per-model overrides for line and scatter marks. Medium 3.5 is the top-ranked
+# model and sits between two similar hues, so it gets a dashed line and a
+# larger diamond marker.
+MODEL_STYLES = {
+    "mistral_medium35": {"marker": "D", "linestyle": "--", "linewidth": 2.6, "markersize": 8},
+}
+
+
+def line_style(internal_name: str) -> dict:
+    """Marker and line keywords for ax.plot, with per-model overrides."""
+    style = {"marker": "o", "linestyle": "-", "linewidth": 2}
+    style.update(MODEL_STYLES.get(internal_name, {}))
+    return style
 
 
 def set_paper_style() -> None:

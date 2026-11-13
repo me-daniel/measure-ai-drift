@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from model_display import MODEL_COLORS, display_name, set_paper_style, sort_models
+from model_display import MODEL_COLORS, display_name, line_style, set_paper_style, sort_models
 
 
 def main() -> None:
@@ -57,8 +57,8 @@ def main() -> None:
         color = MODEL_COLORS.get(model, "#888888")
         means_arr = np.array(means)
         sds_arr = np.array(sds)
-        ax1.plot(valid_temps, means, marker="o", label=display_name(model),
-                 color=color, linewidth=2)
+        ax1.plot(valid_temps, means, label=display_name(model),
+                 color=color, **line_style(model))
         lower = np.clip(means_arr - sds_arr, 0, 1)
         upper = np.clip(means_arr + sds_arr, 0, 1)
         ax1.fill_between(valid_temps, lower, upper, alpha=0.07, color=color)

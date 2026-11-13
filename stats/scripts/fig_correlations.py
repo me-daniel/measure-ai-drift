@@ -17,7 +17,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats as sp
 
-from model_display import MODEL_COLORS, display_name, set_paper_style, sort_models
+from model_display import MODEL_COLORS, display_name, line_style, set_paper_style, sort_models
 
 
 def main() -> None:
@@ -49,6 +49,7 @@ def main() -> None:
             row["jaccard"],
             row["bertscore"],
             color=color,
+            marker=line_style(model)["marker"],
             s=170,
             zorder=3,
             edgecolors="white",

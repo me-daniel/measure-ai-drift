@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from model_display import MODEL_COLORS, MODEL_GROUPS, display_name, set_paper_style, sort_models
+from model_display import MODEL_COLORS, MODEL_GROUPS, display_name, line_style, set_paper_style, sort_models
 
 
 def plot_bertscore(ax, df, title, model_filter=None):
@@ -46,7 +46,7 @@ def plot_bertscore(ax, df, title, model_filter=None):
         color = MODEL_COLORS.get(model, "#888888")
         means_arr = np.array(means)
         sds_arr = np.array(sds)
-        ax.plot(valid_temps, means, marker="o", label=display_name(model), color=color, linewidth=2)
+        ax.plot(valid_temps, means, label=display_name(model), color=color, **line_style(model))
         ax.fill_between(valid_temps, means_arr - sds_arr, means_arr + sds_arr, alpha=0.07, color=color)
 
     ax.set_xlabel("Temperature")
